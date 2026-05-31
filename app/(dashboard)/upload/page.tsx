@@ -1,4 +1,4 @@
-import { getUploads } from "@/lib/data"
+import { getUploads } from "@/lib/uploads"
 import { DataTable } from "@/components/data-table"
 import { uploadColumns } from "@/components/upload-columns"
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"

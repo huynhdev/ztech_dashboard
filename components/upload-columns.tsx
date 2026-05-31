@@ -3,7 +3,7 @@
 import type { ColumnDef } from "@tanstack/react-table"
 import { Badge } from "@/components/ui/badge"
 import { FileSpreadsheetIcon } from "lucide-react"
-import type { Upload } from "@/lib/data"
+import type { Upload } from "@/lib/uploads"
 
 const statusVariant: Record<Upload["status"], "default" | "secondary" | "destructive" | "outline"> = {
   pending: "outline",

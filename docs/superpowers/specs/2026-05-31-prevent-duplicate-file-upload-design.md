@@ -104,6 +104,18 @@ the file list can show duplicate state before upload.
 - **On upload** (`handleUpload`): iterate only `ok` files. Reuse the
   already-computed `hash` — include it in the `uploads` insert
   (`.insert({ id, file_name, file_path, status, uploaded_by, file_hash: hash })`).
+  Note the key mismatch to thread carefully: the add-time check state is keyed by
+  `file.name + file.size` (matching the existing `addFiles` dedupe), while the
+  `progress` map in `handleUpload`/`processFile` is keyed by the freshly generated
+  `id`. `processFile` must look up the precomputed hash from the check state by
+  `name + size` rather than recomputing it.
+- **Typing the embed:** `profiles(email)` types as an array for a to-one embed
+  under supabase-js. Reuse the existing
+  `as unknown as Pick<Tables<"profiles">, "email"> | null` bridge already used in
+  `lib/uploads.ts:47` — do not reach for `any`.
+- **Type gating:** keep hashing + the check inside the existing
+  `accept=".xlsx"` / `/\.xlsx$/i` filter path so non-xlsx drops never trigger a
+  hash or query.
 - **Belt-and-suspenders re-check:** inside `processFile`, immediately before the
   insert, run the duplicate query once more (cheap). This guards the narrow
   window where a file completed *between* add-time and clicking Upload. On a hit,

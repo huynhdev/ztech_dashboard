@@ -26,7 +26,8 @@ Local Supabase runs on port 54326 (see `CLAUDE.md`). Use `npx supabase@latest` f
 
 - **Create:** `supabase/functions/process-upload/chunking.ts` — pure, I/O-free chunk math: shard filename, parse-time chunk ranges, cursor→shard mapping, completion/final-shard predicates. Single responsibility, fully unit-testable.
 - **Create:** `supabase/functions/process-upload/chunking.test.ts` — Deno unit tests for `chunking.ts`.
-- **Modify:** `supabase/functions/process-upload/index.ts` — split the existing `ingest()` into `parseStep()` + `upsertStep()`, route on `step`, add `selfInvokeUpsert()` and `markFailed()` helpers. Keeps `getSecretKey()` / `errorMessage()` / admin-client setup as-is.
+- **Modify:** `supabase/functions/process-upload/index.ts` — split the existing `ingest()` into `parseStep()` + `upsertStep()`, route on `step`, add an auth guard (secret-key check for the self-invoke, user-JWT validation for the browser invoke), add `selfInvokeUpsert()` and `markFailed()` helpers. Keeps `getSecretKey()` / `errorMessage()` / admin-client setup as-is.
+- **Modify:** `supabase/config.toml` — set `[functions.process-upload] verify_jwt = false` (the gateway can't verify the project's `sb_secret_` keys; the function self-authorizes instead, like `keepalive`).
 - **Modify:** `components/upload-dialog.tsx:342-345` — add `step: "1_parsed_data"` to the single `functions.invoke` body. Nothing else changes.
 
 ---
@@ -233,19 +234,18 @@ function errorMessage(e: unknown): string {
 // at the 202 (the handler returns before EdgeRuntime.waitUntil work runs), so the
 // current invocation ends cleanly and the next chunk gets a fresh wall-clock window.
 //
-// process-upload has `verify_jwt = true` (config.toml), so the gateway requires a
-// gateway-accepted credential on the self-invoke. The user JWT that the browser sends
-// is not available here, so we send the service-role key (a JWT the gateway accepts),
-// falling back to the admin secret key. Confirming this credential is accepted in each
-// deployed environment is exactly what the Task 2 validate-first step is for.
+// process-upload runs with verify_jwt = false (see the auth guard in the handler and the
+// keepalive precedent), so the gateway does not validate this call. We send the admin
+// secret key as the bearer; the handler's 2_upsert_data branch authorizes the call by
+// checking the bearer equals getSecretKey() — a credential only the server knows.
 async function selfInvokeUpsert(uploadId: string): Promise<void> {
-  const gatewayKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? getSecretKey();
+  const key = getSecretKey();
   await fetch(`${SUPABASE_URL}/functions/v1/process-upload`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${gatewayKey}`,
-      apikey: gatewayKey,
+      Authorization: `Bearer ${key}`,
+      apikey: key,
     },
     body: JSON.stringify({ uploadId, step: "2_upsert_data" }),
   });
@@ -285,6 +285,25 @@ Deno.serve(async (req) => {
   } catch (e) {
     console.error("process-upload: secret key unavailable:", e);
     return Response.json({ error: "server misconfigured" }, { status: 500 });
+  }
+
+  // This function runs with verify_jwt = false (the project's sb_secret_ keys are not
+  // JWTs the gateway can verify — same reason keepalive self-authorizes), so the function
+  // guards itself by step:
+  //  - 2_upsert_data (internal self-invoke): the bearer must equal the secret key, which
+  //    only the server knows. This is what makes the chain callable without a user JWT.
+  //  - 1_parsed_data (browser invoke): supabase-js attaches the signed-in user's JWT;
+  //    validate it so an anonymous caller cannot kick off processing.
+  const bearer = req.headers.get("Authorization")?.replace(/^Bearer\s+/i, "") ?? "";
+  if (step === "2_upsert_data") {
+    if (bearer !== getSecretKey()) {
+      return Response.json({ error: "unauthorized" }, { status: 401 });
+    }
+  } else {
+    const { data: { user }, error: authErr } = await admin.auth.getUser(bearer);
+    if (authErr || !user) {
+      return Response.json({ error: "unauthorized" }, { status: 401 });
+    }
   }
 
   // Process in the background; return 202 immediately so the client just watches
@@ -417,14 +436,28 @@ async function upsertStep(admin: SupabaseClient, uploadId: string): Promise<void
 }
 ```
 
-- [ ] **Step 3: Typecheck the function with Deno**
+- [ ] **Step 3: Set `verify_jwt = false` for `process-upload` (permanent, committed)**
+
+In `supabase/config.toml`, change:
+```toml
+[functions.process-upload]
+verify_jwt = true
+```
+to:
+```toml
+[functions.process-upload]
+verify_jwt = false
+```
+This is **not** a local-only toggle — it is required in production. The project uses the new `sb_secret_` API-key model; those keys are not JWTs the Functions gateway can verify, so a `verify_jwt = true` gateway would 401 the self-invoke and the chain would die after the first chunk in production. The handler's auth guard (Step 1) now does the authorization the gateway used to: secret-key check for the internal `2_upsert_data` self-invoke, user-JWT validation for the browser's `1_parsed_data` invoke. This mirrors the `keepalive` function, which is `verify_jwt = false` and self-authorizes.
+
+- [ ] **Step 4: Typecheck the function with Deno**
 
 Run: `deno check supabase/functions/process-upload/index.ts`
 Expected: no errors. (Fix any type issues before proceeding.)
 
-- [ ] **Step 4: Start local Supabase + serve the function (with the right env)**
+- [ ] **Step 5: Start local Supabase + serve the function (with the right env)**
 
-Two host-side gotchas this step works around: (a) a host shell var like `CHUNK_SIZE=2 npx …` does **not** propagate into the function's Deno container — it must come from `--env-file`; (b) `[functions.process-upload] verify_jwt = true` in `config.toml` means an unauthenticated invoke is rejected, so for local transport testing we turn it off (and revert before committing).
+Host-side gotcha this step works around: a host shell var like `CHUNK_SIZE=2 npx …` does **not** propagate into the function's Deno container — it must come from `--env-file`. (`verify_jwt = false` is already set permanently in Step 3, so no JWT toggle is needed here.)
 
 1. Create a **local-only** env file (do not commit it) at `supabase/functions/.env`:
    ```
@@ -432,9 +465,7 @@ Two host-side gotchas this step works around: (a) a host shell var like `CHUNK_S
    ```
    `CHUNK_SIZE=2` forces multiple shards from a tiny workbook so chaining is actually exercised — with the default 200 a small test file would finish in one chunk and never prove self-invoke. Add `supabase/functions/.env` to `.gitignore` if not already ignored.
 
-2. For local testing only, set `verify_jwt = false` under `[functions.process-upload]` in `supabase/config.toml`. **Revert this before any commit** (production keeps `verify_jwt = true`; the deployed self-invoke is authenticated via the service-role key in `selfInvokeUpsert`).
-
-3. Start and serve (two terminals, or background the first):
+2. Start and serve (two terminals, or background the first):
    ```bash
    npx supabase@latest start
    npx supabase@latest functions serve process-upload --env-file supabase/functions/.env
@@ -442,9 +473,9 @@ Two host-side gotchas this step works around: (a) a host shell var like `CHUNK_S
 
 Confirm `CHUNK_SIZE` reached the function: a quick `console.log("CHUNK_SIZE", CHUNK_SIZE)` at module top should print `2` in the serve logs on first invoke (remove the log before committing).
 
-- [ ] **Step 5: Validate the chain end-to-end (the load-bearing test)**
+- [ ] **Step 6: Validate the chain end-to-end (the load-bearing test)**
 
-The simplest way to get a real `uploads` row + stored file without scripting auth/storage is the **UI**: the *unmodified* dialog already invokes `process-upload` with no `step`, which routes to `1_parsed_data` by default — so the full chain runs at this task, before the Task 4 client change. With `npx supabase@latest start` and the serve running, point the app at local Supabase (`yarn dev`), sign in as an admin, and upload a small `.xlsx` (5–10 valid rows). Grab the upload id:
+The simplest way to get a real `uploads` row + stored file without scripting auth/storage is the **UI**: the *unmodified* dialog already invokes `process-upload` with no `step`, which routes to `1_parsed_data` by default, and supabase-js attaches the signed-in user's JWT so the handler's `1_parsed_data` auth guard passes — so the full chain runs at this task, before the Task 4 client change. With `npx supabase@latest start` and the serve running, point the app at local Supabase (`yarn dev`), sign in as an admin, and upload a small `.xlsx` (5–10 valid rows). Grab the upload id:
 ```bash
 npx supabase@latest db query --local "select id, status, total_rows, processed_rows from public.uploads order by uploaded_at desc limit 1"
 ```
@@ -462,26 +493,30 @@ Expected:
   ```
   → 0.
 
-You can also re-trigger the chain by hand for an existing id (used in Task 3's lease test):
+You can also re-trigger the chain by hand for an existing id (used in Task 3's lease test). The handler's `2_upsert_data` guard requires the secret key as the bearer, so send it — use the value `getSecretKey()` resolves to locally (the `service_role` key from `npx supabase@latest status`, unless `SUPABASE_SECRET_KEYS` is set locally):
 ```bash
+SK="<local service_role / secret key>"
 curl -s -X POST http://127.0.0.1:54326/functions/v1/process-upload \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $SK" \
+  -H "apikey: $SK" \
   -d '{"uploadId":"<the-upload-id>","step":"2_upsert_data"}'
 ```
-(With `verify_jwt = false` set locally per Step 4, this needs no auth header. If you kept `verify_jwt = true`, add `-H "Authorization: Bearer <local service_role key>"` and `-H "apikey: <same>"`.)
 
 **Troubleshooting — the chain does not advance past the first chunk.** Read the serve logs for the failed self-invoke and diagnose by symptom:
-- **401 / "Invalid JWT" / "Missing authorization":** the gateway is rejecting the self-invoke. Confirm `verify_jwt = false` is set locally (Step 4), or that `selfInvokeUpsert` is sending a gateway-accepted key. Log `Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")?.slice(0,8)` to confirm a service-role key is present in the runtime.
+- **401 from the self-invoke:** the handler's `2_upsert_data` guard rejected the bearer — `selfInvokeUpsert`'s `getSecretKey()` and the handler's `getSecretKey()` resolved to different values, or the header was dropped. Log `bearer.slice(0,8)` vs `getSecretKey().slice(0,8)` to compare.
 - **Connection refused / fetch error / DNS:** `SUPABASE_URL` inside the runtime is not reachable from inside the container. Log it (`console.log("self-invoke base", SUPABASE_URL)`); if it points somewhere unreachable, introduce a dedicated `FUNCTIONS_URL` env (e.g. `http://host.docker.internal:54326` locally) and use it in `selfInvokeUpsert` instead of `SUPABASE_URL`.
 - **Connection reset only after hot reload:** the `per_worker` policy reloaded the worker mid-chain; set `policy = "oneshot"` under `[edge_runtime]` for the duration of local testing.
 
 Resolve this before starting Task 3 — everything downstream assumes the self-invoke works.
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 7: Commit**
+
+Do NOT commit `supabase/functions/.env` (the local `CHUNK_SIZE=2` file) or any temporary `console.log`s.
 
 ```bash
-git add supabase/functions/process-upload/index.ts
-git commit -m "feat(upload): two-step routing, sharded parse, self-chaining skeleton"
+git add supabase/functions/process-upload/index.ts supabase/config.toml
+git commit -m "feat(upload): two-step routing, sharded parse, self-chaining skeleton + verify_jwt guard"
 ```
 
 ---
@@ -605,7 +640,7 @@ Expected: no errors.
 
 - [ ] **Step 3: Re-serve and validate a full ingest against local Supabase**
 
-Restart `functions serve` (still `--env-file …` with `CHUNK_SIZE=2`) and re-run the upload from Task 2 Step 5 with a **fresh** upload id. Verify with `npx supabase@latest db query --local "…"`:
+Restart `functions serve` (still `--env-file …` with `CHUNK_SIZE=2`) and re-run the upload from Task 2 Step 6 with a **fresh** upload id. Verify with `npx supabase@latest db query --local "…"`:
 - `status` → `completed`, `processed_rows == total_rows`.
 - `select count(*) from public.incoming_cases where upload_id = '<id>'` equals the number of unique rows in the workbook.
 - `inserted_count + updated_count == total_rows`; for a first-time upload `inserted_count == total_rows`, `updated_count == 0`.
@@ -615,8 +650,10 @@ Restart `functions serve` (still `--env-file …` with `CHUNK_SIZE=2`) and re-ru
 
 With a multi-shard upload mid-flight (or replayed), invoke `2_upsert_data` twice in quick succession for the same `processing` upload:
 ```bash
-curl -s -X POST http://127.0.0.1:54326/functions/v1/process-upload -H "Content-Type: application/json" -d '{"uploadId":"<id>","step":"2_upsert_data"}' &
-curl -s -X POST http://127.0.0.1:54326/functions/v1/process-upload -H "Content-Type: application/json" -d '{"uploadId":"<id>","step":"2_upsert_data"}' &
+SK="<local service_role / secret key>"   # same key getSecretKey() resolves to (see Task 2 Step 6)
+H=(-H "Content-Type: application/json" -H "Authorization: Bearer $SK" -H "apikey: $SK")
+curl -s -X POST http://127.0.0.1:54326/functions/v1/process-upload "${H[@]}" -d '{"uploadId":"<id>","step":"2_upsert_data"}' &
+curl -s -X POST http://127.0.0.1:54326/functions/v1/process-upload "${H[@]}" -d '{"uploadId":"<id>","step":"2_upsert_data"}' &
 wait
 ```
 Expected: final counts still satisfy `inserted_count + updated_count == total_rows` (no double-count), `incoming_cases` has no duplicate rows, and the upload reaches `completed` exactly once.
@@ -714,5 +751,5 @@ git commit -m "chore(upload): verification fixes for chunked ingestion"
 
 - **DRY:** the resolve/upsert body in Task 3 is moved verbatim from the old `ingest()`; do not rewrite its logic, only relocate it and switch the counters to seed from the upload row.
 - **YAGNI:** no DB migration, no new status values, no interim per-row progress writes (progress jumps one chunk at a time — fine at `CHUNK_SIZE` 200). The optional iteration ceiling from the spec is *not* implemented unless Task 2/5 surfaces a real runaway; the empty-shard guard already prevents non-terminating chains.
-- **The transport gate is real:** do not start Task 3 until Task 2 Step 5 shows the chain reaching `completed`. Everything downstream assumes the self-invoke works.
+- **The transport gate is real:** do not start Task 3 until Task 2 Step 6 shows the chain reaching `completed`. Everything downstream assumes the self-invoke works.
 - **Default `CHUNK_SIZE` is 200 in production** (the env var is only lowered to 2 for local multi-shard testing); do not commit a lowered default.

@@ -207,6 +207,16 @@ processing.
 > Supabase before building out the rest (a one-line self-invoke that flips a
 > marker column is enough to prove the loop), and record the working URL/headers.
 
+**Auth model.** `process-upload` runs with `verify_jwt = false` (like the existing
+`keepalive` function), because this project uses the new `sb_secret_` API-key model
+and those keys are not JWTs the Functions gateway can verify — a `verify_jwt = true`
+gateway would 401 the self-invoke in production. The function authorizes itself
+instead: the internal `2_upsert_data` self-invoke must present the secret key as its
+bearer (a value only the server knows), and the browser's `1_parsed_data` invoke is
+authorized by validating the signed-in user's JWT (which `supabase-js` attaches
+automatically). This preserves the prior "only authenticated users can trigger
+ingestion" guarantee that `verify_jwt = true` used to provide at the gateway.
+
 **Termination** is the cursor: each chunk either advances `processed_rows` via
 the guarded update (then self-invokes) or fails/stands down (no self-invoke).
 The empty-shard runaway guard above ensures the cursor strictly increases while

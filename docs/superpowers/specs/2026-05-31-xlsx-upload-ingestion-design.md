@@ -1,0 +1,257 @@
+# Design: `.xlsx` Upload → Supabase Ingestion
+
+**Date:** 2026-05-31
+**Status:** Approved (pending spec review)
+**Feature:** Upload an incoming-cases `.xlsx` workbook, parse it, and ingest normalized
+data into Supabase with live processing feedback.
+
+## 1. Problem & Context
+
+The dashboard visualizes dental-lab incoming cases (revenue, volume, category
+breakdowns, top labs/doctors, client heatmap). Today all of this data is read from
+local JSON files in `data/` via synchronous functions in `lib/data.ts`. The project
+rule (`.claude/rules/supabase.md`) requires all app data to flow through Supabase and
+forbids local JSON as a data source.
+
+There is no domain schema in Supabase yet — only `keepalive` and `profiles` (auth).
+Admin auth is fully wired: `requireAdmin()` gates the entire `app/(dashboard)/` route
+group, so only admins reach the upload UI.
+
+The real source file is a multi-sheet `.xlsx` workbook (sample:
+`INCOMING CASE IN MAY 11 - 17. 2026 (1).xlsx`). Only one sheet matters for ingestion —
+the **detail sheet** with one row per case. The other two sheets (`Sheet1`, `SUMMARY`)
+are pivot tables derived from it.
+
+### Decisions locked during brainstorming
+
+| Decision | Choice |
+|---|---|
+| Data target | Build Supabase schema + ingest (store data). Dashboard **analytics** reads stay JSON-backed for now (follow-up); only the **upload history** read moves to Supabase. |
+| Accepted format | `.xlsx` only |
+| Initial seed | Start empty (no JSON seed) |
+| Re-upload behavior | Idempotent upsert on a natural dedupe key |
+| Upload UX | One-shot ingest with **live (real-time) processing feedback** |
+| Ingestion architecture | **Approach B**: Storage + Edge Function + Realtime |
+| Privileged writes | Edge Function uses the platform-injected `SUPABASE_SECRET_KEYS['default']` (new API-key model; replaces the legacy `SUPABASE_SERVICE_ROLE_KEY`). No secret added to `.env.local`. |
+| Auth / attribution | Login already implemented; attribute uploads to the logged-in admin |
+
+## 2. Goals / Non-Goals
+
+**Goals**
+- An admin can upload a `.xlsx` incoming-cases workbook from the existing upload dialog.
+- The file is parsed server-side, normalized into labs/doctors/patients/products, and
+  ingested as `incoming_cases`, idempotently.
+- The user sees genuine real-time progress (rows processed / total, new entities,
+  inserted vs updated) and a final success/failure state.
+- The **upload history** list reads from the Supabase `uploads` table and reflects real
+  uploads.
+
+**Non-Goals**
+- **Migrating the dashboard analytics reads off JSON** (`getSummary`, `getTimeSeries`,
+  `getCategoryBreakdown`, `getTopLabs`, `getTopDoctors`, `getClientHeatmap`,
+  `getClientChanges`) — these stay JSON-backed for now. The interactive client components
+  (`page.tsx`, `ClientHeatmap`) are **not** restructured in this feature. Deferred
+  follow-up. (This means ingested data is stored but not yet visualized; that is
+  intentional for this slice.)
+- Migrating the **users page** (`app/(dashboard)/users/page.tsx`) off `users.json` —
+  unrelated to ingestion; separate follow-up.
+- Pushing analytics aggregation into SQL views / RPC.
+- CSV or `.xls` support — `.xlsx` only.
+- A pre-commit preview/confirm step — ingestion is one-shot.
+- Editing/deleting already-ingested cases through the UI.
+
+## 3. Architecture (Approach B)
+
+```
+upload-dialog (client, admin)
+  1. INSERT uploads row {status:'pending', file_name, uploaded_by}   -> uploadId
+  2. Storage.upload  uploads/{uploadId}/{filename}.xlsx              (private bucket)
+  3. supabase.functions.invoke('process-upload', { uploadId })
+  4. subscribe Realtime on uploads row (id = uploadId)              -> live progress
+
+process-upload Edge Function (Deno, service-role, EdgeRuntime.waitUntil)
+  - returns 202 immediately, processes in the background:
+  a. UPDATE uploads status='processing'
+  b. download file from Storage, parse with npm:xlsx
+  c. auto-detect DETAIL sheet (header row contains Pan/Patient/Lab/Doctor/Order date/
+     Product/Status/Amount)
+  d. per batch: resolve/upsert lab, doctor, patient, product -> upsert case
+  e. UPDATE uploads {processed_rows, total_rows, inserted_count, updated_count,
+     skipped_count} per batch  -> Realtime pushes to client
+  f. UPDATE uploads status='completed' | 'failed' (+ error message)
+```
+
+The dialog is the Realtime consumer; the progress bar and counters are driven entirely
+by updates to the single `uploads` row. The function returning early via
+`EdgeRuntime.waitUntil` avoids holding a long invoke connection open.
+
+### Why Approach B over a streaming route handler
+
+- Decoupled and idiomatic for Supabase; ingestion is retryable/auditable from the
+  stored file.
+- Survives a client reload (progress lives in the `uploads` row, not the connection).
+- Keeps xlsx parsing (and the SheetJS dependency) entirely inside the Deno function —
+  no new dependency in the Next.js app.
+- Realtime + Storage + edge runtime are already enabled in `supabase/config.toml`.
+
+## 4. Database Schema
+
+One migration: `supabase/migrations/20260531020000_create_incoming_cases.sql`
+(timestamp must be greater than every existing migration). All SQL lowercase, RLS
+enabled on every table, granular policies (separate select/insert/update/delete), roles
+specified with `to`, `(select auth.uid())` wrapped. Mirrors the `profiles` migration and
+follows the updated grant rule (GRANT Data-API privileges + RLS + policies as a unit;
+grant `usage, select` on sequences).
+
+| Table | Key columns | Resolve / unique key |
+|---|---|---|
+| `labs` | `id bigint generated always as identity`, `name text not null` | unique `name` |
+| `products` | `id`, `name text not null`, `category text` | unique `name` |
+| `doctors` | `id`, `name text not null`, `route text`, `raw text not null`, `lab_id bigint references labs` | unique `raw` |
+| `patients` | `id`, `name text not null`, `external_id text`, `lab_id bigint references labs` | unique `(name, external_id, lab_id)` |
+| `incoming_cases` | `id`, `pan text`, `patient_id references patients`, `lab_id references labs`, `doctor_id references doctors`, `product_id references products`, `order_date date not null`, `status text`, `amount numeric not null default 0`, `is_multi_unit boolean not null default false`, `source_file text`, `upload_id uuid references uploads`, `dedupe_key text not null` | **unique `dedupe_key`** |
+| `uploads` | `id uuid default gen_random_uuid()`, `file_name text not null`, `file_path text`, `status text not null default 'pending'`, `total_rows int`, `processed_rows int not null default 0`, `inserted_count int not null default 0`, `updated_count int not null default 0`, `skipped_count int not null default 0`, `error text`, `uploaded_by uuid references profiles`, `uploaded_at timestamptz not null default now()` | — |
+
+**dedupe_key** = `pan | order_date | patient_id | product_id` (computed in the function
+after entity resolution). `incoming_cases` upsert is `on conflict (dedupe_key) do update`,
+making re-uploads and overlapping date ranges idempotent.
+
+**Status values** for `uploads`: `pending`, `processing`, `completed`, `failed`. Modeled
+as a `text` column with a `check` constraint (or an enum — implementation choice; enum
+preferred for parity with `user_role`).
+
+**New-entity counters**: the UI shows "new labs / new doctors". To back this, `uploads`
+gains `new_labs_count int not null default 0` and `new_doctors_count int not null default 0`,
+updated by the function as it creates entities. (If a counter is dropped from the UI, drop
+the matching column — they must stay reconciled.)
+
+**Explicit grants (required — RLS alone is insufficient).** Per `.claude/rules/supabase.md`,
+new `public` tables are not auto-exposed to the Data API. Each table above gets, as a unit:
+`grant select, insert, update, delete on public.<table> to authenticated;`
+`grant select, insert, update, delete on public.<table> to service_role;`
+then `alter table ... enable row level security;` then the policies. Because the PKs are
+`bigint generated always as identity`, also
+`grant usage, select on all sequences in schema public to authenticated, service_role;`
+(or per-sequence). Scope `authenticated` grants down to `select` only if a table proves
+read-only from the client — but ingestion writes go through the service-role function, so
+`authenticated` realistically needs only `select`; keep `service_role` full.
+
+**Storage**: a private bucket `uploads` created in the migration (insert into
+`storage.buckets`) with storage RLS policies allowing admins to insert/read objects.
+
+**Realtime**: add `public.uploads` to the `supabase_realtime` publication so the client
+can subscribe to row updates.
+
+**Indexes**: `incoming_cases(order_date)`, `incoming_cases(lab_id)`,
+`incoming_cases(product_id)`, `incoming_cases(upload_id)`, plus the unique constraints
+above; `uploads(uploaded_at)`.
+
+After writing the migration: `yarn db:migrate` then `yarn db:gen-types` to regenerate
+`types/database.ts`.
+
+## 5. RLS Policy Summary
+
+For each domain table (`labs`, `products`, `doctors`, `patients`, `incoming_cases`) and
+`uploads`:
+- SELECT — `to authenticated using (public.is_admin())`.
+- INSERT/UPDATE/DELETE — `to authenticated` gated by `public.is_admin()`.
+
+The Edge Function writes with the service-role key and bypasses RLS, so heavy ingestion
+writes are not subject to these policies; the policies exist for any direct client
+access and to satisfy the always-on-RLS rule. Storage policies similarly restrict the
+`uploads` bucket to admins.
+
+## 6. Parsing Rules (Edge Function)
+
+Re-derives the transform that originally produced `data/incoming_cases_raw.json`.
+
+- **Detail sheet detection**: iterate worksheets; pick the one whose header row contains
+  `Pan`, `Patient`, `Lab`, `Doctor`, `Order date`, `Product`, `Status`, `Amount`. Header
+  is not the first row (there is a title row), so scan for it. Ignore pivot sheets.
+- **Patient**: `"THUY DOAN #3653"` -> name `THUY DOAN`, `external_id` `3653`. Suffix
+  optional (no `#` -> `external_id = null`).
+- **Doctor**: `"Le, Tommy DDS - RTE: A"` -> `name` `Le, Tommy DDS`, `route` `A`; store the
+  full original string as `raw`. Missing route -> `route = null`.
+- **Product**: `category` = substring before the first `" - "` (e.g. `Zirconia`,
+  `Implant`); products without a delimiter use the whole name as category.
+  `is_multi_unit` = product cell ends with `...`.
+- **Order date**: SheetJS date cell -> `YYYY-MM-DD`.
+- **Amount**: numeric; `0` allowed and preserved.
+- **Status**: stored verbatim (`Shipped`, `In Production`, `Hold`, etc.).
+- **Lab**: resolved/created by name; `doctors.lab_id` / `patients.lab_id` linked to it.
+- **Skipped rows**: rows missing Pan, Patient, or Lab are counted toward
+  `skipped_count` (not fatal); ingestion continues.
+
+## 7. Read-Path Changes (`lib/data.ts`) — upload history only
+
+**Scope is deliberately narrow.** The analytics functions (`getSummary`, `getTimeSeries`,
+`getCategoryBreakdown`, `getTopLabs`, `getTopDoctors`, `getClientHeatmap`,
+`getClientChanges`) and their consumers (`app/(dashboard)/page.tsx`, `ClientHeatmap`,
+`client-change-table.tsx`) are **left untouched** — they keep reading the existing
+`data/*.json`. Restructuring those client components for async Supabase reads is a
+separate follow-up.
+
+The only read that moves to Supabase is the **upload history**:
+
+- `getUploads()` becomes `async` and queries the `uploads` table (+ a join/lookup to
+  `profiles` for the uploader email) via the **server** client (`@/lib/supabase/server`).
+- `app/(dashboard)/upload/page.tsx` is already a server component; it becomes `async` and
+  `await`s `getUploads()`.
+- The `Upload` type changes: `id` becomes a uuid string; `status` union gains `"pending"`
+  (currently `"completed" | "processing" | "failed"`); add progress/count fields
+  (`totalRows`, `processedRows`, `insertedCount`, `updatedCount`, `skippedCount`,
+  `newLabsCount`, `newDoctorsCount`, `error`); `fileName`/`uploadedAt`/`uploader` map from
+  `file_name`/`uploaded_at`/`profiles.email`.
+- `components/upload-columns.tsx` updates its `statusVariant`/`statusLabel` maps to include
+  `"pending"` and (optionally) renders progress for in-flight rows.
+
+The JSON consumed by the analytics functions remains in place; `data/incoming_cases.json`
+etc. are untouched by this feature. (The eventual analytics migration off JSON is tracked
+as a follow-up, out of scope here.)
+
+## 8. Client Changes
+
+- `components/upload-dialog.tsx`: implement `handleUpload` for **multiple `.xlsx` files**.
+  Each file is ingested independently and concurrently — per file: insert an `uploads` row,
+  upload to Storage, invoke `process-upload`, subscribe to Realtime on that row. The dialog
+  renders a **per-file progress list** (each with its own % bar, phase label, and
+  inserted/skipped counts). Keeps the existing `multiple` attribute; narrows accepted types
+  to `.xlsx` only (drop `.xls`/`.csv`). All files settling triggers a single
+  `router.refresh()` to update the history table.
+- `components/upload-columns.tsx` + upload page: status badge, progress, row counts,
+  uploader email.
+
+## 9. Edge Function
+
+`supabase/functions/process-upload/index.ts` (Deno):
+- `Deno.serve`; SheetJS from the official CDN ESM for parsing; `npm:@supabase/supabase-js@2`
+  with `SUPABASE_URL` + the admin key from `SUPABASE_SECRET_KEYS['default']` (new API-key
+  model; auto-injected). Legacy `SUPABASE_SERVICE_ROLE_KEY` is only a fallback for older
+  local CLIs — the DB role is still `service_role`, so table grants are unaffected.
+- Returns `202` immediately; runs ingestion in `EdgeRuntime.waitUntil`.
+- Reuses parsing rules from §6; resolves entities with batched upserts; updates the
+  `uploads` row progress per batch; sets terminal status.
+- Registered in `supabase/config.toml` (`[functions.process-upload]`, `verify_jwt = true`
+  so only authenticated callers invoke it; admin check optional inside).
+- File writes (if any) only under `/tmp`.
+
+## 10. Testing
+
+- **Unit**: parsing logic against the real sample workbook's 789-row detail sheet —
+  verify total rows, entity extraction (route, external_id, category, multi-unit),
+  amount/date formatting, and skip counting.
+- **Idempotency**: ingest the same file twice -> second run reports `updated`, not
+  duplicated; row counts stable.
+- **Manual e2e**: `supabase functions serve` locally; upload via the dialog; watch live
+  progress over Realtime; confirm the dashboard reflects the new data and the upload
+  history row ends `completed`.
+
+## 11. Risks & Open Questions
+
+- **SheetJS in Deno**: confirm `npm:xlsx` parses the workbook in the edge runtime; date
+  cell handling may need `cellDates: true`.
+- **Realtime auth**: the client must have admin SELECT on `uploads` for the subscription
+  to deliver row updates; verify the publication + RLS combination delivers updates.
+- **Large files**: 50 MiB storage limit is configured; batch size for upserts should keep
+  the function within edge memory/time limits (sample is ~789 rows — comfortable).
+- **`gen_random_uuid()`** requires `pgcrypto`/`pgsql` availability (standard on Supabase).

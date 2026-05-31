@@ -1,12 +1,20 @@
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar"
 import { Separator } from "@/components/ui/separator"
 import { AppSidebar } from "@/components/app-sidebar"
+import { UserNav } from "@/components/user-nav"
+import { requireAdmin } from "@/lib/supabase/auth"
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const profile = await requireAdmin()
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -15,6 +23,9 @@ export default function DashboardLayout({
           <SidebarTrigger className="-ml-1" />
           <Separator orientation="vertical" className="mr-2 h-4" />
           <h1 className="text-sm font-semibold">Ztech Dental Lab</h1>
+          <div className="ml-auto">
+            <UserNav email={profile.email} />
+          </div>
         </header>
         {children}
       </SidebarInset>

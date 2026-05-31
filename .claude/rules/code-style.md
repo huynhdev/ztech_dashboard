@@ -9,3 +9,4 @@ Always-on rules for all TypeScript/TSX in this project.
 - Default to React Server Components. Add `"use client"` only when the file uses hooks, state, or browser APIs.
 - Do not add comments that restate the code. Comment only non-obvious intent.
 - Reuse existing components and helpers before writing new ones.
+- Buttons: give them a fixed width so they don't resize between states. While loading, show only the loading spinner icon — keep the existing label text unchanged (don't swap it for "Loading…").

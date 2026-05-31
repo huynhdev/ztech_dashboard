@@ -1,15 +1,20 @@
 "use client"
 
 import type { ColumnDef } from "@tanstack/react-table"
-import type { User } from "@/lib/data"
+import type { Tables } from "@/types/database"
 import { UserRowActions } from "@/components/user-row-actions"
 
-export const userColumns: ColumnDef<User>[] = [
+export type UserRow = Pick<
+  Tables<"profiles">,
+  "id" | "full_name" | "email" | "role" | "status" | "created_at"
+>
+
+export const userColumns: ColumnDef<UserRow>[] = [
   {
-    accessorKey: "name",
+    accessorKey: "full_name",
     header: "Name",
     cell: ({ row }) => (
-      <span className="font-medium">{row.getValue("name")}</span>
+      <span className="font-medium">{row.getValue("full_name") ?? "—"}</span>
     ),
   },
   {
@@ -20,10 +25,10 @@ export const userColumns: ColumnDef<User>[] = [
     ),
   },
   {
-    accessorKey: "createdAt",
+    accessorKey: "created_at",
     header: "Created",
     cell: ({ row }) => {
-      const date = new Date(row.getValue("createdAt") as string)
+      const date = new Date(row.getValue("created_at") as string)
       return (
         <span className="text-muted-foreground">
           {date.toLocaleDateString("en-US", {

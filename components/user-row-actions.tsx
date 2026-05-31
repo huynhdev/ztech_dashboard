@@ -1,7 +1,15 @@
 "use client"
 
-import { useState } from "react"
-import { MoreHorizontalIcon, PencilIcon, TrashIcon } from "lucide-react"
+import { useState, useTransition } from "react"
+import { useRouter } from "next/navigation"
+import { useForm, Controller } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import {
+  MoreHorizontalIcon,
+  PencilIcon,
+  TrashIcon,
+  Loader2Icon,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -29,24 +37,70 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 import { Input } from "@/components/ui/input"
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
-import type { User } from "@/lib/data"
+import { PasswordInput } from "@/components/ui/password-input"
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field"
+import { updateUserSchema, type UpdateUserValues } from "@/lib/schemas/user"
+import { deleteUser, updateUser } from "@/app/(dashboard)/users/actions"
+import type { UserRow } from "@/components/user-columns"
 
-export function UserRowActions({ user }: { user: User }) {
+export function UserRowActions({ user }: { user: UserRow }) {
+  const router = useRouter()
   const [editOpen, setEditOpen] = useState(false)
   const [deleteOpen, setDeleteOpen] = useState(false)
-  const [email, setEmail] = useState(user.email)
-  const [password, setPassword] = useState("")
+  const [serverError, setServerError] = useState<string | null>(null)
+  const [isPending, startTransition] = useTransition()
 
-  function handleEdit(e: React.FormEvent) {
-    e.preventDefault()
-    // TODO: implement actual edit logic
-    setEditOpen(false)
+  const displayName = user.full_name ?? user.email
+
+  const form = useForm<UpdateUserValues>({
+    resolver: zodResolver(updateUserSchema),
+    defaultValues: {
+      id: user.id,
+      fullName: user.full_name ?? "",
+      email: user.email,
+      password: "",
+    },
+  })
+
+  function resetEdit() {
+    form.reset({
+      id: user.id,
+      fullName: user.full_name ?? "",
+      email: user.email,
+      password: "",
+    })
+    setServerError(null)
+  }
+
+  function onEdit(values: UpdateUserValues) {
+    setServerError(null)
+    startTransition(async () => {
+      const result = await updateUser(values)
+      if (result.error) {
+        setServerError(result.error)
+        return
+      }
+      setEditOpen(false)
+      router.refresh()
+    })
   }
 
   function handleDelete() {
-    // TODO: implement actual delete logic
-    setDeleteOpen(false)
+    setServerError(null)
+    startTransition(async () => {
+      const result = await deleteUser(user.id)
+      if (result.error) {
+        setServerError(result.error)
+        return
+      }
+      setDeleteOpen(false)
+      router.refresh()
+    })
   }
 
   return (
@@ -74,65 +128,135 @@ export function UserRowActions({ user }: { user: User }) {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <Dialog open={editOpen} onOpenChange={setEditOpen}>
+      <Dialog
+        open={editOpen}
+        onOpenChange={(v) => {
+          setEditOpen(v)
+          if (!v) resetEdit()
+        }}
+      >
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Edit User</DialogTitle>
             <DialogDescription>
-              Update account details for {user.name}.
+              Update account details for {displayName}.
             </DialogDescription>
           </DialogHeader>
-          <form onSubmit={handleEdit}>
+          <form onSubmit={form.handleSubmit(onEdit)}>
             <FieldGroup>
-              <Field>
-                <FieldLabel htmlFor={`edit-email-${user.id}`}>Email</FieldLabel>
-                <Input
-                  id={`edit-email-${user.id}`}
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </Field>
-              <Field>
-                <FieldLabel htmlFor={`edit-password-${user.id}`}>
-                  New Password
-                </FieldLabel>
-                <Input
-                  id={`edit-password-${user.id}`}
-                  type="password"
-                  placeholder="Leave blank to keep current"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Field>
+              <Controller
+                name="fullName"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={`edit-name-${user.id}`}>
+                      Full name
+                    </FieldLabel>
+                    <Input
+                      {...field}
+                      id={`edit-name-${user.id}`}
+                      aria-invalid={fieldState.invalid}
+                    />
+                    {fieldState.error && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+              <Controller
+                name="email"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={`edit-email-${user.id}`}>
+                      Email
+                    </FieldLabel>
+                    <Input
+                      {...field}
+                      id={`edit-email-${user.id}`}
+                      type="email"
+                      aria-invalid={fieldState.invalid}
+                    />
+                    {fieldState.error && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+              <Controller
+                name="password"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={`edit-password-${user.id}`}>
+                      New Password
+                    </FieldLabel>
+                    <PasswordInput
+                      {...field}
+                      id={`edit-password-${user.id}`}
+                      placeholder="Leave blank to keep current"
+                      aria-invalid={fieldState.invalid}
+                    />
+                    {fieldState.error && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
             </FieldGroup>
+            {serverError ? (
+              <p className="mt-3 text-sm text-destructive">{serverError}</p>
+            ) : null}
             <DialogFooter className="mt-4">
               <Button
                 variant="outline"
                 type="button"
                 onClick={() => setEditOpen(false)}
+                disabled={isPending}
               >
                 Cancel
               </Button>
-              <Button type="submit">Save Changes</Button>
+              <Button type="submit" className="w-32" disabled={isPending}>
+                {isPending ? (
+                  <Loader2Icon className="animate-spin" />
+                ) : (
+                  "Save Changes"
+                )}
+              </Button>
             </DialogFooter>
           </form>
         </DialogContent>
       </Dialog>
 
-      <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>
+      <AlertDialog
+        open={deleteOpen}
+        onOpenChange={(v) => {
+          setDeleteOpen(v)
+          if (!v) setServerError(null)
+        }}
+      >
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Delete User</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to delete {user.name}? This action cannot be
-              undone.
+              Are you sure you want to delete {displayName}? This action cannot
+              be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
+          {serverError ? (
+            <p className="text-sm text-destructive">{serverError}</p>
+          ) : null}
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleDelete}>Delete</AlertDialogAction>
+            <AlertDialogCancel disabled={isPending}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={(e) => {
+                e.preventDefault()
+                handleDelete()
+              }}
+              disabled={isPending}
+            >
+              {isPending ? <Loader2Icon className="animate-spin" /> : "Delete"}
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

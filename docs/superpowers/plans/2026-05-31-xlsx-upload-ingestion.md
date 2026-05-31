@@ -479,8 +479,24 @@ import { parseWorkbook } from "./parse.ts";
 declare const EdgeRuntime: { waitUntil(p: Promise<unknown>): void };
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
-const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const PROGRESS_EVERY = 50;
+
+// New Supabase API-key model: SUPABASE_SECRET_KEYS is a JSON dictionary of secret
+// keys (sb_secret_...); its 'default' entry is the RLS-bypassing admin key that
+// replaces the legacy SUPABASE_SERVICE_ROLE_KEY (which may be disabled once a project
+// migrates to the new key system). Fall back to the legacy var only for older local CLIs.
+function getSecretKey(): string {
+  const dict = Deno.env.get("SUPABASE_SECRET_KEYS");
+  if (dict) {
+    const keys = JSON.parse(dict) as Record<string, string>;
+    if (keys.default) return keys.default;
+  }
+  const legacy = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  if (legacy) return legacy;
+  throw new Error("No Supabase secret key (SUPABASE_SECRET_KEYS / SUPABASE_SERVICE_ROLE_KEY)");
+}
+
+const SECRET_KEY = getSecretKey();
 
 Deno.serve(async (req) => {
   let uploadId: string | null = null;
@@ -493,7 +509,9 @@ Deno.serve(async (req) => {
     return Response.json({ error: "uploadId required" }, { status: 400 });
   }
 
-  const admin = createClient(SUPABASE_URL, SERVICE_ROLE_KEY);
+  const admin = createClient(SUPABASE_URL, SECRET_KEY, {
+    auth: { autoRefreshToken: false, persistSession: false },
+  });
   // process in the background; return immediately so the client just watches Realtime
   EdgeRuntime.waitUntil(ingest(admin, uploadId));
   return Response.json({ accepted: true, uploadId }, { status: 202 });
@@ -960,6 +978,7 @@ Expected: all pass. Commit any fixes discovered during verification.
 
 ## Notes / Risks
 
+- **Admin key (new API-key model)**: this project uses Supabase's new keys, so the function reads the RLS-bypassing key from `SUPABASE_SECRET_KEYS['default']` (auto-injected), **not** the legacy `SUPABASE_SERVICE_ROLE_KEY` (which can be disabled post-migration). The DB role is still `service_role`, so the migration's `GRANT ... TO service_role` stays correct. `getSecretKey()` falls back to the legacy var only for older local CLIs. If `supabase functions serve` locally doesn't inject `SUPABASE_SECRET_KEYS`, drop the local secret key into `supabase/functions/.env` (git-ignored) and it'll be picked up.
 - **SheetJS in Deno** is imported from the official CDN ESM (`https://cdn.sheetjs.com/xlsx-0.20.3/package/xlsx.mjs`); the npm `xlsx` package is deprecated on the npm registry. `deno test`/`deno check` require network access (`--allow-net`) to fetch it the first time.
 - **`EdgeRuntime.waitUntil`** keeps the background task alive after the 202 response; if it is unavailable in a given local runtime, fall back to `await ingest(...)` before responding (slower, but the client still gets progress via Realtime).
 - **Realtime delivery** depends on the admin SELECT policy on `uploads` plus the table being in `supabase_realtime` (both in Task 1). If updates don't arrive, verify the channel filter and that the logged-in user is an admin.

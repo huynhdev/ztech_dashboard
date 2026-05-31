@@ -32,7 +32,7 @@ are pivot tables derived from it.
 | Re-upload behavior | Idempotent upsert on a natural dedupe key |
 | Upload UX | One-shot ingest with **live (real-time) processing feedback** |
 | Ingestion architecture | **Approach B**: Storage + Edge Function + Realtime |
-| Privileged writes | Edge Function uses platform-injected `SUPABASE_SERVICE_ROLE_KEY` (no secret added to `.env.local`) |
+| Privileged writes | Edge Function uses the platform-injected `SUPABASE_SECRET_KEYS['default']` (new API-key model; replaces the legacy `SUPABASE_SERVICE_ROLE_KEY`). No secret added to `.env.local`. |
 | Auth / attribution | Login already implemented; attribute uploads to the logged-in admin |
 
 ## 2. Goals / Non-Goals
@@ -224,8 +224,10 @@ as a follow-up, out of scope here.)
 ## 9. Edge Function
 
 `supabase/functions/process-upload/index.ts` (Deno):
-- `Deno.serve`; `npm:xlsx@<pinned-version>` for parsing; `npm:@supabase/supabase-js@2`
-  with `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` (auto-injected).
+- `Deno.serve`; SheetJS from the official CDN ESM for parsing; `npm:@supabase/supabase-js@2`
+  with `SUPABASE_URL` + the admin key from `SUPABASE_SECRET_KEYS['default']` (new API-key
+  model; auto-injected). Legacy `SUPABASE_SERVICE_ROLE_KEY` is only a fallback for older
+  local CLIs — the DB role is still `service_role`, so table grants are unaffected.
 - Returns `202` immediately; runs ingestion in `EdgeRuntime.waitUntil`.
 - Reuses parsing rules from §6; resolves entities with batched upserts; updates the
   `uploads` row progress per batch; sets terminal status.

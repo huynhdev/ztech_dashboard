@@ -272,6 +272,7 @@ export type Database = {
       uploads: {
         Row: {
           error: string | null
+          file_hash: string | null
           file_name: string
           file_path: string | null
           id: string
@@ -288,6 +289,7 @@ export type Database = {
         }
         Insert: {
           error?: string | null
+          file_hash?: string | null
           file_name: string
           file_path?: string | null
           id?: string
@@ -304,6 +306,7 @@ export type Database = {
         }
         Update: {
           error?: string | null
+          file_hash?: string | null
           file_name?: string
           file_path?: string | null
           id?: string

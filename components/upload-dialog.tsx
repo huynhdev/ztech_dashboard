@@ -1,8 +1,13 @@
 "use client"
 
-import { useState, useCallback, useRef } from "react"
+import { useState, useRef } from "react"
 import { useRouter } from "next/navigation"
-import { UploadIcon, FileSpreadsheetIcon, XIcon } from "lucide-react"
+import {
+  UploadIcon,
+  FileSpreadsheetIcon,
+  XIcon,
+  Loader2Icon,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -17,6 +22,9 @@ import { Progress } from "@/components/ui/progress"
 import { createClient } from "@/lib/supabase/client"
 import type { RealtimeChannel } from "@supabase/supabase-js"
 import { cn } from "@/lib/utils"
+import { format } from "date-fns"
+import { sha256Hex } from "@/lib/hash"
+import type { Tables } from "@/types/database"
 
 const ACCEPTED = ".xlsx"
 
@@ -30,6 +38,17 @@ type FileProgress = {
   error: string | null
 }
 
+type CheckStatus = "checking" | "ok" | "duplicate"
+type FileCheck = {
+  status: CheckStatus
+  hash?: string
+  dup?: { email: string; uploadedAt: string }
+}
+
+// Files are identified by name+size everywhere in this dialog: the dedupe in
+// addFiles, the per-file check map, and the upload run all key off this.
+const fileKey = (f: File) => f.name + f.size
+
 function deriveProgress(p: FileProgress) {
   if (p.status === "completed")
     return { percent: 100, phase: "Completed", indeterminate: false }
@@ -41,7 +60,11 @@ function deriveProgress(p: FileProgress) {
   if (!p.total)
     return { percent: 0, phase: "Parsing workbook…", indeterminate: true }
   const percent = Math.min(100, Math.round((p.processed / p.total) * 100))
-  return { percent, phase: `Ingesting ${p.processed}/${p.total} rows`, indeterminate: false }
+  return {
+    percent,
+    phase: `Ingesting ${p.processed}/${p.total} rows`,
+    indeterminate: false,
+  }
 }
 
 export function UploadDialog() {
@@ -50,20 +73,93 @@ export function UploadDialog() {
   const [dragOver, setDragOver] = useState(false)
   const [uploading, setUploading] = useState(false)
   const [progress, setProgress] = useState<Record<string, FileProgress>>({})
+  const [checks, setChecks] = useState<Record<string, FileCheck>>({})
+  // React StrictMode invokes the setFiles updater twice in dev; this ref makes the
+  // per-file hash+query fire at most once per file across those double invocations.
+  const checkingRef = useRef<Set<string>>(new Set())
   const inputRef = useRef<HTMLInputElement>(null)
   const channelsRef = useRef<RealtimeChannel[]>([])
   const router = useRouter()
+
+  async function checkFile(file: File) {
+    const key = fileKey(file)
+    if (checkingRef.current.has(key)) return
+    checkingRef.current.add(key)
+    setChecks((prev) => ({ ...prev, [key]: { status: "checking" } }))
+
+    // Fail open if the hash/query stalls (not just rejects): never let a hung
+    // request silently leave a file stuck in "checking" and out of the upload run.
+    // Mirrors the 5s SUBSCRIBED guard below. If the real check resolves first this
+    // is a no-op; if it resolves later it overwrites with the true verdict.
+    setTimeout(() => {
+      setChecks((prev) =>
+        prev[key]?.status === "checking"
+          ? { ...prev, [key]: { status: "ok" } }
+          : prev
+      )
+    }, 10000)
+
+    try {
+      const hash = await sha256Hex(file)
+      const supabase = createClient()
+      const { data } = await supabase
+        .from("uploads")
+        .select("uploaded_at, profiles(email)")
+        .eq("file_hash", hash)
+        .eq("status", "completed")
+        .limit(1)
+        .maybeSingle()
+
+      if (data) {
+        const email =
+          (data.profiles as unknown as Pick<Tables<"profiles">, "email"> | null)
+            ?.email ?? "—"
+        setChecks((prev) => ({
+          ...prev,
+          [key]: {
+            status: "duplicate",
+            hash,
+            dup: { email, uploadedAt: data.uploaded_at },
+          },
+        }))
+      } else {
+        setChecks((prev) => ({ ...prev, [key]: { status: "ok", hash } }))
+      }
+    } catch {
+      // Fail open: a transient hash/network error must never block a legitimate
+      // upload. The pre-insert re-check in processFile is the second line of defense.
+      setChecks((prev) => ({ ...prev, [key]: { status: "ok" } }))
+    }
+  }
 
   function addFiles(incoming: FileList | null) {
     if (!incoming) return
     const valid = Array.from(incoming).filter((f) => /\.xlsx$/i.test(f.name))
     setFiles((prev) => {
-      const existing = new Set(prev.map((f) => f.name + f.size))
-      return [...prev, ...valid.filter((f) => !existing.has(f.name + f.size))]
+      const existing = new Set(prev.map(fileKey))
+      const next = [...prev]
+      for (const f of valid) {
+        const key = fileKey(f)
+        if (existing.has(key)) continue
+        existing.add(key)
+        next.push(f)
+        void checkFile(f)
+      }
+      return next
     })
   }
 
   function removeFile(index: number) {
+    const removed = files[index]
+    if (removed) {
+      const key = fileKey(removed)
+      checkingRef.current.delete(key)
+      setChecks((prev) => {
+        const next = { ...prev }
+        delete next[key]
+        return next
+      })
+    }
     setFiles((prev) => prev.filter((_, i) => i !== index))
   }
 
@@ -75,16 +171,20 @@ export function UploadDialog() {
     setDragOver(false)
     setUploading(false)
     setProgress({})
+    setChecks({})
+    checkingRef.current = new Set()
   }
 
-  const onDrop = useCallback((e: React.DragEvent) => {
+  function onDrop(e: React.DragEvent) {
     e.preventDefault()
     setDragOver(false)
     addFiles(e.dataTransfer.files)
-  }, [])
+  }
+
+  const readyFiles = files.filter((f) => checks[fileKey(f)]?.status === "ok")
 
   async function handleUpload() {
-    if (files.length === 0) return
+    if (readyFiles.length === 0) return
     setUploading(true)
 
     const supabase = createClient()
@@ -96,9 +196,17 @@ export function UploadDialog() {
         Object.fromEntries(
           files.map((f) => [
             f.name,
-            { fileName: f.name, status: "failed", processed: 0, total: 0, inserted: 0, skipped: 0, error: "Not signed in" } as FileProgress,
-          ]),
-        ),
+            {
+              fileName: f.name,
+              status: "failed",
+              processed: 0,
+              total: 0,
+              inserted: 0,
+              skipped: 0,
+              error: "Not signed in",
+            } as FileProgress,
+          ])
+        )
       )
       setUploading(false)
       return
@@ -129,11 +237,43 @@ export function UploadDialog() {
         }
 
         void (async () => {
-          set({ fileName: file.name, status: "pending", processed: 0, total: 0, inserted: 0, skipped: 0, error: null })
+          set({
+            fileName: file.name,
+            status: "pending",
+            processed: 0,
+            total: 0,
+            inserted: 0,
+            skipped: 0,
+            error: null,
+          })
 
-          const { error: insErr } = await supabase
-            .from("uploads")
-            .insert({ id, file_name: file.name, file_path: path, status: "pending", uploaded_by: user.id })
+          const hash = checks[fileKey(file)]?.hash ?? null
+
+          // Guard the window between add-time check and this click: a matching file may
+          // have completed in between. Cheap, and only runs for files already marked ok.
+          if (hash) {
+            const { data: dup } = await supabase
+              .from("uploads")
+              .select("id")
+              .eq("file_hash", hash)
+              .eq("status", "completed")
+              .limit(1)
+              .maybeSingle()
+            if (dup) {
+              set({ status: "failed", error: "Already uploaded" })
+              settleOnce()
+              return
+            }
+          }
+
+          const { error: insErr } = await supabase.from("uploads").insert({
+            id,
+            file_name: file.name,
+            file_path: path,
+            status: "pending",
+            uploaded_by: user.id,
+            file_hash: hash,
+          })
           if (insErr) {
             set({ status: "failed", error: insErr.message })
             settleOnce()
@@ -144,24 +284,28 @@ export function UploadDialog() {
           // rely on this channel for liveness on the error paths below — those settle
           // directly — because the subscription may not be established yet when a fast
           // failure writes the row.
-          const channel = supabase
-            .channel(`upload-${id}`)
-            .on(
-              "postgres_changes",
-              { event: "UPDATE", schema: "public", table: "uploads", filter: `id=eq.${id}` },
-              (payload) => {
-                const n = payload.new as Record<string, number | string | null>
-                set({
-                  status: String(n.status) as FileProgress["status"],
-                  processed: Number(n.processed_rows ?? 0),
-                  total: Number(n.total_rows ?? 0),
-                  inserted: Number(n.inserted_count ?? 0),
-                  skipped: Number(n.skipped_count ?? 0),
-                  error: (n.error as string | null) ?? null,
-                })
-                if (n.status === "completed" || n.status === "failed") settleOnce(channel)
-              },
-            )
+          const channel = supabase.channel(`upload-${id}`).on(
+            "postgres_changes",
+            {
+              event: "UPDATE",
+              schema: "public",
+              table: "uploads",
+              filter: `id=eq.${id}`,
+            },
+            (payload) => {
+              const n = payload.new as Record<string, number | string | null>
+              set({
+                status: String(n.status) as FileProgress["status"],
+                processed: Number(n.processed_rows ?? 0),
+                total: Number(n.total_rows ?? 0),
+                inserted: Number(n.inserted_count ?? 0),
+                skipped: Number(n.skipped_count ?? 0),
+                error: (n.error as string | null) ?? null,
+              })
+              if (n.status === "completed" || n.status === "failed")
+                settleOnce(channel)
+            }
+          )
           channelsRef.current.push(channel)
 
           // Subscribe and wait until the channel is actually SUBSCRIBED before kicking off
@@ -182,24 +326,35 @@ export function UploadDialog() {
             setTimeout(finish, 5000)
           })
 
-          const { error: upErr } = await supabase.storage.from("uploads").upload(path, file, { upsert: true })
+          const { error: upErr } = await supabase.storage
+            .from("uploads")
+            .upload(path, file, { upsert: true })
           if (upErr) {
             set({ status: "failed", error: upErr.message })
-            await supabase.from("uploads").update({ status: "failed", error: upErr.message }).eq("id", id)
+            await supabase
+              .from("uploads")
+              .update({ status: "failed", error: upErr.message })
+              .eq("id", id)
             settleOnce(channel)
             return
           }
 
-          const { error: fnErr } = await supabase.functions.invoke("process-upload", { body: { uploadId: id } })
+          const { error: fnErr } = await supabase.functions.invoke(
+            "process-upload",
+            { body: { uploadId: id } }
+          )
           if (fnErr) {
             set({ status: "failed", error: fnErr.message })
-            await supabase.from("uploads").update({ status: "failed", error: fnErr.message }).eq("id", id)
+            await supabase
+              .from("uploads")
+              .update({ status: "failed", error: fnErr.message })
+              .eq("id", id)
             settleOnce(channel)
           }
         })()
       })
 
-    for (const file of files) {
+    for (const file of readyFiles) {
       await processFile(file)
     }
 
@@ -237,7 +392,7 @@ export function UploadDialog() {
               "flex min-h-[160px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed p-6 transition-colors",
               dragOver
                 ? "border-primary bg-primary/5"
-                : "border-muted-foreground/25 hover:border-primary/50",
+                : "border-muted-foreground/25 hover:border-primary/50"
             )}
             onDragOver={(e) => {
               e.preventDefault()
@@ -269,28 +424,55 @@ export function UploadDialog() {
 
           {files.length > 0 && (
             <div className="flex max-h-[200px] flex-col gap-2 overflow-y-auto">
-              {files.map((file, i) => (
-                <div
-                  key={file.name + file.size}
-                  className="flex items-center gap-2 rounded-md border bg-muted/50 px-3 py-2"
-                >
-                  <FileSpreadsheetIcon className="shrink-0 text-muted-foreground" />
-                  <div className="flex min-w-0 flex-1 flex-col">
-                    <p className="truncate text-sm font-medium">{file.name}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {(file.size / 1024).toFixed(1)} KB
-                    </p>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="size-7 shrink-0"
-                    onClick={() => removeFile(i)}
+              {files.map((file, i) => {
+                const check = checks[fileKey(file)]
+                return (
+                  <div
+                    key={fileKey(file)}
+                    className={cn(
+                      "flex items-center gap-2 rounded-md border px-3 py-2",
+                      check?.status === "duplicate"
+                        ? "border-destructive/40 bg-destructive/5"
+                        : "bg-muted/50"
+                    )}
                   >
-                    <XIcon />
-                  </Button>
-                </div>
-              ))}
+                    <FileSpreadsheetIcon className="shrink-0 text-muted-foreground" />
+                    <div className="flex min-w-0 flex-1 flex-col">
+                      <p className="truncate text-sm font-medium">
+                        {file.name}
+                      </p>
+                      {check?.status === "checking" ? (
+                        <p className="flex items-center gap-1 text-xs text-muted-foreground">
+                          <Loader2Icon className="size-3 animate-spin" />
+                          Checking for duplicates…
+                        </p>
+                      ) : check?.status === "duplicate" ? (
+                        <p className="text-xs text-destructive">
+                          Already uploaded · {check.dup?.email} ·{" "}
+                          {check.dup
+                            ? format(
+                                new Date(check.dup.uploadedAt),
+                                "MMM d, yyyy"
+                              )
+                            : ""}
+                        </p>
+                      ) : (
+                        <p className="text-xs text-muted-foreground">
+                          {(file.size / 1024).toFixed(1)} KB
+                        </p>
+                      )}
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="size-7 shrink-0"
+                      onClick={() => removeFile(i)}
+                    >
+                      <XIcon />
+                    </Button>
+                  </div>
+                )
+              })}
             </div>
           )}
 
@@ -299,7 +481,10 @@ export function UploadDialog() {
               {Object.entries(progress).map(([id, p]) => {
                 const { percent, phase, indeterminate } = deriveProgress(p)
                 return (
-                  <div key={id} className="flex flex-col gap-1 rounded-md border bg-muted/50 p-2.5">
+                  <div
+                    key={id}
+                    className="flex flex-col gap-1 rounded-md border bg-muted/50 p-2.5"
+                  >
                     <div className="flex items-center justify-between text-xs">
                       <span className="truncate font-medium">{p.fileName}</span>
                       <span className="font-mono text-muted-foreground">
@@ -310,7 +495,14 @@ export function UploadDialog() {
                       value={indeterminate ? undefined : percent}
                       className={indeterminate ? "animate-pulse" : undefined}
                     />
-                    <p className={cn("text-xs", p.status === "failed" ? "text-destructive" : "text-muted-foreground")}>
+                    <p
+                      className={cn(
+                        "text-xs",
+                        p.status === "failed"
+                          ? "text-destructive"
+                          : "text-muted-foreground"
+                      )}
+                    >
                       {p.status === "failed"
                         ? (p.error ?? "Failed")
                         : p.status === "completed"
@@ -325,12 +517,21 @@ export function UploadDialog() {
         </div>
 
         <DialogFooter>
-          <Button variant="outline" onClick={() => setOpen(false)} disabled={uploading}>
+          <Button
+            variant="outline"
+            onClick={() => setOpen(false)}
+            disabled={uploading}
+          >
             Cancel
           </Button>
-          <Button onClick={handleUpload} disabled={files.length === 0 || uploading}>
+          <Button
+            onClick={handleUpload}
+            disabled={readyFiles.length === 0 || uploading}
+          >
             <UploadIcon data-icon="inline-start" />
-            {uploading ? "Uploading…" : `Upload ${files.length > 0 ? `(${files.length})` : ""}`}
+            {uploading
+              ? "Uploading…"
+              : `Upload ${readyFiles.length > 0 ? `(${readyFiles.length})` : ""}`}
           </Button>
         </DialogFooter>
       </DialogContent>

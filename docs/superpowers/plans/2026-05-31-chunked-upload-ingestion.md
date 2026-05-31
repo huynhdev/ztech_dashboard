@@ -232,14 +232,20 @@ function errorMessage(e: unknown): string {
 // SUPABASE_URL inside the edge runtime is environment-specific. Awaiting this resolves
 // at the 202 (the handler returns before EdgeRuntime.waitUntil work runs), so the
 // current invocation ends cleanly and the next chunk gets a fresh wall-clock window.
+//
+// process-upload has `verify_jwt = true` (config.toml), so the gateway requires a
+// gateway-accepted credential on the self-invoke. The user JWT that the browser sends
+// is not available here, so we send the service-role key (a JWT the gateway accepts),
+// falling back to the admin secret key. Confirming this credential is accepted in each
+// deployed environment is exactly what the Task 2 validate-first step is for.
 async function selfInvokeUpsert(uploadId: string): Promise<void> {
-  const key = getSecretKey();
+  const gatewayKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? getSecretKey();
   await fetch(`${SUPABASE_URL}/functions/v1/process-upload`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${key}`,
-      apikey: key,
+      Authorization: `Bearer ${gatewayKey}`,
+      apikey: gatewayKey,
     },
     body: JSON.stringify({ uploadId, step: "2_upsert_data" }),
   });
@@ -314,7 +320,10 @@ async function parseStep(admin: SupabaseClient, uploadId: string): Promise<void>
       throw new Error(reason);
     }
 
-    // Write one shard per chunk. upsert:true so a re-run of parseStep overwrites cleanly.
+    // Write one shard per chunk. upsert:true so a re-run of parseStep overwrites each
+    // shard cleanly. (A re-parse that produces FEWER shards leaves orphan high-index
+    // shards from the prior run, but upsertStep only ever reads shards bounded by the
+    // reset total_rows, so orphans are never read — harmless.)
     for (const r of chunkRanges(rows.length, CHUNK_SIZE)) {
       const slice = rows.slice(r.start, r.end);
       const { error: shErr } = await admin.storage.from("uploads").upload(
@@ -413,35 +422,60 @@ async function upsertStep(admin: SupabaseClient, uploadId: string): Promise<void
 Run: `deno check supabase/functions/process-upload/index.ts`
 Expected: no errors. (Fix any type issues before proceeding.)
 
-- [ ] **Step 4: Start local Supabase + serve the function**
+- [ ] **Step 4: Start local Supabase + serve the function (with the right env)**
 
-Run (two terminals, or background the first):
-```bash
-npx supabase@latest start
-CHUNK_SIZE=2 npx supabase@latest functions serve process-upload --no-verify-jwt
-```
-`CHUNK_SIZE=2` forces multiple shards from a tiny workbook so chaining is exercised. `--no-verify-jwt` lets the self-invoke (and your test invoke) through without a user JWT.
+Two host-side gotchas this step works around: (a) a host shell var like `CHUNK_SIZE=2 npx …` does **not** propagate into the function's Deno container — it must come from `--env-file`; (b) `[functions.process-upload] verify_jwt = true` in `config.toml` means an unauthenticated invoke is rejected, so for local transport testing we turn it off (and revert before committing).
+
+1. Create a **local-only** env file (do not commit it) at `supabase/functions/.env`:
+   ```
+   CHUNK_SIZE=2
+   ```
+   `CHUNK_SIZE=2` forces multiple shards from a tiny workbook so chaining is actually exercised — with the default 200 a small test file would finish in one chunk and never prove self-invoke. Add `supabase/functions/.env` to `.gitignore` if not already ignored.
+
+2. For local testing only, set `verify_jwt = false` under `[functions.process-upload]` in `supabase/config.toml`. **Revert this before any commit** (production keeps `verify_jwt = true`; the deployed self-invoke is authenticated via the service-role key in `selfInvokeUpsert`).
+
+3. Start and serve (two terminals, or background the first):
+   ```bash
+   npx supabase@latest start
+   npx supabase@latest functions serve process-upload --env-file supabase/functions/.env
+   ```
+
+Confirm `CHUNK_SIZE` reached the function: a quick `console.log("CHUNK_SIZE", CHUNK_SIZE)` at module top should print `2` in the serve logs on first invoke (remove the log before committing).
 
 - [ ] **Step 5: Validate the chain end-to-end (the load-bearing test)**
 
-Upload a small `.xlsx` (5–10 valid rows) through the app's upload dialog against local Supabase, OR insert an `uploads` row + upload the file to storage manually, then invoke:
+The simplest way to get a real `uploads` row + stored file without scripting auth/storage is the **UI**: the *unmodified* dialog already invokes `process-upload` with no `step`, which routes to `1_parsed_data` by default — so the full chain runs at this task, before the Task 4 client change. With `npx supabase@latest start` and the serve running, point the app at local Supabase (`yarn dev`), sign in as an admin, and upload a small `.xlsx` (5–10 valid rows). Grab the upload id:
+```bash
+npx supabase@latest db query --local "select id, status, total_rows, processed_rows from public.uploads order by uploaded_at desc limit 1"
+```
+Then poll it a few times — `processed_rows` should climb by `CHUNK_SIZE` (2) per invocation:
+```bash
+npx supabase@latest db query --local "select status, total_rows, processed_rows from public.uploads where id = '<the-upload-id>'"
+```
+Expected:
+- `parsed-00000.json`, `parsed-00001.json`, … appear under `uploads/<id>/` in Storage (Studio → Storage, or the storage list API).
+- `total_rows` is set; `processed_rows` advances 2 → 4 → … across **separate** invocations (serve logs show repeated `step: 2_upsert_data` requests).
+- `status` ends at `completed` with `processed_rows == total_rows`.
+- **No `incoming_cases` rows yet** (skeleton does no upserts):
+  ```bash
+  npx supabase@latest db query --local "select count(*) from public.incoming_cases where upload_id = '<the-upload-id>'"
+  ```
+  → 0.
+
+You can also re-trigger the chain by hand for an existing id (used in Task 3's lease test):
 ```bash
 curl -s -X POST http://127.0.0.1:54326/functions/v1/process-upload \
   -H "Content-Type: application/json" \
-  -d '{"uploadId":"<the-upload-id>","step":"1_parsed_data"}'
+  -d '{"uploadId":"<the-upload-id>","step":"2_upsert_data"}'
 ```
-Then watch the row:
-```bash
-# repeat a few times; processed_rows should climb by CHUNK_SIZE per chunk, then status=completed
-npx supabase@latest db query "select status, total_rows, processed_rows from public.uploads where id = '<the-upload-id>'"
-```
-Expected:
-- `parsed-00000.json`, `parsed-00001.json`, … appear under `uploads/<id>/` in Storage.
-- `total_rows` is set; `processed_rows` advances 2 → 4 → … in separate invocations (function-serve logs show repeated `step: 2_upsert_data` requests).
-- `status` ends at `completed` with `processed_rows == total_rows`.
-- **No `incoming_cases` rows yet** (skeleton does no upserts) — confirm with `select count(*) from public.incoming_cases where upload_id = '<id>'` → 0.
+(With `verify_jwt = false` set locally per Step 4, this needs no auth header. If you kept `verify_jwt = true`, add `-H "Authorization: Bearer <local service_role key>"` and `-H "apikey: <same>"`.)
 
-**Troubleshooting (if the chain does not advance past the first chunk):** the self-invoke is not reaching the function. Check the function-serve logs for a fetch error in `selfInvokeUpsert`. The fix is the value of `SUPABASE_URL` inside the runtime — log it (`console.log("self-invoke base", SUPABASE_URL)`) and, if it is not reachable from inside the container, introduce a dedicated `FUNCTIONS_URL` env (e.g. `http://host.docker.internal:54326` locally) and use it in `selfInvokeUpsert` instead of `SUPABASE_URL`. Resolve this before Task 3.
+**Troubleshooting — the chain does not advance past the first chunk.** Read the serve logs for the failed self-invoke and diagnose by symptom:
+- **401 / "Invalid JWT" / "Missing authorization":** the gateway is rejecting the self-invoke. Confirm `verify_jwt = false` is set locally (Step 4), or that `selfInvokeUpsert` is sending a gateway-accepted key. Log `Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")?.slice(0,8)` to confirm a service-role key is present in the runtime.
+- **Connection refused / fetch error / DNS:** `SUPABASE_URL` inside the runtime is not reachable from inside the container. Log it (`console.log("self-invoke base", SUPABASE_URL)`); if it points somewhere unreachable, introduce a dedicated `FUNCTIONS_URL` env (e.g. `http://host.docker.internal:54326` locally) and use it in `selfInvokeUpsert` instead of `SUPABASE_URL`.
+- **Connection reset only after hot reload:** the `per_worker` policy reloaded the worker mid-chain; set `policy = "oneshot"` under `[edge_runtime]` for the duration of local testing.
+
+Resolve this before starting Task 3 — everything downstream assumes the self-invoke works.
 
 - [ ] **Step 6: Commit**
 
@@ -571,8 +605,7 @@ Expected: no errors.
 
 - [ ] **Step 3: Re-serve and validate a full ingest against local Supabase**
 
-Restart `functions serve` (still `CHUNK_SIZE=2`) and re-run the upload from Task 2 Step 5 with a **fresh** upload id.
-Expected:
+Restart `functions serve` (still `--env-file …` with `CHUNK_SIZE=2`) and re-run the upload from Task 2 Step 5 with a **fresh** upload id. Verify with `npx supabase@latest db query --local "…"`:
 - `status` → `completed`, `processed_rows == total_rows`.
 - `select count(*) from public.incoming_cases where upload_id = '<id>'` equals the number of unique rows in the workbook.
 - `inserted_count + updated_count == total_rows`; for a first-time upload `inserted_count == total_rows`, `updated_count == 0`.

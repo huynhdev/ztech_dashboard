@@ -1,0 +1,42 @@
+name: Deploy Preview to Vercel
+
+on:
+  push:
+    branches-ignore: [develop, main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Pull Vercel environment
+        run: vercel pull --yes --environment=production --token=${{ secrets.STAG_VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.STAG_VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.STAG_VERCEL_PROJECT_ID }}
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Build project
+        run: vercel build --token=${{ secrets.STAG_VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.STAG_VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.STAG_VERCEL_PROJECT_ID }}
+      #
+      # - name: Deploy preview
+      #   run: vercel deploy --prebuilt --token=${{ secrets.STAG_VERCEL_TOKEN }}
+      #   env:
+      #     VERCEL_ORG_ID: ${{ secrets.STAG_VERCEL_ORG_ID }}
+      #     VERCEL_PROJECT_ID: ${{ secrets.STAG_VERCEL_PROJECT_ID }}

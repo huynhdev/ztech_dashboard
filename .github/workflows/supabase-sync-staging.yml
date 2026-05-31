@@ -1,0 +1,65 @@
+name: Sync Supabase Staging
+
+on:
+  push:
+    branches: [develop]
+    paths:
+      - 'supabase/**'
+      - '.github/workflows/supabase-sync-staging.yml'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    environment: staging
+    timeout-minutes: 15
+
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.STAG_SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.STAG_SUPABASE_DB_PASSWORD }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Link to Supabase project
+        run: supabase link --project-ref REPLACE_WITH_STAG_PROJECT_REF --debug
+
+      - name: Run database migrations
+        id: migrations
+        run: supabase db push --include-all --debug
+
+      - name: Check for Edge Functions
+        id: check-functions
+        run: |
+          if [ -d "supabase/functions" ] && [ "$(ls -A supabase/functions 2>/dev/null)" ]; then
+            echo "has_functions=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_functions=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Deploy Edge Functions
+        if: steps.check-functions.outputs.has_functions == 'true'
+        run: supabase functions deploy
+
+      - name: Verify migration status
+        run: supabase migration list
+
+      - name: Migration failed
+        if: failure() && steps.migrations.outcome == 'failure'
+        run: |
+          echo "::error::Database migration failed. Check the logs above for details."
+          exit 1
+
+      - name: Summary
+        run: |
+          echo "## Supabase Staging Sync Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Project: REPLACE_WITH_STAG_PROJECT_REF" >> $GITHUB_STEP_SUMMARY
+          echo "- Migrations: Applied" >> $GITHUB_STEP_SUMMARY
+          echo "- Edge Functions: ${{ steps.check-functions.outputs.has_functions == 'true' && 'Deployed' || 'None found' }}" >> $GITHUB_STEP_SUMMARY

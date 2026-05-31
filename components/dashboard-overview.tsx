@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { format, parseISO, subDays } from "date-fns";
+import { useMemo, useState, useTransition } from "react";
+import { format, parseISO } from "date-fns";
 import type { DateRange } from "react-day-picker";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DateRangePicker } from "@/components/date-range-picker";
 import { KpiCards } from "@/components/kpi-cards";
@@ -12,6 +13,7 @@ import { VolumeChart } from "@/components/volume-chart";
 import { CategoryChart } from "@/components/category-chart";
 import { TopTable } from "@/components/top-table";
 import { ClientHeatmap } from "@/components/client-heatmap";
+import { cn } from "@/lib/utils";
 import {
   getSummary,
   getTimeSeries,
@@ -22,59 +24,77 @@ import {
   type TimeGranularity,
 } from "@/lib/data";
 
-// Default the global filter to the 30 days ending at the latest order date,
-// clamped to the earliest date so a dataset shorter than 30 days still shows in full.
-function defaultRange(cases: CaseRow[]): DateRange | undefined {
-  if (cases.length === 0) return undefined;
-  let min = cases[0].orderDate;
-  let max = cases[0].orderDate;
-  for (const c of cases) {
-    if (c.orderDate < min) min = c.orderDate;
-    if (c.orderDate > max) max = c.orderDate;
-  }
-  const to = parseISO(max);
-  const minDate = parseISO(min);
-  const from = subDays(to, 29);
-  return { from: from < minDate ? minDate : from, to };
-}
-
-export function DashboardOverview({ cases }: { cases: CaseRow[] }) {
+export function DashboardOverview({
+  cases,
+  from,
+  to,
+}: {
+  cases: CaseRow[];
+  from: string;
+  to: string;
+}) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [isPending, startTransition] = useTransition();
   const [granularity, setGranularity] = useState<TimeGranularity>("daily");
-  const [range, setRange] = useState<DateRange | undefined>(() =>
-    defaultRange(cases),
-  );
 
-  // A complete range filters; an empty/partial one shows every case.
-  const filteredCases = useMemo(() => {
-    if (!range?.from || !range?.to) return cases;
-    const from = format(range.from, "yyyy-MM-dd");
-    const to = format(range.to, "yyyy-MM-dd");
-    return cases.filter((c) => c.orderDate >= from && c.orderDate <= to);
-  }, [cases, range]);
+  // Local state mirrors the URL-driven range so an in-progress selection (first
+  // click of a range) renders immediately; once both ends are picked we write to
+  // the URL, which re-runs the server query and feeds new `from`/`to` back in.
+  // Reset during render (not in an effect) when the URL-derived range changes.
+  const [range, setRange] = useState<DateRange | undefined>({
+    from: parseISO(from),
+    to: parseISO(to),
+  });
+  const [syncedKey, setSyncedKey] = useState(`${from}|${to}`);
+  if (syncedKey !== `${from}|${to}`) {
+    setSyncedKey(`${from}|${to}`);
+    setRange({ from: parseISO(from), to: parseISO(to) });
+  }
 
-  const summary = useMemo(() => getSummary(filteredCases), [filteredCases]);
-  const categories = useMemo(
-    () => getCategoryBreakdown(filteredCases),
-    [filteredCases],
-  );
-  const topLabs = useMemo(() => getTopLabs(filteredCases, 10), [filteredCases]);
-  const topDoctors = useMemo(
-    () => getTopDoctors(filteredCases, 10),
-    [filteredCases],
-  );
+  function handleRangeChange(next: DateRange | undefined) {
+    setRange(next);
+    // Wait for a complete range before navigating; ignore the partial first click.
+    if (next?.from && !next?.to) return;
+
+    const params = new URLSearchParams(searchParams.toString());
+    if (next?.from && next?.to) {
+      params.set("from", format(next.from, "yyyy-MM-dd"));
+      params.set("to", format(next.to, "yyyy-MM-dd"));
+    } else {
+      params.delete("from");
+      params.delete("to");
+    }
+    const qs = params.toString();
+    startTransition(() => {
+      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+    });
+  }
+
+  // `cases` arrive already filtered to [from, to] from the server.
+  const summary = useMemo(() => getSummary(cases), [cases]);
+  const categories = useMemo(() => getCategoryBreakdown(cases), [cases]);
+  const topLabs = useMemo(() => getTopLabs(cases, 10), [cases]);
+  const topDoctors = useMemo(() => getTopDoctors(cases, 10), [cases]);
   const timeSeries = useMemo(
-    () => getTimeSeries(filteredCases, granularity),
-    [filteredCases, granularity],
+    () => getTimeSeries(cases, granularity),
+    [cases, granularity],
   );
 
   return (
     <>
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-medium">Operations Overview</h2>
-        <DateRangePicker value={range} onChange={setRange} />
+        <DateRangePicker value={range} onChange={handleRangeChange} />
       </div>
 
-      <div className="flex flex-col gap-4">
+      <div
+        className={cn(
+          "flex flex-col gap-4 transition-opacity",
+          isPending && "pointer-events-none opacity-60",
+        )}
+      >
         <KpiCards
           totalRevenue={summary.totalRevenue}
           totalCases={summary.totalCases}
@@ -120,7 +140,7 @@ export function DashboardOverview({ cases }: { cases: CaseRow[] }) {
           <TopTable title="Top 10 Doctors" data={topDoctors} />
         </div>
 
-        <ClientHeatmap cases={filteredCases} />
+        <ClientHeatmap cases={cases} />
       </div>
     </>
   );

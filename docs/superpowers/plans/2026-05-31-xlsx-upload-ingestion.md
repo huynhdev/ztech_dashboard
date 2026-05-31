@@ -475,6 +475,9 @@ verify_jwt = true
 import { createClient, type SupabaseClient } from "npm:@supabase/supabase-js@2";
 import { parseWorkbook } from "./parse.ts";
 
+// Supabase runtime global (not in Deno's default lib types).
+declare const EdgeRuntime: { waitUntil(p: Promise<unknown>): void };
+
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const PROGRESS_EVERY = 50;
@@ -834,6 +837,9 @@ async function handleUpload() {
   const { error: upErr } = await supabase.storage.from("uploads").upload(path, file, { upsert: true })
   if (upErr) {
     await supabase.from("uploads").update({ status: "failed", error: upErr.message }).eq("id", id)
+    supabase.removeChannel(channel)
+    setProgress((p) => ({ ...p!, status: "failed", error: upErr.message }))
+    setUploading(false)
     return
   }
 

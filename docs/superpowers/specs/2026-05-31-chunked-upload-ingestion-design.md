@@ -152,7 +152,12 @@ as-is. The existing `ingest()` is split into `parseStep` and `upsertStep`.
     .from("uploads")
     .update({
       processed_rows: cursor + rows.length,
-      inserted_count, updated_count, new_labs_count, new_doctors_count, // absolute totals
+      // absolute totals — map the in-memory accumulators (named as in today's
+      // index.ts: inserted/updated/newLabs/newDoctors) to their columns:
+      inserted_count: inserted,
+      updated_count: updated,
+      new_labs_count: newLabs,
+      new_doctors_count: newDoctors,
     })
     .eq("id", uploadId)
     .eq("processed_rows", cursor)   // lease: someone else may have already advanced

@@ -12,7 +12,11 @@ import {
 declare const EdgeRuntime: { waitUntil(p: Promise<unknown>): void }
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!
-const CHUNK_SIZE = Number(Deno.env.get("CHUNK_SIZE") ?? 200)
+// Each chunk is now a single import_upload_chunk() rpc (set-based, in-database), so the
+// edge function does almost no per-row work and a chunk completes in well under a second.
+// The chunk just bounds the rpc payload / DB statement size; keep it large so a file
+// needs few chained invocations (785 rows ≈ 2 chunks at 500).
+const CHUNK_SIZE = Number(Deno.env.get("CHUNK_SIZE") ?? 500)
 
 type Step = "1_parsed_data" | "2_upsert_data"
 
@@ -62,15 +66,54 @@ function errorMessage(e: unknown): string {
 // rewrites an `sb_secret_` Authorization into the corresponding role JWT before
 // forwarding, so a bearer check would never match the secret; the apikey header is
 // forwarded to the function intact.
+// Tracing for the chunk-chain. Edge logs are the only window into the background
+// (waitUntil) work, so log enough to locate where a chain stalls: which step booted,
+// how far each chunk got, whether it advanced the cursor and chained or completed.
+function log(
+  uploadId: string,
+  msg: string,
+  extra?: Record<string, unknown>
+): void {
+  const tail = extra ? " " + JSON.stringify(extra) : ""
+  console.log(`[process-upload ${uploadId}] ${msg}${tail}`)
+}
+
 async function selfInvokeUpsert(uploadId: string): Promise<void> {
   const key = getSecretKey()
-  await fetch(`${SUPABASE_URL}/functions/v1/process-upload`, {
+  const res = await fetch(`${SUPABASE_URL}/functions/v1/process-upload`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       apikey: key,
     },
     body: JSON.stringify({ uploadId, step: "2_upsert_data" }),
+  })
+  // A non-2xx here means the next link never started (e.g. apikey rejected by the
+  // gateway/function). Surface it so the caller's catch marks the upload failed instead
+  // of leaving it silently stuck on "processing".
+  if (!res.ok) {
+    const detail = await res.text().catch(() => "")
+    throw new Error(`self-invoke step 2 failed: ${res.status} ${detail}`.trim())
+  }
+  log(uploadId, "self-invoked step 2", { status: res.status })
+}
+
+// supabase-js functions.invoke() runs in the browser, so the call is cross-origin (the
+// app on :6001 → the Functions host). Its apikey/authorization/x-client-info headers make
+// it a non-simple request, so the browser sends a CORS preflight (OPTIONS) first. Without
+// an OPTIONS short-circuit and Access-Control-* headers on responses, the preflight is
+// rejected and invoke() fails with "Failed to send a request to the Edge Function".
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers":
+    "authorization, apikey, content-type, x-client-info",
+}
+
+function json(body: unknown, init?: ResponseInit): Response {
+  return Response.json(body, {
+    ...init,
+    headers: { ...CORS_HEADERS, ...(init?.headers ?? {}) },
   })
 }
 
@@ -94,6 +137,10 @@ async function markFailed(
 }
 
 Deno.serve(async (req) => {
+  if (req.method === "OPTIONS") {
+    return new Response(null, { status: 204, headers: CORS_HEADERS })
+  }
+
   let uploadId: string | null = null
   let step: Step = "1_parsed_data"
   try {
@@ -104,7 +151,7 @@ Deno.serve(async (req) => {
     uploadId = null
   }
   if (!uploadId) {
-    return Response.json({ error: "uploadId required" }, { status: 400 })
+    return json({ error: "uploadId required" }, { status: 400 })
   }
 
   // Resolve the admin key at request time (not module load) so a missing env var
@@ -116,7 +163,7 @@ Deno.serve(async (req) => {
     })
   } catch (e) {
     console.error("process-upload: secret key unavailable:", e)
-    return Response.json({ error: "server misconfigured" }, { status: 500 })
+    return json({ error: "server misconfigured" }, { status: 500 })
   }
 
   // This function runs with verify_jwt = false (the project's sb_secret_ keys are not
@@ -127,9 +174,12 @@ Deno.serve(async (req) => {
   //    user JWT. (The browser only ever holds the publishable key, so it cannot forge it.)
   //  - 1_parsed_data (browser invoke): supabase-js attaches the signed-in user's JWT on
   //    Authorization; validate it so an anonymous caller cannot kick off processing.
+  log(uploadId, "request received", { step, method: req.method })
+
   if (step === "2_upsert_data") {
     if (req.headers.get("apikey") !== getSecretKey()) {
-      return Response.json({ error: "unauthorized" }, { status: 401 })
+      log(uploadId, "step 2 unauthorized: apikey mismatch")
+      return json({ error: "unauthorized" }, { status: 401 })
     }
   } else {
     const bearer =
@@ -139,7 +189,10 @@ Deno.serve(async (req) => {
       error: authErr,
     } = await admin.auth.getUser(bearer)
     if (authErr || !user) {
-      return Response.json({ error: "unauthorized" }, { status: 401 })
+      log(uploadId, "step 1 unauthorized: invalid user JWT", {
+        authErr: authErr?.message ?? null,
+      })
+      return json({ error: "unauthorized" }, { status: 401 })
     }
   }
 
@@ -151,7 +204,7 @@ Deno.serve(async (req) => {
       ? upsertStep(admin, uploadId)
       : parseStep(admin, uploadId)
   EdgeRuntime.waitUntil(work)
-  return Response.json({ accepted: true, uploadId, step }, { status: 202 })
+  return json({ accepted: true, uploadId, step }, { status: 202 })
 })
 
 async function parseStep(
@@ -179,9 +232,15 @@ async function parseStep(
     if (dlErr || !file)
       throw new Error(`download failed: ${dlErr?.message ?? "no file"}`)
 
+    log(uploadId, "parse: downloaded file, parsing workbook")
     const { rows, skipped } = parseWorkbook(
       new Uint8Array(await file.arrayBuffer())
     )
+    log(uploadId, "parse: workbook parsed", {
+      rows: rows.length,
+      skipped: skipped.length,
+      chunkSize: CHUNK_SIZE,
+    })
     // A workbook with no parseable detail sheet is a failure, not a 0-row success.
     if (rows.length === 0) {
       const reason =
@@ -221,8 +280,10 @@ async function parseStep(
       })
       .eq("id", uploadId)
 
+    log(uploadId, "parse: shards written, handing off to step 2")
     await selfInvokeUpsert(uploadId)
   } catch (e) {
+    log(uploadId, "parse: failed", { error: errorMessage(e) })
     await markFailed(admin, uploadId, e)
   }
 }
@@ -244,11 +305,13 @@ async function upsertStep(
 
     const cursor = upload.processed_rows
     const total = upload.total_rows
+    log(uploadId, "upsert: chunk start", { cursor, total })
     if (isComplete(cursor, total)) {
       await admin
         .from("uploads")
         .update({ status: "completed" })
         .eq("id", uploadId)
+      log(uploadId, "upsert: already complete, marked completed")
       return
     }
 
@@ -274,167 +337,34 @@ async function upsertStep(
       )
     }
 
-    // Seed counters from the row so totals accumulate across chunks.
-    let inserted = upload.inserted_count
-    let updated = upload.updated_count
-    let newLabs = upload.new_labs_count
-    let newDoctors = upload.new_doctors_count
-
-    // Per-invocation resolver caches. Rebuilt each chunk; the insert-if-absent helpers
-    // still find rows created by earlier chunks, so cross-chunk correctness holds.
-    const labs = new Map<string, number>()
-    const products = new Map<string, number>()
-    const doctors = new Map<string, number>()
-    const patients = new Map<string, number>()
-
-    const resolveLab = async (name: string): Promise<number> => {
-      if (labs.has(name)) return labs.get(name)!
-      const { data: ex } = await admin
-        .from("labs")
-        .select("id")
-        .eq("name", name)
-        .maybeSingle()
-      if (ex) {
-        labs.set(name, ex.id)
-        return ex.id
-      }
-      const { data: ins, error } = await admin
-        .from("labs")
-        .insert({ name })
-        .select("id")
-        .single()
-      if (error) throw error
-      newLabs++
-      labs.set(name, ins.id)
-      return ins.id
+    // Hand the whole chunk to Postgres. import_upload_chunk() resolves the
+    // lab/product/doctor/patient dimensions and upserts incoming_cases set-based and
+    // in-process — one rpc round-trip per chunk instead of ~6 PostgREST calls per row,
+    // which is what made the old loop take ~30s/50 rows and get killed mid-chunk.
+    const { data: counts, error: rpcErr } = await admin
+      .rpc("import_upload_chunk", {
+        p_upload_id: uploadId,
+        p_source_file: upload.file_name,
+        p_rows: rows,
+      })
+      .single()
+    if (rpcErr) throw rpcErr
+    const chunk = counts as {
+      inserted_count: number
+      updated_count: number
+      new_labs_count: number
+      new_doctors_count: number
     }
 
-    const resolveProduct = async (
-      name: string,
-      category: string
-    ): Promise<number> => {
-      if (products.has(name)) return products.get(name)!
-      const { data: ex } = await admin
-        .from("products")
-        .select("id")
-        .eq("name", name)
-        .maybeSingle()
-      if (ex) {
-        products.set(name, ex.id)
-        return ex.id
-      }
-      const { data: ins, error } = await admin
-        .from("products")
-        .insert({ name, category })
-        .select("id")
-        .single()
-      if (error) throw error
-      products.set(name, ins.id)
-      return ins.id
-    }
-
-    const resolveDoctor = async (
-      raw: string,
-      name: string,
-      route: string | null,
-      labId: number
-    ): Promise<number> => {
-      if (doctors.has(raw)) return doctors.get(raw)!
-      const { data: ex } = await admin
-        .from("doctors")
-        .select("id")
-        .eq("raw", raw)
-        .maybeSingle()
-      if (ex) {
-        doctors.set(raw, ex.id)
-        return ex.id
-      }
-      const { data: ins, error } = await admin
-        .from("doctors")
-        .insert({ raw, name, route, lab_id: labId })
-        .select("id")
-        .single()
-      if (error) throw error
-      newDoctors++
-      doctors.set(raw, ins.id)
-      return ins.id
-    }
-
-    const resolvePatient = async (
-      name: string,
-      externalId: string | null,
-      labId: number
-    ): Promise<number> => {
-      const key = `${name}|${externalId ?? ""}|${labId}`
-      if (patients.has(key)) return patients.get(key)!
-      let q = admin
-        .from("patients")
-        .select("id")
-        .eq("name", name)
-        .eq("lab_id", labId)
-      q =
-        externalId === null
-          ? q.is("external_id", null)
-          : q.eq("external_id", externalId)
-      const { data: ex } = await q.maybeSingle()
-      if (ex) {
-        patients.set(key, ex.id)
-        return ex.id
-      }
-      const { data: ins, error } = await admin
-        .from("patients")
-        .insert({ name, external_id: externalId, lab_id: labId })
-        .select("id")
-        .single()
-      if (error) throw error
-      patients.set(key, ins.id)
-      return ins.id
-    }
-
-    for (const row of rows) {
-      const labId = await resolveLab(row.lab)
-      const productId = await resolveProduct(row.productName, row.category)
-      const doctorId = await resolveDoctor(
-        row.doctorRaw,
-        row.doctorName,
-        row.route,
-        labId
-      )
-      const patientId = await resolvePatient(
-        row.patientName,
-        row.externalId,
-        labId
-      )
-      const dedupeKey = `${row.pan}|${row.orderDate}|${patientId}|${productId}`
-
-      const { data: existing } = await admin
-        .from("incoming_cases")
-        .select("id")
-        .eq("dedupe_key", dedupeKey)
-        .maybeSingle()
-
-      const { error: upErr } = await admin.from("incoming_cases").upsert(
-        {
-          pan: row.pan,
-          patient_id: patientId,
-          lab_id: labId,
-          doctor_id: doctorId,
-          product_id: productId,
-          order_date: row.orderDate,
-          status: row.status,
-          amount: row.amount,
-          is_multi_unit: row.isMultiUnit,
-          source_file: upload.file_name,
-          upload_id: uploadId,
-          dedupe_key: dedupeKey,
-        },
-        { onConflict: "dedupe_key" }
-      )
-      if (upErr) throw upErr
-
-      if (existing) updated++
-      else inserted++
-    }
+    // Accumulate this chunk's counts onto the upload's running totals.
+    const inserted = upload.inserted_count + chunk.inserted_count
+    const updated = upload.updated_count + chunk.updated_count
+    const newLabs = upload.new_labs_count + chunk.new_labs_count
+    const newDoctors = upload.new_doctors_count + chunk.new_doctors_count
+    log(uploadId, "upsert: chunk imported via rpc", {
+      rows: rows.length,
+      ...chunk,
+    })
 
     // Guarded cursor advance = the lease. Only the chain still holding `cursor` proceeds;
     // a concurrent invocation matches no row and stands down (no double-counting).
@@ -451,17 +381,29 @@ async function upsertStep(
       .eq("processed_rows", cursor)
       .select("id")
       .maybeSingle()
-    if (!advanced) return
+    if (!advanced) {
+      log(uploadId, "upsert: lost cursor lease, standing down", { cursor })
+      return
+    }
 
-    if (isComplete(cursor + rows.length, total)) {
+    const next = cursor + rows.length
+    log(uploadId, "upsert: chunk done, cursor advanced", {
+      processed: next,
+      total,
+      inserted,
+      updated,
+    })
+    if (isComplete(next, total)) {
       await admin
         .from("uploads")
         .update({ status: "completed" })
         .eq("id", uploadId)
+      log(uploadId, "upsert: all rows processed, marked completed")
     } else {
       await selfInvokeUpsert(uploadId)
     }
   } catch (e) {
+    log(uploadId, "upsert: failed", { error: errorMessage(e) })
     await markFailed(admin, uploadId, e)
   }
 }

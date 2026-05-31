@@ -227,13 +227,92 @@ export function UploadDialog() {
           setProgress((prev) => ({ ...prev, [id]: { ...prev[id], ...patch } }))
 
         // Resolve exactly once per file regardless of which terminal path fires
-        // (synchronous error OR Realtime UPDATE), so the sequence never hangs.
+        // (synchronous error, terminal Realtime UPDATE, or the polling fallback), so the
+        // sequence never hangs.
         let settled = false
-        const settleOnce = (channel?: RealtimeChannel) => {
-          if (channel) supabase.removeChannel(channel)
+        let pollTimer: ReturnType<typeof setInterval> | undefined
+        let reconnectTimer: ReturnType<typeof setTimeout> | undefined
+        let reconnectAttempts = 0
+        let activeChannel: RealtimeChannel | undefined
+        let openGate: (() => void) | undefined
+
+        const settleOnce = () => {
+          if (reconnectTimer) clearTimeout(reconnectTimer)
+          if (pollTimer) clearInterval(pollTimer)
+          if (activeChannel) {
+            supabase.removeChannel(activeChannel)
+            activeChannel = undefined
+          }
           if (settled) return
           settled = true
           resolveFile()
+        }
+
+        // One place to apply a row snapshot to the UI — shared by the Realtime UPDATE, the
+        // resubscribe refetch, and the poll — settling once the row reaches a terminal state.
+        const applyRow = (r: Record<string, number | string | null>) => {
+          set({
+            status: String(r.status) as FileProgress["status"],
+            processed: Number(r.processed_rows ?? 0),
+            total: Number(r.total_rows ?? 0),
+            inserted: Number(r.inserted_count ?? 0),
+            skipped: Number(r.skipped_count ?? 0),
+            error: (r.error as string | null) ?? null,
+          })
+          if (r.status === "completed" || r.status === "failed") settleOnce()
+        }
+
+        const refetchRow = async () => {
+          const { data: row } = await supabase
+            .from("uploads")
+            .select(
+              "status, processed_rows, total_rows, inserted_count, skipped_count, error"
+            )
+            .eq("id", id)
+            .maybeSingle()
+          if (row) applyRow(row)
+        }
+
+        // Auto-reconnect: a dropped/reconnected socket can rejoin the channel but lose its
+        // postgres_changes binding (a known Realtime issue), so UPDATEs silently stop. On
+        // any non-SUBSCRIBED status, rebuild the channel from scratch (capped, with
+        // backoff); on every (re)subscribe, refetch once to fill the gap. The poll below
+        // remains the final backstop so the file still settles if every reconnect fails.
+        const buildChannel = () => {
+          if (activeChannel) supabase.removeChannel(activeChannel)
+          const ch = supabase.channel(`upload-${id}`).on(
+            "postgres_changes",
+            {
+              event: "UPDATE",
+              schema: "public",
+              table: "uploads",
+              filter: `id=eq.${id}`,
+            },
+            (payload) =>
+              applyRow(payload.new as Record<string, number | string | null>)
+          )
+          activeChannel = ch
+          channelsRef.current.push(ch)
+          ch.subscribe((status) => {
+            if (settled || ch !== activeChannel) return
+            if (status === "SUBSCRIBED") {
+              reconnectAttempts = 0
+              openGate?.()
+              openGate = undefined
+              void refetchRow()
+            } else if (
+              status === "CHANNEL_ERROR" ||
+              status === "TIMED_OUT" ||
+              status === "CLOSED"
+            ) {
+              if (reconnectAttempts >= 6) return
+              reconnectAttempts++
+              reconnectTimer = setTimeout(
+                buildChannel,
+                Math.min(1000 * 2 ** (reconnectAttempts - 1), 15000)
+              )
+            }
+          })
         }
 
         void (async () => {
@@ -280,50 +359,15 @@ export function UploadDialog() {
             return
           }
 
-          // Subscribe before invoking so the happy-path UPDATEs aren't missed. We do NOT
-          // rely on this channel for liveness on the error paths below — those settle
-          // directly — because the subscription may not be established yet when a fast
-          // failure writes the row.
-          const channel = supabase.channel(`upload-${id}`).on(
-            "postgres_changes",
-            {
-              event: "UPDATE",
-              schema: "public",
-              table: "uploads",
-              filter: `id=eq.${id}`,
-            },
-            (payload) => {
-              const n = payload.new as Record<string, number | string | null>
-              set({
-                status: String(n.status) as FileProgress["status"],
-                processed: Number(n.processed_rows ?? 0),
-                total: Number(n.total_rows ?? 0),
-                inserted: Number(n.inserted_count ?? 0),
-                skipped: Number(n.skipped_count ?? 0),
-                error: (n.error as string | null) ?? null,
-              })
-              if (n.status === "completed" || n.status === "failed")
-                settleOnce(channel)
-            }
-          )
-          channelsRef.current.push(channel)
-
-          // Subscribe and wait until the channel is actually SUBSCRIBED before kicking off
-          // work that could finish near-instantly (tiny file / fast failure); otherwise a
-          // terminal UPDATE fired before the subscription is live would be missed and the
-          // file would never settle. Proceed anyway after a short timeout so a Realtime
-          // hiccup can't block the upload entirely.
+          // Subscribe before invoking so the happy-path UPDATEs aren't missed, and wait
+          // until SUBSCRIBED (or a 5s fallback) before kicking off work that could finish
+          // near-instantly — otherwise a terminal UPDATE fired before the subscription is
+          // live would be missed. buildChannel owns reconnection from here on; the error
+          // paths below settle directly since the subscription may not be live yet.
+          buildChannel()
           await new Promise<void>((resolve) => {
-            let done = false
-            const finish = () => {
-              if (done) return
-              done = true
-              resolve()
-            }
-            channel.subscribe((status) => {
-              if (status === "SUBSCRIBED") finish()
-            })
-            setTimeout(finish, 5000)
+            openGate = resolve
+            setTimeout(resolve, 5000)
           })
 
           const { error: upErr } = await supabase.storage
@@ -335,7 +379,7 @@ export function UploadDialog() {
               .from("uploads")
               .update({ status: "failed", error: upErr.message })
               .eq("id", id)
-            settleOnce(channel)
+            settleOnce()
             return
           }
 
@@ -349,8 +393,15 @@ export function UploadDialog() {
               .from("uploads")
               .update({ status: "failed", error: fnErr.message })
               .eq("id", id)
-            settleOnce(channel)
+            settleOnce()
+            return
           }
+
+          // Final backstop (see buildChannel): poll the row from the DB so the file still
+          // settles and stays in sync even if Realtime never recovers.
+          pollTimer = setInterval(() => {
+            void refetchRow()
+          }, 3000)
         })()
       })
 

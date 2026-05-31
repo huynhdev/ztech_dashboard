@@ -53,6 +53,12 @@ These were settled during brainstorming and drive the design:
   `status`, `error`). The parse/upsert phase is distinguished by the `step`
   argument, not by a new status — the existing `upload_status` enum
   (`pending | processing | completed | failed`) is reused unchanged.
+- **Cursor advance is a guarded conditional UPDATE.** Each chunk advances the
+  cursor with `... WHERE id = ? AND processed_rows = <cursor>` and only
+  self-invokes if that update actually matched a row. This is the lease that
+  prevents two concurrent `2_upsert_data` invocations on the same `processing`
+  upload from forking into two double-counting chains (see "Concurrency &
+  idempotency"). No extra column required.
 
 ## Architecture
 
@@ -110,7 +116,13 @@ as-is. The existing `ingest()` is split into `parseStep` and `upsertStep`.
   `parsed-${pad(i)}.json` (the slice serialized as a JSON array) to the
   `uploads` bucket under `${uploadId}/`. Use `{ upsert: true }` so a re-run of
   `parseStep` overwrites cleanly.
-- `uploads.update { total_rows: rows.length, skipped_count: skipped.length, processed_rows: 0 }`.
+- `uploads.update { total_rows: rows.length, skipped_count: skipped.length,
+  processed_rows: 0, inserted_count: 0, updated_count: 0, new_labs_count: 0,
+  new_doctors_count: 0 }`. **All counters are reset to 0 alongside the cursor.**
+  This matters because `parseStep` is itself re-runnable (`{ upsert: true }`
+  shards): re-parsing rewinds the cursor to 0, so the counters must rewind too,
+  or a re-parsed upload would seed `upsertStep` with stale non-zero counts and
+  double-count everything.
 - self-invoke `{ uploadId, step: "2_upsert_data" }`.
 
 `upsertStep(admin, uploadId)`:
@@ -124,13 +136,34 @@ as-is. The existing `ingest()` is split into `parseStep` and `upsertStep`.
 - if `cursor >= total_rows` → `status = completed`; return.
 - `shard = Math.floor(cursor / CHUNK_SIZE)`; download
   `parsed-${pad(shard)}.json`; `JSON.parse` → `rows: ParsedRow[]`.
+- **runaway guard:** if `rows.length === 0` while `cursor < total_rows`, throw
+  (`shard ${shard} empty/missing` → `status = failed`). A 0-row advance would
+  otherwise self-invoke forever making no progress. As defence in depth, a
+  non-final shard must always contain exactly `CHUNK_SIZE` rows (parse writes
+  fixed slices); treat any other count for a non-final shard as a hard failure.
 - **seed counters from the DB row** (`let inserted = upload.inserted_count`,
   etc.) so totals accumulate across chunks, then run the existing per-row
   resolve + upsert body over this shard's rows.
-- `uploads.update { processed_rows: cursor + rows.length, inserted_count,
-  updated_count, new_labs_count, new_doctors_count }` (absolute totals).
+- **advance the cursor with a guarded conditional update** — only the chain
+  that still holds the cursor proceeds:
+
+  ```ts
+  const { data: advanced } = await admin
+    .from("uploads")
+    .update({
+      processed_rows: cursor + rows.length,
+      inserted_count, updated_count, new_labs_count, new_doctors_count, // absolute totals
+    })
+    .eq("id", uploadId)
+    .eq("processed_rows", cursor)   // lease: someone else may have already advanced
+    .select("id")
+    .maybeSingle()
+  if (!advanced) return             // another invocation owns this upload — stand down
+  ```
+
 - if `cursor + rows.length < total_rows` → self-invoke
-  `{ uploadId, step: "2_upsert_data" }`; else `status = completed`.
+  `{ uploadId, step: "2_upsert_data" }`; else
+  `uploads.update { status: "completed" }`.
 
 The in-memory resolver `Map`s (labs/products/doctors/patients) are
 per-invocation and rebuilt each chunk. Correctness is unaffected — the
@@ -138,13 +171,45 @@ per-invocation and rebuilt each chunk. Correctness is unaffected — the
 the cost of a few extra lookups per chunk (the first occurrence of each
 lab/doctor/product in a shard re-`SELECT`s). Negligible.
 
-**Self-invoke** uses the admin client:
-`admin.functions.invoke("process-upload", { body: { uploadId, step: "2_upsert_data" } })`.
-This awaits only the immediate `202` (the function returns before doing work),
-so the current invocation ends cleanly and the next chunk runs in a fresh
-worker with its own wall-clock window. Termination is the `cursor >= total_rows`
-check — there is no other loop guard, so the cursor advancing every chunk is
-what guarantees the chain ends.
+**Self-invoke** is an explicit `fetch` to the function's own HTTP endpoint —
+*not* `supabase-js` `functions.invoke`, whose Functions base-URL derivation from
+`SUPABASE_URL` inside the edge runtime is environment-specific and not worth
+relying on for the load-bearing mechanism:
+
+```ts
+await fetch(`${SUPABASE_URL}/functions/v1/process-upload`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${secretKey}`,
+    apikey: secretKey,
+  },
+  body: JSON.stringify({ uploadId, step: "2_upsert_data" }),
+})
+```
+
+This makes the transport explicit and headers unambiguous. Awaiting this `fetch`
+resolves at the `202` because `Deno.serve` returns the response **before** the
+`EdgeRuntime.waitUntil` work runs (preserved from today's handler at
+`index.ts:64-66`) — so the current invocation ends cleanly and the next chunk
+runs in a fresh worker with its own 150s wall-clock window. **Do not move the
+`202` return after any work**, or the await would block on the child's full
+processing.
+
+> **Validate first.** That a function invocation can reach
+> `${SUPABASE_URL}/functions/v1/process-upload` from *inside* the edge runtime is
+> the single assumption the whole design rests on. Confirm it against local
+> Supabase before building out the rest (a one-line self-invoke that flips a
+> marker column is enough to prove the loop), and record the working URL/headers.
+
+**Termination** is the cursor: each chunk either advances `processed_rows` via
+the guarded update (then self-invokes) or fails/stands down (no self-invoke).
+The empty-shard runaway guard above ensures the cursor strictly increases while
+`cursor < total_rows`, and `total_rows` is written by `parseStep` from the same
+`rows` the shards were sliced from, so it always agrees with shard contents. A
+belt-and-suspenders ceiling — refuse to self-invoke past
+`ceil(total_rows / CHUNK_SIZE)` chunks — is cheap insurance against a logic bug
+and is recommended.
 
 ### 2. Storage layout
 
@@ -177,6 +242,14 @@ as-is:
   `completed` event now arrives at the *end of the whole chain* (after the last
   chunk), which is the event the client already waits on.
 
+`parseStep` writes `total_rows` and `processed_rows: 0` in the same UPDATE, so
+there is no window where `total_rows` is set against a stale higher cursor. The
+UI will briefly show "Ingesting 0/Y rows" at 0% between parse-done and the first
+chunk landing — accurate, not a stall, but called out so it is not mistaken for
+one. Verified against `deriveProgress` (`upload-dialog.tsx:52-68`) and the
+Realtime handler (`296-307`): `total_rows == null` → `total: 0` → the
+"Parsing workbook…" indeterminate branch; once set, the percent branch renders.
+
 ### 4. Client — `components/upload-dialog.tsx`
 
 One change: the single invoke gains the step argument.
@@ -206,20 +279,56 @@ stops (no further self-invoke). `errorMessage` already unwraps `PostgrestError`
 objects so a failed DB call records a human-readable reason rather than
 `[object Object]`.
 
+**Shard download failure** (404 or transient) → throw → `status = failed`. This
+is acceptable: a transient failure is recoverable by re-invoking
+`2_upsert_data` (cursor unchanged, shard still in storage). A *missing* shard
+while `cursor < total_rows` indicates a shard-write / `total_rows` mismatch and
+is a genuine hard failure surfaced via the upload's `error`.
+
 **Recovery is resume-capable by construction.** Re-invoking
 `{ uploadId, step: "2_upsert_data" }` for a stuck/failed upload reads
 `processed_rows` and continues from the next unprocessed shard. The shards are
 still in storage, and the `incoming_cases` upsert is keyed on `dedupe_key`, so
-re-processing a shard does not duplicate case rows.
+re-processing a shard does not duplicate case rows. **Only re-invoke once the
+original chain is known dead** — see "Concurrency & idempotency".
 
 **Known caveat — count drift on mid-chunk crash.** A chunk advances
-`processed_rows` only *after* its shard's upserts complete. If an invocation
-crashes partway through a shard (after some upserts, before the counter write),
-a resume re-processes that whole shard from its start. The `dedupe_key` upsert
-keeps the **case data correct** (no duplicate rows), but the displayed
-`inserted_count` / `updated_count` can over-report by up to the rows that were
-re-run. This is accepted rather than adding per-row cursor bookkeeping: the data
-is right; only cosmetic counters drift, and only after a crash.
+`processed_rows` only *after* its shard's upserts complete (via the guarded
+update). If an invocation crashes partway through a shard (after some upserts,
+before the cursor advance), a resume re-processes that whole shard from its
+start. The `dedupe_key` upsert keeps the **case data correct** (no duplicate
+rows), but the counters drift: rows the crashed run already inserted now read as
+`existing` on the re-run, so they count as `updated` instead of `inserted` —
+i.e. `inserted_count` can *under*-report and `updated_count` *over*-report by up
+to the rows that were re-run. `new_labs_count` / `new_doctors_count` do not
+double-count (the re-run's `SELECT` finds the labs/doctors the crashed run
+created). This is accepted rather than adding per-row cursor bookkeeping: the
+data is right; only the cosmetic insert/update split drifts, and only after a
+crash.
+
+## Concurrency & idempotency
+
+The whole chain is single-threaded *by intent* — each invocation triggers
+exactly one successor — but nothing physically prevents a second
+`2_upsert_data` invocation for the same `processing` upload (a manual resume
+fired while the original chain is still alive, or an over-eager retry). Without
+a guard, both would read the same `cursor`, both upsert the same shard, and both
+advance the cursor and self-invoke → two parallel chains that double-count and
+race.
+
+The **guarded conditional cursor update** (`WHERE processed_rows = <cursor>`,
+self-invoke only if it matched) is the lease that closes this: both invocations
+may redo the same shard's upserts (idempotent on `dedupe_key`, so case data and
+the seeded-from-identical-prestate counters stay correct), but only one wins the
+cursor advance and continues the chain; the loser's update matches no row and it
+stands down. So at most one chain ever progresses per upload. The only residual
+cost is a one-time duplicated upsert of a single shard in the rare double-invoke
+window — wasted work, not wrong data.
+
+A late, duplicate terminal `completed`/`failed` UPDATE (e.g. from a
+stood-down/duplicate invocation) is harmless on the client: `settleOnce`
+(`upload-dialog.tsx:232-237`) removes the channel and guards on a `settled` flag,
+so a second terminal event after the per-file promise resolved is ignored.
 
 ## Alternatives considered
 
@@ -252,6 +361,9 @@ is right; only cosmetic counters drift, and only after a crash.
     `upsertStep` (covers `cursor` on a shard boundary, the last shard, and
     `cursor >= total_rows`).
   - counter accumulation: seed-from-row + delta → absolute totals.
+- **Validate the self-invoke transport FIRST** (see §1) — prove a function can
+  POST to `${SUPABASE_URL}/functions/v1/process-upload` from inside the edge
+  runtime against local Supabase before building the rest.
 - **Manual / local Supabase.** Self-invoke chaining and storage round-trips are
   hard to assert in unit tests on the Deno edge runtime, so verify against local
   Supabase:
@@ -262,5 +374,10 @@ is right; only cosmetic counters drift, and only after a crash.
   - empty/headerless workbook → `failed` in `parseStep`, no shards consumed.
   - re-invoke `2_upsert_data` on a `failed` mid-run upload → resumes from
     `processed_rows`, no duplicate `incoming_cases` rows.
+  - **re-run `1_parsed_data`** on an already-partly-ingested upload → counters
+    reset to 0 with the cursor, no carried-over double-count.
+  - **double `2_upsert_data` invoke** on a live `processing` upload → exactly one
+    chain advances (guarded update), no duplicate `incoming_cases` rows, no
+    double-counted totals.
 - **`yarn typecheck` / `yarn lint`** pass; the parser test suite still passes.
 ```

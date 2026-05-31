@@ -137,13 +137,17 @@ create policy "doctors admin read" on public.doctors for select to authenticated
 create policy "patients admin read" on public.patients for select to authenticated using ( public.is_admin() );
 create policy "incoming_cases admin read" on public.incoming_cases for select to authenticated using ( public.is_admin() );
 
--- uploads: admins read all, insert their own, and update (file_path / retries)
+-- uploads: admins read all, insert their own, and update only their own (the
+-- service-role edge function bypasses RLS for progress writes). Owner-scoping the
+-- update mirrors the insert policy so one admin can't overwrite another's upload rows.
 create policy "uploads admin read" on public.uploads
   for select to authenticated using ( public.is_admin() );
 create policy "uploads admin insert" on public.uploads
   for insert to authenticated with check ( public.is_admin() and uploaded_by = (select auth.uid()) );
 create policy "uploads admin update" on public.uploads
-  for update to authenticated using ( public.is_admin() ) with check ( public.is_admin() );
+  for update to authenticated
+  using ( public.is_admin() and uploaded_by = (select auth.uid()) )
+  with check ( public.is_admin() and uploaded_by = (select auth.uid()) );
 
 -- ============================================================
 -- Storage: private 'uploads' bucket, admin-only objects.

@@ -46,15 +46,18 @@ export const uploadColumns: ColumnDef<Upload>[] = [
       if (u.status === "failed") {
         return <span className="text-xs text-destructive">{u.error ?? "Failed"}</span>
       }
-      const total = u.totalRows ?? u.processedRows
       if (u.status === "processing" || u.status === "pending") {
-        const percent = total ? Math.min(100, Math.round((u.processedRows / total) * 100)) : 0
+        // totalRows is null until the workbook is parsed — show "Parsing…" until then
+        // (don't fall back to processedRows here, which would read as a false 100%).
+        const t = u.totalRows
+        const percent = t ? Math.min(100, Math.round((u.processedRows / t) * 100)) : 0
         return (
           <span className="text-xs text-muted-foreground">
-            {total ? `${percent}% · ${u.processedRows}/${total}` : "Parsing…"}
+            {t ? `${percent}% · ${u.processedRows}/${t}` : "Parsing…"}
           </span>
         )
       }
+      const total = u.totalRows ?? u.processedRows
       return (
         <span className="text-xs text-muted-foreground">
           {u.processedRows}/{total} · +{u.insertedCount} new

@@ -165,8 +165,25 @@ export function UploadDialog() {
               if (n.status === "completed" || n.status === "failed") settleOnce(channel)
             },
           )
-          .subscribe()
         channelsRef.current.push(channel)
+
+        // Subscribe and wait until the channel is actually SUBSCRIBED before kicking off
+        // work that could finish near-instantly (tiny file / fast failure); otherwise a
+        // terminal UPDATE fired before the subscription is live would be missed and the
+        // file would never settle. Proceed anyway after a short timeout so a Realtime
+        // hiccup can't block the upload entirely.
+        await new Promise<void>((resolve) => {
+          let done = false
+          const finish = () => {
+            if (done) return
+            done = true
+            resolve()
+          }
+          channel.subscribe((status) => {
+            if (status === "SUBSCRIBED") finish()
+          })
+          setTimeout(finish, 5000)
+        })
 
         const { error: upErr } = await supabase.storage.from("uploads").upload(path, file, { upsert: true })
         if (upErr) {

@@ -726,13 +726,22 @@ Add a column after `status` (before `uploadedAt`):
 ```tsx
   {
     id: "rows",
-    header: "Rows",
+    header: "Progress",
     cell: ({ row }) => {
       const u = row.original
       if (u.status === "failed") {
         return <span className="text-xs text-destructive">{u.error ?? "Failed"}</span>
       }
       const total = u.totalRows ?? 0
+      // show a live percentage while ingesting, summary once done
+      if (u.status === "processing" || u.status === "pending") {
+        const percent = total ? Math.min(100, Math.round((u.processedRows / total) * 100)) : 0
+        return (
+          <span className="text-xs text-muted-foreground">
+            {total ? `${percent}% · ${u.processedRows}/${total}` : "Parsing…"}
+          </span>
+        )
+      }
       return (
         <span className="text-xs text-muted-foreground">
           {u.processedRows}/{total} · +{u.insertedCount} new
@@ -785,6 +794,20 @@ Key changes:
 - `const ACCEPTED = ".xlsx"`; drop `.xls,.csv`. Remove `multiple` from the input. `addFiles` keeps only the first `.xlsx` (`/\.xlsx$/i`).
 - Add `import { createClient } from "@/lib/supabase/client"`, `import { useRouter } from "next/navigation"`, `import { Progress } from "@/components/ui/progress"`.
 - Add state: `const [uploading, setUploading] = useState(false)` and `const [progress, setProgress] = useState<{ status: string; processed: number; total: number; inserted: number; skipped: number; error: string | null } | null>(null)`.
+
+**Percentage derivation (place above the return):** compute an explicit percent and a human phase label from the current progress so the UI never sits silently at 0%:
+
+```tsx
+function deriveProgress(p: NonNullable<typeof progress>) {
+  if (p.status === "completed") return { percent: 100, phase: "Completed", indeterminate: false }
+  if (p.status === "failed") return { percent: 0, phase: "Failed", indeterminate: false }
+  if (p.status === "pending") return { percent: 0, phase: "Uploading file…", indeterminate: true }
+  // processing
+  if (!p.total) return { percent: 0, phase: "Parsing workbook…", indeterminate: true }
+  const percent = Math.min(100, Math.round((p.processed / p.total) * 100))
+  return { percent, phase: `Ingesting ${p.processed}/${p.total} rows`, indeterminate: false }
+}
+```
 
 Replace `handleUpload` with:
 
@@ -854,27 +877,35 @@ async function handleUpload() {
 - Render a progress block when `progress` is set (above `DialogFooter`):
 
 ```tsx
-{progress && (
-  <div className="flex flex-col gap-2 rounded-md border bg-muted/50 p-3">
-    <div className="flex items-center justify-between text-xs">
-      <span className="font-medium capitalize">{progress.status}</span>
-      <span className="text-muted-foreground">
-        {progress.processed}/{progress.total || "?"} rows
-      </span>
+{progress && (() => {
+  const { percent, phase, indeterminate } = deriveProgress(progress)
+  return (
+    <div className="flex flex-col gap-2 rounded-md border bg-muted/50 p-3">
+      <div className="flex items-center justify-between text-xs">
+        <span className="font-medium">{phase}</span>
+        <span className="font-mono text-muted-foreground">
+          {indeterminate ? "…" : `${percent}%`}
+        </span>
+      </div>
+      <Progress
+        value={indeterminate ? undefined : percent}
+        className={indeterminate ? "animate-pulse" : undefined}
+      />
+      {progress.status === "failed" && (
+        <p className="text-xs text-destructive">{progress.error}</p>
+      )}
+      {progress.status === "completed" && (
+        <p className="text-xs text-muted-foreground">
+          +{progress.inserted} new
+          {progress.skipped > 0 ? ` · ${progress.skipped} skipped` : ""}
+        </p>
+      )}
     </div>
-    <Progress value={progress.total ? (progress.processed / progress.total) * 100 : 0} />
-    {progress.status === "failed" && (
-      <p className="text-xs text-destructive">{progress.error}</p>
-    )}
-    {progress.status === "completed" && (
-      <p className="text-xs text-muted-foreground">
-        +{progress.inserted} new
-        {progress.skipped > 0 ? ` · ${progress.skipped} skipped` : ""}
-      </p>
-    )}
-  </div>
-)}
+  )
+})()}
 ```
+
+Note: shadcn's `Progress` renders an empty track when `value` is `undefined`; the `animate-pulse` class signals the indeterminate (uploading/parsing) phases so the user sees activity before `total_rows` is known.
 
 - Disable the upload button while `uploading` and switch its label to "Uploading…". On `completed`, reset the file list (keep the dialog open so the user sees the result, or close after a short delay — keep open).
 

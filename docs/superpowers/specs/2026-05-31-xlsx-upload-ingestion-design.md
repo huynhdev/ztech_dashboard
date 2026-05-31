@@ -211,13 +211,13 @@ as a follow-up, out of scope here.)
 
 ## 8. Client Changes
 
-- `components/upload-dialog.tsx`: implement `handleUpload` — insert `uploads` row; upload
-  to Storage; invoke `process-upload`; subscribe to Realtime on the row; render a live
-  progress bar + counters (processed/total, inserted/updated/skipped, new labs/doctors);
-  show success/failure end state; handle errors. This also **narrows existing behavior**:
-  the dialog today accepts multiple files and `.xls`/`.csv` — change the `ACCEPTED`
-  constant to `.xlsx`, remove the `multiple` attribute, simplify drag-drop to a single
-  file, and update the dialog copy accordingly.
+- `components/upload-dialog.tsx`: implement `handleUpload` for **multiple `.xlsx` files**.
+  Each file is ingested independently and concurrently — per file: insert an `uploads` row,
+  upload to Storage, invoke `process-upload`, subscribe to Realtime on that row. The dialog
+  renders a **per-file progress list** (each with its own % bar, phase label, and
+  inserted/skipped counts). Keeps the existing `multiple` attribute; narrows accepted types
+  to `.xlsx` only (drop `.xls`/`.csv`). All files settling triggers a single
+  `router.refresh()` to update the history table.
 - `components/upload-columns.tsx` + upload page: status badge, progress, row counts,
   uploader email.
 

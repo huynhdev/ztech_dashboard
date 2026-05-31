@@ -25,7 +25,7 @@
 - `lib/data.ts` — replace JSON-backed `Upload` type + `getUploads()` with async Supabase reads. (Leave all analytics functions and JSON imports untouched.)
 - `components/upload-columns.tsx` — add `"pending"` status, uploader/progress columns for the new shape.
 - `app/(dashboard)/upload/page.tsx` — `await getUploads()`.
-- `components/upload-dialog.tsx` — single-`.xlsx`, real `handleUpload` (insert→storage→invoke→Realtime), live progress UI.
+- `components/upload-dialog.tsx` — multiple `.xlsx`, real `handleUpload` (per file: insert→storage→invoke→Realtime), per-file live progress list.
 - `types/database.ts` — regenerated (not hand-edited).
 
 **Untouched (explicitly):** `app/(dashboard)/page.tsx`, `components/client-heatmap.tsx`, `components/client-change-table.tsx`, all analytics functions in `lib/data.ts`, `data/*.json`.
@@ -806,17 +806,37 @@ git commit -m "feat(upload): read upload history from Supabase uploads table"
 Run: `npx shadcn@latest add progress`
 Expected: creates `components/ui/progress.tsx`.
 
-- [ ] **Step 2: Rewrite `upload-dialog.tsx` for single `.xlsx` + real ingest**
+- [ ] **Step 2: Rewrite `upload-dialog.tsx` for multiple `.xlsx` files + real ingest**
+
+Each selected file is ingested independently (its own `uploads` row, Storage object, `process-upload` invocation, and Realtime channel) and the dialog shows a per-file progress list.
 
 Key changes:
-- `const ACCEPTED = ".xlsx"`; drop `.xls,.csv`. Remove `multiple` from the input. `addFiles` keeps only the first `.xlsx` (`/\.xlsx$/i`).
+- `const ACCEPTED = ".xlsx"`; drop `.xls,.csv`. **Keep** `multiple` on the input. `addFiles` keeps all `.xlsx` files (`/\.xlsx$/i`) and de-dupes by `name + size` (existing logic). Update copy to ".xlsx — multiple files allowed".
 - Add `import { createClient } from "@/lib/supabase/client"`, `import { useRouter } from "next/navigation"`, `import { Progress } from "@/components/ui/progress"`.
-- Add state: `const [uploading, setUploading] = useState(false)` and `const [progress, setProgress] = useState<{ status: string; processed: number; total: number; inserted: number; skipped: number; error: string | null } | null>(null)`.
-
-**Percentage derivation (place above the return):** compute an explicit percent and a human phase label from the current progress so the UI never sits silently at 0%:
+- Add a per-file progress type and state keyed by upload id:
 
 ```tsx
-function deriveProgress(p: NonNullable<typeof progress>) {
+type FileProgress = {
+  fileName: string
+  status: "pending" | "processing" | "completed" | "failed"
+  processed: number
+  total: number
+  inserted: number
+  skipped: number
+  error: string | null
+}
+
+const [uploading, setUploading] = useState(false)
+const [progress, setProgress] = useState<Record<string, FileProgress>>({})
+const router = useRouter()
+```
+
+- Extend `reset()` to also clear progress: `setProgress({})`.
+
+**Percentage derivation (place above the return):** per-file percent + human phase label so the UI never sits silently at 0%:
+
+```tsx
+function deriveProgress(p: FileProgress) {
   if (p.status === "completed") return { percent: 100, phase: "Completed", indeterminate: false }
   if (p.status === "failed") return { percent: 0, phase: "Failed", indeterminate: false }
   if (p.status === "pending") return { percent: 0, phase: "Uploading file…", indeterminate: true }
@@ -827,105 +847,121 @@ function deriveProgress(p: NonNullable<typeof progress>) {
 }
 ```
 
-Replace `handleUpload` with:
+Replace `handleUpload` with a version that fans out over all files concurrently:
 
 ```tsx
 async function handleUpload() {
-  const file = files[0]
-  if (!file) return
+  if (files.length === 0) return
   setUploading(true)
-  setProgress({ status: "pending", processed: 0, total: 0, inserted: 0, skipped: 0, error: null })
 
   const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  const id = crypto.randomUUID()
-  const path = `${id}/${file.name}`
 
-  const { error: insErr } = await supabase
-    .from("uploads")
-    .insert({ id, file_name: file.name, file_path: path, status: "pending", uploaded_by: user?.id })
-  if (insErr) {
-    setProgress((p) => ({ ...p!, status: "failed", error: insErr.message }))
-    setUploading(false)
-    return
+  let remaining = files.length
+  const settle = () => {
+    remaining -= 1
+    if (remaining === 0) {
+      setUploading(false)
+      router.refresh()
+    }
   }
 
-  // subscribe BEFORE invoking so no update is missed
-  const channel = supabase
-    .channel(`upload-${id}`)
-    .on(
-      "postgres_changes",
-      { event: "UPDATE", schema: "public", table: "uploads", filter: `id=eq.${id}` },
-      (payload) => {
-        const n = payload.new as Record<string, number | string | null>
-        setProgress({
-          status: String(n.status),
-          processed: Number(n.processed_rows ?? 0),
-          total: Number(n.total_rows ?? 0),
-          inserted: Number(n.inserted_count ?? 0),
-          skipped: Number(n.skipped_count ?? 0),
-          error: (n.error as string) ?? null,
-        })
-        if (n.status === "completed" || n.status === "failed") {
-          supabase.removeChannel(channel)
-          setUploading(false)
-          router.refresh()
-        }
-      },
-    )
-    .subscribe()
+  await Promise.all(
+    files.map(async (file) => {
+      const id = crypto.randomUUID()
+      const path = `${id}/${file.name}`
+      const set = (patch: Partial<FileProgress>) =>
+        setProgress((prev) => ({ ...prev, [id]: { ...prev[id], ...patch } }))
 
-  const { error: upErr } = await supabase.storage.from("uploads").upload(path, file, { upsert: true })
-  if (upErr) {
-    await supabase.from("uploads").update({ status: "failed", error: upErr.message }).eq("id", id)
-    supabase.removeChannel(channel)
-    setProgress((p) => ({ ...p!, status: "failed", error: upErr.message }))
-    setUploading(false)
-    return
-  }
+      set({ fileName: file.name, status: "pending", processed: 0, total: 0, inserted: 0, skipped: 0, error: null })
 
-  const { error: fnErr } = await supabase.functions.invoke("process-upload", { body: { uploadId: id } })
-  if (fnErr) {
-    await supabase.from("uploads").update({ status: "failed", error: fnErr.message }).eq("id", id)
-  }
+      const { error: insErr } = await supabase
+        .from("uploads")
+        .insert({ id, file_name: file.name, file_path: path, status: "pending", uploaded_by: user?.id })
+      if (insErr) {
+        set({ status: "failed", error: insErr.message })
+        settle()
+        return
+      }
+
+      // subscribe BEFORE invoking so no update is missed; the channel handler is the
+      // single place that settles this file (success OR failure), avoiding double-settle.
+      const channel = supabase
+        .channel(`upload-${id}`)
+        .on(
+          "postgres_changes",
+          { event: "UPDATE", schema: "public", table: "uploads", filter: `id=eq.${id}` },
+          (payload) => {
+            const n = payload.new as Record<string, number | string | null>
+            set({
+              status: String(n.status) as FileProgress["status"],
+              processed: Number(n.processed_rows ?? 0),
+              total: Number(n.total_rows ?? 0),
+              inserted: Number(n.inserted_count ?? 0),
+              skipped: Number(n.skipped_count ?? 0),
+              error: (n.error as string) ?? null,
+            })
+            if (n.status === "completed" || n.status === "failed") {
+              supabase.removeChannel(channel)
+              settle()
+            }
+          },
+        )
+        .subscribe()
+
+      const { error: upErr } = await supabase.storage.from("uploads").upload(path, file, { upsert: true })
+      if (upErr) {
+        // writing 'failed' fires the channel handler above, which settles + removes the channel
+        await supabase.from("uploads").update({ status: "failed", error: upErr.message }).eq("id", id)
+        return
+      }
+
+      const { error: fnErr } = await supabase.functions.invoke("process-upload", { body: { uploadId: id } })
+      if (fnErr) {
+        await supabase.from("uploads").update({ status: "failed", error: fnErr.message }).eq("id", id)
+      }
+    }),
+  )
 }
 ```
 
-- Add `const router = useRouter()` in the component.
-- Render a progress block when `progress` is set (above `DialogFooter`):
+- Render a per-file progress list when `progress` has entries (above `DialogFooter`):
 
 ```tsx
-{progress && (() => {
-  const { percent, phase, indeterminate } = deriveProgress(progress)
-  return (
-    <div className="flex flex-col gap-2 rounded-md border bg-muted/50 p-3">
-      <div className="flex items-center justify-between text-xs">
-        <span className="font-medium">{phase}</span>
-        <span className="font-mono text-muted-foreground">
-          {indeterminate ? "…" : `${percent}%`}
-        </span>
-      </div>
-      <Progress
-        value={indeterminate ? undefined : percent}
-        className={indeterminate ? "animate-pulse" : undefined}
-      />
-      {progress.status === "failed" && (
-        <p className="text-xs text-destructive">{progress.error}</p>
-      )}
-      {progress.status === "completed" && (
-        <p className="text-xs text-muted-foreground">
-          +{progress.inserted} new
-          {progress.skipped > 0 ? ` · ${progress.skipped} skipped` : ""}
-        </p>
-      )}
-    </div>
-  )
-})()}
+{Object.keys(progress).length > 0 && (
+  <div className="flex max-h-[240px] flex-col gap-2 overflow-y-auto">
+    {Object.entries(progress).map(([id, p]) => {
+      const { percent, phase, indeterminate } = deriveProgress(p)
+      return (
+        <div key={id} className="flex flex-col gap-1 rounded-md border bg-muted/50 p-2.5">
+          <div className="flex items-center justify-between text-xs">
+            <span className="truncate font-medium">{p.fileName}</span>
+            <span className="font-mono text-muted-foreground">
+              {indeterminate ? "…" : `${percent}%`}
+            </span>
+          </div>
+          <Progress
+            value={indeterminate ? undefined : percent}
+            className={indeterminate ? "animate-pulse" : undefined}
+          />
+          <p className={cn("text-xs", p.status === "failed" ? "text-destructive" : "text-muted-foreground")}>
+            {p.status === "failed"
+              ? (p.error ?? "Failed")
+              : p.status === "completed"
+                ? `Completed · +${p.inserted} new${p.skipped > 0 ? ` · ${p.skipped} skipped` : ""}`
+                : phase}
+          </p>
+        </div>
+      )
+    })}
+  </div>
+)}
 ```
 
-Note: shadcn's `Progress` renders an empty track when `value` is `undefined`; the `animate-pulse` class signals the indeterminate (uploading/parsing) phases so the user sees activity before `total_rows` is known.
-
-- Disable the upload button while `uploading` and switch its label to "Uploading…". On `completed`, reset the file list (keep the dialog open so the user sees the result, or close after a short delay — keep open).
+Notes:
+- shadcn's `Progress` renders an empty track when `value` is `undefined`; the `animate-pulse` class signals the indeterminate (uploading/parsing) phases before `total_rows` is known.
+- One Realtime channel per file (`upload-${id}`) — fine for the handful of files a user selects at once.
+- Disable the upload button while `uploading` and set its label to "Uploading…". Keep the dialog open after completion so the user sees each file's result; `router.refresh()` (called once all files settle) updates the history table behind it.
 
 - [ ] **Step 3: Verify typecheck/lint**
 
@@ -954,6 +990,9 @@ Ensure you have an **admin** profile to log in with (per `requireAdmin`); create
 
 Log in, go to **Upload**, select `INCOMING CASE IN MAY 11 - 17. 2026 (1).xlsx`, click Upload.
 Expected: progress bar advances live (pending → processing → completed); final shows `+N new` with the detail sheet's row count (~785 ingested, a few skipped). The upload-history table shows a `Completed` row with the uploader email.
+
+Then verify **multi-file**: select two `.xlsx` files at once (e.g. the sample plus a copy renamed) and upload.
+Expected: the dialog shows two independent progress rows advancing concurrently, each settling to `Completed`; the history table gains two rows. (A renamed copy of the same data re-uses the same `dedupe_key`s, so the second file should report mostly `updated`, demonstrating cross-file idempotency.)
 
 - [ ] **Step 3: Verify stored data**
 

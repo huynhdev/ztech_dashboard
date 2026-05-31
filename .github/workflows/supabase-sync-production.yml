@@ -32,7 +32,7 @@ jobs:
 
       - name: Run database migrations
         id: migrations
-        run: supabase db push --include-all --debug
+        run: supabase db push --include-all --include-seed --debug
 
       - name: Check for Edge Functions
         id: check-functions

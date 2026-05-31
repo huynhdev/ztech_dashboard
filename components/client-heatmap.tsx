@@ -1,9 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { format } from "date-fns";
-import type { DateRange } from "react-day-picker";
-import { CalendarIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Select,
@@ -13,15 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { cn } from "@/lib/utils";
-import { getClientHeatmap, type HeatmapSort } from "@/lib/data";
+import { getClientHeatmap, type CaseRow, type HeatmapSort } from "@/lib/data";
 
 function formatDateLabel(dateStr: string): string {
   const d = new Date(dateStr + "T00:00:00");
@@ -43,22 +32,13 @@ function getCellColor(count: number, max: number): string {
   return "bg-emerald-600 dark:bg-emerald-400";
 }
 
-export function ClientHeatmap() {
+export function ClientHeatmap({ cases }: { cases: CaseRow[] }) {
   const [sort, setSort] = useState<HeatmapSort>("last-active");
   const [limit, setLimit] = useState(40);
-  const [dateRange, setDateRange] = useState<DateRange | undefined>();
-
-  const rangeParam = useMemo(() => {
-    if (!dateRange?.from || !dateRange?.to) return undefined;
-    return {
-      from: format(dateRange.from, "yyyy-MM-dd"),
-      to: format(dateRange.to, "yyyy-MM-dd"),
-    };
-  }, [dateRange]);
 
   const data = useMemo(
-    () => getClientHeatmap(limit, sort, rangeParam),
-    [limit, sort, rangeParam],
+    () => getClientHeatmap(cases, limit, sort),
+    [cases, limit, sort],
   );
 
   const [tooltip, setTooltip] = useState<{
@@ -82,51 +62,6 @@ export function ClientHeatmap() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  className={cn(
-                    "h-7 justify-start text-xs font-normal",
-                    !dateRange && "text-muted-foreground",
-                  )}
-                >
-                  <CalendarIcon data-icon="inline-start" />
-                  {dateRange?.from ? (
-                    dateRange.to ? (
-                      <>
-                        {format(dateRange.from, "MMM d")} –{" "}
-                        {format(dateRange.to, "MMM d, yyyy")}
-                      </>
-                    ) : (
-                      format(dateRange.from, "MMM d, yyyy")
-                    )
-                  ) : (
-                    "All dates"
-                  )}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="end">
-                <Calendar
-                  mode="range"
-                  selected={dateRange}
-                  onSelect={(range) => setDateRange(range ?? undefined)}
-                  numberOfMonths={2}
-                />
-                {dateRange && (
-                  <div className="border-t p-2">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="w-full text-xs"
-                      onClick={() => setDateRange(undefined)}
-                    >
-                      Clear dates
-                    </Button>
-                  </div>
-                )}
-              </PopoverContent>
-            </Popover>
             <Select
               value={String(limit)}
               onValueChange={(v) => setLimit(Number(v))}
@@ -204,7 +139,10 @@ export function ClientHeatmap() {
             {/* Heatmap rows */}
             <div className="max-h-[600px] overflow-y-auto">
               {data.rows.map((row) => (
-                <div key={row.labId} className="group flex items-center py-px">
+                <div
+                  key={row.labId ?? "unknown"}
+                  className="group flex items-center py-px"
+                >
                   <div
                     className="w-[160px] shrink-0 truncate pr-2 text-[11px] leading-tight"
                     title={row.labName}

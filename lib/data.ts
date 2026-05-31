@@ -1,8 +1,20 @@
-import incomingCases from "../data/incoming_cases.json";
-import products from "../data/products.json";
-import labs from "../data/labs.json";
-import doctors from "../data/doctors.json";
 import users from "../data/users.json";
+
+// A denormalized incoming-case row as consumed by the analytics functions below.
+// Labs/doctors/product-category are folded onto each row by the Supabase fetch
+// (`@/lib/cases`) so these functions stay pure transformations over an array and
+// carry no data source of their own.
+export interface CaseRow {
+  orderDate: string;
+  amount: number;
+  status: string | null;
+  labId: number | null;
+  labName: string;
+  doctorId: number | null;
+  doctorName: string;
+  patientId: number | null;
+  category: string;
+}
 
 export type User = {
   id: string;
@@ -25,8 +37,6 @@ export function getUsers(): User[] {
 // is a client component that imports the analytics functions below, and pulling in
 // the server Supabase client (`next/headers`) here breaks the client bundle.
 
-export type Case = (typeof incomingCases)[number];
-export type Product = (typeof products)[number];
 export type TimeGranularity = "daily" | "weekly" | "monthly";
 
 function getWeekKey(dateStr: string): string {
@@ -72,23 +82,26 @@ export interface TimeSeriesPoint {
   hold: number;
 }
 
-export function getTimeSeries(granularity: TimeGranularity): TimeSeriesPoint[] {
+export function getTimeSeries(
+  cases: CaseRow[],
+  granularity: TimeGranularity,
+): TimeSeriesPoint[] {
   const map = new Map<
     string,
     {
       revenue: number;
       cases: number;
-      labs: Set<number>;
-      doctors: Set<number>;
-      patients: Set<number>;
+      labs: Set<number | null>;
+      doctors: Set<number | null>;
+      patients: Set<number | null>;
       shipped: number;
       inProduction: number;
       hold: number;
     }
   >();
 
-  for (const c of incomingCases) {
-    const key = getPeriodKey(c.order_date, granularity);
+  for (const c of cases) {
+    const key = getPeriodKey(c.orderDate, granularity);
     if (!map.has(key)) {
       map.set(key, {
         revenue: 0,
@@ -104,9 +117,9 @@ export function getTimeSeries(granularity: TimeGranularity): TimeSeriesPoint[] {
     const entry = map.get(key)!;
     entry.revenue += c.amount;
     entry.cases += 1;
-    entry.labs.add(c.lab_id);
-    entry.doctors.add(c.doctor_id);
-    entry.patients.add(c.patient_id);
+    entry.labs.add(c.labId);
+    entry.doctors.add(c.doctorId);
+    entry.patients.add(c.patientId);
     if (c.status === "Shipped") entry.shipped += 1;
     else if (c.status === "In Production") entry.inProduction += 1;
     else entry.hold += 1;
@@ -134,11 +147,10 @@ export interface CategoryBreakdown {
   revenue: number;
 }
 
-export function getCategoryBreakdown(): CategoryBreakdown[] {
+export function getCategoryBreakdown(cases: CaseRow[]): CategoryBreakdown[] {
   const map = new Map<string, { count: number; revenue: number }>();
-  for (const c of incomingCases) {
-    const product = products.find((p) => p.id === c.product_id);
-    const cat = product?.category ?? "Unknown";
+  for (const c of cases) {
+    const cat = c.category || "Unknown";
     if (!map.has(cat)) map.set(cat, { count: 0, revenue: 0 });
     const entry = map.get(cat)!;
     entry.count += 1;
@@ -159,17 +171,25 @@ export interface TopEntity {
   revenue: number;
 }
 
-export function getTopLabs(limit = 10): TopEntity[] {
-  const map = new Map<number, { count: number; revenue: number }>();
-  for (const c of incomingCases) {
-    if (!map.has(c.lab_id)) map.set(c.lab_id, { count: 0, revenue: 0 });
-    const entry = map.get(c.lab_id)!;
+export function getTopLabs(cases: CaseRow[], limit = 10): TopEntity[] {
+  const map = new Map<
+    number | null,
+    { name: string; count: number; revenue: number }
+  >();
+  for (const c of cases) {
+    if (!map.has(c.labId))
+      map.set(c.labId, {
+        name: c.labName || `Lab #${c.labId}`,
+        count: 0,
+        revenue: 0,
+      });
+    const entry = map.get(c.labId)!;
     entry.count += 1;
     entry.revenue += c.amount;
   }
-  return Array.from(map.entries())
-    .map(([id, v]) => ({
-      name: labs.find((l) => l.id === id)?.name ?? `Lab #${id}`,
+  return Array.from(map.values())
+    .map((v) => ({
+      name: v.name,
       count: v.count,
       revenue: Math.round(v.revenue * 100) / 100,
     }))
@@ -177,18 +197,25 @@ export function getTopLabs(limit = 10): TopEntity[] {
     .slice(0, limit);
 }
 
-export function getTopDoctors(limit = 10): TopEntity[] {
-  const map = new Map<number, { count: number; revenue: number }>();
-  for (const c of incomingCases) {
-    if (!map.has(c.doctor_id))
-      map.set(c.doctor_id, { count: 0, revenue: 0 });
-    const entry = map.get(c.doctor_id)!;
+export function getTopDoctors(cases: CaseRow[], limit = 10): TopEntity[] {
+  const map = new Map<
+    number | null,
+    { name: string; count: number; revenue: number }
+  >();
+  for (const c of cases) {
+    if (!map.has(c.doctorId))
+      map.set(c.doctorId, {
+        name: c.doctorName || `Doctor #${c.doctorId}`,
+        count: 0,
+        revenue: 0,
+      });
+    const entry = map.get(c.doctorId)!;
     entry.count += 1;
     entry.revenue += c.amount;
   }
-  return Array.from(map.entries())
-    .map(([id, v]) => ({
-      name: doctors.find((d) => d.id === id)?.name ?? `Doctor #${id}`,
+  return Array.from(map.values())
+    .map((v) => ({
+      name: v.name,
       count: v.count,
       revenue: Math.round(v.revenue * 100) / 100,
     }))
@@ -200,21 +227,29 @@ export interface ClientChange extends TopEntity {
   period: string;
 }
 
-function getClientChanges(limit = 20) {
-  const dates = incomingCases.map((c) => c.order_date).sort();
+export function getClientChanges(cases: CaseRow[], limit = 20) {
+  const dates = cases.map((c) => c.orderDate).sort();
   const midpoint = dates[Math.floor(dates.length / 2)];
 
-  const week1 = incomingCases.filter((c) => c.order_date < midpoint);
-  const week2 = incomingCases.filter((c) => c.order_date >= midpoint);
+  const week1 = cases.filter((c) => c.orderDate < midpoint);
+  const week2 = cases.filter((c) => c.orderDate >= midpoint);
 
-  const week1Range = `${dates[0]} — ${week1.map((c) => c.order_date).sort().pop()}`;
-  const week2Range = `${week2.map((c) => c.order_date).sort()[0]} — ${dates[dates.length - 1]}`;
+  const week1Range = `${dates[0]} — ${week1.map((c) => c.orderDate).sort().pop()}`;
+  const week2Range = `${week2.map((c) => c.orderDate).sort()[0]} — ${dates[dates.length - 1]}`;
 
-  function buildLabMap(cases: typeof incomingCases) {
-    const map = new Map<number, { count: number; revenue: number }>();
-    for (const c of cases) {
-      if (!map.has(c.lab_id)) map.set(c.lab_id, { count: 0, revenue: 0 });
-      const entry = map.get(c.lab_id)!;
+  function buildLabMap(rows: CaseRow[]) {
+    const map = new Map<
+      number | null,
+      { name: string; count: number; revenue: number }
+    >();
+    for (const c of rows) {
+      if (!map.has(c.labId))
+        map.set(c.labId, {
+          name: c.labName || `Lab #${c.labId}`,
+          count: 0,
+          revenue: 0,
+        });
+      const entry = map.get(c.labId)!;
       entry.count += 1;
       entry.revenue += c.amount;
     }
@@ -228,7 +263,7 @@ function getClientChanges(limit = 20) {
   for (const [id, v] of w2Labs) {
     if (!w1Labs.has(id)) {
       newClients.push({
-        name: labs.find((l) => l.id === id)?.name ?? `Lab #${id}`,
+        name: v.name,
         count: v.count,
         revenue: Math.round(v.revenue * 100) / 100,
         period: week2Range,
@@ -241,7 +276,7 @@ function getClientChanges(limit = 20) {
   for (const [id, v] of w1Labs) {
     if (!w2Labs.has(id)) {
       churnedClients.push({
-        name: labs.find((l) => l.id === id)?.name ?? `Lab #${id}`,
+        name: v.name,
         count: v.count,
         revenue: Math.round(v.revenue * 100) / 100,
         period: week1Range,
@@ -258,12 +293,10 @@ function getClientChanges(limit = 20) {
   };
 }
 
-export const clientChanges = getClientChanges(20);
-
 export type HeatmapSort = "last-active" | "total-cases" | "name";
 
 export interface HeatmapRow {
-  labId: number;
+  labId: number | null;
   labName: string;
   totalCases: number;
   lastActiveDate: string;
@@ -278,40 +311,48 @@ export interface HeatmapData {
 }
 
 export function getClientHeatmap(
+  cases: CaseRow[],
   limit = 40,
   sort: HeatmapSort = "last-active",
   dateRange?: { from: string; to: string },
 ): HeatmapData {
   const filtered = dateRange
-    ? incomingCases.filter((c) => c.order_date >= dateRange.from && c.order_date <= dateRange.to)
-    : incomingCases;
+    ? cases.filter((c) => c.orderDate >= dateRange.from && c.orderDate <= dateRange.to)
+    : cases;
 
-  const dates = Array.from(new Set(filtered.map((c) => c.order_date))).sort();
+  const dates = Array.from(new Set(filtered.map((c) => c.orderDate))).sort();
 
   const labMap = new Map<
-    number,
-    { totalCases: number; lastActive: string; firstActive: string; cells: Record<string, number> }
+    number | null,
+    {
+      name: string;
+      totalCases: number;
+      lastActive: string;
+      firstActive: string;
+      cells: Record<string, number>;
+    }
   >();
 
   for (const c of filtered) {
-    if (!labMap.has(c.lab_id)) {
-      labMap.set(c.lab_id, {
+    if (!labMap.has(c.labId)) {
+      labMap.set(c.labId, {
+        name: c.labName || `Lab #${c.labId}`,
         totalCases: 0,
-        lastActive: c.order_date,
-        firstActive: c.order_date,
+        lastActive: c.orderDate,
+        firstActive: c.orderDate,
         cells: {},
       });
     }
-    const entry = labMap.get(c.lab_id)!;
+    const entry = labMap.get(c.labId)!;
     entry.totalCases += 1;
-    if (c.order_date > entry.lastActive) entry.lastActive = c.order_date;
-    if (c.order_date < entry.firstActive) entry.firstActive = c.order_date;
-    entry.cells[c.order_date] = (entry.cells[c.order_date] ?? 0) + 1;
+    if (c.orderDate > entry.lastActive) entry.lastActive = c.orderDate;
+    if (c.orderDate < entry.firstActive) entry.firstActive = c.orderDate;
+    entry.cells[c.orderDate] = (entry.cells[c.orderDate] ?? 0) + 1;
   }
 
   let rows: HeatmapRow[] = Array.from(labMap.entries()).map(([id, v]) => ({
     labId: id,
-    labName: labs.find((l) => l.id === id)?.name ?? `Lab #${id}`,
+    labName: v.name,
     totalCases: v.totalCases,
     lastActiveDate: v.lastActive,
     firstActiveDate: v.firstActive,
@@ -339,22 +380,20 @@ export function getClientHeatmap(
   return { dates, rows, maxCount };
 }
 
-export function getSummary() {
-  const totalRevenue = incomingCases.reduce((sum, c) => sum + c.amount, 0);
-  const totalCases = incomingCases.length;
-  const uniqueLabCount = new Set(incomingCases.map((c) => c.lab_id)).size;
-  const uniqueDoctorCount = new Set(incomingCases.map((c) => c.doctor_id))
-    .size;
-  const uniquePatientCount = new Set(incomingCases.map((c) => c.patient_id))
-    .size;
-  const shipped = incomingCases.filter((c) => c.status === "Shipped").length;
-  const inProduction = incomingCases.filter(
+export function getSummary(cases: CaseRow[]) {
+  const totalRevenue = cases.reduce((sum, c) => sum + c.amount, 0);
+  const totalCases = cases.length;
+  const uniqueLabCount = new Set(cases.map((c) => c.labId)).size;
+  const uniqueDoctorCount = new Set(cases.map((c) => c.doctorId)).size;
+  const uniquePatientCount = new Set(cases.map((c) => c.patientId)).size;
+  const shipped = cases.filter((c) => c.status === "Shipped").length;
+  const inProduction = cases.filter(
     (c) => c.status === "In Production",
   ).length;
-  const hold = incomingCases.filter((c) => c.status === "Hold").length;
+  const hold = cases.filter((c) => c.status === "Hold").length;
 
-  const dates = incomingCases.map((c) => c.order_date).sort();
-  const dateRange = { from: dates[0], to: dates[dates.length - 1] };
+  const dates = cases.map((c) => c.orderDate).sort();
+  const dateRange = { from: dates[0] ?? "", to: dates[dates.length - 1] ?? "" };
 
   return {
     totalRevenue: Math.round(totalRevenue * 100) / 100,

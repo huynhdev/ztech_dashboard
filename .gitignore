@@ -37,3 +37,6 @@ supabase/.temp
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Deno lockfile from ad-hoc edge-function checks
+deno.lock

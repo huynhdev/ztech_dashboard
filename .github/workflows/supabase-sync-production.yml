@@ -28,7 +28,7 @@ jobs:
           version: latest
 
       - name: Link to Supabase project
-        run: supabase link --project-ref REPLACE_WITH_PROD_PROJECT_REF --debug
+        run: supabase link --project-ref wvimndnkhymrcmrhezkn --debug
 
       - name: Run database migrations
         id: migrations
@@ -60,6 +60,6 @@ jobs:
         run: |
           echo "## Supabase Production Sync Complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- Project: REPLACE_WITH_PROD_PROJECT_REF" >> $GITHUB_STEP_SUMMARY
+          echo "- Project: wvimndnkhymrcmrhezkn" >> $GITHUB_STEP_SUMMARY
           echo "- Migrations: Applied" >> $GITHUB_STEP_SUMMARY
           echo "- Edge Functions: ${{ steps.check-functions.outputs.has_functions == 'true' && 'Deployed' || 'None found' }}" >> $GITHUB_STEP_SUMMARY

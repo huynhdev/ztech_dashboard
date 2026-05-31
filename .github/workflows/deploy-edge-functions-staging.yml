@@ -5,8 +5,8 @@ on:
     branches:
       - develop
     paths:
-      - 'supabase/functions/**'
-      - 'supabase/config.toml'
+      - "supabase/functions/**"
+      - "supabase/config.toml"
   workflow_dispatch:
 
 jobs:
@@ -19,4 +19,4 @@ jobs:
       - uses: supabase/setup-cli@v1
         with:
           version: latest
-      - run: supabase functions deploy --project-ref REPLACE_WITH_STAG_PROJECT_REF
+      - run: supabase functions deploy --project-ref xfggbqrudffkrtmrnppi

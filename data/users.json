@@ -1,0 +1,110 @@
+[
+  {
+    "id": "usr_001",
+    "name": "Dr. Nguyen Van A",
+    "email": "nguyen.a@ztechdental.com",
+    "role": "admin",
+    "status": "active",
+    "lastLoginAt": "2025-05-28T09:10:00Z",
+    "createdAt": "2024-01-15T08:00:00Z"
+  },
+  {
+    "id": "usr_002",
+    "name": "Tran Thi B",
+    "email": "tran.b@ztechdental.com",
+    "role": "operator",
+    "status": "active",
+    "lastLoginAt": "2025-05-28T08:45:00Z",
+    "createdAt": "2024-02-20T08:00:00Z"
+  },
+  {
+    "id": "usr_003",
+    "name": "Le Van C",
+    "email": "le.c@ztechdental.com",
+    "role": "operator",
+    "status": "active",
+    "lastLoginAt": "2025-05-27T14:20:00Z",
+    "createdAt": "2024-03-10T08:00:00Z"
+  },
+  {
+    "id": "usr_004",
+    "name": "Pham Thi D",
+    "email": "pham.d@ztechdental.com",
+    "role": "viewer",
+    "status": "active",
+    "lastLoginAt": "2025-05-26T10:30:00Z",
+    "createdAt": "2024-04-05T08:00:00Z"
+  },
+  {
+    "id": "usr_005",
+    "name": "Hoang Van E",
+    "email": "hoang.e@ztechdental.com",
+    "role": "admin",
+    "status": "inactive",
+    "lastLoginAt": "2025-04-10T16:00:00Z",
+    "createdAt": "2024-01-15T08:00:00Z"
+  },
+  {
+    "id": "usr_006",
+    "name": "Vo Thi F",
+    "email": "vo.f@ztechdental.com",
+    "role": "operator",
+    "status": "active",
+    "lastLoginAt": "2025-05-28T07:55:00Z",
+    "createdAt": "2024-05-12T08:00:00Z"
+  },
+  {
+    "id": "usr_007",
+    "name": "Dang Van G",
+    "email": "dang.g@ztechdental.com",
+    "role": "viewer",
+    "status": "active",
+    "lastLoginAt": "2025-05-25T11:10:00Z",
+    "createdAt": "2024-06-01T08:00:00Z"
+  },
+  {
+    "id": "usr_008",
+    "name": "Bui Thi H",
+    "email": "bui.h@ztechdental.com",
+    "role": "operator",
+    "status": "inactive",
+    "lastLoginAt": "2025-03-15T09:00:00Z",
+    "createdAt": "2024-02-28T08:00:00Z"
+  },
+  {
+    "id": "usr_009",
+    "name": "Ngo Van I",
+    "email": "ngo.i@ztechdental.com",
+    "role": "viewer",
+    "status": "active",
+    "lastLoginAt": "2025-05-27T16:45:00Z",
+    "createdAt": "2024-07-20T08:00:00Z"
+  },
+  {
+    "id": "usr_010",
+    "name": "Ly Thi K",
+    "email": "ly.k@ztechdental.com",
+    "role": "admin",
+    "status": "active",
+    "lastLoginAt": "2025-05-28T10:00:00Z",
+    "createdAt": "2024-08-15T08:00:00Z"
+  },
+  {
+    "id": "usr_011",
+    "name": "Truong Van L",
+    "email": "truong.l@ztechdental.com",
+    "role": "operator",
+    "status": "active",
+    "lastLoginAt": "2025-05-24T13:30:00Z",
+    "createdAt": "2024-09-01T08:00:00Z"
+  },
+  {
+    "id": "usr_012",
+    "name": "Mai Thi M",
+    "email": "mai.m@ztechdental.com",
+    "role": "viewer",
+    "status": "inactive",
+    "lastLoginAt": "2025-02-10T08:20:00Z",
+    "createdAt": "2024-10-10T08:00:00Z"
+  }
+]

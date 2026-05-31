@@ -1,0 +1,120 @@
+{
+  "title": "Ztech Dental Lab - Product Features Overview",
+  "author": "Ztech Dental Lab",
+  "subject": "Product Features Overview",
+  "pages": [
+    {
+      "size": "A4",
+      "elements": [
+        {"type": "rectangle", "x": 0, "y": 760, "width": 595.28, "height": 81.89, "color": {"r": 0.15, "g": 0.15, "b": 0.18}},
+        {"type": "rectangle", "x": 0, "y": 0, "width": 595.28, "height": 60, "color": {"r": 0.15, "g": 0.15, "b": 0.18}},
+        {"type": "line", "startX": 0, "startY": 760, "endX": 595.28, "endY": 760, "color": {"r": 0.22, "g": 0.65, "b": 0.45}, "thickness": 3},
+        {"type": "rectangle", "x": 260, "y": 500, "width": 75, "height": 75, "color": {"r": 0.95, "g": 0.95, "b": 0.95}},
+        {"type": "text", "x": 282, "y": 518, "text": "Z", "fontSize": 40, "font": "HelveticaBold", "color": {"r": 0.15, "g": 0.15, "b": 0.18}},
+        {"type": "text", "x": 148, "y": 445, "text": "Ztech Dental Lab", "fontSize": 36, "font": "HelveticaBold", "color": {"r": 0.15, "g": 0.15, "b": 0.18}},
+        {"type": "line", "startX": 200, "startY": 430, "endX": 395, "endY": 430, "color": {"r": 0.22, "g": 0.65, "b": 0.45}, "thickness": 2},
+        {"type": "text", "x": 165, "y": 400, "text": "Product Features Overview", "fontSize": 20, "color": {"r": 0.45, "g": 0.45, "b": 0.5}},
+        {"type": "text", "x": 258, "y": 350, "text": "May 2025", "fontSize": 14, "color": {"r": 0.6, "g": 0.6, "b": 0.6}},
+        {"type": "text", "x": 215, "y": 25, "text": "Confidential Document", "fontSize": 10, "color": {"r": 0.6, "g": 0.6, "b": 0.6}}
+      ]
+    },
+
+    {
+      "size": "A4",
+      "elements": [
+        {"type": "rectangle", "x": 0, "y": 795, "width": 595.28, "height": 46.89, "color": {"r": 0.15, "g": 0.15, "b": 0.18}},
+        {"type": "text", "x": 50, "y": 808, "text": "1. Secure Login", "fontSize": 20, "font": "HelveticaBold", "color": {"r": 1, "g": 1, "b": 1}},
+        {"type": "line", "startX": 0, "startY": 795, "endX": 595.28, "endY": 795, "color": {"r": 0.22, "g": 0.65, "b": 0.45}, "thickness": 2},
+        {"type": "text", "x": 50, "y": 765, "text": "Access the system with your email and password.", "fontSize": 12, "color": {"r": 0.3, "g": 0.3, "b": 0.3}},
+        {"type": "text", "x": 50, "y": 748, "text": "Each team member gets their own secure account to log in.", "fontSize": 12, "color": {"r": 0.3, "g": 0.3, "b": 0.3}},
+        {"type": "rectangle", "x": 49, "y": 344, "width": 497, "height": 392, "borderColor": {"r": 0.85, "g": 0.85, "b": 0.85}, "borderWidth": 1},
+        {"type": "image", "x": 50, "y": 345, "path": "screencapture-localhost-6001-login-2026-05-28-14_31_23.jpg", "width": 495, "height": 389},
+        {"type": "text", "x": 270, "y": 15, "text": "1", "fontSize": 10, "color": {"r": 0.6, "g": 0.6, "b": 0.6}}
+      ]
+    },
+
+    {
+      "size": "A4",
+      "elements": [
+        {"type": "rectangle", "x": 0, "y": 795, "width": 595.28, "height": 46.89, "color": {"r": 0.15, "g": 0.15, "b": 0.18}},
+        {"type": "text", "x": 50, "y": 808, "text": "2. Dashboard  —  Operations Overview", "fontSize": 20, "font": "HelveticaBold", "color": {"r": 1, "g": 1, "b": 1}},
+        {"type": "line", "startX": 0, "startY": 795, "endX": 595.28, "endY": 795, "color": {"r": 0.22, "g": 0.65, "b": 0.45}, "thickness": 2},
+        {"type": "text", "x": 50, "y": 765, "text": "See all key numbers at a glance: revenue, total cases, labs, doctors, and case statuses.", "fontSize": 12, "color": {"r": 0.3, "g": 0.3, "b": 0.3}},
+        {"type": "text", "x": 50, "y": 748, "text": "Includes revenue trends, customer trends, volume charts, top labs/doctors, and a client activity heatmap.", "fontSize": 12, "color": {"r": 0.3, "g": 0.3, "b": 0.3}, "maxWidth": 495, "lineHeight": 15},
+        {"type": "rectangle", "x": 104, "y": 94, "width": 387, "height": 632, "borderColor": {"r": 0.85, "g": 0.85, "b": 0.85}, "borderWidth": 1},
+        {"type": "image", "x": 105, "y": 95, "path": "screencapture-localhost-6001-2026-05-28-14_31_47.jpg", "width": 385, "height": 630},
+        {"type": "text", "x": 270, "y": 15, "text": "2", "fontSize": 10, "color": {"r": 0.6, "g": 0.6, "b": 0.6}}
+      ]
+    },
+
+    {
+      "size": "A4",
+      "elements": [
+        {"type": "rectangle", "x": 0, "y": 795, "width": 595.28, "height": 46.89, "color": {"r": 0.15, "g": 0.15, "b": 0.18}},
+        {"type": "text", "x": 50, "y": 808, "text": "3. Data Upload  —  File History", "fontSize": 20, "font": "HelveticaBold", "color": {"r": 1, "g": 1, "b": 1}},
+        {"type": "line", "startX": 0, "startY": 795, "endX": 595.28, "endY": 795, "color": {"r": 0.22, "g": 0.65, "b": 0.45}, "thickness": 2},
+        {"type": "text", "x": 50, "y": 765, "text": "View all uploaded Excel files with their status (Completed, Processing, or Failed),", "fontSize": 12, "color": {"r": 0.3, "g": 0.3, "b": 0.3}},
+        {"type": "text", "x": 50, "y": 748, "text": "upload date, and who uploaded them. Supports pagination for large file lists.", "fontSize": 12, "color": {"r": 0.3, "g": 0.3, "b": 0.3}},
+        {"type": "rectangle", "x": 49, "y": 344, "width": 497, "height": 392, "borderColor": {"r": 0.85, "g": 0.85, "b": 0.85}, "borderWidth": 1},
+        {"type": "image", "x": 50, "y": 345, "path": "screencapture-localhost-6001-upload-2026-05-28-14_32_00.jpg", "width": 495, "height": 389},
+        {"type": "text", "x": 270, "y": 15, "text": "3", "fontSize": 10, "color": {"r": 0.6, "g": 0.6, "b": 0.6}}
+      ]
+    },
+
+    {
+      "size": "A4",
+      "elements": [
+        {"type": "rectangle", "x": 0, "y": 795, "width": 595.28, "height": 46.89, "color": {"r": 0.15, "g": 0.15, "b": 0.18}},
+        {"type": "text", "x": 50, "y": 808, "text": "4. Data Upload  —  Upload Files", "fontSize": 20, "font": "HelveticaBold", "color": {"r": 1, "g": 1, "b": 1}},
+        {"type": "line", "startX": 0, "startY": 795, "endX": 595.28, "endY": 795, "color": {"r": 0.22, "g": 0.65, "b": 0.45}, "thickness": 2},
+        {"type": "text", "x": 50, "y": 765, "text": "Drag and drop or click to browse and upload Excel files (.xlsx, .xls, .csv).", "fontSize": 12, "color": {"r": 0.3, "g": 0.3, "b": 0.3}},
+        {"type": "text", "x": 50, "y": 748, "text": "You can upload multiple files at once.", "fontSize": 12, "color": {"r": 0.3, "g": 0.3, "b": 0.3}},
+        {"type": "rectangle", "x": 49, "y": 344, "width": 497, "height": 392, "borderColor": {"r": 0.85, "g": 0.85, "b": 0.85}, "borderWidth": 1},
+        {"type": "image", "x": 50, "y": 345, "path": "screencapture-localhost-6001-upload-2026-05-28-14_32_10.jpg", "width": 495, "height": 389},
+        {"type": "text", "x": 270, "y": 15, "text": "4", "fontSize": 10, "color": {"r": 0.6, "g": 0.6, "b": 0.6}}
+      ]
+    },
+
+    {
+      "size": "A4",
+      "elements": [
+        {"type": "rectangle", "x": 0, "y": 795, "width": 595.28, "height": 46.89, "color": {"r": 0.15, "g": 0.15, "b": 0.18}},
+        {"type": "text", "x": 50, "y": 808, "text": "5. User Management  —  Team Members", "fontSize": 20, "font": "HelveticaBold", "color": {"r": 1, "g": 1, "b": 1}},
+        {"type": "line", "startX": 0, "startY": 795, "endX": 595.28, "endY": 795, "color": {"r": 0.22, "g": 0.65, "b": 0.45}, "thickness": 2},
+        {"type": "text", "x": 50, "y": 765, "text": "View and manage all team members. See their name, email, and when their account", "fontSize": 12, "color": {"r": 0.3, "g": 0.3, "b": 0.3}},
+        {"type": "text", "x": 50, "y": 748, "text": "was created. Use the action menu on each row for quick edits.", "fontSize": 12, "color": {"r": 0.3, "g": 0.3, "b": 0.3}},
+        {"type": "rectangle", "x": 49, "y": 344, "width": 497, "height": 392, "borderColor": {"r": 0.85, "g": 0.85, "b": 0.85}, "borderWidth": 1},
+        {"type": "image", "x": 50, "y": 345, "path": "screencapture-localhost-6001-users-2026-05-28-14_32_17.jpg", "width": 495, "height": 389},
+        {"type": "text", "x": 270, "y": 15, "text": "5", "fontSize": 10, "color": {"r": 0.6, "g": 0.6, "b": 0.6}}
+      ]
+    },
+
+    {
+      "size": "A4",
+      "elements": [
+        {"type": "rectangle", "x": 0, "y": 795, "width": 595.28, "height": 46.89, "color": {"r": 0.15, "g": 0.15, "b": 0.18}},
+        {"type": "text", "x": 50, "y": 808, "text": "6. User Management  —  Add New User", "fontSize": 20, "font": "HelveticaBold", "color": {"r": 1, "g": 1, "b": 1}},
+        {"type": "line", "startX": 0, "startY": 795, "endX": 595.28, "endY": 795, "color": {"r": 0.22, "g": 0.65, "b": 0.45}, "thickness": 2},
+        {"type": "text", "x": 50, "y": 765, "text": "Add new team members by entering their email and setting a password.", "fontSize": 12, "color": {"r": 0.3, "g": 0.3, "b": 0.3}},
+        {"type": "text", "x": 50, "y": 748, "text": "New users can log in immediately after being created.", "fontSize": 12, "color": {"r": 0.3, "g": 0.3, "b": 0.3}},
+        {"type": "rectangle", "x": 49, "y": 344, "width": 497, "height": 392, "borderColor": {"r": 0.85, "g": 0.85, "b": 0.85}, "borderWidth": 1},
+        {"type": "image", "x": 50, "y": 345, "path": "screencapture-localhost-6001-users-2026-05-28-14_32_26.jpg", "width": 495, "height": 389},
+        {"type": "text", "x": 270, "y": 15, "text": "6", "fontSize": 10, "color": {"r": 0.6, "g": 0.6, "b": 0.6}}
+      ]
+    },
+
+    {
+      "size": "A4",
+      "elements": [
+        {"type": "rectangle", "x": 0, "y": 795, "width": 595.28, "height": 46.89, "color": {"r": 0.15, "g": 0.15, "b": 0.18}},
+        {"type": "text", "x": 50, "y": 808, "text": "7. User Management  —  Edit User", "fontSize": 20, "font": "HelveticaBold", "color": {"r": 1, "g": 1, "b": 1}},
+        {"type": "line", "startX": 0, "startY": 795, "endX": 595.28, "endY": 795, "color": {"r": 0.22, "g": 0.65, "b": 0.45}, "thickness": 2},
+        {"type": "text", "x": 50, "y": 765, "text": "Update a team member's email or reset their password.", "fontSize": 12, "color": {"r": 0.3, "g": 0.3, "b": 0.3}},
+        {"type": "text", "x": 50, "y": 748, "text": "Leave the password field blank to keep the current password unchanged.", "fontSize": 12, "color": {"r": 0.3, "g": 0.3, "b": 0.3}},
+        {"type": "rectangle", "x": 49, "y": 344, "width": 497, "height": 392, "borderColor": {"r": 0.85, "g": 0.85, "b": 0.85}, "borderWidth": 1},
+        {"type": "image", "x": 50, "y": 345, "path": "screencapture-localhost-6001-users-2026-05-28-14_32_44.jpg", "width": 495, "height": 389},
+        {"type": "text", "x": 270, "y": 15, "text": "7", "fontSize": 10, "color": {"r": 0.6, "g": 0.6, "b": 0.6}}
+      ]
+    }
+  ]
+}

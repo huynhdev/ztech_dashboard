@@ -1,0 +1,882 @@
+[
+  {
+    "id": 1,
+    "name": "123 Dental"
+  },
+  {
+    "id": 2,
+    "name": "21 Dental Group"
+  },
+  {
+    "id": 3,
+    "name": "4th Vermont Dental Care"
+  },
+  {
+    "id": 4,
+    "name": "ABC Dental Inc"
+  },
+  {
+    "id": 5,
+    "name": "Access Dental Care"
+  },
+  {
+    "id": 6,
+    "name": "Ace Dental Lab - Illinois"
+  },
+  {
+    "id": 7,
+    "name": "Alan B. Woodson DDS"
+  },
+  {
+    "id": 8,
+    "name": "Albert Broas D.D.S Inc"
+  },
+  {
+    "id": 9,
+    "name": "Aliso Niguel Dental Group"
+  },
+  {
+    "id": 10,
+    "name": "All Children's Dental (Anaheim)"
+  },
+  {
+    "id": 11,
+    "name": "All Children's Dental (Westminster)"
+  },
+  {
+    "id": 12,
+    "name": "Allstar Dental"
+  },
+  {
+    "id": 13,
+    "name": "AltaMed Dental (Trailer Anaheim)"
+  },
+  {
+    "id": 14,
+    "name": "AltaMed Medical and Dental Group (1st Street)"
+  },
+  {
+    "id": 15,
+    "name": "AltaMed Medical and Dental Group (Boyle Heights)"
+  },
+  {
+    "id": 16,
+    "name": "AltaMed Medical and Dental Group (El Monte)"
+  },
+  {
+    "id": 17,
+    "name": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 18,
+    "name": "AM Dental Group"
+  },
+  {
+    "id": 19,
+    "name": "American Bright Dental"
+  },
+  {
+    "id": 20,
+    "name": "Anaheim Family Dental"
+  },
+  {
+    "id": 21,
+    "name": "Andy Tran DDS - FEDEX"
+  },
+  {
+    "id": 22,
+    "name": "Angelic Dentistry - Van Nuys"
+  },
+  {
+    "id": 23,
+    "name": "Atwood Family Dentistry"
+  },
+  {
+    "id": 24,
+    "name": "Ballou Dental Arts"
+  },
+  {
+    "id": 25,
+    "name": "Bay Dental - Pearce Dental Inc."
+  },
+  {
+    "id": 26,
+    "name": "Bay Dental Practice (LB)"
+  },
+  {
+    "id": 27,
+    "name": "Bella Dental Group"
+  },
+  {
+    "id": 28,
+    "name": "Bella Terra Dentistry"
+  },
+  {
+    "id": 29,
+    "name": "Bernardo, Maria Pilar DDS"
+  },
+  {
+    "id": 30,
+    "name": "Beverlywood Dental - RTE JES"
+  },
+  {
+    "id": 31,
+    "name": "Bliss Dental Arts"
+  },
+  {
+    "id": 32,
+    "name": "Bristol Dental Care"
+  },
+  {
+    "id": 33,
+    "name": "Brookhurst Dental Group"
+  },
+  {
+    "id": 34,
+    "name": "Bui Steven T DDS"
+  },
+  {
+    "id": 35,
+    "name": "Bui, James DDS"
+  },
+  {
+    "id": 36,
+    "name": "Busch, Lawrence DMD"
+  },
+  {
+    "id": 37,
+    "name": "California Dental Group"
+  },
+  {
+    "id": 38,
+    "name": "California Dentistry & Braces"
+  },
+  {
+    "id": 39,
+    "name": "CB Patel DDS"
+  },
+  {
+    "id": 40,
+    "name": "CBS Dental Lab"
+  },
+  {
+    "id": 41,
+    "name": "City Dental Centers - Azusa"
+  },
+  {
+    "id": 42,
+    "name": "City Dental Centers - Corona"
+  },
+  {
+    "id": 43,
+    "name": "City Dental Centers - Lake Forest"
+  },
+  {
+    "id": 44,
+    "name": "City Dental Centers - Pico Rivera"
+  },
+  {
+    "id": 45,
+    "name": "Civic Dental"
+  },
+  {
+    "id": 46,
+    "name": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 47,
+    "name": "Coastline Dental Care"
+  },
+  {
+    "id": 48,
+    "name": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 49,
+    "name": "Commerce Dental"
+  },
+  {
+    "id": 50,
+    "name": "Covina Dental"
+  },
+  {
+    "id": 51,
+    "name": "Crossroads Family Dental"
+  },
+  {
+    "id": 52,
+    "name": "Crown Dental"
+  },
+  {
+    "id": 53,
+    "name": "Dawood, Paul DDS (FV)"
+  },
+  {
+    "id": 54,
+    "name": "Dawood, Paul DDS (GG)"
+  },
+  {
+    "id": 55,
+    "name": "Day Creek Dental Care"
+  },
+  {
+    "id": 56,
+    "name": "Del Amo Dental Group"
+  },
+  {
+    "id": 57,
+    "name": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 58,
+    "name": "Dental Spa & Implant Center of West Covina - RTE J"
+  },
+  {
+    "id": 59,
+    "name": "Dentist 4 U"
+  },
+  {
+    "id": 60,
+    "name": "Dr. Alvina Padua"
+  },
+  {
+    "id": 61,
+    "name": "Dr. Russel Nolasco RTE JES"
+  },
+  {
+    "id": 62,
+    "name": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 63,
+    "name": "El Camino Dental & Braces"
+  },
+  {
+    "id": 64,
+    "name": "Elite Dental"
+  },
+  {
+    "id": 65,
+    "name": "Encino Total Dentistry"
+  },
+  {
+    "id": 66,
+    "name": "EP Dental Group - Cerritos"
+  },
+  {
+    "id": 67,
+    "name": "Euclid Dental Center"
+  },
+  {
+    "id": 68,
+    "name": "F.T.O.C. Dental (Garden Grove)"
+  },
+  {
+    "id": 69,
+    "name": "F.T.O.C. Dental (Tustin)"
+  },
+  {
+    "id": 70,
+    "name": "Farwest Dental Group (Compton)"
+  },
+  {
+    "id": 71,
+    "name": "Farwest Dental Group (Lomita)"
+  },
+  {
+    "id": 72,
+    "name": "Farwest Dental Group (Los Angeles)"
+  },
+  {
+    "id": 73,
+    "name": "Farwest Dental Group (Wilmington)"
+  },
+  {
+    "id": 74,
+    "name": "First Dental"
+  },
+  {
+    "id": 75,
+    "name": "Fountain Valley Dental Esthetics"
+  },
+  {
+    "id": 76,
+    "name": "Gabrie Dental Center"
+  },
+  {
+    "id": 77,
+    "name": "Good Kids Dental"
+  },
+  {
+    "id": 78,
+    "name": "Healthy Smiles Premier Dental"
+  },
+  {
+    "id": 79,
+    "name": "Hop T Nguyen (LA)"
+  },
+  {
+    "id": 80,
+    "name": "IQ Dental Group"
+  },
+  {
+    "id": 81,
+    "name": "Iris Dental Care"
+  },
+  {
+    "id": 82,
+    "name": "Irvine Dental"
+  },
+  {
+    "id": 83,
+    "name": "Kids & Adults Dental Care (Compton)"
+  },
+  {
+    "id": 84,
+    "name": "Kids & Adults Dental Care (Huntington Park)"
+  },
+  {
+    "id": 85,
+    "name": "Kids Care Dentistry"
+  },
+  {
+    "id": 86,
+    "name": "Kids Dental Care"
+  },
+  {
+    "id": 87,
+    "name": "KindLi Dental Center - RTE JES"
+  },
+  {
+    "id": 88,
+    "name": "La Perle Dental"
+  },
+  {
+    "id": 89,
+    "name": "La Vid Dental Lab"
+  },
+  {
+    "id": 90,
+    "name": "Long Beach Dental Group"
+  },
+  {
+    "id": 91,
+    "name": "Longwood Dental Group"
+  },
+  {
+    "id": 92,
+    "name": "Los Alisos Dentistry"
+  },
+  {
+    "id": 93,
+    "name": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 94,
+    "name": "Majestic Dental"
+  },
+  {
+    "id": 95,
+    "name": "Maranatha Dental"
+  },
+  {
+    "id": 96,
+    "name": "Marcelo G. Moncada DDS"
+  },
+  {
+    "id": 97,
+    "name": "Mardirossian Periodontics and Implant Dentistry"
+  },
+  {
+    "id": 98,
+    "name": "Mehta Dental Group - (Anaheim)"
+  },
+  {
+    "id": 99,
+    "name": "Mehta Dental Group (Brea) - RTE - JES"
+  },
+  {
+    "id": 100,
+    "name": "Mehta Dental Group (Los Alamitos)"
+  },
+  {
+    "id": 101,
+    "name": "Mehta Dental Group (Tustin)"
+  },
+  {
+    "id": 102,
+    "name": "Mesa Dental Center"
+  },
+  {
+    "id": 103,
+    "name": "Michelsen Dental"
+  },
+  {
+    "id": 104,
+    "name": "Mint Apple Dental"
+  },
+  {
+    "id": 105,
+    "name": "Mora Dental Lab"
+  },
+  {
+    "id": 106,
+    "name": "My Care Dental"
+  },
+  {
+    "id": 107,
+    "name": "My OC Dental Care"
+  },
+  {
+    "id": 108,
+    "name": "Nathan Nguyen DDS"
+  },
+  {
+    "id": 109,
+    "name": "NATIONAL DENTAL ARTS"
+  },
+  {
+    "id": 110,
+    "name": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 111,
+    "name": "OC Dental Center"
+  },
+  {
+    "id": 112,
+    "name": "Olshansky Victoria DDS"
+  },
+  {
+    "id": 113,
+    "name": "Omnia Dental (Chino Hills ) - RTE JES"
+  },
+  {
+    "id": 114,
+    "name": "Open Door Dental"
+  },
+  {
+    "id": 115,
+    "name": "Orange Periodontics and Dental Implantology"
+  },
+  {
+    "id": 116,
+    "name": "Orange Sky Dental"
+  },
+  {
+    "id": 117,
+    "name": "Oxy Dental (East Hollywood on Vermont)"
+  },
+  {
+    "id": 118,
+    "name": "PALM DESERT- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 119,
+    "name": "Palmdale Total Dentistry"
+  },
+  {
+    "id": 120,
+    "name": "Peace Kim"
+  },
+  {
+    "id": 121,
+    "name": "Pearly Smile Dental"
+  },
+  {
+    "id": 122,
+    "name": "Peter Tran DDS"
+  },
+  {
+    "id": 123,
+    "name": "Piroutek, Gary. DDS"
+  },
+  {
+    "id": 124,
+    "name": "Precision Dental"
+  },
+  {
+    "id": 125,
+    "name": "Premier Palm Dental"
+  },
+  {
+    "id": 126,
+    "name": "Quick Silver Dental Laboratories, INC."
+  },
+  {
+    "id": 127,
+    "name": "Quynhchau Le Dental Office"
+  },
+  {
+    "id": 128,
+    "name": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 129,
+    "name": "RANCHO MIRAGE- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 130,
+    "name": "Richard H Baldwin, D.M.D."
+  },
+  {
+    "id": 131,
+    "name": "Rocedent Family Dental - EG"
+  },
+  {
+    "id": 132,
+    "name": "Ron An Vuong"
+  },
+  {
+    "id": 133,
+    "name": "Rosy Dental"
+  },
+  {
+    "id": 134,
+    "name": "Ruben Jr - LAB (Huntington Park)"
+  },
+  {
+    "id": 135,
+    "name": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 136,
+    "name": "San Diego Dental Lounge"
+  },
+  {
+    "id": 137,
+    "name": "San Fernando Pacoima"
+  },
+  {
+    "id": 138,
+    "name": "San Ysidro Dental Care"
+  },
+  {
+    "id": 139,
+    "name": "Serenity Dental Spa"
+  },
+  {
+    "id": 140,
+    "name": "SGTD Global Dental Center"
+  },
+  {
+    "id": 141,
+    "name": "Simply Dentistry"
+  },
+  {
+    "id": 142,
+    "name": "Smile San Clemente"
+  },
+  {
+    "id": 143,
+    "name": "Smilehaven Dental Center"
+  },
+  {
+    "id": 144,
+    "name": "Smilelife Dental Group"
+  },
+  {
+    "id": 145,
+    "name": "Smiles by Alex"
+  },
+  {
+    "id": 146,
+    "name": "Smiles of San Marcos - RTE - MES"
+  },
+  {
+    "id": 147,
+    "name": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 148,
+    "name": "Smiles West (Covina)"
+  },
+  {
+    "id": 149,
+    "name": "Smiles West (La Puente)"
+  },
+  {
+    "id": 150,
+    "name": "Smiles West (San Bernardino)"
+  },
+  {
+    "id": 151,
+    "name": "St. Anthony Family Dentistry"
+  },
+  {
+    "id": 152,
+    "name": "Sunrise Smiles"
+  },
+  {
+    "id": 153,
+    "name": "Sunset Dental Arts"
+  },
+  {
+    "id": 154,
+    "name": "Ted Tayenaka DDS"
+  },
+  {
+    "id": 155,
+    "name": "Teresa M. Avendano-Galvez, DMD - J"
+  },
+  {
+    "id": 156,
+    "name": "The Joy Of Dentistry RTE JES"
+  },
+  {
+    "id": 157,
+    "name": "The Ontario Dentist - RTE JES"
+  },
+  {
+    "id": 158,
+    "name": "Tooth Fairy Dental"
+  },
+  {
+    "id": 159,
+    "name": "Torres Family Dental"
+  },
+  {
+    "id": 160,
+    "name": "Total Care Implant Dentistry (Palm Desert)"
+  },
+  {
+    "id": 161,
+    "name": "Total Family Dental Group"
+  },
+  {
+    "id": 162,
+    "name": "Transformation Dental Partners"
+  },
+  {
+    "id": 163,
+    "name": "Tri An Dental"
+  },
+  {
+    "id": 164,
+    "name": "TruGLO Modern Dental (Beverly Hills)"
+  },
+  {
+    "id": 165,
+    "name": "TruGLO Modern Dental (Calabasas)"
+  },
+  {
+    "id": 166,
+    "name": "Tustin Blue Dental Group"
+  },
+  {
+    "id": 167,
+    "name": "TV Dental Lab"
+  },
+  {
+    "id": 168,
+    "name": "Unique Dental (Garden Grove)"
+  },
+  {
+    "id": 169,
+    "name": "Unistar Dental"
+  },
+  {
+    "id": 170,
+    "name": "United Dental Centers"
+  },
+  {
+    "id": 171,
+    "name": "Urban Dental"
+  },
+  {
+    "id": 172,
+    "name": "Village Family dental Office"
+  },
+  {
+    "id": 173,
+    "name": "Villegas Dental Laboratory"
+  },
+  {
+    "id": 174,
+    "name": "Vineyard Family Dentist Ontario Ortho Center - RTE"
+  },
+  {
+    "id": 175,
+    "name": "VTA DENTAL LAB"
+  },
+  {
+    "id": 176,
+    "name": "Vu Hong T DDS"
+  },
+  {
+    "id": 177,
+    "name": "Warner Dental Group"
+  },
+  {
+    "id": 178,
+    "name": "West Dental - (Compton ) RTE: JES"
+  },
+  {
+    "id": 179,
+    "name": "Westpark Dental"
+  },
+  {
+    "id": 180,
+    "name": "Whittier Dental Group"
+  },
+  {
+    "id": 181,
+    "name": "Your OC Dentist Corp"
+  },
+  {
+    "id": 182,
+    "name": "Zapanta-Chavez Dentistry (LA)"
+  },
+  {
+    "id": 183,
+    "name": "A Brilliant Smile Dental"
+  },
+  {
+    "id": 184,
+    "name": "Allison Avenue Dental"
+  },
+  {
+    "id": 185,
+    "name": "Almodovar Dentistry, Inc"
+  },
+  {
+    "id": 186,
+    "name": "Anaheim Mankind Dentistry"
+  },
+  {
+    "id": 187,
+    "name": "Bettersmile Dental"
+  },
+  {
+    "id": 188,
+    "name": "Bravo Dental Corporation"
+  },
+  {
+    "id": 189,
+    "name": "Brighter Image Dental"
+  },
+  {
+    "id": 190,
+    "name": "CHD Dental Care"
+  },
+  {
+    "id": 191,
+    "name": "Creative Solutions Laboratory LLC"
+  },
+  {
+    "id": 192,
+    "name": "D & T Dentistry (Garden Grove)"
+  },
+  {
+    "id": 193,
+    "name": "Defazio Jr., Peter. DMD"
+  },
+  {
+    "id": 194,
+    "name": "Dr. Itzel Zuazo - RTE JES"
+  },
+  {
+    "id": 195,
+    "name": "DR. J"
+  },
+  {
+    "id": 196,
+    "name": "Duong, Hien DDS Inc."
+  },
+  {
+    "id": 197,
+    "name": "Family First Dental"
+  },
+  {
+    "id": 198,
+    "name": "Haduong Han DDS"
+  },
+  {
+    "id": 199,
+    "name": "Harbor Family Dental"
+  },
+  {
+    "id": 200,
+    "name": "Healthy Smiles Dental Center"
+  },
+  {
+    "id": 201,
+    "name": "iSmiles Dentistry"
+  },
+  {
+    "id": 202,
+    "name": "John J. Furesh Dental Group"
+  },
+  {
+    "id": 203,
+    "name": "K & P Dental"
+  },
+  {
+    "id": 204,
+    "name": "Le, Nick DDS"
+  },
+  {
+    "id": 205,
+    "name": "Linda L. Ng, D.D.S. Inc."
+  },
+  {
+    "id": 206,
+    "name": "Linh Hoang Nguyen DDS"
+  },
+  {
+    "id": 207,
+    "name": "Mindfulness Dental"
+  },
+  {
+    "id": 208,
+    "name": "Pacific Family Dental Office"
+  },
+  {
+    "id": 209,
+    "name": "Pacific Ocean Dental Group"
+  },
+  {
+    "id": 210,
+    "name": "Petri Dental"
+  },
+  {
+    "id": 211,
+    "name": "Polaris Dental Care"
+  },
+  {
+    "id": 212,
+    "name": "Rosedale Dental Care Group"
+  },
+  {
+    "id": 213,
+    "name": "Rubi Montejano DDS"
+  },
+  {
+    "id": 214,
+    "name": "Santa Fe Family Dental Center"
+  },
+  {
+    "id": 215,
+    "name": "Today Dental Practice"
+  },
+  {
+    "id": 216,
+    "name": "TruGLO Modern Dental (La Jolla)"
+  },
+  {
+    "id": 217,
+    "name": "USC Dental Clinic RTE JES"
+  },
+  {
+    "id": 218,
+    "name": "Vu Paramount Dental Group"
+  },
+  {
+    "id": 219,
+    "name": "YOYO'S DAD LAB"
+  },
+  {
+    "id": 220,
+    "name": "Yvonne P. Arafiles DDS"
+  }
+]

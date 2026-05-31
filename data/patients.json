@@ -1,0 +1,9422 @@
+[
+  {
+    "id": 1,
+    "name": "JILL SHELTON",
+    "external_id": null,
+    "lab": "123 Dental"
+  },
+  {
+    "id": 2,
+    "name": "TRISTAN TRIEU",
+    "external_id": null,
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 3,
+    "name": "RICHARD TSAI",
+    "external_id": null,
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 4,
+    "name": "THUY DOAN",
+    "external_id": "3653",
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 5,
+    "name": "SOPHIA CHEUNG",
+    "external_id": null,
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 6,
+    "name": "YUNITA WU",
+    "external_id": "853",
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 7,
+    "name": "TEREJA BARAJAS",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 8,
+    "name": "DANIEL GALLOZA",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 9,
+    "name": "ODILIA MORALEZ",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 10,
+    "name": "BERNARD MOORE",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 11,
+    "name": "SHANNA ONG",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 12,
+    "name": "ALBERTO CAINTIC",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 13,
+    "name": "OSCAR JR HERNANDEZ",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 14,
+    "name": "LILIA RHUDAS",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 15,
+    "name": "CARMEN PEREZ",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 16,
+    "name": "JAMES ARAQUE",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 17,
+    "name": "JULIET GILLARD",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 18,
+    "name": "JOSELITO BUENAVENTURA",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 19,
+    "name": "ALBIN CLAVO",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 20,
+    "name": "ROBERTO VILLANEDA",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 21,
+    "name": "QUAN DICH",
+    "external_id": null,
+    "lab": "ABC Dental Inc"
+  },
+  {
+    "id": 22,
+    "name": "VENTURA LUCIA",
+    "external_id": null,
+    "lab": "Access Dental Care"
+  },
+  {
+    "id": 23,
+    "name": "UBRARCE ANTONIA",
+    "external_id": null,
+    "lab": "Access Dental Care"
+  },
+  {
+    "id": 24,
+    "name": "JORGE MADRID",
+    "external_id": null,
+    "lab": "Access Dental Care"
+  },
+  {
+    "id": 25,
+    "name": "JOHN HARRISON",
+    "external_id": null,
+    "lab": "Ace Dental Lab - Illinois"
+  },
+  {
+    "id": 26,
+    "name": "TRUEMAN HOFFMEISTER",
+    "external_id": null,
+    "lab": "Ace Dental Lab - Illinois"
+  },
+  {
+    "id": 27,
+    "name": "DENNIS L BIERIG",
+    "external_id": null,
+    "lab": "Ace Dental Lab - Illinois"
+  },
+  {
+    "id": 28,
+    "name": "JEREMY BOUCHER",
+    "external_id": null,
+    "lab": "Ace Dental Lab - Illinois"
+  },
+  {
+    "id": 29,
+    "name": "MARRY DR. THOMPSOPN",
+    "external_id": null,
+    "lab": "Ace Dental Lab - Illinois"
+  },
+  {
+    "id": 30,
+    "name": "PARWIN MOORE",
+    "external_id": null,
+    "lab": "Ace Dental Lab - Illinois"
+  },
+  {
+    "id": 31,
+    "name": "DENISE LEDUC",
+    "external_id": null,
+    "lab": "Ace Dental Lab - Illinois"
+  },
+  {
+    "id": 32,
+    "name": "VALERIE HARTMAN",
+    "external_id": null,
+    "lab": "Ace Dental Lab - Illinois"
+  },
+  {
+    "id": 33,
+    "name": "VERONICA MEDIOLA",
+    "external_id": null,
+    "lab": "Alan B. Woodson DDS"
+  },
+  {
+    "id": 34,
+    "name": "MARIAD GARCIA",
+    "external_id": null,
+    "lab": "Albert Broas D.D.S Inc"
+  },
+  {
+    "id": 35,
+    "name": "DOUG KELLER",
+    "external_id": null,
+    "lab": "Aliso Niguel Dental Group"
+  },
+  {
+    "id": 36,
+    "name": "JOSEPH BERGMANS",
+    "external_id": null,
+    "lab": "Aliso Niguel Dental Group"
+  },
+  {
+    "id": 37,
+    "name": "KIA MORTAZAVI",
+    "external_id": null,
+    "lab": "Aliso Niguel Dental Group"
+  },
+  {
+    "id": 38,
+    "name": "FARAHNAZ SHAHABI",
+    "external_id": null,
+    "lab": "Aliso Niguel Dental Group"
+  },
+  {
+    "id": 39,
+    "name": "ALYSON THOMER",
+    "external_id": "177377532",
+    "lab": "All Children's Dental (Anaheim)"
+  },
+  {
+    "id": 40,
+    "name": "EDITH TAVIRADE BELTRAN",
+    "external_id": "297810895",
+    "lab": "All Children's Dental (Westminster)"
+  },
+  {
+    "id": 41,
+    "name": "KEVIN DO",
+    "external_id": "67572208",
+    "lab": "All Children's Dental (Westminster)"
+  },
+  {
+    "id": 42,
+    "name": "NAHLA KAYALI",
+    "external_id": null,
+    "lab": "Allstar Dental"
+  },
+  {
+    "id": 43,
+    "name": "MOHAMED HAJ-EID",
+    "external_id": null,
+    "lab": "Allstar Dental"
+  },
+  {
+    "id": 44,
+    "name": "REYNA FLORES GUTIERREZ",
+    "external_id": null,
+    "lab": "AltaMed Dental (Trailer Anaheim)"
+  },
+  {
+    "id": 45,
+    "name": "TIRSA MAZARIEGOS MODEREN",
+    "external_id": null,
+    "lab": "AltaMed Dental (Trailer Anaheim)"
+  },
+  {
+    "id": 46,
+    "name": "CESAR CHIHUAHA",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (1st Street)"
+  },
+  {
+    "id": 47,
+    "name": "Jose Napoleon Torres Alvarenga",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (Boyle Heights)"
+  },
+  {
+    "id": 48,
+    "name": "EFRANIN AORNMDEZ",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (El Monte)"
+  },
+  {
+    "id": 49,
+    "name": "EVANGELINA DOMINGUEZ AZCUE",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 50,
+    "name": "DONNA J BEASLEY",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 51,
+    "name": "TROY RINGLE",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 52,
+    "name": "CARI MOORE",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 53,
+    "name": "GRACIELA BELLO",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 54,
+    "name": "GONZALO LARA GOMEZ",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 55,
+    "name": "James C Jensen",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 56,
+    "name": "LORENA TORRES",
+    "external_id": null,
+    "lab": "AM Dental Group"
+  },
+  {
+    "id": 57,
+    "name": "MARIA ESPARZA",
+    "external_id": null,
+    "lab": "AM Dental Group"
+  },
+  {
+    "id": 58,
+    "name": "SILVIA MARROQUIN",
+    "external_id": null,
+    "lab": "AM Dental Group"
+  },
+  {
+    "id": 59,
+    "name": "JOSE LOPEZ",
+    "external_id": null,
+    "lab": "AM Dental Group"
+  },
+  {
+    "id": 60,
+    "name": "GUADALUPE GONZALEZ",
+    "external_id": null,
+    "lab": "AM Dental Group"
+  },
+  {
+    "id": 61,
+    "name": "SHAUNTEL FEISTER",
+    "external_id": null,
+    "lab": "American Bright Dental"
+  },
+  {
+    "id": 62,
+    "name": "MARIA GONZALEZ",
+    "external_id": null,
+    "lab": "American Bright Dental"
+  },
+  {
+    "id": 63,
+    "name": "ANTONIO NIETO",
+    "external_id": null,
+    "lab": "American Bright Dental"
+  },
+  {
+    "id": 64,
+    "name": "JAMEISHA KING",
+    "external_id": null,
+    "lab": "American Bright Dental"
+  },
+  {
+    "id": 65,
+    "name": "ROSA MARIA MARTINEZ",
+    "external_id": null,
+    "lab": "Anaheim Family Dental"
+  },
+  {
+    "id": 66,
+    "name": "LINDA BARNETT",
+    "external_id": null,
+    "lab": "Andy Tran DDS - FEDEX"
+  },
+  {
+    "id": 67,
+    "name": "SYLVIA CROCKETT",
+    "external_id": null,
+    "lab": "Andy Tran DDS - FEDEX"
+  },
+  {
+    "id": 68,
+    "name": "ANGELINA SEVILLANO",
+    "external_id": null,
+    "lab": "Andy Tran DDS - FEDEX"
+  },
+  {
+    "id": 69,
+    "name": "THY KOON",
+    "external_id": null,
+    "lab": "Andy Tran DDS - FEDEX"
+  },
+  {
+    "id": 70,
+    "name": "KEVIA ALEMAN",
+    "external_id": null,
+    "lab": "Angelic Dentistry - Van Nuys"
+  },
+  {
+    "id": 71,
+    "name": "ALMA VOIGT",
+    "external_id": null,
+    "lab": "Angelic Dentistry - Van Nuys"
+  },
+  {
+    "id": 72,
+    "name": "JOSE ACOSTA",
+    "external_id": null,
+    "lab": "Angelic Dentistry - Van Nuys"
+  },
+  {
+    "id": 73,
+    "name": "ROY KANAMARU",
+    "external_id": null,
+    "lab": "Atwood Family Dentistry"
+  },
+  {
+    "id": 74,
+    "name": "PANNELL STEVEN",
+    "external_id": null,
+    "lab": "Ballou Dental Arts"
+  },
+  {
+    "id": 75,
+    "name": "ANAYANCI BURGUENO-MORALES",
+    "external_id": null,
+    "lab": "Bay Dental - Pearce Dental Inc."
+  },
+  {
+    "id": 76,
+    "name": "SATHA RAUR",
+    "external_id": "332",
+    "lab": "Bay Dental Practice (LB)"
+  },
+  {
+    "id": 77,
+    "name": "DAVIS MALCOMB",
+    "external_id": null,
+    "lab": "Bay Dental Practice (LB)"
+  },
+  {
+    "id": 78,
+    "name": "DAVID O' REILLY",
+    "external_id": "5256",
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 79,
+    "name": "REZA MESHK",
+    "external_id": "10744",
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 80,
+    "name": "FATEMEH GHIASSI",
+    "external_id": "5752",
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 81,
+    "name": "CAMILLE WARNER",
+    "external_id": "9566",
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 82,
+    "name": "MOISES SANCHEZ",
+    "external_id": "10743",
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 83,
+    "name": "VIVIAN NGUYEN",
+    "external_id": null,
+    "lab": "Bella Terra Dentistry"
+  },
+  {
+    "id": 84,
+    "name": "DENNIS PEARSON",
+    "external_id": null,
+    "lab": "Bella Terra Dentistry"
+  },
+  {
+    "id": 85,
+    "name": "CHERRIE SISON",
+    "external_id": null,
+    "lab": "Bernardo, Maria Pilar DDS"
+  },
+  {
+    "id": 86,
+    "name": "Carlos Palanog",
+    "external_id": null,
+    "lab": "Bernardo, Maria Pilar DDS"
+  },
+  {
+    "id": 87,
+    "name": "Maria Ayen",
+    "external_id": null,
+    "lab": "Bernardo, Maria Pilar DDS"
+  },
+  {
+    "id": 88,
+    "name": "ROXANNE PRILUTSKY",
+    "external_id": null,
+    "lab": "Beverlywood Dental - RTE JES"
+  },
+  {
+    "id": 89,
+    "name": "JOANNA ROBLEDO",
+    "external_id": null,
+    "lab": "Beverlywood Dental - RTE JES"
+  },
+  {
+    "id": 90,
+    "name": "EMMA SCHMITT",
+    "external_id": null,
+    "lab": "Beverlywood Dental - RTE JES"
+  },
+  {
+    "id": 91,
+    "name": "ALEXANDER MICHEAL",
+    "external_id": null,
+    "lab": "Bliss Dental Arts"
+  },
+  {
+    "id": 92,
+    "name": "ELIZABETH LEE",
+    "external_id": null,
+    "lab": "Bristol Dental Care"
+  },
+  {
+    "id": 93,
+    "name": "NHAT HUYNH",
+    "external_id": "28647",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 94,
+    "name": "KHAING ABDELSAHMAM",
+    "external_id": "41672",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 95,
+    "name": "JUAN CARAU 42478",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 96,
+    "name": "PARISA RAHMI",
+    "external_id": "28326",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 97,
+    "name": "SUSANA SANCHEZ",
+    "external_id": "32317",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 98,
+    "name": "THANH NGUYEN",
+    "external_id": "31938",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 99,
+    "name": "YEIMY DELALUZ",
+    "external_id": "34908",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 100,
+    "name": "THANH HA DOAN",
+    "external_id": "41060",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 101,
+    "name": "KOSHANI FARKHUNDA",
+    "external_id": "41787",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 102,
+    "name": "FATIMA HAGISUFI",
+    "external_id": "42990",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 103,
+    "name": "SANDY NGUYEN",
+    "external_id": "34898",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 104,
+    "name": "AN VU",
+    "external_id": "42277",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 105,
+    "name": "ANA MARIA AGUIRRE",
+    "external_id": "40507",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 106,
+    "name": "ALBERTO ROJAS",
+    "external_id": "43121",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 107,
+    "name": "VICTOR PAEZ",
+    "external_id": "21996",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 108,
+    "name": "THI VO",
+    "external_id": "40582",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 109,
+    "name": "PAUL MA",
+    "external_id": "42751",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 110,
+    "name": "EMOLYN CAPITLE",
+    "external_id": "42817",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 111,
+    "name": "AMI SPEIER",
+    "external_id": "21237",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 112,
+    "name": "Mai Xuan Dam",
+    "external_id": "41922",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 113,
+    "name": "KATHERINE BETANCO",
+    "external_id": "13222",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 114,
+    "name": "HIEU VAN LE",
+    "external_id": "9031",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 115,
+    "name": "WAFAA KANDIL 40947",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 116,
+    "name": "MATAMOROS MARIA 42508",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 117,
+    "name": "HO KIEU DIEM 24294",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 118,
+    "name": "TRINH SON 43129",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 119,
+    "name": "NGUYEN TRIEU QUANG",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 120,
+    "name": "SANCHEZ MARTINE TERESITAD 43033",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 121,
+    "name": "OSMANI KHALILULLA 34354",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 122,
+    "name": "DELGADILLO KAREN 12623",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 123,
+    "name": "GARCIA JOE",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 124,
+    "name": "SANCHEZ JOSE 42923",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 125,
+    "name": "LORENA RODRIGOEZ",
+    "external_id": "43187",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 126,
+    "name": "VO TONY",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 127,
+    "name": "BROWM GAIL",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 128,
+    "name": "NUNEZ JAIME",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 129,
+    "name": "DANG LINH",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 130,
+    "name": "NELSON FLORENCE",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 131,
+    "name": "DANG ANNE",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 132,
+    "name": "ANDALON KINH",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 133,
+    "name": "CASEY VAUGH",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 134,
+    "name": "MARK CABALLERO",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 135,
+    "name": "GRETCHEN WOODARD",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 136,
+    "name": "Jose Fernandez",
+    "external_id": null,
+    "lab": "Bui, James DDS"
+  },
+  {
+    "id": 137,
+    "name": "James Suddith",
+    "external_id": null,
+    "lab": "Bui, James DDS"
+  },
+  {
+    "id": 138,
+    "name": "TIFFANY TRAN",
+    "external_id": null,
+    "lab": "Bui, James DDS"
+  },
+  {
+    "id": 139,
+    "name": "RUBEN NEGRETE",
+    "external_id": null,
+    "lab": "Bui, James DDS"
+  },
+  {
+    "id": 140,
+    "name": "SUE CORDINGLY",
+    "external_id": null,
+    "lab": "Busch, Lawrence DMD"
+  },
+  {
+    "id": 141,
+    "name": "NICHOLE ELY",
+    "external_id": null,
+    "lab": "Busch, Lawrence DMD"
+  },
+  {
+    "id": 142,
+    "name": "EVAN WILLIAMS",
+    "external_id": null,
+    "lab": "Busch, Lawrence DMD"
+  },
+  {
+    "id": 143,
+    "name": "BISHARA TIMOTHY",
+    "external_id": null,
+    "lab": "California Dental Group"
+  },
+  {
+    "id": 144,
+    "name": "MENDOZA GLORIA",
+    "external_id": null,
+    "lab": "California Dental Group"
+  },
+  {
+    "id": 145,
+    "name": "CORNELIO BARRIOS",
+    "external_id": null,
+    "lab": "California Dentistry & Braces"
+  },
+  {
+    "id": 146,
+    "name": "LUX GAYTAN",
+    "external_id": null,
+    "lab": "California Dentistry & Braces"
+  },
+  {
+    "id": 147,
+    "name": "RITA KELLY",
+    "external_id": null,
+    "lab": "CB Patel DDS"
+  },
+  {
+    "id": 148,
+    "name": "MEENA PATEL",
+    "external_id": null,
+    "lab": "CB Patel DDS"
+  },
+  {
+    "id": 149,
+    "name": "SISLYAN NVARD",
+    "external_id": null,
+    "lab": "CBS Dental Lab"
+  },
+  {
+    "id": 150,
+    "name": "DAVTYAN DIANA",
+    "external_id": null,
+    "lab": "CBS Dental Lab"
+  },
+  {
+    "id": 151,
+    "name": "MANGHAM ANDRE",
+    "external_id": null,
+    "lab": "CBS Dental Lab"
+  },
+  {
+    "id": 152,
+    "name": "CYNTHIA CERVANTEZ",
+    "external_id": null,
+    "lab": "CBS Dental Lab"
+  },
+  {
+    "id": 153,
+    "name": "HARYTYUNYAN VIKTORIA",
+    "external_id": null,
+    "lab": "CBS Dental Lab"
+  },
+  {
+    "id": 154,
+    "name": "GHAZARYAN MAKSEL",
+    "external_id": null,
+    "lab": "CBS Dental Lab"
+  },
+  {
+    "id": 155,
+    "name": "MARGANYAN ELIZABETH",
+    "external_id": null,
+    "lab": "CBS Dental Lab"
+  },
+  {
+    "id": 156,
+    "name": "Marco Maledda",
+    "external_id": null,
+    "lab": "City Dental Centers - Azusa"
+  },
+  {
+    "id": 157,
+    "name": "Susana Maledda",
+    "external_id": null,
+    "lab": "City Dental Centers - Azusa"
+  },
+  {
+    "id": 158,
+    "name": "Marlene Franco Ibarra",
+    "external_id": null,
+    "lab": "City Dental Centers - Corona"
+  },
+  {
+    "id": 159,
+    "name": "FELIX RENTERIA",
+    "external_id": null,
+    "lab": "City Dental Centers - Corona"
+  },
+  {
+    "id": 160,
+    "name": "ERNESTO GONZALES-SANTANA",
+    "external_id": null,
+    "lab": "City Dental Centers - Lake Forest"
+  },
+  {
+    "id": 161,
+    "name": "MAUREEN WAN-CHAN",
+    "external_id": null,
+    "lab": "City Dental Centers - Pico Rivera"
+  },
+  {
+    "id": 162,
+    "name": "LAURA LIQUORI",
+    "external_id": null,
+    "lab": "City Dental Centers - Pico Rivera"
+  },
+  {
+    "id": 163,
+    "name": "CHELSEY LE",
+    "external_id": null,
+    "lab": "Civic Dental"
+  },
+  {
+    "id": 164,
+    "name": "CASSIA TRUONG",
+    "external_id": null,
+    "lab": "Civic Dental"
+  },
+  {
+    "id": 165,
+    "name": "VAN VU",
+    "external_id": null,
+    "lab": "Civic Dental"
+  },
+  {
+    "id": 166,
+    "name": "CRYSTAL TRAN",
+    "external_id": null,
+    "lab": "Civic Dental"
+  },
+  {
+    "id": 167,
+    "name": "YUSDELMIS HERNANDEZ AVILA",
+    "external_id": "2161",
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 168,
+    "name": "FREDDY FERNANDEZ",
+    "external_id": "2248",
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 169,
+    "name": "MATILDE REYES MURILLO",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 170,
+    "name": "EFRAIN CONTRERAS",
+    "external_id": "2274",
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 171,
+    "name": "MAX RAMIREZ",
+    "external_id": "2317",
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 172,
+    "name": "MARCO PALACIOS",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 173,
+    "name": "DANIELA ORELLANA MATURANA",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 174,
+    "name": "TOMMY WILLIANS ENRIQUEZ GODOY",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 175,
+    "name": "NANCY SUAREZ",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 176,
+    "name": "MOHAMMAD IQBAL KHAN",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 177,
+    "name": "NESTOR MENDOZA",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 178,
+    "name": "YOLIMA MORILLO",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 179,
+    "name": "IRIS CONTRERAS",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 180,
+    "name": "JESUS PEREZ",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 181,
+    "name": "JOSUE VIGIANI",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 182,
+    "name": "SOHNY DUONG",
+    "external_id": null,
+    "lab": "Coastline Dental Care"
+  },
+  {
+    "id": 183,
+    "name": "PATRICK GRAVIER",
+    "external_id": "975",
+    "lab": "Coastline Dental Care"
+  },
+  {
+    "id": 184,
+    "name": "TOMHANK LE",
+    "external_id": null,
+    "lab": "Coastline Dental Care"
+  },
+  {
+    "id": 185,
+    "name": "ROBERT SHARKEY",
+    "external_id": "5648",
+    "lab": "Coastline Dental Care"
+  },
+  {
+    "id": 186,
+    "name": "THUY HUYNH",
+    "external_id": null,
+    "lab": "Coastline Dental Care"
+  },
+  {
+    "id": 187,
+    "name": "THANH LUU",
+    "external_id": null,
+    "lab": "Coastline Dental Care"
+  },
+  {
+    "id": 188,
+    "name": "HAMZA ALRAHAMNEH",
+    "external_id": null,
+    "lab": "Coastline Dental Care"
+  },
+  {
+    "id": 189,
+    "name": "VICKI RESCH",
+    "external_id": "5908",
+    "lab": "Coastline Dental Care"
+  },
+  {
+    "id": 190,
+    "name": "GUADALUPE GONZALEZ",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 191,
+    "name": "SHIRLEY RODRIGUEZ",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 192,
+    "name": "ROMAN GUZMAN",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 193,
+    "name": "RAYMOND GARCIA",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 194,
+    "name": "YARITZA CASCO",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 195,
+    "name": "IRMA JIMENEZ",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 196,
+    "name": "CHRISTINA ARRIOLA",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 197,
+    "name": "CARLOS GARCIA",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 198,
+    "name": "CHRISTINA PEREZ",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 199,
+    "name": "IRMA GONZALEZ",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 200,
+    "name": "JESSICA ROMAN",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 201,
+    "name": "DORA KING",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 202,
+    "name": "STEPHANIE ORTEGA",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 203,
+    "name": "MANUEL SANCHEZ",
+    "external_id": null,
+    "lab": "Commerce Dental"
+  },
+  {
+    "id": 204,
+    "name": "ELENA RODRIGUEZ",
+    "external_id": null,
+    "lab": "Commerce Dental"
+  },
+  {
+    "id": 205,
+    "name": "DANNY GONZALEZ",
+    "external_id": null,
+    "lab": "Commerce Dental"
+  },
+  {
+    "id": 206,
+    "name": "CARANDANG MINA",
+    "external_id": null,
+    "lab": "Covina Dental"
+  },
+  {
+    "id": 207,
+    "name": "VICTORIA GARCIA",
+    "external_id": null,
+    "lab": "Crossroads Family Dental"
+  },
+  {
+    "id": 208,
+    "name": "VERONICA VALDIVIA",
+    "external_id": null,
+    "lab": "Crossroads Family Dental"
+  },
+  {
+    "id": 209,
+    "name": "ROSA CURIEL",
+    "external_id": null,
+    "lab": "Crown Dental"
+  },
+  {
+    "id": 210,
+    "name": "CHRISTINA CORTEZ",
+    "external_id": null,
+    "lab": "Crown Dental"
+  },
+  {
+    "id": 211,
+    "name": "LILIAN HARA DE MARTINEZ",
+    "external_id": null,
+    "lab": "Crown Dental"
+  },
+  {
+    "id": 212,
+    "name": "JUSTIN EVANS",
+    "external_id": null,
+    "lab": "Dawood, Paul DDS (FV)"
+  },
+  {
+    "id": 213,
+    "name": "ALAN WAGER",
+    "external_id": null,
+    "lab": "Dawood, Paul DDS (FV)"
+  },
+  {
+    "id": 214,
+    "name": "MANNA LINNGSTONE",
+    "external_id": null,
+    "lab": "Dawood, Paul DDS (GG)"
+  },
+  {
+    "id": 215,
+    "name": "CARLOS SONG",
+    "external_id": null,
+    "lab": "Day Creek Dental Care"
+  },
+  {
+    "id": 216,
+    "name": "RUTH BRASWELL",
+    "external_id": null,
+    "lab": "Del Amo Dental Group"
+  },
+  {
+    "id": 217,
+    "name": "NOEL DONOFRIO",
+    "external_id": null,
+    "lab": "Del Amo Dental Group"
+  },
+  {
+    "id": 218,
+    "name": "JILL PERRY",
+    "external_id": null,
+    "lab": "Del Amo Dental Group"
+  },
+  {
+    "id": 219,
+    "name": "REEO ASHNTI",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 220,
+    "name": "EDUME BECERM",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 221,
+    "name": "RACNOL RIZINA",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 222,
+    "name": "JESSE SCHAUB",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 223,
+    "name": "GUNDIRANDO ERUICO",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 224,
+    "name": "ENRIQUE RAMIREZ",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 225,
+    "name": "SONA PRIETO",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 226,
+    "name": "DENNA ESPINOZA",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 227,
+    "name": "GRUSEU DEHON",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 228,
+    "name": "ROSA HERNANDEZ",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 229,
+    "name": "REYES ALVIN",
+    "external_id": null,
+    "lab": "Dental Spa & Implant Center of West Covina - RTE J"
+  },
+  {
+    "id": 230,
+    "name": "WEBSTER ANTHONY (TONY)",
+    "external_id": null,
+    "lab": "Dental Spa & Implant Center of West Covina - RTE J"
+  },
+  {
+    "id": 231,
+    "name": "CHAVEZ VICTOR",
+    "external_id": null,
+    "lab": "Dental Spa & Implant Center of West Covina - RTE J"
+  },
+  {
+    "id": 232,
+    "name": "MILES BROOKS",
+    "external_id": null,
+    "lab": "Dentist 4 U"
+  },
+  {
+    "id": 233,
+    "name": "EFRAIN SANDOVAL",
+    "external_id": null,
+    "lab": "Dentist 4 U"
+  },
+  {
+    "id": 234,
+    "name": "ITZEL ROMERO",
+    "external_id": null,
+    "lab": "Dentist 4 U"
+  },
+  {
+    "id": 235,
+    "name": "ROLLY BUENRIAJE",
+    "external_id": null,
+    "lab": "Dr. Alvina Padua"
+  },
+  {
+    "id": 236,
+    "name": "CONNIE YANG",
+    "external_id": null,
+    "lab": "Dr. Alvina Padua"
+  },
+  {
+    "id": 237,
+    "name": "LENNY CHIOK",
+    "external_id": null,
+    "lab": "Dr. Alvina Padua"
+  },
+  {
+    "id": 238,
+    "name": "ROGER HARTHRONG",
+    "external_id": null,
+    "lab": "Dr. Alvina Padua"
+  },
+  {
+    "id": 239,
+    "name": "SONAL SHETH",
+    "external_id": null,
+    "lab": "Dr. Russel Nolasco RTE JES"
+  },
+  {
+    "id": 240,
+    "name": "CANDACE TREROTOLA",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 241,
+    "name": "A. Maronde",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 242,
+    "name": "R. Davis",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 243,
+    "name": "K. Riley",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 244,
+    "name": "C. Ward",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 245,
+    "name": "J. Barnes",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 246,
+    "name": "L. Jaffe",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 247,
+    "name": "B. Jones",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 248,
+    "name": "M. Schaetten",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 249,
+    "name": "MICHAEL BARNOWSKI",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 250,
+    "name": "JOHN RIDGWAY",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 251,
+    "name": "MARIA RIVERA",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 252,
+    "name": "VICKI RICK",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 253,
+    "name": "TAMMY WAGNER",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 254,
+    "name": "CORITA SCURLOCK",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 255,
+    "name": "COURTNEY CREMEANS",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 256,
+    "name": "JESSICA HERNANDEZ",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 257,
+    "name": "CHRISTA LANNING",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 258,
+    "name": "DOUGLAS HALLGREN",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 259,
+    "name": "BERTHA HUIZAR",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 260,
+    "name": "ANA LOPEZ",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 261,
+    "name": "RICHARD CHARLAND",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 262,
+    "name": "CARRIE FURAKANA",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 263,
+    "name": "JOSE ROMO",
+    "external_id": null,
+    "lab": "El Camino Dental & Braces"
+  },
+  {
+    "id": 264,
+    "name": "YELENA KOHATSU",
+    "external_id": null,
+    "lab": "El Camino Dental & Braces"
+  },
+  {
+    "id": 265,
+    "name": "ARMANDO ROMERO",
+    "external_id": null,
+    "lab": "El Camino Dental & Braces"
+  },
+  {
+    "id": 266,
+    "name": "GEMA ALMEIDA",
+    "external_id": null,
+    "lab": "El Camino Dental & Braces"
+  },
+  {
+    "id": 267,
+    "name": "CAMACHO YERMANN",
+    "external_id": null,
+    "lab": "El Camino Dental & Braces"
+  },
+  {
+    "id": 268,
+    "name": "MILLER MONICA",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 269,
+    "name": "CASTELLANO NORMA",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 270,
+    "name": "MADDEX URBINA",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 271,
+    "name": "MICHELLE SCHEAR",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 272,
+    "name": "FRANK GAMBOA",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 273,
+    "name": "HE ZHAO",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 274,
+    "name": "ZHOU SHAN",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 275,
+    "name": "FAUST DANA",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 276,
+    "name": "RIVAS HILDEBRANDA",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 277,
+    "name": "PETRIE KAREN",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 278,
+    "name": "ROMANO BARBARA",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 279,
+    "name": "HENSCHEL JANINE",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 280,
+    "name": "SNYDER JANICE",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 281,
+    "name": "RUIZ RIGOBERTCA",
+    "external_id": null,
+    "lab": "Encino Total Dentistry"
+  },
+  {
+    "id": 282,
+    "name": "ELLEN SANDERSON",
+    "external_id": null,
+    "lab": "Encino Total Dentistry"
+  },
+  {
+    "id": 283,
+    "name": "ANCLIDA GARIBYAN",
+    "external_id": null,
+    "lab": "Encino Total Dentistry"
+  },
+  {
+    "id": 284,
+    "name": "JOLEMIMAN NAZARIAN",
+    "external_id": null,
+    "lab": "Encino Total Dentistry"
+  },
+  {
+    "id": 285,
+    "name": "ALORA THERRIEN",
+    "external_id": null,
+    "lab": "EP Dental Group - Cerritos"
+  },
+  {
+    "id": 286,
+    "name": "FLORES ELISA",
+    "external_id": null,
+    "lab": "EP Dental Group - Cerritos"
+  },
+  {
+    "id": 287,
+    "name": "TUAZON KASSANDRA",
+    "external_id": null,
+    "lab": "EP Dental Group - Cerritos"
+  },
+  {
+    "id": 288,
+    "name": "CABRERA NELZON",
+    "external_id": null,
+    "lab": "EP Dental Group - Cerritos"
+  },
+  {
+    "id": 289,
+    "name": "BALASUBRAMANIAN SUSHILA",
+    "external_id": null,
+    "lab": "EP Dental Group - Cerritos"
+  },
+  {
+    "id": 290,
+    "name": "CONNER CONTRERAS",
+    "external_id": null,
+    "lab": "Euclid Dental Center"
+  },
+  {
+    "id": 291,
+    "name": "MEGAN VANDERCAPELLEN",
+    "external_id": null,
+    "lab": "Euclid Dental Center"
+  },
+  {
+    "id": 292,
+    "name": "JOSEPH WISE",
+    "external_id": null,
+    "lab": "Euclid Dental Center"
+  },
+  {
+    "id": 293,
+    "name": "EDUARDO RAMIREZ",
+    "external_id": null,
+    "lab": "Euclid Dental Center"
+  },
+  {
+    "id": 294,
+    "name": "ELIANA VARGAS TRUJILLO",
+    "external_id": "167041",
+    "lab": "F.T.O.C. Dental (Garden Grove)"
+  },
+  {
+    "id": 295,
+    "name": "RIABOVA VERA",
+    "external_id": "199609",
+    "lab": "F.T.O.C. Dental (Garden Grove)"
+  },
+  {
+    "id": 296,
+    "name": "CHRISTIAN ROMAN",
+    "external_id": "184390",
+    "lab": "F.T.O.C. Dental (Garden Grove)"
+  },
+  {
+    "id": 297,
+    "name": "ALICIA ASHLEY",
+    "external_id": null,
+    "lab": "F.T.O.C. Dental (Tustin)"
+  },
+  {
+    "id": 298,
+    "name": "SUMMER HOPKINS",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Compton)"
+  },
+  {
+    "id": 299,
+    "name": "AIMEE GARCIA",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Compton)"
+  },
+  {
+    "id": 300,
+    "name": "TANYA MBAKA",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Compton)"
+  },
+  {
+    "id": 301,
+    "name": "JESUS ALESNA",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Lomita)"
+  },
+  {
+    "id": 302,
+    "name": "ELVIRA RUIZ",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Los Angeles)"
+  },
+  {
+    "id": 303,
+    "name": "SAMIA ALSMADI",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Wilmington)"
+  },
+  {
+    "id": 304,
+    "name": "DANA ALKOBRESSLI",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Wilmington)"
+  },
+  {
+    "id": 305,
+    "name": "CLAUDIA ZAMBRANO",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Wilmington)"
+  },
+  {
+    "id": 306,
+    "name": "JI JUN YANG",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Wilmington)"
+  },
+  {
+    "id": 307,
+    "name": "LEONARDO MORGADO",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Wilmington)"
+  },
+  {
+    "id": 308,
+    "name": "REMIGIO BARRAGAN",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Wilmington)"
+  },
+  {
+    "id": 309,
+    "name": "LORENA OLIVAS",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Wilmington)"
+  },
+  {
+    "id": 310,
+    "name": "KIMBERLYN MEDINA",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Wilmington)"
+  },
+  {
+    "id": 311,
+    "name": "SMITA PATEL",
+    "external_id": null,
+    "lab": "First Dental"
+  },
+  {
+    "id": 312,
+    "name": "JUNG KOO MIN",
+    "external_id": null,
+    "lab": "Fountain Valley Dental Esthetics"
+  },
+  {
+    "id": 313,
+    "name": "MIKAYLA TEPOX",
+    "external_id": null,
+    "lab": "Fountain Valley Dental Esthetics"
+  },
+  {
+    "id": 314,
+    "name": "HOANG LUONG",
+    "external_id": null,
+    "lab": "Fountain Valley Dental Esthetics"
+  },
+  {
+    "id": 315,
+    "name": "TIEN NGUYEN",
+    "external_id": null,
+    "lab": "Fountain Valley Dental Esthetics"
+  },
+  {
+    "id": 316,
+    "name": "NING QI",
+    "external_id": null,
+    "lab": "Gabrie Dental Center"
+  },
+  {
+    "id": 317,
+    "name": "BRENDA BLAS",
+    "external_id": null,
+    "lab": "Good Kids Dental"
+  },
+  {
+    "id": 318,
+    "name": "IZABELLA LOPEZ",
+    "external_id": null,
+    "lab": "Good Kids Dental"
+  },
+  {
+    "id": 319,
+    "name": "DANIELLE DILLIHUNT",
+    "external_id": null,
+    "lab": "Good Kids Dental"
+  },
+  {
+    "id": 320,
+    "name": "ALLAH SANYI",
+    "external_id": null,
+    "lab": "Healthy Smiles Premier Dental"
+  },
+  {
+    "id": 321,
+    "name": "BRITTNEY FRAZIER",
+    "external_id": null,
+    "lab": "Healthy Smiles Premier Dental"
+  },
+  {
+    "id": 322,
+    "name": "RONALD SMITH",
+    "external_id": null,
+    "lab": "Healthy Smiles Premier Dental"
+  },
+  {
+    "id": 323,
+    "name": "ELENA MENDOZA",
+    "external_id": null,
+    "lab": "Hop T Nguyen (LA)"
+  },
+  {
+    "id": 324,
+    "name": "DEBORAH GARRETT",
+    "external_id": null,
+    "lab": "IQ Dental Group"
+  },
+  {
+    "id": 325,
+    "name": "PAUL D GILLE",
+    "external_id": null,
+    "lab": "IQ Dental Group"
+  },
+  {
+    "id": 326,
+    "name": "RAYMOND YU",
+    "external_id": null,
+    "lab": "IQ Dental Group"
+  },
+  {
+    "id": 327,
+    "name": "JAVED RASHEED",
+    "external_id": null,
+    "lab": "IQ Dental Group"
+  },
+  {
+    "id": 328,
+    "name": "MARIA J PEREIRADE",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 329,
+    "name": "JOHNETTE LONG",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 330,
+    "name": "JOSE RANGEL",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 331,
+    "name": "OSCAR VALENZUEIA",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 332,
+    "name": "TELMA MENDEZ",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 333,
+    "name": "EMILIA RENTERIA",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 334,
+    "name": "FRANCISCO HUANTE",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 335,
+    "name": "HAYDER ABBOOD",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 336,
+    "name": "KAUNA AMBUS",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 337,
+    "name": "NAKEYSHA COX",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 338,
+    "name": "RAMIRO TORRES",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 339,
+    "name": "FATIMAH SABAB",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 340,
+    "name": "YVETTE FIND",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 341,
+    "name": "SERGIO GONZALEZ",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 342,
+    "name": "ALJADEE FADHILA",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 343,
+    "name": "ANGELA BUSTED",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 344,
+    "name": "OSCAR SAGHIEH",
+    "external_id": null,
+    "lab": "Irvine Dental"
+  },
+  {
+    "id": 345,
+    "name": "Helen Browne",
+    "external_id": null,
+    "lab": "Kids & Adults Dental Care (Compton)"
+  },
+  {
+    "id": 346,
+    "name": "JAMES MORGAN",
+    "external_id": null,
+    "lab": "Kids & Adults Dental Care (Compton)"
+  },
+  {
+    "id": 347,
+    "name": "JOSE DUBON",
+    "external_id": null,
+    "lab": "Kids & Adults Dental Care (Huntington Park)"
+  },
+  {
+    "id": 348,
+    "name": "FABIAN CALIXTO SALADO",
+    "external_id": null,
+    "lab": "Kids Care Dentistry"
+  },
+  {
+    "id": 349,
+    "name": "KIAHNA GONZALEZ",
+    "external_id": null,
+    "lab": "Kids Care Dentistry"
+  },
+  {
+    "id": 350,
+    "name": "OLMEDO JOSE",
+    "external_id": null,
+    "lab": "Kids Dental Care"
+  },
+  {
+    "id": 351,
+    "name": "SO PING LEUNG",
+    "external_id": null,
+    "lab": "KindLi Dental Center - RTE JES"
+  },
+  {
+    "id": 352,
+    "name": "KOJI MIMURA",
+    "external_id": null,
+    "lab": "KindLi Dental Center - RTE JES"
+  },
+  {
+    "id": 353,
+    "name": "HUSAM AL SALNIAN",
+    "external_id": "4082",
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 354,
+    "name": "WILSON MATTI",
+    "external_id": null,
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 355,
+    "name": "LAYLA GIBBS",
+    "external_id": null,
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 356,
+    "name": "MINA MOHAMMAD",
+    "external_id": null,
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 357,
+    "name": "ALEM BIRKT",
+    "external_id": null,
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 358,
+    "name": "NATASHA MORRIS",
+    "external_id": null,
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 359,
+    "name": "HALIMA NUR",
+    "external_id": null,
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 360,
+    "name": "NILOFAR ARMASHAN",
+    "external_id": null,
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 361,
+    "name": "BASAAIG MOJLIN",
+    "external_id": "9338",
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 362,
+    "name": "SWADIGA MIR",
+    "external_id": null,
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 363,
+    "name": "WALAT MOHAMMED",
+    "external_id": null,
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 364,
+    "name": "EDGAR GONZALEZ",
+    "external_id": null,
+    "lab": "La Vid Dental Lab"
+  },
+  {
+    "id": 365,
+    "name": "CARLOS VARGAS",
+    "external_id": null,
+    "lab": "La Vid Dental Lab"
+  },
+  {
+    "id": 366,
+    "name": "TERELL BLACK",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 367,
+    "name": "ISAI JIMENEZ",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 368,
+    "name": "AMBER LCCISE",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 369,
+    "name": "ASHLEY ROMANOS",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 370,
+    "name": "VERONICA TORRES",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 371,
+    "name": "DESPINA POLITISSCHREMELIS",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 372,
+    "name": "GLENN DUCAT",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 373,
+    "name": "GAYLE BROWN",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 374,
+    "name": "CHERREL OLSEN",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 375,
+    "name": "RICKEY ANDERSON",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 376,
+    "name": "JAN FUCUMASU",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 377,
+    "name": "BAYNE KAREN",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 378,
+    "name": "WILLIS MARK",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 379,
+    "name": "MILEILY GARCIA",
+    "external_id": null,
+    "lab": "Longwood Dental Group"
+  },
+  {
+    "id": 380,
+    "name": "SAHARA ZARATE",
+    "external_id": null,
+    "lab": "Longwood Dental Group"
+  },
+  {
+    "id": 381,
+    "name": "JUDY ARMSTRONG",
+    "external_id": null,
+    "lab": "Longwood Dental Group"
+  },
+  {
+    "id": 382,
+    "name": "Cecilia Gonzalez",
+    "external_id": null,
+    "lab": "Los Alisos Dentistry"
+  },
+  {
+    "id": 383,
+    "name": "Duran Emily",
+    "external_id": null,
+    "lab": "Los Alisos Dentistry"
+  },
+  {
+    "id": 384,
+    "name": "ANDREW CAZARES",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 385,
+    "name": "JOHNNY YOUNG",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 386,
+    "name": "Jesus Lopez",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 387,
+    "name": "CHRISTINA MYNICKS",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 388,
+    "name": "JOYCE HOUSTON",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 389,
+    "name": "JOSEPHINA CHAVARRIA",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 390,
+    "name": "EVERADO HERNANDEZ",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 391,
+    "name": "JULIA ROSS",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 392,
+    "name": "ALMA MAYES",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 393,
+    "name": "ADOLFO BURQUENO",
+    "external_id": "5020",
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 394,
+    "name": "LATOSHA WALKER",
+    "external_id": "009238",
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 395,
+    "name": "CECILIA MOSQUERA",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 396,
+    "name": "CAROLANN DUNCAN",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 397,
+    "name": "ANDREA CARTER",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 398,
+    "name": "DEBORAH ROBERTS",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 399,
+    "name": "VILMA GOMEZ",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 400,
+    "name": "YOLANDA CHAVEZ",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 401,
+    "name": "MARY GOODBEER",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 402,
+    "name": "JOHN VAN PETTER",
+    "external_id": "8098",
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 403,
+    "name": "DAISY NICHOLS",
+    "external_id": null,
+    "lab": "Majestic Dental"
+  },
+  {
+    "id": 404,
+    "name": "JARED HARKNESS",
+    "external_id": null,
+    "lab": "Majestic Dental"
+  },
+  {
+    "id": 405,
+    "name": "CHERIEE GARETTE",
+    "external_id": null,
+    "lab": "Majestic Dental"
+  },
+  {
+    "id": 406,
+    "name": "ANA ALVAREZ",
+    "external_id": null,
+    "lab": "Majestic Dental"
+  },
+  {
+    "id": 407,
+    "name": "KYLE ZIMMER",
+    "external_id": null,
+    "lab": "Majestic Dental"
+  },
+  {
+    "id": 408,
+    "name": "JENNIFER PAUGH",
+    "external_id": null,
+    "lab": "Majestic Dental"
+  },
+  {
+    "id": 409,
+    "name": "TSENG TAI",
+    "external_id": null,
+    "lab": "Maranatha Dental"
+  },
+  {
+    "id": 410,
+    "name": "MAI TA",
+    "external_id": null,
+    "lab": "Maranatha Dental"
+  },
+  {
+    "id": 411,
+    "name": "CHRISTINE KANG",
+    "external_id": null,
+    "lab": "Maranatha Dental"
+  },
+  {
+    "id": 412,
+    "name": "LUIS VILLA CHOPIN",
+    "external_id": null,
+    "lab": "Maranatha Dental"
+  },
+  {
+    "id": 413,
+    "name": "OLGA HERNANDEZ",
+    "external_id": null,
+    "lab": "Maranatha Dental"
+  },
+  {
+    "id": 414,
+    "name": "VOCELYA GATDULA",
+    "external_id": null,
+    "lab": "Marcelo G. Moncada DDS"
+  },
+  {
+    "id": 415,
+    "name": "MELVIN BALERYOT",
+    "external_id": null,
+    "lab": "Marcelo G. Moncada DDS"
+  },
+  {
+    "id": 416,
+    "name": "LILIANA TOLBERT",
+    "external_id": null,
+    "lab": "Mardirossian Periodontics and Implant Dentistry"
+  },
+  {
+    "id": 417,
+    "name": "RODRIGUEZ MANUEL",
+    "external_id": null,
+    "lab": "Mehta Dental Group - (Anaheim)"
+  },
+  {
+    "id": 418,
+    "name": "GARCIA JESSLCA",
+    "external_id": null,
+    "lab": "Mehta Dental Group - (Anaheim)"
+  },
+  {
+    "id": 419,
+    "name": "YUMANG GLENDA",
+    "external_id": null,
+    "lab": "Mehta Dental Group - (Anaheim)"
+  },
+  {
+    "id": 420,
+    "name": "SCHULTZ ROGER",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Brea) - RTE - JES"
+  },
+  {
+    "id": 421,
+    "name": "BURTON RODNEY",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Brea) - RTE - JES"
+  },
+  {
+    "id": 422,
+    "name": "ELIJAH MASSAIAH",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Brea) - RTE - JES"
+  },
+  {
+    "id": 423,
+    "name": "BRAMBILA MONIQUE",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Brea) - RTE - JES"
+  },
+  {
+    "id": 424,
+    "name": "HARSHVARDHAN THAKER",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Los Alamitos)"
+  },
+  {
+    "id": 425,
+    "name": "MORENO REBECCA",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Los Alamitos)"
+  },
+  {
+    "id": 426,
+    "name": "MARTINEZ KATIE",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Los Alamitos)"
+  },
+  {
+    "id": 427,
+    "name": "DONALD NIXON",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Tustin)"
+  },
+  {
+    "id": 428,
+    "name": "FRIERSON EDWARD",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Tustin)"
+  },
+  {
+    "id": 429,
+    "name": "Susan Nickerson",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Tustin)"
+  },
+  {
+    "id": 430,
+    "name": "RICHEY ANGELA",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Tustin)"
+  },
+  {
+    "id": 431,
+    "name": "STEPHEN WILIAM",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Tustin)"
+  },
+  {
+    "id": 432,
+    "name": "KAWABATA YASUKO",
+    "external_id": null,
+    "lab": "Mesa Dental Center"
+  },
+  {
+    "id": 433,
+    "name": "NINO ABBOUSHI",
+    "external_id": null,
+    "lab": "Mesa Dental Center"
+  },
+  {
+    "id": 434,
+    "name": "GLENN KOBELSKI",
+    "external_id": null,
+    "lab": "Michelsen Dental"
+  },
+  {
+    "id": 435,
+    "name": "JADE MCLEAD",
+    "external_id": null,
+    "lab": "Michelsen Dental"
+  },
+  {
+    "id": 436,
+    "name": "HANG BICKI NGUYEN",
+    "external_id": "4761",
+    "lab": "Mint Apple Dental"
+  },
+  {
+    "id": 437,
+    "name": "JOSE BECERRA",
+    "external_id": null,
+    "lab": "Mint Apple Dental"
+  },
+  {
+    "id": 438,
+    "name": "PHUONG NGUYEN",
+    "external_id": "1300",
+    "lab": "Mint Apple Dental"
+  },
+  {
+    "id": 439,
+    "name": "JUIE PEAUCEN",
+    "external_id": null,
+    "lab": "Mint Apple Dental"
+  },
+  {
+    "id": 440,
+    "name": "PALACIO CARLOS",
+    "external_id": null,
+    "lab": "Mora Dental Lab"
+  },
+  {
+    "id": 441,
+    "name": "TRAM MY NGUYEN",
+    "external_id": null,
+    "lab": "My Care Dental"
+  },
+  {
+    "id": 442,
+    "name": "AMANDA NGUYEN",
+    "external_id": null,
+    "lab": "My Care Dental"
+  },
+  {
+    "id": 443,
+    "name": "TUAN PHAM",
+    "external_id": null,
+    "lab": "My Care Dental"
+  },
+  {
+    "id": 444,
+    "name": "DAT DINH",
+    "external_id": null,
+    "lab": "My Care Dental"
+  },
+  {
+    "id": 445,
+    "name": "HIEN NGUYEN",
+    "external_id": null,
+    "lab": "My Care Dental"
+  },
+  {
+    "id": 446,
+    "name": "KAN WONA",
+    "external_id": null,
+    "lab": "My OC Dental Care"
+  },
+  {
+    "id": 447,
+    "name": "LINDA VAN",
+    "external_id": null,
+    "lab": "My OC Dental Care"
+  },
+  {
+    "id": 448,
+    "name": "LIEN LA",
+    "external_id": null,
+    "lab": "Nathan Nguyen DDS"
+  },
+  {
+    "id": 449,
+    "name": "CHEN PETER",
+    "external_id": null,
+    "lab": "Nathan Nguyen DDS"
+  },
+  {
+    "id": 450,
+    "name": "HOA PHAM",
+    "external_id": null,
+    "lab": "Nathan Nguyen DDS"
+  },
+  {
+    "id": 451,
+    "name": "BARBARA DUKE",
+    "external_id": null,
+    "lab": "NATIONAL DENTAL ARTS"
+  },
+  {
+    "id": 452,
+    "name": "RUSSELL NEWELL",
+    "external_id": null,
+    "lab": "NATIONAL DENTAL ARTS"
+  },
+  {
+    "id": 453,
+    "name": "VERONICA RODRIGUEZ",
+    "external_id": null,
+    "lab": "NATIONAL DENTAL ARTS"
+  },
+  {
+    "id": 454,
+    "name": "DAO LE",
+    "external_id": "682",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 455,
+    "name": "TUAN DINH",
+    "external_id": "2074",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 456,
+    "name": "DANG HUYNH NGUYEN",
+    "external_id": "6529",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 457,
+    "name": "TINA NGUYEN",
+    "external_id": "6504",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 458,
+    "name": "THAI PHAN",
+    "external_id": "6655",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 459,
+    "name": "HELEN HOANG",
+    "external_id": null,
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 460,
+    "name": "VAN NGUYEN",
+    "external_id": "5420",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 461,
+    "name": "KHAM GIA TU",
+    "external_id": null,
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 462,
+    "name": "NGUYET PHAN",
+    "external_id": "4836",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 463,
+    "name": "NGHI DANG",
+    "external_id": "5978",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 464,
+    "name": "BEN MILLER",
+    "external_id": null,
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 465,
+    "name": "HUNG TRAN",
+    "external_id": "6679",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 466,
+    "name": "ELIAS HESSE",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 467,
+    "name": "ALEJANDRA COLIN ARANDA",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 468,
+    "name": "JUAN BARRERA",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 469,
+    "name": "JAUAD SABOKPOY",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 470,
+    "name": "GRISELDA ROJAS",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 471,
+    "name": "KIM FERNANDEZ",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 472,
+    "name": "RAMON SANCHEZ",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 473,
+    "name": "GERARDO VILLALOBOS",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 474,
+    "name": "LES OLEKSANDR",
+    "external_id": null,
+    "lab": "Olshansky Victoria DDS"
+  },
+  {
+    "id": 475,
+    "name": "THOMAS ADAM",
+    "external_id": null,
+    "lab": "Olshansky Victoria DDS"
+  },
+  {
+    "id": 476,
+    "name": "GOLOMB JEFF",
+    "external_id": null,
+    "lab": "Olshansky Victoria DDS"
+  },
+  {
+    "id": 477,
+    "name": "ARREY LISA",
+    "external_id": null,
+    "lab": "Olshansky Victoria DDS"
+  },
+  {
+    "id": 478,
+    "name": "SCHEFFER SCOTT",
+    "external_id": null,
+    "lab": "Olshansky Victoria DDS"
+  },
+  {
+    "id": 479,
+    "name": "FEDCHENKO NATALIIA",
+    "external_id": null,
+    "lab": "Olshansky Victoria DDS"
+  },
+  {
+    "id": 480,
+    "name": "GOLDMAN RONA",
+    "external_id": null,
+    "lab": "Olshansky Victoria DDS"
+  },
+  {
+    "id": 481,
+    "name": "TELLEZ MARIA",
+    "external_id": null,
+    "lab": "Omnia Dental (Chino Hills ) - RTE JES"
+  },
+  {
+    "id": 482,
+    "name": "JOHNSON ELENA",
+    "external_id": null,
+    "lab": "Omnia Dental (Chino Hills ) - RTE JES"
+  },
+  {
+    "id": 483,
+    "name": "NGUYEN QUYEN",
+    "external_id": null,
+    "lab": "Omnia Dental (Chino Hills ) - RTE JES"
+  },
+  {
+    "id": 484,
+    "name": "LAWSON MADISON",
+    "external_id": null,
+    "lab": "Omnia Dental (Chino Hills ) - RTE JES"
+  },
+  {
+    "id": 485,
+    "name": "GRACIELA YEPEZ DE CANELA",
+    "external_id": null,
+    "lab": "Open Door Dental"
+  },
+  {
+    "id": 486,
+    "name": "ERNEST MASQUIZ",
+    "external_id": null,
+    "lab": "Open Door Dental"
+  },
+  {
+    "id": 487,
+    "name": "ANTONIO AVALOS",
+    "external_id": null,
+    "lab": "Open Door Dental"
+  },
+  {
+    "id": 488,
+    "name": "Teresa Guzman",
+    "external_id": null,
+    "lab": "Open Door Dental"
+  },
+  {
+    "id": 489,
+    "name": "ROSARIO AVALOS",
+    "external_id": null,
+    "lab": "Open Door Dental"
+  },
+  {
+    "id": 490,
+    "name": "RUBY LEE",
+    "external_id": null,
+    "lab": "Orange Periodontics and Dental Implantology"
+  },
+  {
+    "id": 491,
+    "name": "TAUNIA MCMULLAN",
+    "external_id": null,
+    "lab": "Orange Sky Dental"
+  },
+  {
+    "id": 492,
+    "name": "GREGORY RAMSAY",
+    "external_id": null,
+    "lab": "Orange Sky Dental"
+  },
+  {
+    "id": 493,
+    "name": "DIEGO VASQUEZ",
+    "external_id": null,
+    "lab": "Oxy Dental (East Hollywood on Vermont)"
+  },
+  {
+    "id": 494,
+    "name": "EFFEN MARCELO",
+    "external_id": null,
+    "lab": "Oxy Dental (East Hollywood on Vermont)"
+  },
+  {
+    "id": 495,
+    "name": "GENARO CARILLO",
+    "external_id": null,
+    "lab": "Oxy Dental (East Hollywood on Vermont)"
+  },
+  {
+    "id": 496,
+    "name": "SUREN MAMOEV",
+    "external_id": null,
+    "lab": "Oxy Dental (East Hollywood on Vermont)"
+  },
+  {
+    "id": 497,
+    "name": "RICHARD WEISS PD",
+    "external_id": null,
+    "lab": "PALM DESERT- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 498,
+    "name": "PAUL STALMA",
+    "external_id": null,
+    "lab": "PALM DESERT- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 499,
+    "name": "IRIS LOPEZ-TD",
+    "external_id": null,
+    "lab": "PALM DESERT- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 500,
+    "name": "GREGORY PANSTER - PD",
+    "external_id": null,
+    "lab": "PALM DESERT- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 501,
+    "name": "MARIA BENDO",
+    "external_id": null,
+    "lab": "Palmdale Total Dentistry"
+  },
+  {
+    "id": 502,
+    "name": "MENDOZA ELIZABETH",
+    "external_id": null,
+    "lab": "Palmdale Total Dentistry"
+  },
+  {
+    "id": 503,
+    "name": "REINAGA SHARON",
+    "external_id": null,
+    "lab": "Palmdale Total Dentistry"
+  },
+  {
+    "id": 504,
+    "name": "ROMERO ADELA",
+    "external_id": null,
+    "lab": "Palmdale Total Dentistry"
+  },
+  {
+    "id": 505,
+    "name": "BASILIOS AMGAD",
+    "external_id": null,
+    "lab": "Peace Kim"
+  },
+  {
+    "id": 506,
+    "name": "LOPEZ OMAR",
+    "external_id": null,
+    "lab": "Peace Kim"
+  },
+  {
+    "id": 507,
+    "name": "BROCH RIDENOUR",
+    "external_id": null,
+    "lab": "Pearly Smile Dental"
+  },
+  {
+    "id": 508,
+    "name": "BUI MY",
+    "external_id": null,
+    "lab": "Peter Tran DDS"
+  },
+  {
+    "id": 509,
+    "name": "ROSAS ERNESTO",
+    "external_id": null,
+    "lab": "Peter Tran DDS"
+  },
+  {
+    "id": 510,
+    "name": "ASUNCION LOPEZ",
+    "external_id": null,
+    "lab": "Peter Tran DDS"
+  },
+  {
+    "id": 511,
+    "name": "JOSEFINA MONTANEZ",
+    "external_id": null,
+    "lab": "Peter Tran DDS"
+  },
+  {
+    "id": 512,
+    "name": "HANSEN DAVID",
+    "external_id": null,
+    "lab": "Piroutek, Gary. DDS"
+  },
+  {
+    "id": 513,
+    "name": "TANDY CHASSIONS",
+    "external_id": null,
+    "lab": "Precision Dental"
+  },
+  {
+    "id": 514,
+    "name": "MARY HARTL",
+    "external_id": null,
+    "lab": "Precision Dental"
+  },
+  {
+    "id": 515,
+    "name": "VLADIMIR CAMPOS",
+    "external_id": null,
+    "lab": "Precision Dental"
+  },
+  {
+    "id": 516,
+    "name": "RICHARD OSORIO",
+    "external_id": null,
+    "lab": "Premier Palm Dental"
+  },
+  {
+    "id": 517,
+    "name": "Maria Gonzalez",
+    "external_id": null,
+    "lab": "Premier Palm Dental"
+  },
+  {
+    "id": 518,
+    "name": "RAGHAD ALKUDSI",
+    "external_id": null,
+    "lab": "Quick Silver Dental Laboratories, INC."
+  },
+  {
+    "id": 519,
+    "name": "AOU MAI",
+    "external_id": null,
+    "lab": "Quynhchau Le Dental Office"
+  },
+  {
+    "id": 520,
+    "name": "B. TRINH",
+    "external_id": null,
+    "lab": "Quynhchau Le Dental Office"
+  },
+  {
+    "id": 521,
+    "name": "MARIKA MAHONE - TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 522,
+    "name": "JOHN GOMEZ",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 523,
+    "name": "CLARENCE CRAMER",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 524,
+    "name": "AMANDA HAWKINS",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 525,
+    "name": "ARDRICK ELMORE",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 526,
+    "name": "SAMANTHA GONZALEZ-TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 527,
+    "name": "ALIYA STEPHENS",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 528,
+    "name": "JOANNA RESENDIZ-TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 529,
+    "name": "AILEEN RODRIGUEZ MUNOZ-TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 530,
+    "name": "BLAINE JANIT",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 531,
+    "name": "JOHN OCONNEL",
+    "external_id": null,
+    "lab": "RANCHO MIRAGE- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 532,
+    "name": "LORI TINGZON",
+    "external_id": null,
+    "lab": "RANCHO MIRAGE- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 533,
+    "name": "RICHARD OLIVIER",
+    "external_id": null,
+    "lab": "RANCHO MIRAGE- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 534,
+    "name": "MICHELLE CIRONE-COLLIER",
+    "external_id": null,
+    "lab": "RANCHO MIRAGE- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 535,
+    "name": "BAKER JEANNE",
+    "external_id": null,
+    "lab": "Richard H Baldwin, D.M.D."
+  },
+  {
+    "id": 536,
+    "name": "COVENA VALDEZ",
+    "external_id": null,
+    "lab": "Rocedent Family Dental - EG"
+  },
+  {
+    "id": 537,
+    "name": "GABRIELA AGUILAR",
+    "external_id": null,
+    "lab": "Rocedent Family Dental - EG"
+  },
+  {
+    "id": 538,
+    "name": "MARIA VARGAS",
+    "external_id": null,
+    "lab": "Rocedent Family Dental - EG"
+  },
+  {
+    "id": 539,
+    "name": "DUONG TRA",
+    "external_id": null,
+    "lab": "Ron An Vuong"
+  },
+  {
+    "id": 540,
+    "name": "PHAN TRANG",
+    "external_id": null,
+    "lab": "Ron An Vuong"
+  },
+  {
+    "id": 541,
+    "name": "RANDY VAN PATTEN",
+    "external_id": null,
+    "lab": "Rosy Dental"
+  },
+  {
+    "id": 542,
+    "name": "ROCIO JR",
+    "external_id": null,
+    "lab": "Ruben Jr - LAB (Huntington Park)"
+  },
+  {
+    "id": 543,
+    "name": "CHRISTOPHER GARCIA",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 544,
+    "name": "BRIAN MORENO",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 545,
+    "name": "ANDREW CAHILL",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 546,
+    "name": "KRISTINE MEZZIE",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 547,
+    "name": "THOMAS R DELGADO",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 548,
+    "name": "NICOLE RAFFER",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 549,
+    "name": "DAWN RICHARDS",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 550,
+    "name": "MARILYN PEDEREN",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 551,
+    "name": "JAZMINE ROSALES",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 552,
+    "name": "PATRICK TOMLINSON",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 553,
+    "name": "ERIKA RIVERA",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 554,
+    "name": "CHARLIE THACH",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 555,
+    "name": "ROGER HONEY",
+    "external_id": null,
+    "lab": "San Diego Dental Lounge"
+  },
+  {
+    "id": 556,
+    "name": "LILY NAVARRO",
+    "external_id": null,
+    "lab": "San Diego Dental Lounge"
+  },
+  {
+    "id": 557,
+    "name": "TERESA DELGADILLO",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 558,
+    "name": "AMANDO GARCIA",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 559,
+    "name": "ADAN MENDOZA",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 560,
+    "name": "FRANCISCO HERNANDEZ",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 561,
+    "name": "ADRIAN SALAZAR",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 562,
+    "name": "ERIKA HERNANDEZ",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 563,
+    "name": "MANUEL MACIAS",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 564,
+    "name": "TULIO CASTILLO",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 565,
+    "name": "IRMA PERALTA",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 566,
+    "name": "ELVA CASTANEDA",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 567,
+    "name": "DELORES GUERRERO",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 568,
+    "name": "BELEN RODARTE",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 569,
+    "name": "ARCELIA LANDEROS",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 570,
+    "name": "BERTA CASTELLANOS",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 571,
+    "name": "SAUL CANO",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 572,
+    "name": "SARA SANCHEZ",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 573,
+    "name": "ALBERT RODRIGUEZ GODOY",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 574,
+    "name": "ILDA ALVARADO",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 575,
+    "name": "RAMON CENTENO",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 576,
+    "name": "BONIFACIO SANCHEZ",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 577,
+    "name": "JORGE MENDEZ HERNANDEZ",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 578,
+    "name": "MARIA DE LARA",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 579,
+    "name": "YAHAIRA MIRANDA",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 580,
+    "name": "ANGELICA LARA",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 581,
+    "name": "ELIZABETH MADRID",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 582,
+    "name": "DANIEL DAVIS",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 583,
+    "name": "ELBA CASTANEDA",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 584,
+    "name": "AYLEEN CARRILLO",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 585,
+    "name": "OFELIA MEDINA",
+    "external_id": null,
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 586,
+    "name": "LETICIA RODRIGUEZ",
+    "external_id": "12207",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 587,
+    "name": "MAYRA BAURTO",
+    "external_id": "3112",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 588,
+    "name": "STEPHANIE FERNANDEZ",
+    "external_id": "4535",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 589,
+    "name": "JEANNETTE RUBIA",
+    "external_id": "7294",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 590,
+    "name": "LUI YAMASAKI",
+    "external_id": "1962",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 591,
+    "name": "MICHELLE MUNOZ",
+    "external_id": null,
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 592,
+    "name": "BERTHA RODRIGUEZ",
+    "external_id": "15381",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 593,
+    "name": "JORGE BALTAZAR",
+    "external_id": "1856",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 594,
+    "name": "MARITZA GOMEZ",
+    "external_id": "4277",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 595,
+    "name": "ANA GUERRERO",
+    "external_id": "3600",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 596,
+    "name": "JUDITH HERNANDEZ",
+    "external_id": "13912",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 597,
+    "name": "FOREST SMYTH",
+    "external_id": "6394",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 598,
+    "name": "NGUYEN THIEN AI",
+    "external_id": null,
+    "lab": "Serenity Dental Spa"
+  },
+  {
+    "id": 599,
+    "name": "WANG YICHUNG",
+    "external_id": null,
+    "lab": "Serenity Dental Spa"
+  },
+  {
+    "id": 600,
+    "name": "HIEU HO",
+    "external_id": "257",
+    "lab": "SGTD Global Dental Center"
+  },
+  {
+    "id": 601,
+    "name": "STEVEN CHAO",
+    "external_id": null,
+    "lab": "SGTD Global Dental Center"
+  },
+  {
+    "id": 602,
+    "name": "XUAN NGUYEN",
+    "external_id": null,
+    "lab": "SGTD Global Dental Center"
+  },
+  {
+    "id": 603,
+    "name": "CHUONG HUYNH",
+    "external_id": null,
+    "lab": "SGTD Global Dental Center"
+  },
+  {
+    "id": 604,
+    "name": "ANA DAVIS",
+    "external_id": null,
+    "lab": "Simply Dentistry"
+  },
+  {
+    "id": 605,
+    "name": "YAMILET VELAZGUEZ",
+    "external_id": null,
+    "lab": "Simply Dentistry"
+  },
+  {
+    "id": 606,
+    "name": "KHOA PAUL",
+    "external_id": null,
+    "lab": "Simply Dentistry"
+  },
+  {
+    "id": 607,
+    "name": "VALENCIA JOSE",
+    "external_id": null,
+    "lab": "Simply Dentistry"
+  },
+  {
+    "id": 608,
+    "name": "RAHIMIMANAGHANI PARVANEH",
+    "external_id": null,
+    "lab": "Simply Dentistry"
+  },
+  {
+    "id": 609,
+    "name": "MARTY HULBERT",
+    "external_id": null,
+    "lab": "Smile San Clemente"
+  },
+  {
+    "id": 610,
+    "name": "LALEH MOHSENI",
+    "external_id": null,
+    "lab": "Smile San Clemente"
+  },
+  {
+    "id": 611,
+    "name": "MEHDI GHARIBKANI",
+    "external_id": null,
+    "lab": "Smile San Clemente"
+  },
+  {
+    "id": 612,
+    "name": "PAUL SANDOVAL",
+    "external_id": null,
+    "lab": "Smile San Clemente"
+  },
+  {
+    "id": 613,
+    "name": "KEITH ORAWOOD",
+    "external_id": null,
+    "lab": "Smile San Clemente"
+  },
+  {
+    "id": 614,
+    "name": "Miguel Armendariz",
+    "external_id": null,
+    "lab": "Smilehaven Dental Center"
+  },
+  {
+    "id": 615,
+    "name": "FERNANDA CERVANTES",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 616,
+    "name": "CAROLINA SOUZA",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 617,
+    "name": "LETICIA BANDA",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 618,
+    "name": "LIDIA RUBIO",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 619,
+    "name": "CALVIN ACUNA MARIA",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 620,
+    "name": "VEGA GERARDO",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 621,
+    "name": "KATHERINE PIZARRO",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 622,
+    "name": "THANG PHAN",
+    "external_id": null,
+    "lab": "Smiles by Alex"
+  },
+  {
+    "id": 623,
+    "name": "HAYDEN BUTSKO",
+    "external_id": null,
+    "lab": "Smiles of San Marcos - RTE - MES"
+  },
+  {
+    "id": 624,
+    "name": "MICHAEL GOODSON",
+    "external_id": null,
+    "lab": "Smiles of San Marcos - RTE - MES"
+  },
+  {
+    "id": 625,
+    "name": "CARL ROMANER",
+    "external_id": null,
+    "lab": "Smiles of San Marcos - RTE - MES"
+  },
+  {
+    "id": 626,
+    "name": "RICHARD E ISIP",
+    "external_id": null,
+    "lab": "Smiles of San Marcos - RTE - MES"
+  },
+  {
+    "id": 627,
+    "name": "LISA BROTEN",
+    "external_id": null,
+    "lab": "Smiles of San Marcos - RTE - MES"
+  },
+  {
+    "id": 628,
+    "name": "RODNEY AKONI APANA",
+    "external_id": null,
+    "lab": "Smiles of San Marcos - RTE - MES"
+  },
+  {
+    "id": 629,
+    "name": "APRIL MARIE WILLIS",
+    "external_id": null,
+    "lab": "Smiles of San Marcos - RTE - MES"
+  },
+  {
+    "id": 630,
+    "name": "MARIBEL RAMIREZ",
+    "external_id": null,
+    "lab": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 631,
+    "name": "EURIZ ZARATE CRUZ",
+    "external_id": null,
+    "lab": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 632,
+    "name": "VICTORIA FUENTES",
+    "external_id": null,
+    "lab": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 633,
+    "name": "ANA DEL CARMEN VASQUEZ",
+    "external_id": null,
+    "lab": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 634,
+    "name": "LUIS SANCHEZ",
+    "external_id": null,
+    "lab": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 635,
+    "name": "HADEAH CHAMBERLAIN",
+    "external_id": null,
+    "lab": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 636,
+    "name": "THERESA AVILA",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 637,
+    "name": "JESUS CASTELLANOS",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 638,
+    "name": "FENYA SHUBIN",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 639,
+    "name": "RAMANER SANCHEZ",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 640,
+    "name": "VENTURA RIVAS",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 641,
+    "name": "DIANA HOLGUIN",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 642,
+    "name": "CAITLYN HARMON",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 643,
+    "name": "SAMANTHA MUJICA",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 644,
+    "name": "SARA NGUYEN",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 645,
+    "name": "BARBARA PEREA",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 646,
+    "name": "ARLENE SMITH",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 647,
+    "name": "GABRIEL SANCHEZ",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 648,
+    "name": "MARIA HERNANDEZ",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 649,
+    "name": "MICHAEL BURLACE",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 650,
+    "name": "CHARLENE ZHOU",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 651,
+    "name": "PRISILLA GOMEZ",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 652,
+    "name": "ELIZABETH PEREZ",
+    "external_id": null,
+    "lab": "Smiles West (La Puente)"
+  },
+  {
+    "id": 653,
+    "name": "LUIS J PINTO",
+    "external_id": null,
+    "lab": "Smiles West (La Puente)"
+  },
+  {
+    "id": 654,
+    "name": "BRYAN CONDIFF",
+    "external_id": null,
+    "lab": "Smiles West (La Puente)"
+  },
+  {
+    "id": 655,
+    "name": "WILBERT DE LEON",
+    "external_id": null,
+    "lab": "Smiles West (La Puente)"
+  },
+  {
+    "id": 656,
+    "name": "SUSAN K ROBINSON",
+    "external_id": null,
+    "lab": "Smiles West (La Puente)"
+  },
+  {
+    "id": 657,
+    "name": "KARLA BARBARA",
+    "external_id": null,
+    "lab": "Smiles West (La Puente)"
+  },
+  {
+    "id": 658,
+    "name": "ENRIQUE SOPAN GARCIA",
+    "external_id": null,
+    "lab": "Smiles West (La Puente)"
+  },
+  {
+    "id": 659,
+    "name": "RONALD PORTILLO",
+    "external_id": null,
+    "lab": "Smiles West (La Puente)"
+  },
+  {
+    "id": 660,
+    "name": "AMERIE VERDUZCO",
+    "external_id": null,
+    "lab": "Smiles West (La Puente)"
+  },
+  {
+    "id": 661,
+    "name": "ROSA SOLIS",
+    "external_id": null,
+    "lab": "Smiles West (San Bernardino)"
+  },
+  {
+    "id": 662,
+    "name": "NIKAJ DRANE",
+    "external_id": null,
+    "lab": "St. Anthony Family Dentistry"
+  },
+  {
+    "id": 663,
+    "name": "NELLY GONZALEZ",
+    "external_id": null,
+    "lab": "St. Anthony Family Dentistry"
+  },
+  {
+    "id": 664,
+    "name": "ANNA TREANTOS",
+    "external_id": null,
+    "lab": "St. Anthony Family Dentistry"
+  },
+  {
+    "id": 665,
+    "name": "FRAGOZA CRUZ",
+    "external_id": null,
+    "lab": "Sunrise Smiles"
+  },
+  {
+    "id": 666,
+    "name": "SHASHI BALA",
+    "external_id": null,
+    "lab": "Sunset Dental Arts"
+  },
+  {
+    "id": 667,
+    "name": "ISIDRO HERRERA",
+    "external_id": null,
+    "lab": "Sunset Dental Arts"
+  },
+  {
+    "id": 668,
+    "name": "COYOLT ERNESTO",
+    "external_id": null,
+    "lab": "Sunset Dental Arts"
+  },
+  {
+    "id": 669,
+    "name": "Christa Bell",
+    "external_id": null,
+    "lab": "Ted Tayenaka DDS"
+  },
+  {
+    "id": 670,
+    "name": "CHRISTA BELL",
+    "external_id": null,
+    "lab": "Ted Tayenaka DDS"
+  },
+  {
+    "id": 671,
+    "name": "LILIA ELENA GARCIA",
+    "external_id": null,
+    "lab": "Teresa M. Avendano-Galvez, DMD - J"
+  },
+  {
+    "id": 672,
+    "name": "DARWIN RAMON",
+    "external_id": null,
+    "lab": "Teresa M. Avendano-Galvez, DMD - J"
+  },
+  {
+    "id": 673,
+    "name": "TERRIE AVENDANO",
+    "external_id": null,
+    "lab": "Teresa M. Avendano-Galvez, DMD - J"
+  },
+  {
+    "id": 674,
+    "name": "JELYN BONIFACIO",
+    "external_id": null,
+    "lab": "Teresa M. Avendano-Galvez, DMD - J"
+  },
+  {
+    "id": 675,
+    "name": "MAURIENA LAGUNA",
+    "external_id": null,
+    "lab": "The Joy Of Dentistry RTE JES"
+  },
+  {
+    "id": 676,
+    "name": "DOREEN WATTS",
+    "external_id": null,
+    "lab": "The Joy Of Dentistry RTE JES"
+  },
+  {
+    "id": 677,
+    "name": "MARIA GARCIA",
+    "external_id": null,
+    "lab": "The Ontario Dentist - RTE JES"
+  },
+  {
+    "id": 678,
+    "name": "FLEISCHEN MIKAYLAH",
+    "external_id": null,
+    "lab": "Tooth Fairy Dental"
+  },
+  {
+    "id": 679,
+    "name": "VERONICA VAZQUEZ",
+    "external_id": null,
+    "lab": "Torres Family Dental"
+  },
+  {
+    "id": 680,
+    "name": "MARTINA GARCIA",
+    "external_id": null,
+    "lab": "Torres Family Dental"
+  },
+  {
+    "id": 681,
+    "name": "FIDEL FLORES",
+    "external_id": null,
+    "lab": "Torres Family Dental"
+  },
+  {
+    "id": 682,
+    "name": "JOSE PASCUAS",
+    "external_id": null,
+    "lab": "Torres Family Dental"
+  },
+  {
+    "id": 683,
+    "name": "FELICIANO SANCHEZ",
+    "external_id": null,
+    "lab": "Torres Family Dental"
+  },
+  {
+    "id": 684,
+    "name": "SHIRLEY MUELLER",
+    "external_id": null,
+    "lab": "Total Care Implant Dentistry (Palm Desert)"
+  },
+  {
+    "id": 685,
+    "name": "PAYTON SPINOSA",
+    "external_id": null,
+    "lab": "Total Care Implant Dentistry (Palm Desert)"
+  },
+  {
+    "id": 686,
+    "name": "RANDALL FONTYN",
+    "external_id": null,
+    "lab": "Total Care Implant Dentistry (Palm Desert)"
+  },
+  {
+    "id": 687,
+    "name": "PEDRO BAROSO",
+    "external_id": null,
+    "lab": "Total Care Implant Dentistry (Palm Desert)"
+  },
+  {
+    "id": 688,
+    "name": "NATHAN CELUSTA",
+    "external_id": null,
+    "lab": "Total Care Implant Dentistry (Palm Desert)"
+  },
+  {
+    "id": 689,
+    "name": "JOYCE AOLAUS",
+    "external_id": null,
+    "lab": "Total Care Implant Dentistry (Palm Desert)"
+  },
+  {
+    "id": 690,
+    "name": "MAGDALENA COLINDRES",
+    "external_id": null,
+    "lab": "Total Family Dental Group"
+  },
+  {
+    "id": 691,
+    "name": "Carl Flores Onorato",
+    "external_id": null,
+    "lab": "Total Family Dental Group"
+  },
+  {
+    "id": 692,
+    "name": "DANIEL ARGUIEN",
+    "external_id": null,
+    "lab": "Total Family Dental Group"
+  },
+  {
+    "id": 693,
+    "name": "BETTY RODRIGUEZ",
+    "external_id": null,
+    "lab": "Total Family Dental Group"
+  },
+  {
+    "id": 694,
+    "name": "ALEXANDER PRINS",
+    "external_id": null,
+    "lab": "Total Family Dental Group"
+  },
+  {
+    "id": 695,
+    "name": "RAYSTON JOHNSON",
+    "external_id": null,
+    "lab": "Total Family Dental Group"
+  },
+  {
+    "id": 696,
+    "name": "SAWYER KING",
+    "external_id": null,
+    "lab": "Transformation Dental Partners"
+  },
+  {
+    "id": 697,
+    "name": "NHU LAN HOANG",
+    "external_id": null,
+    "lab": "Tri An Dental"
+  },
+  {
+    "id": 698,
+    "name": "JOSEPH MCNICHOL",
+    "external_id": null,
+    "lab": "TruGLO Modern Dental (Beverly Hills)"
+  },
+  {
+    "id": 699,
+    "name": "VIVAS CAROLINE",
+    "external_id": null,
+    "lab": "TruGLO Modern Dental (Beverly Hills)"
+  },
+  {
+    "id": 700,
+    "name": "SHELLY JEFFERY",
+    "external_id": null,
+    "lab": "TruGLO Modern Dental (Beverly Hills)"
+  },
+  {
+    "id": 701,
+    "name": "Implant parts",
+    "external_id": null,
+    "lab": "TruGLO Modern Dental (Beverly Hills)"
+  },
+  {
+    "id": 702,
+    "name": "WALNUM GREGER",
+    "external_id": null,
+    "lab": "TruGLO Modern Dental (Calabasas)"
+  },
+  {
+    "id": 703,
+    "name": "MELO KELLY",
+    "external_id": null,
+    "lab": "TruGLO Modern Dental (Calabasas)"
+  },
+  {
+    "id": 704,
+    "name": "HINES LA TANYA",
+    "external_id": null,
+    "lab": "TruGLO Modern Dental (Calabasas)"
+  },
+  {
+    "id": 705,
+    "name": "BARRY WONG",
+    "external_id": null,
+    "lab": "Tustin Blue Dental Group"
+  },
+  {
+    "id": 706,
+    "name": "KULRAWE SUNGALAK",
+    "external_id": null,
+    "lab": "TV Dental Lab"
+  },
+  {
+    "id": 707,
+    "name": "LARRY BARE",
+    "external_id": null,
+    "lab": "TV Dental Lab"
+  },
+  {
+    "id": 708,
+    "name": "TUSTIN WONG",
+    "external_id": null,
+    "lab": "TV Dental Lab"
+  },
+  {
+    "id": 709,
+    "name": "ETHAN WU",
+    "external_id": null,
+    "lab": "TV Dental Lab"
+  },
+  {
+    "id": 710,
+    "name": "NANCY VU",
+    "external_id": null,
+    "lab": "TV Dental Lab"
+  },
+  {
+    "id": 711,
+    "name": "HARRISON LE",
+    "external_id": null,
+    "lab": "Unique Dental (Garden Grove)"
+  },
+  {
+    "id": 712,
+    "name": "DAWN KIMMERLE",
+    "external_id": null,
+    "lab": "Unistar Dental"
+  },
+  {
+    "id": 713,
+    "name": "KHANTHALA KHOMMARATH",
+    "external_id": null,
+    "lab": "Unistar Dental"
+  },
+  {
+    "id": 714,
+    "name": "TUAT NGUYEN",
+    "external_id": null,
+    "lab": "Unistar Dental"
+  },
+  {
+    "id": 715,
+    "name": "NGO LIEN",
+    "external_id": null,
+    "lab": "Unistar Dental"
+  },
+  {
+    "id": 716,
+    "name": "ANITA MEDINA",
+    "external_id": null,
+    "lab": "United Dental Centers"
+  },
+  {
+    "id": 717,
+    "name": "DAVID CHAPPELL",
+    "external_id": null,
+    "lab": "Urban Dental"
+  },
+  {
+    "id": 718,
+    "name": "MIRIAN ZELAYA",
+    "external_id": null,
+    "lab": "Urban Dental"
+  },
+  {
+    "id": 719,
+    "name": "ANTHONY MAGALLON",
+    "external_id": null,
+    "lab": "Urban Dental"
+  },
+  {
+    "id": 720,
+    "name": "RODOLFO MUNOS",
+    "external_id": null,
+    "lab": "Urban Dental"
+  },
+  {
+    "id": 721,
+    "name": "ROGHLEH RANJI",
+    "external_id": "2092",
+    "lab": "Urban Dental"
+  },
+  {
+    "id": 722,
+    "name": "LARRY BOGGS",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 723,
+    "name": "DAVID BENNETT",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 724,
+    "name": "CAMRY HILL",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 725,
+    "name": "SUZANNE SULZBACH",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 726,
+    "name": "PATTI YEWARK",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 727,
+    "name": "MARIA CASTELLAWAZ",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 728,
+    "name": "BERNAL MARCELO",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 729,
+    "name": "FRANCISCO DIAZ",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 730,
+    "name": "DEGARANZ MEJRA",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 731,
+    "name": "EDWIN GRAIG",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 732,
+    "name": "GLORIA JEREZ",
+    "external_id": null,
+    "lab": "Villegas Dental Laboratory"
+  },
+  {
+    "id": 733,
+    "name": "PAZ MANA",
+    "external_id": null,
+    "lab": "Villegas Dental Laboratory"
+  },
+  {
+    "id": 734,
+    "name": "PHILLIPS WHITNEY",
+    "external_id": null,
+    "lab": "Villegas Dental Laboratory"
+  },
+  {
+    "id": 735,
+    "name": "GUDALUPE MORENO",
+    "external_id": null,
+    "lab": "Villegas Dental Laboratory"
+  },
+  {
+    "id": 736,
+    "name": "SALEEN RAMIREZ",
+    "external_id": null,
+    "lab": "Villegas Dental Laboratory"
+  },
+  {
+    "id": 737,
+    "name": "JEIDY LOPEZ",
+    "external_id": null,
+    "lab": "Villegas Dental Laboratory"
+  },
+  {
+    "id": 738,
+    "name": "RAJAA SHWEIHNEH",
+    "external_id": null,
+    "lab": "Vineyard Family Dentist Ontario Ortho Center - RTE"
+  },
+  {
+    "id": 739,
+    "name": "YOLANDA RODRIGUEZ",
+    "external_id": null,
+    "lab": "Vineyard Family Dentist Ontario Ortho Center - RTE"
+  },
+  {
+    "id": 740,
+    "name": "ESPERANZA REYNAYA",
+    "external_id": null,
+    "lab": "Vineyard Family Dentist Ontario Ortho Center - RTE"
+  },
+  {
+    "id": 741,
+    "name": "ESPERANZA REYNAGA",
+    "external_id": null,
+    "lab": "Vineyard Family Dentist Ontario Ortho Center - RTE"
+  },
+  {
+    "id": 742,
+    "name": "HERNANDEZ KINNERETH",
+    "external_id": null,
+    "lab": "Vineyard Family Dentist Ontario Ortho Center - RTE"
+  },
+  {
+    "id": 743,
+    "name": "KAPIL MOZA",
+    "external_id": null,
+    "lab": "VTA DENTAL LAB"
+  },
+  {
+    "id": 744,
+    "name": "FOUSTINEZ SONEHEZ",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 745,
+    "name": "Jose Martin",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 746,
+    "name": "ROBERT MORLAN",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 747,
+    "name": "LISA IM",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 748,
+    "name": "SEHEY DUM",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 749,
+    "name": "MATISOL MORTINEZ",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 750,
+    "name": "PAN HOY",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 751,
+    "name": "JONATHAN SANTOS",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 752,
+    "name": "CHRISTOPHER DOYLE",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 753,
+    "name": "HA TAI",
+    "external_id": "725",
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 754,
+    "name": "TAHMINEH DAVOODIAN",
+    "external_id": "630",
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 755,
+    "name": "MOHAMMAD MAZAHERIAN",
+    "external_id": "629",
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 756,
+    "name": "NINA TRAN",
+    "external_id": null,
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 757,
+    "name": "THAI NGUYEN",
+    "external_id": null,
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 758,
+    "name": "HOANG THU PHAM",
+    "external_id": null,
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 759,
+    "name": "ELSA VELASQU",
+    "external_id": null,
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 760,
+    "name": "VIACHES DLAV TSYDYPOV",
+    "external_id": "757",
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 761,
+    "name": "BAO NGUYEN",
+    "external_id": null,
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 762,
+    "name": "DARLENE MAIAUE",
+    "external_id": null,
+    "lab": "West Dental - (Compton ) RTE: JES"
+  },
+  {
+    "id": 763,
+    "name": "ARVON WASHINGTON",
+    "external_id": null,
+    "lab": "West Dental - (Compton ) RTE: JES"
+  },
+  {
+    "id": 764,
+    "name": "URIEL CARJENAS",
+    "external_id": null,
+    "lab": "West Dental - (Compton ) RTE: JES"
+  },
+  {
+    "id": 765,
+    "name": "TRAN TRAM",
+    "external_id": null,
+    "lab": "Westpark Dental"
+  },
+  {
+    "id": 766,
+    "name": "CHUH YEN",
+    "external_id": null,
+    "lab": "Westpark Dental"
+  },
+  {
+    "id": 767,
+    "name": "DU WENQUN \"KATIE\"",
+    "external_id": null,
+    "lab": "Westpark Dental"
+  },
+  {
+    "id": 768,
+    "name": "JOSE GRANADOS",
+    "external_id": null,
+    "lab": "Whittier Dental Group"
+  },
+  {
+    "id": 769,
+    "name": "BRIONNA STEPHEN",
+    "external_id": null,
+    "lab": "Whittier Dental Group"
+  },
+  {
+    "id": 770,
+    "name": "ANTONIA NUNEZ",
+    "external_id": null,
+    "lab": "Whittier Dental Group"
+  },
+  {
+    "id": 771,
+    "name": "MARLENY CHAVEZ",
+    "external_id": null,
+    "lab": "Your OC Dentist Corp"
+  },
+  {
+    "id": 772,
+    "name": "LUIS ALBERTO MIRANDA DELGADO",
+    "external_id": null,
+    "lab": "Your OC Dentist Corp"
+  },
+  {
+    "id": 773,
+    "name": "JAMIE R YOUNG",
+    "external_id": null,
+    "lab": "Your OC Dentist Corp"
+  },
+  {
+    "id": 774,
+    "name": "YESENIA AIFARO",
+    "external_id": null,
+    "lab": "Your OC Dentist Corp"
+  },
+  {
+    "id": 775,
+    "name": "JOSE GUERRERO",
+    "external_id": null,
+    "lab": "Your OC Dentist Corp"
+  },
+  {
+    "id": 776,
+    "name": "ANA MACHADO",
+    "external_id": null,
+    "lab": "Your OC Dentist Corp"
+  },
+  {
+    "id": 777,
+    "name": "MIA RANGEL",
+    "external_id": null,
+    "lab": "Your OC Dentist Corp"
+  },
+  {
+    "id": 778,
+    "name": "RENE BONILLA",
+    "external_id": null,
+    "lab": "Zapanta-Chavez Dentistry (LA)"
+  },
+  {
+    "id": 779,
+    "name": "KEVIN ROPAS",
+    "external_id": null,
+    "lab": "Zapanta-Chavez Dentistry (LA)"
+  },
+  {
+    "id": 780,
+    "name": "ROSA CLAUDIA",
+    "external_id": null,
+    "lab": "Zapanta-Chavez Dentistry (LA)"
+  },
+  {
+    "id": 781,
+    "name": "CRISTINA SERRANO",
+    "external_id": null,
+    "lab": "Zapanta-Chavez Dentistry (LA)"
+  },
+  {
+    "id": 782,
+    "name": "RUCKER YVONNE",
+    "external_id": null,
+    "lab": "Zapanta-Chavez Dentistry (LA)"
+  },
+  {
+    "id": 783,
+    "name": "ALEXA ORAGEL",
+    "external_id": null,
+    "lab": "123 Dental"
+  },
+  {
+    "id": 784,
+    "name": "OLGA GALLAGA",
+    "external_id": null,
+    "lab": "123 Dental"
+  },
+  {
+    "id": 785,
+    "name": "VAN DANG",
+    "external_id": null,
+    "lab": "123 Dental"
+  },
+  {
+    "id": 786,
+    "name": "MARIA GARCIA",
+    "external_id": null,
+    "lab": "123 Dental"
+  },
+  {
+    "id": 787,
+    "name": "SOCORRO VEGA",
+    "external_id": null,
+    "lab": "123 Dental"
+  },
+  {
+    "id": 788,
+    "name": "VO PHUONG",
+    "external_id": null,
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 789,
+    "name": "SANDRA FAN",
+    "external_id": null,
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 790,
+    "name": "AU PASCAL",
+    "external_id": null,
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 791,
+    "name": "Krystal Nguyen-Habata",
+    "external_id": "942",
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 792,
+    "name": "WILSON WONG",
+    "external_id": null,
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 793,
+    "name": "LAM ANTHONY",
+    "external_id": null,
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 794,
+    "name": "HOPE LE-BUI",
+    "external_id": null,
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 795,
+    "name": "YIN MING WONG",
+    "external_id": null,
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 796,
+    "name": "LUZ GARCIA",
+    "external_id": "12318",
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 797,
+    "name": "Trinh Tran",
+    "external_id": null,
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 798,
+    "name": "MD AREFIN",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 799,
+    "name": "REYNALDO CARAVANTES",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 800,
+    "name": "MARIA GUILLEN",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 801,
+    "name": "VICKIE VARGAS",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 802,
+    "name": "ALICIA TALAVERA",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 803,
+    "name": "GENEROSA TOREULAS",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 804,
+    "name": "ELEANOR GALANG",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 805,
+    "name": "Lany Alojurum",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 806,
+    "name": "MYRNA LANVZGA",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 807,
+    "name": "SYAHRIAL MALIK",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 808,
+    "name": "JAZPER FELIX",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 809,
+    "name": "JIM NAVAMO",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 810,
+    "name": "RAYMOND PADILLA",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 811,
+    "name": "MARIO DE LEON",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 812,
+    "name": "MEVRIA VILLANUEVA",
+    "external_id": null,
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 813,
+    "name": "JEANETTE PEREZ",
+    "external_id": null,
+    "lab": "A Brilliant Smile Dental"
+  },
+  {
+    "id": 814,
+    "name": "ALISSA AMMAR",
+    "external_id": null,
+    "lab": "A Brilliant Smile Dental"
+  },
+  {
+    "id": 815,
+    "name": "HERNANDEZ MAYRA",
+    "external_id": null,
+    "lab": "A Brilliant Smile Dental"
+  },
+  {
+    "id": 816,
+    "name": "SHARON GRIMM",
+    "external_id": null,
+    "lab": "A Brilliant Smile Dental"
+  },
+  {
+    "id": 817,
+    "name": "MONIQUE CHAVES",
+    "external_id": null,
+    "lab": "A Brilliant Smile Dental"
+  },
+  {
+    "id": 818,
+    "name": "LORENA MOSANEDA",
+    "external_id": null,
+    "lab": "A Brilliant Smile Dental"
+  },
+  {
+    "id": 819,
+    "name": "CAESPO GEORGE",
+    "external_id": null,
+    "lab": "A Brilliant Smile Dental"
+  },
+  {
+    "id": 820,
+    "name": "ANGELA CHEN",
+    "external_id": null,
+    "lab": "ABC Dental Inc"
+  },
+  {
+    "id": 821,
+    "name": "MENDEZ ENELCLO",
+    "external_id": null,
+    "lab": "Access Dental Care"
+  },
+  {
+    "id": 822,
+    "name": "CASTILLA MAUNILIA",
+    "external_id": null,
+    "lab": "Access Dental Care"
+  },
+  {
+    "id": 823,
+    "name": "PENA MIGUEL",
+    "external_id": null,
+    "lab": "Access Dental Care"
+  },
+  {
+    "id": 824,
+    "name": "NAJERA REYARA",
+    "external_id": null,
+    "lab": "Access Dental Care"
+  },
+  {
+    "id": 825,
+    "name": "WOOD MICHELLE J",
+    "external_id": null,
+    "lab": "Access Dental Care"
+  },
+  {
+    "id": 826,
+    "name": "RAYETTA DESHAY",
+    "external_id": null,
+    "lab": "Alan B. Woodson DDS"
+  },
+  {
+    "id": 827,
+    "name": "BRIDGET RIVNEY",
+    "external_id": null,
+    "lab": "Alan B. Woodson DDS"
+  },
+  {
+    "id": 828,
+    "name": "ROSA VOTLUCKA",
+    "external_id": null,
+    "lab": "Alan B. Woodson DDS"
+  },
+  {
+    "id": 829,
+    "name": "KRISTI TAKEMOTO",
+    "external_id": null,
+    "lab": "Aliso Niguel Dental Group"
+  },
+  {
+    "id": 830,
+    "name": "ANNET BONAFANTI",
+    "external_id": null,
+    "lab": "Aliso Niguel Dental Group"
+  },
+  {
+    "id": 831,
+    "name": "STEVE LAUPH",
+    "external_id": null,
+    "lab": "Aliso Niguel Dental Group"
+  },
+  {
+    "id": 832,
+    "name": "LEASELA MACWKA",
+    "external_id": null,
+    "lab": "Aliso Niguel Dental Group"
+  },
+  {
+    "id": 833,
+    "name": "ROSALINA QUINTERO",
+    "external_id": "110111961",
+    "lab": "All Children's Dental (Anaheim)"
+  },
+  {
+    "id": 834,
+    "name": "BAUTISTA JOAQUIN",
+    "external_id": null,
+    "lab": "All Children's Dental (Anaheim)"
+  },
+  {
+    "id": 835,
+    "name": "DANNY ARTON",
+    "external_id": "297663",
+    "lab": "All Children's Dental (Westminster)"
+  },
+  {
+    "id": 836,
+    "name": "REYES MORALES ELISABETH",
+    "external_id": null,
+    "lab": "All Children's Dental (Westminster)"
+  },
+  {
+    "id": 837,
+    "name": "KENNETH SALDIVAR",
+    "external_id": "243262227",
+    "lab": "All Children's Dental (Westminster)"
+  },
+  {
+    "id": 838,
+    "name": "LADY MAWENCY PEREZ GOMEZ",
+    "external_id": null,
+    "lab": "All Children's Dental (Westminster)"
+  },
+  {
+    "id": 839,
+    "name": "MAGELALENA ESPANA ESPINOZA",
+    "external_id": "282392568",
+    "lab": "All Children's Dental (Westminster)"
+  },
+  {
+    "id": 840,
+    "name": "MIKE TENENSON",
+    "external_id": null,
+    "lab": "Allison Avenue Dental"
+  },
+  {
+    "id": 841,
+    "name": "SNASAN GNOSENNORM",
+    "external_id": null,
+    "lab": "Allison Avenue Dental"
+  },
+  {
+    "id": 842,
+    "name": "BARBAEA WOOD",
+    "external_id": null,
+    "lab": "Allison Avenue Dental"
+  },
+  {
+    "id": 843,
+    "name": "IRENE HAKES",
+    "external_id": null,
+    "lab": "Allison Avenue Dental"
+  },
+  {
+    "id": 844,
+    "name": "ABDULLAH FATEH",
+    "external_id": null,
+    "lab": "Allstar Dental"
+  },
+  {
+    "id": 845,
+    "name": "SAN LORS",
+    "external_id": null,
+    "lab": "Allstar Dental"
+  },
+  {
+    "id": 846,
+    "name": "SKYLER BERUBE",
+    "external_id": null,
+    "lab": "Almodovar Dentistry, Inc"
+  },
+  {
+    "id": 847,
+    "name": "STEPHEN TUJILLIO",
+    "external_id": null,
+    "lab": "Almodovar Dentistry, Inc"
+  },
+  {
+    "id": 848,
+    "name": "JOSHUA DAVIES",
+    "external_id": null,
+    "lab": "Almodovar Dentistry, Inc"
+  },
+  {
+    "id": 849,
+    "name": "PHILIP SMITH",
+    "external_id": null,
+    "lab": "Almodovar Dentistry, Inc"
+  },
+  {
+    "id": 850,
+    "name": "MOSS ROBERT",
+    "external_id": null,
+    "lab": "Almodovar Dentistry, Inc"
+  },
+  {
+    "id": 851,
+    "name": "Maria Del Carmen",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (1st Street)"
+  },
+  {
+    "id": 852,
+    "name": "SEBASTIAN MACIAS",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (1st Street)"
+  },
+  {
+    "id": 853,
+    "name": "JOSE LUIS HERNANDEZ GONZALEZ",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (1st Street)"
+  },
+  {
+    "id": 854,
+    "name": "THOMAS YOST",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 855,
+    "name": "RAMON C MALLARI",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 856,
+    "name": "OTILIA LOPEZ",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 857,
+    "name": "HENRY CLAY MAXWELL JR",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 858,
+    "name": "JASON KRAFT",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 859,
+    "name": "BYRON CALDERON QUINGAIZA",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 860,
+    "name": "CARLO D TOLLE",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 861,
+    "name": "MARIA FLORES",
+    "external_id": null,
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 862,
+    "name": "LEANARDO OCAMPO",
+    "external_id": null,
+    "lab": "AM Dental Group"
+  },
+  {
+    "id": 863,
+    "name": "GUADALUPE MAGANA",
+    "external_id": null,
+    "lab": "AM Dental Group"
+  },
+  {
+    "id": 864,
+    "name": "JULIO OJEDA",
+    "external_id": null,
+    "lab": "AM Dental Group"
+  },
+  {
+    "id": 865,
+    "name": "JOVITA APARACIO",
+    "external_id": null,
+    "lab": "AM Dental Group"
+  },
+  {
+    "id": 866,
+    "name": "HAROLD WILLIAMS",
+    "external_id": null,
+    "lab": "American Bright Dental"
+  },
+  {
+    "id": 867,
+    "name": "RITA WRIGHT",
+    "external_id": null,
+    "lab": "American Bright Dental"
+  },
+  {
+    "id": 868,
+    "name": "JESUS VASQUEZ",
+    "external_id": null,
+    "lab": "American Bright Dental"
+  },
+  {
+    "id": 869,
+    "name": "TAKAMURA MERCEDE",
+    "external_id": null,
+    "lab": "American Bright Dental"
+  },
+  {
+    "id": 870,
+    "name": "HUONG TRAN",
+    "external_id": null,
+    "lab": "Anaheim Mankind Dentistry"
+  },
+  {
+    "id": 871,
+    "name": "CHAMBERS SHEILA",
+    "external_id": null,
+    "lab": "Andy Tran DDS - FEDEX"
+  },
+  {
+    "id": 872,
+    "name": "FIKES AUTOMN",
+    "external_id": null,
+    "lab": "Andy Tran DDS - FEDEX"
+  },
+  {
+    "id": 873,
+    "name": "DUENAS ALMA",
+    "external_id": null,
+    "lab": "Andy Tran DDS - FEDEX"
+  },
+  {
+    "id": 874,
+    "name": "MARIA SANCHEZ",
+    "external_id": "1742",
+    "lab": "Andy Tran DDS - FEDEX"
+  },
+  {
+    "id": 875,
+    "name": "DAVID GUILLORY",
+    "external_id": "1742",
+    "lab": "Andy Tran DDS - FEDEX"
+  },
+  {
+    "id": 876,
+    "name": "WAYNE LO",
+    "external_id": null,
+    "lab": "Angelic Dentistry - Van Nuys"
+  },
+  {
+    "id": 877,
+    "name": "KEVIN ALEMAN",
+    "external_id": null,
+    "lab": "Angelic Dentistry - Van Nuys"
+  },
+  {
+    "id": 878,
+    "name": "DABIJA ANDREI",
+    "external_id": null,
+    "lab": "Ballou Dental Arts"
+  },
+  {
+    "id": 879,
+    "name": "ARIELA MINANO",
+    "external_id": "9890",
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 880,
+    "name": "CECILIA SALAS",
+    "external_id": "10155",
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 881,
+    "name": "MARTHA PETER",
+    "external_id": "10752",
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 882,
+    "name": "VICTOR OJEDA",
+    "external_id": "10788",
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 883,
+    "name": "RUBEN GUTIERREZ",
+    "external_id": "9516",
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 884,
+    "name": "JOSUE DELGADO",
+    "external_id": "9921",
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 885,
+    "name": "NELIDA AMPOSTA",
+    "external_id": "9293",
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 886,
+    "name": "SHAHLA RASTVAN",
+    "external_id": null,
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 887,
+    "name": "JUAN LOPEZ",
+    "external_id": "10777",
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 888,
+    "name": "DINA BERNARDINI",
+    "external_id": "10070",
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 889,
+    "name": "STEVEN BATES",
+    "external_id": null,
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 890,
+    "name": "TOAN VAN DO",
+    "external_id": null,
+    "lab": "Bella Terra Dentistry"
+  },
+  {
+    "id": 891,
+    "name": "EDNA DURUMPILI",
+    "external_id": null,
+    "lab": "Bernardo, Maria Pilar DDS"
+  },
+  {
+    "id": 892,
+    "name": "FUJINO CHERYL",
+    "external_id": null,
+    "lab": "Bernardo, Maria Pilar DDS"
+  },
+  {
+    "id": 893,
+    "name": "YOLANDA AVILA CABRAL",
+    "external_id": null,
+    "lab": "Bettersmile Dental"
+  },
+  {
+    "id": 894,
+    "name": "ELVIRA HIGAREDA",
+    "external_id": null,
+    "lab": "Bettersmile Dental"
+  },
+  {
+    "id": 895,
+    "name": "SHIH GUANYU",
+    "external_id": null,
+    "lab": "Bliss Dental Arts"
+  },
+  {
+    "id": 896,
+    "name": "RON WILSON",
+    "external_id": null,
+    "lab": "Bravo Dental Corporation"
+  },
+  {
+    "id": 897,
+    "name": "VANELY RAMIREZ",
+    "external_id": null,
+    "lab": "Bravo Dental Corporation"
+  },
+  {
+    "id": 898,
+    "name": "SALLY LINDGREN",
+    "external_id": null,
+    "lab": "Bravo Dental Corporation"
+  },
+  {
+    "id": 899,
+    "name": "DONOVAN VEJAR",
+    "external_id": null,
+    "lab": "Bravo Dental Corporation"
+  },
+  {
+    "id": 900,
+    "name": "RENEE BROWN",
+    "external_id": null,
+    "lab": "Bravo Dental Corporation"
+  },
+  {
+    "id": 901,
+    "name": "CYNTNIA STONE",
+    "external_id": null,
+    "lab": "Brighter Image Dental"
+  },
+  {
+    "id": 902,
+    "name": "VERONICA ALOSLA",
+    "external_id": null,
+    "lab": "Brighter Image Dental"
+  },
+  {
+    "id": 903,
+    "name": "MIIZE SHIRLEY",
+    "external_id": null,
+    "lab": "Brighter Image Dental"
+  },
+  {
+    "id": 904,
+    "name": "MONICA TORRES",
+    "external_id": null,
+    "lab": "Brighter Image Dental"
+  },
+  {
+    "id": 905,
+    "name": "AGUILAR KAREN",
+    "external_id": null,
+    "lab": "Bristol Dental Care"
+  },
+  {
+    "id": 906,
+    "name": "MY LAM",
+    "external_id": "42378",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 907,
+    "name": "ISRAEL RUIZ",
+    "external_id": "42785",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 908,
+    "name": "DURAN JESUS",
+    "external_id": "43321",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 909,
+    "name": "TROY HANG",
+    "external_id": "27715",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 910,
+    "name": "LY DONG TRAN",
+    "external_id": "43009",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 911,
+    "name": "DANA BUI",
+    "external_id": "9728",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 912,
+    "name": "SOPHY SAN",
+    "external_id": "39963",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 913,
+    "name": "DANG VAN NGO",
+    "external_id": "17543",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 914,
+    "name": "PALMA SANDRA",
+    "external_id": "42138",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 915,
+    "name": "PATRICIA AVINA GONZALES",
+    "external_id": "35191",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 916,
+    "name": "LIEN T. DOAN",
+    "external_id": "24913",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 917,
+    "name": "THI THAN LE",
+    "external_id": "39459",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 918,
+    "name": "KAREN CASTREJON",
+    "external_id": "40974",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 919,
+    "name": "PETRA QUEZADA CRUZ",
+    "external_id": "41317",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 920,
+    "name": "TRUNG DAO",
+    "external_id": "42864",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 921,
+    "name": "PEREZ CORTEZ ANNY",
+    "external_id": "43104",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 922,
+    "name": "HUONG NGUYEN",
+    "external_id": "42941",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 923,
+    "name": "LUCIANO MENDEZ",
+    "external_id": "40072",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 924,
+    "name": "VAN LE HIEN",
+    "external_id": "9031",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 925,
+    "name": "SUNG NGUYEN",
+    "external_id": "42942",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 926,
+    "name": "TRAMI NGUYEN",
+    "external_id": "17519",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 927,
+    "name": "LUI SA FLORES",
+    "external_id": "42762",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 928,
+    "name": "SON TRINH",
+    "external_id": "43129",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 929,
+    "name": "HOA NGUYEN",
+    "external_id": "42827",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 930,
+    "name": "JOSE MAQUEDAZARRAGA",
+    "external_id": "36010",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 931,
+    "name": "DUONG TRAN",
+    "external_id": "24168",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 932,
+    "name": "ZULY BARRIOS 42847",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 933,
+    "name": "CAPITLE EMOLYN 42817",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 934,
+    "name": "OLIVIA DIAZ VALLE 31178",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 935,
+    "name": "BRUCE HOANG 37282",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 936,
+    "name": "BE NGUYEN",
+    "external_id": "19353",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 937,
+    "name": "HUONG JENNY TRAN",
+    "external_id": "27209",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 938,
+    "name": "QUY VO",
+    "external_id": "15427",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 939,
+    "name": "OJEDA ROSA",
+    "external_id": "34447",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 940,
+    "name": "EVIE NGUYEN",
+    "external_id": "43460",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 941,
+    "name": "AGUILEA ANDRACA",
+    "external_id": "40695",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 942,
+    "name": "UDOMPUAISOT SUNANTA",
+    "external_id": "22997",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 943,
+    "name": "FATUMA NAGSUFI",
+    "external_id": "42990",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 944,
+    "name": "MARIELA VALENCIA",
+    "external_id": "42805",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 945,
+    "name": "ALCALA MARTIN 39700",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 946,
+    "name": "SANCHEZ PEREZ YADIRA 43149",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 947,
+    "name": "CATALINA CASTREJON 43295",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 948,
+    "name": "VICTORIA VALENZUELA 42949",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 949,
+    "name": "FLORES LUISA 42762",
+    "external_id": null,
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 950,
+    "name": "SABHA FAYRUZ",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 951,
+    "name": "MATVEYENKO LILLY",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 952,
+    "name": "DAO LAP",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 953,
+    "name": "WEAVER SUSAN",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 954,
+    "name": "AGUILAR JOSE",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 955,
+    "name": "POSADA FRANK",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 956,
+    "name": "MASON BRIAN",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 957,
+    "name": "MUA REXONA",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 958,
+    "name": "TRAN QUAN",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 959,
+    "name": "HUNTER RICHARD",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 960,
+    "name": "JAMES YANO",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 961,
+    "name": "SADLER LEROY",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 962,
+    "name": "BAILEY ERIKA",
+    "external_id": null,
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 963,
+    "name": "RUSSEL RINELLA",
+    "external_id": null,
+    "lab": "Bui, James DDS"
+  },
+  {
+    "id": 964,
+    "name": "EVANGELINE TIENG",
+    "external_id": null,
+    "lab": "Bui, James DDS"
+  },
+  {
+    "id": 965,
+    "name": "Bodica Costesca",
+    "external_id": null,
+    "lab": "California Dental Group"
+  },
+  {
+    "id": 966,
+    "name": "Maria Flores",
+    "external_id": null,
+    "lab": "California Dental Group"
+  },
+  {
+    "id": 967,
+    "name": "GONZALEZ HECTOR",
+    "external_id": null,
+    "lab": "California Dental Group"
+  },
+  {
+    "id": 968,
+    "name": "ROMERO NEYLA",
+    "external_id": null,
+    "lab": "California Dental Group"
+  },
+  {
+    "id": 969,
+    "name": "DE LA CRUZ MIGUEL",
+    "external_id": null,
+    "lab": "California Dental Group"
+  },
+  {
+    "id": 970,
+    "name": "CARBAJAL LUIS",
+    "external_id": null,
+    "lab": "California Dental Group"
+  },
+  {
+    "id": 971,
+    "name": "SHADONA CHAMBERS",
+    "external_id": null,
+    "lab": "California Dentistry & Braces"
+  },
+  {
+    "id": 972,
+    "name": "ELEVIRA REINHARAT",
+    "external_id": null,
+    "lab": "California Dentistry & Braces"
+  },
+  {
+    "id": 973,
+    "name": "JOSE CORLEZ",
+    "external_id": null,
+    "lab": "California Dentistry & Braces"
+  },
+  {
+    "id": 974,
+    "name": "MARCELA NEVAREZ",
+    "external_id": null,
+    "lab": "California Dentistry & Braces"
+  },
+  {
+    "id": 975,
+    "name": "ELIZABETH GAVIDIA",
+    "external_id": null,
+    "lab": "CB Patel DDS"
+  },
+  {
+    "id": 976,
+    "name": "WILLIAM ADREL",
+    "external_id": null,
+    "lab": "CBS Dental Lab"
+  },
+  {
+    "id": 977,
+    "name": "MIRZOEVA MADINA",
+    "external_id": null,
+    "lab": "CBS Dental Lab"
+  },
+  {
+    "id": 978,
+    "name": "NAZLI YARAHMADI",
+    "external_id": null,
+    "lab": "CHD Dental Care"
+  },
+  {
+    "id": 979,
+    "name": "PARKER ELIZABETH",
+    "external_id": null,
+    "lab": "CHD Dental Care"
+  },
+  {
+    "id": 980,
+    "name": "Padilla Michael",
+    "external_id": null,
+    "lab": "City Dental Centers - Azusa"
+  },
+  {
+    "id": 981,
+    "name": "BERTHA DIAZ",
+    "external_id": null,
+    "lab": "City Dental Centers - Azusa"
+  },
+  {
+    "id": 982,
+    "name": "JUAN GONZALEZ",
+    "external_id": null,
+    "lab": "City Dental Centers - Azusa"
+  },
+  {
+    "id": 983,
+    "name": "Roxanna Rubio",
+    "external_id": null,
+    "lab": "City Dental Centers - Azusa"
+  },
+  {
+    "id": 984,
+    "name": "LUIS CHAVARRIA",
+    "external_id": null,
+    "lab": "City Dental Centers - Azusa"
+  },
+  {
+    "id": 985,
+    "name": "CORONA KARLA",
+    "external_id": null,
+    "lab": "City Dental Centers - Azusa"
+  },
+  {
+    "id": 986,
+    "name": "SUSAN MITA",
+    "external_id": null,
+    "lab": "City Dental Centers - Azusa"
+  },
+  {
+    "id": 987,
+    "name": "VICTOR MEDICUTI",
+    "external_id": null,
+    "lab": "City Dental Centers - Pico Rivera"
+  },
+  {
+    "id": 988,
+    "name": "SANDOVAL MONA LISA",
+    "external_id": null,
+    "lab": "City Dental Centers - Pico Rivera"
+  },
+  {
+    "id": 989,
+    "name": "CARLOS PEREZ",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 990,
+    "name": "KATHERINE ROSMERY 'KATHERINE' AGUADO",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 991,
+    "name": "ODILIA LETICIA \"LETICIA\" SEP MAC",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 992,
+    "name": "GILBERTO HERNANDEZ REYES",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 993,
+    "name": "DOMINIQUE SILVA",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 994,
+    "name": "SERGIO GONZALEZ",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 995,
+    "name": "JAFAR ALHUSEIN",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 996,
+    "name": "ALEXEY LLANES",
+    "external_id": null,
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 997,
+    "name": "DON CAO",
+    "external_id": null,
+    "lab": "Coastline Dental Care"
+  },
+  {
+    "id": 998,
+    "name": "TRUC DAO",
+    "external_id": null,
+    "lab": "Coastline Dental Care"
+  },
+  {
+    "id": 999,
+    "name": "BOB MANIACI",
+    "external_id": null,
+    "lab": "Coastline Dental Care"
+  },
+  {
+    "id": 1000,
+    "name": "NGUYEN HAI",
+    "external_id": null,
+    "lab": "Coastline Dental Care"
+  },
+  {
+    "id": 1001,
+    "name": "CAPILOUTO DENNIS",
+    "external_id": null,
+    "lab": "Coastline Dental Care"
+  },
+  {
+    "id": 1002,
+    "name": "PAUL KING",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 1003,
+    "name": "ADRIAN GONZALEZ",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 1004,
+    "name": "BEATRIZ ALARCON",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 1005,
+    "name": "ANA DEL RIO",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 1006,
+    "name": "ANTIONETTE GARCIA",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 1007,
+    "name": "ROSEANNE PALLAN",
+    "external_id": null,
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 1008,
+    "name": "MINERA EVELYN",
+    "external_id": null,
+    "lab": "Covina Dental"
+  },
+  {
+    "id": 1009,
+    "name": "KELLY CHEN",
+    "external_id": null,
+    "lab": "Creative Solutions Laboratory LLC"
+  },
+  {
+    "id": 1010,
+    "name": "BACH TRAN",
+    "external_id": null,
+    "lab": "Crossroads Family Dental"
+  },
+  {
+    "id": 1011,
+    "name": "ROSY SILVA",
+    "external_id": null,
+    "lab": "Crossroads Family Dental"
+  },
+  {
+    "id": 1012,
+    "name": "ESTELA CURIEL",
+    "external_id": null,
+    "lab": "Crossroads Family Dental"
+  },
+  {
+    "id": 1013,
+    "name": "ALICIA LUCENO",
+    "external_id": null,
+    "lab": "Crossroads Family Dental"
+  },
+  {
+    "id": 1014,
+    "name": "JASMINE CASTILLO",
+    "external_id": null,
+    "lab": "Crossroads Family Dental"
+  },
+  {
+    "id": 1015,
+    "name": "PEPITO RADONA",
+    "external_id": null,
+    "lab": "Crown Dental"
+  },
+  {
+    "id": 1016,
+    "name": "CRANE PHYLLIS",
+    "external_id": null,
+    "lab": "D & T Dentistry (Garden Grove)"
+  },
+  {
+    "id": 1017,
+    "name": "MARGANTA COX",
+    "external_id": null,
+    "lab": "Dawood, Paul DDS (GG)"
+  },
+  {
+    "id": 1018,
+    "name": "GIOIA MUNOZ",
+    "external_id": null,
+    "lab": "Day Creek Dental Care"
+  },
+  {
+    "id": 1019,
+    "name": "HART RUSS",
+    "external_id": null,
+    "lab": "Defazio Jr., Peter. DMD"
+  },
+  {
+    "id": 1020,
+    "name": "KEVIN NG",
+    "external_id": null,
+    "lab": "Defazio Jr., Peter. DMD"
+  },
+  {
+    "id": 1021,
+    "name": "KANEW BUYOFSKY",
+    "external_id": null,
+    "lab": "Defazio Jr., Peter. DMD"
+  },
+  {
+    "id": 1022,
+    "name": "NICOLE CIAKOWSKI",
+    "external_id": null,
+    "lab": "Defazio Jr., Peter. DMD"
+  },
+  {
+    "id": 1023,
+    "name": "JOANNE GIBALDI",
+    "external_id": null,
+    "lab": "Defazio Jr., Peter. DMD"
+  },
+  {
+    "id": 1024,
+    "name": "JOHN MANZIANO",
+    "external_id": null,
+    "lab": "Defazio Jr., Peter. DMD"
+  },
+  {
+    "id": 1025,
+    "name": "CHRIS DELFRANCO",
+    "external_id": null,
+    "lab": "Defazio Jr., Peter. DMD"
+  },
+  {
+    "id": 1026,
+    "name": "LINDA DUNANTE",
+    "external_id": null,
+    "lab": "Defazio Jr., Peter. DMD"
+  },
+  {
+    "id": 1027,
+    "name": "RICH COHEN",
+    "external_id": null,
+    "lab": "Defazio Jr., Peter. DMD"
+  },
+  {
+    "id": 1028,
+    "name": "THERESA L CUEVAS",
+    "external_id": null,
+    "lab": "Del Amo Dental Group"
+  },
+  {
+    "id": 1029,
+    "name": "SANDRA GYETVAY",
+    "external_id": null,
+    "lab": "Del Amo Dental Group"
+  },
+  {
+    "id": 1030,
+    "name": "MICHELLE ELLIOTT",
+    "external_id": null,
+    "lab": "Del Amo Dental Group"
+  },
+  {
+    "id": 1031,
+    "name": "WEGENER BEVERLY",
+    "external_id": null,
+    "lab": "Del Amo Dental Group"
+  },
+  {
+    "id": 1032,
+    "name": "ROBERT COOK",
+    "external_id": null,
+    "lab": "Del Amo Dental Group"
+  },
+  {
+    "id": 1033,
+    "name": "RUTH RROSWELL",
+    "external_id": null,
+    "lab": "Del Amo Dental Group"
+  },
+  {
+    "id": 1034,
+    "name": "JENNIFER CHEN",
+    "external_id": null,
+    "lab": "Del Amo Dental Group"
+  },
+  {
+    "id": 1035,
+    "name": "NANCY TRUDNOWSKI",
+    "external_id": null,
+    "lab": "Del Amo Dental Group"
+  },
+  {
+    "id": 1036,
+    "name": "VICENTE ROSAS",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 1037,
+    "name": "MISIA CHSUNRNIN",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 1038,
+    "name": "SINAL GORUA",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 1039,
+    "name": "JIMENEZ MIGUEL",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 1040,
+    "name": "MARENO VOLDEZ",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 1041,
+    "name": "SOPHIA BADER",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 1042,
+    "name": "MARO GARCIA",
+    "external_id": null,
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 1043,
+    "name": "MONARREZ DANIEL",
+    "external_id": null,
+    "lab": "Dental Spa & Implant Center of West Covina - RTE J"
+  },
+  {
+    "id": 1044,
+    "name": "BARBATO STEVEN",
+    "external_id": null,
+    "lab": "Dental Spa & Implant Center of West Covina - RTE J"
+  },
+  {
+    "id": 1045,
+    "name": "MORENO REBECCA",
+    "external_id": null,
+    "lab": "Dental Spa & Implant Center of West Covina - RTE J"
+  },
+  {
+    "id": 1046,
+    "name": "RUDA JUDE",
+    "external_id": null,
+    "lab": "Dental Spa & Implant Center of West Covina - RTE J"
+  },
+  {
+    "id": 1047,
+    "name": "MARIA ORTEZ JESUTO",
+    "external_id": null,
+    "lab": "Dentist 4 U"
+  },
+  {
+    "id": 1048,
+    "name": "MARIA SANTOS",
+    "external_id": null,
+    "lab": "Dentist 4 U"
+  },
+  {
+    "id": 1049,
+    "name": "ELIZABETH PEREZ GARCIA",
+    "external_id": null,
+    "lab": "Dentist 4 U"
+  },
+  {
+    "id": 1050,
+    "name": "ELIZABETH CAJUDO",
+    "external_id": null,
+    "lab": "Dentist 4 U"
+  },
+  {
+    "id": 1051,
+    "name": "HERMELINDO MARTINEZ",
+    "external_id": null,
+    "lab": "Dentist 4 U"
+  },
+  {
+    "id": 1052,
+    "name": "ISAVRO MONTOYA RADNGUEL",
+    "external_id": null,
+    "lab": "Dentist 4 U"
+  },
+  {
+    "id": 1053,
+    "name": "STEVON LEWIS",
+    "external_id": null,
+    "lab": "Dentist 4 U"
+  },
+  {
+    "id": 1054,
+    "name": "MIRANDA MIRIAM",
+    "external_id": null,
+    "lab": "Dentist 4 U"
+  },
+  {
+    "id": 1055,
+    "name": "GENORO GARCIA",
+    "external_id": null,
+    "lab": "Dr. Itzel Zuazo - RTE JES"
+  },
+  {
+    "id": 1056,
+    "name": "LIMA LLANAS",
+    "external_id": null,
+    "lab": "Dr. Itzel Zuazo - RTE JES"
+  },
+  {
+    "id": 1057,
+    "name": "HORACIO QUIROGA",
+    "external_id": null,
+    "lab": "Dr. Itzel Zuazo - RTE JES"
+  },
+  {
+    "id": 1058,
+    "name": "ANABEL CORONA",
+    "external_id": null,
+    "lab": "Dr. Itzel Zuazo - RTE JES"
+  },
+  {
+    "id": 1059,
+    "name": "Efrain Hernandez",
+    "external_id": null,
+    "lab": "DR. J"
+  },
+  {
+    "id": 1060,
+    "name": "ROSEMARY MIRANDA",
+    "external_id": null,
+    "lab": "Dr. Russel Nolasco RTE JES"
+  },
+  {
+    "id": 1061,
+    "name": "MITCHELL BURGESS",
+    "external_id": null,
+    "lab": "Dr. Russel Nolasco RTE JES"
+  },
+  {
+    "id": 1062,
+    "name": "STEPHANIE N OMOTOY",
+    "external_id": null,
+    "lab": "Dr. Russel Nolasco RTE JES"
+  },
+  {
+    "id": 1063,
+    "name": "SHERRY SHEPPARD",
+    "external_id": null,
+    "lab": "Dr. Russel Nolasco RTE JES"
+  },
+  {
+    "id": 1064,
+    "name": "ALAN REED",
+    "external_id": null,
+    "lab": "Dr. Russel Nolasco RTE JES"
+  },
+  {
+    "id": 1065,
+    "name": "MONIQUE VALLEJO",
+    "external_id": null,
+    "lab": "Dr. Russel Nolasco RTE JES"
+  },
+  {
+    "id": 1066,
+    "name": "TERRY L SCHISEL",
+    "external_id": null,
+    "lab": "Dr. Russel Nolasco RTE JES"
+  },
+  {
+    "id": 1067,
+    "name": "CHUONG VU",
+    "external_id": null,
+    "lab": "Duong, Hien DDS Inc."
+  },
+  {
+    "id": 1068,
+    "name": "BARBARA MENO",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 1069,
+    "name": "ERIC MATONE",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 1070,
+    "name": "DAVID NOAD",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 1071,
+    "name": "JAMES TAVIBEE",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 1072,
+    "name": "C. Koebler",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 1073,
+    "name": "S. Hesse",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 1074,
+    "name": "ALEXIS SHOULTS LOGAN",
+    "external_id": null,
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 1075,
+    "name": "WENDY COHEN",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 1076,
+    "name": "THOMPSON TERRI",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 1077,
+    "name": "HACKETT JASCOB",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 1078,
+    "name": "NGUYEN JOHN TRUONG",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 1079,
+    "name": "TRAN PHI",
+    "external_id": null,
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 1080,
+    "name": "LINDA BAUMBLATT",
+    "external_id": null,
+    "lab": "Encino Total Dentistry"
+  },
+  {
+    "id": 1081,
+    "name": "THERESA CAOTRENARA",
+    "external_id": null,
+    "lab": "Encino Total Dentistry"
+  },
+  {
+    "id": 1082,
+    "name": "CORNELIO MIREYA",
+    "external_id": null,
+    "lab": "EP Dental Group - Cerritos"
+  },
+  {
+    "id": 1083,
+    "name": "ESTRADA MONTALV LENSEY",
+    "external_id": null,
+    "lab": "EP Dental Group - Cerritos"
+  },
+  {
+    "id": 1084,
+    "name": "SHAMS ZAHRAEI HASSAN",
+    "external_id": null,
+    "lab": "EP Dental Group - Cerritos"
+  },
+  {
+    "id": 1085,
+    "name": "TUAZON KRISTIN",
+    "external_id": null,
+    "lab": "EP Dental Group - Cerritos"
+  },
+  {
+    "id": 1086,
+    "name": "MUNOZ CEASAR",
+    "external_id": null,
+    "lab": "EP Dental Group - Cerritos"
+  },
+  {
+    "id": 1087,
+    "name": "THU PHAM",
+    "external_id": null,
+    "lab": "Euclid Dental Center"
+  },
+  {
+    "id": 1088,
+    "name": "MEGAN VANDEREAPENLENN",
+    "external_id": null,
+    "lab": "Euclid Dental Center"
+  },
+  {
+    "id": 1089,
+    "name": "ERIK HAMM",
+    "external_id": null,
+    "lab": "Euclid Dental Center"
+  },
+  {
+    "id": 1090,
+    "name": "MELISA CUATE",
+    "external_id": "202459",
+    "lab": "F.T.O.C. Dental (Garden Grove)"
+  },
+  {
+    "id": 1091,
+    "name": "DIANA CRUZ",
+    "external_id": "284726",
+    "lab": "F.T.O.C. Dental (Garden Grove)"
+  },
+  {
+    "id": 1092,
+    "name": "SONICE GARCIA",
+    "external_id": "241917",
+    "lab": "F.T.O.C. Dental (Tustin)"
+  },
+  {
+    "id": 1093,
+    "name": "NAJOUA ZARRAD",
+    "external_id": "742501",
+    "lab": "F.T.O.C. Dental (Tustin)"
+  },
+  {
+    "id": 1094,
+    "name": "ROSA GARCIA",
+    "external_id": "249834",
+    "lab": "F.T.O.C. Dental (Tustin)"
+  },
+  {
+    "id": 1095,
+    "name": "MARINA GUTIERREZ DIAZ",
+    "external_id": "285747",
+    "lab": "F.T.O.C. Dental (Tustin)"
+  },
+  {
+    "id": 1096,
+    "name": "ERI HENRY",
+    "external_id": null,
+    "lab": "Family First Dental"
+  },
+  {
+    "id": 1097,
+    "name": "ALYSSA PAJARILLO",
+    "external_id": null,
+    "lab": "Family First Dental"
+  },
+  {
+    "id": 1098,
+    "name": "MARIA SANCHEZ",
+    "external_id": null,
+    "lab": "Family First Dental"
+  },
+  {
+    "id": 1099,
+    "name": "TIMOTHY MCDONEID",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Compton)"
+  },
+  {
+    "id": 1100,
+    "name": "QUCEO LATRIENT",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Compton)"
+  },
+  {
+    "id": 1101,
+    "name": "ROBERT MEKHAIL",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Compton)"
+  },
+  {
+    "id": 1102,
+    "name": "ROXANA GRANADINO",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Los Angeles)"
+  },
+  {
+    "id": 1103,
+    "name": "MARIA SERRANO",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Los Angeles)"
+  },
+  {
+    "id": 1104,
+    "name": "SELENIA MEJIA",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Los Angeles)"
+  },
+  {
+    "id": 1105,
+    "name": "ADRIAN VAZAWEZ",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Los Angeles)"
+  },
+  {
+    "id": 1106,
+    "name": "DAISY AGUILAR",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Los Angeles)"
+  },
+  {
+    "id": 1107,
+    "name": "ERIKA CAMPOS",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Los Angeles)"
+  },
+  {
+    "id": 1108,
+    "name": "ANA MENDEZ",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Los Angeles)"
+  },
+  {
+    "id": 1109,
+    "name": "ELMER HERNANDEZ",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Los Angeles)"
+  },
+  {
+    "id": 1110,
+    "name": "GNMA MARTINEZ",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Los Angeles)"
+  },
+  {
+    "id": 1111,
+    "name": "HUGO YAC",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Los Angeles)"
+  },
+  {
+    "id": 1112,
+    "name": "CAMERON HARRIS",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Wilmington)"
+  },
+  {
+    "id": 1113,
+    "name": "MARIA MACIAS",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Wilmington)"
+  },
+  {
+    "id": 1114,
+    "name": "FERNANDO RODRIGUEZ",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Wilmington)"
+  },
+  {
+    "id": 1115,
+    "name": "JAYSON ESTRADA",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Wilmington)"
+  },
+  {
+    "id": 1116,
+    "name": "LECIE THOMAS",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Wilmington)"
+  },
+  {
+    "id": 1117,
+    "name": "MICAELA DELGADO",
+    "external_id": null,
+    "lab": "Farwest Dental Group (Wilmington)"
+  },
+  {
+    "id": 1118,
+    "name": "HENG LY",
+    "external_id": null,
+    "lab": "First Dental"
+  },
+  {
+    "id": 1119,
+    "name": "ANDY LUONG",
+    "external_id": null,
+    "lab": "Fountain Valley Dental Esthetics"
+  },
+  {
+    "id": 1120,
+    "name": "ERICK SANCHEZ",
+    "external_id": null,
+    "lab": "Good Kids Dental"
+  },
+  {
+    "id": 1121,
+    "name": "ELIZANETH IRIBLE",
+    "external_id": null,
+    "lab": "Good Kids Dental"
+  },
+  {
+    "id": 1122,
+    "name": "ROBERT VILLANUEVA",
+    "external_id": null,
+    "lab": "Haduong Han DDS"
+  },
+  {
+    "id": 1123,
+    "name": "SOFIA GALLEGOS",
+    "external_id": null,
+    "lab": "Haduong Han DDS"
+  },
+  {
+    "id": 1124,
+    "name": "THUY HOANG",
+    "external_id": null,
+    "lab": "Harbor Family Dental"
+  },
+  {
+    "id": 1125,
+    "name": "ASHLEY GROBERT",
+    "external_id": null,
+    "lab": "Healthy Smiles Dental Center"
+  },
+  {
+    "id": 1126,
+    "name": "JOSHA SMITH",
+    "external_id": null,
+    "lab": "Healthy Smiles Dental Center"
+  },
+  {
+    "id": 1127,
+    "name": "MELBERT SEBAYAN",
+    "external_id": null,
+    "lab": "Healthy Smiles Dental Center"
+  },
+  {
+    "id": 1128,
+    "name": "WEI WANG",
+    "external_id": null,
+    "lab": "Healthy Smiles Dental Center"
+  },
+  {
+    "id": 1129,
+    "name": "ANGUE CALAGUA",
+    "external_id": null,
+    "lab": "Healthy Smiles Premier Dental"
+  },
+  {
+    "id": 1130,
+    "name": "ELAINE WEBB",
+    "external_id": null,
+    "lab": "Healthy Smiles Premier Dental"
+  },
+  {
+    "id": 1131,
+    "name": "BRAKHA OMMATYAR",
+    "external_id": null,
+    "lab": "Healthy Smiles Premier Dental"
+  },
+  {
+    "id": 1132,
+    "name": "MIRANDA FELIPE",
+    "external_id": null,
+    "lab": "Healthy Smiles Premier Dental"
+  },
+  {
+    "id": 1133,
+    "name": "SETTLES VERONICA",
+    "external_id": null,
+    "lab": "Healthy Smiles Premier Dental"
+  },
+  {
+    "id": 1134,
+    "name": "JAMES HU",
+    "external_id": null,
+    "lab": "IQ Dental Group"
+  },
+  {
+    "id": 1135,
+    "name": "EDMUND CHAO",
+    "external_id": null,
+    "lab": "IQ Dental Group"
+  },
+  {
+    "id": 1136,
+    "name": "CHEN NAIHONG",
+    "external_id": null,
+    "lab": "IQ Dental Group"
+  },
+  {
+    "id": 1137,
+    "name": "ED MCCULLOUGH",
+    "external_id": null,
+    "lab": "IQ Dental Group"
+  },
+  {
+    "id": 1138,
+    "name": "MARSHELLE SHELLY DOLL",
+    "external_id": null,
+    "lab": "IQ Dental Group"
+  },
+  {
+    "id": 1139,
+    "name": "CARRIE S GILLE",
+    "external_id": null,
+    "lab": "IQ Dental Group"
+  },
+  {
+    "id": 1140,
+    "name": "JENNIFER HSU",
+    "external_id": null,
+    "lab": "IQ Dental Group"
+  },
+  {
+    "id": 1141,
+    "name": "DENNISE SALGUERO MAYORG",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 1142,
+    "name": "ROSA GUTIERREZ",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 1143,
+    "name": "MARIA RANGEL",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 1144,
+    "name": "ARACELI GARCIA",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 1145,
+    "name": "AJKIP E PELLUM",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 1146,
+    "name": "ISABEL BAITAZAR",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 1147,
+    "name": "MARIA CHAVEZ",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 1148,
+    "name": "JESSICA P ADAME",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 1149,
+    "name": "SALGUERO MAVORGA DENNIS",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 1150,
+    "name": "BRITTANIE HART",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 1151,
+    "name": "JORGE D AZUCENA",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 1152,
+    "name": "HINOJASA AMANDA",
+    "external_id": null,
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 1153,
+    "name": "BAO TOM",
+    "external_id": null,
+    "lab": "iSmiles Dentistry"
+  },
+  {
+    "id": 1154,
+    "name": "NGUYEN HAI",
+    "external_id": null,
+    "lab": "iSmiles Dentistry"
+  },
+  {
+    "id": 1155,
+    "name": "MILLER JACOB",
+    "external_id": null,
+    "lab": "iSmiles Dentistry"
+  },
+  {
+    "id": 1156,
+    "name": "ORTEGA VANESSA",
+    "external_id": null,
+    "lab": "John J. Furesh Dental Group"
+  },
+  {
+    "id": 1157,
+    "name": "HARI HUONG REMPF",
+    "external_id": null,
+    "lab": "K & P Dental"
+  },
+  {
+    "id": 1158,
+    "name": "BINH NGUYEN",
+    "external_id": null,
+    "lab": "K & P Dental"
+  },
+  {
+    "id": 1159,
+    "name": "TU THANH NGUYEN",
+    "external_id": null,
+    "lab": "K & P Dental"
+  },
+  {
+    "id": 1160,
+    "name": "BRANDY PATRICK",
+    "external_id": null,
+    "lab": "Kids & Adults Dental Care (Compton)"
+  },
+  {
+    "id": 1161,
+    "name": "MARCELA ALVARADO",
+    "external_id": null,
+    "lab": "Kids & Adults Dental Care (Compton)"
+  },
+  {
+    "id": 1162,
+    "name": "Rosalina Rodriguez",
+    "external_id": null,
+    "lab": "Kids & Adults Dental Care (Compton)"
+  },
+  {
+    "id": 1163,
+    "name": "LUZ ALFARO",
+    "external_id": null,
+    "lab": "Kids & Adults Dental Care (Huntington Park)"
+  },
+  {
+    "id": 1164,
+    "name": "YOLANDA GARCIA",
+    "external_id": null,
+    "lab": "Kids & Adults Dental Care (Huntington Park)"
+  },
+  {
+    "id": 1165,
+    "name": "Maria Leyva",
+    "external_id": null,
+    "lab": "Kids & Adults Dental Care (Huntington Park)"
+  },
+  {
+    "id": 1166,
+    "name": "EDSEL MORE",
+    "external_id": null,
+    "lab": "Kids Care Dentistry"
+  },
+  {
+    "id": 1167,
+    "name": "CESAREO VALENCIA MACHOR",
+    "external_id": null,
+    "lab": "Kids Care Dentistry"
+  },
+  {
+    "id": 1168,
+    "name": "STEPHANIE AGUILAR",
+    "external_id": null,
+    "lab": "Kids Care Dentistry"
+  },
+  {
+    "id": 1169,
+    "name": "LUZ FELIX",
+    "external_id": null,
+    "lab": "Kids Care Dentistry"
+  },
+  {
+    "id": 1170,
+    "name": "MARIA DYQUE MENDOZA",
+    "external_id": null,
+    "lab": "Kids Care Dentistry"
+  },
+  {
+    "id": 1171,
+    "name": "SHAMS AIZIDAN",
+    "external_id": null,
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 1172,
+    "name": "WAHED MIR",
+    "external_id": null,
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 1173,
+    "name": "LAYTH ALOBAJDI",
+    "external_id": null,
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 1174,
+    "name": "AMIH AMINULLAR",
+    "external_id": null,
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 1175,
+    "name": "TRACY TRANG NGUYEN",
+    "external_id": null,
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 1176,
+    "name": "CALLEJ MOISES",
+    "external_id": null,
+    "lab": "La Vid Dental Lab"
+  },
+  {
+    "id": 1177,
+    "name": "FLORES HECTOR",
+    "external_id": null,
+    "lab": "La Vid Dental Lab"
+  },
+  {
+    "id": 1178,
+    "name": "ANA RODRIGUEZ",
+    "external_id": null,
+    "lab": "La Vid Dental Lab"
+  },
+  {
+    "id": 1179,
+    "name": "MADISON SHELISA",
+    "external_id": null,
+    "lab": "Le, Nick DDS"
+  },
+  {
+    "id": 1180,
+    "name": "YEP CAROLINE",
+    "external_id": null,
+    "lab": "Le, Nick DDS"
+  },
+  {
+    "id": 1181,
+    "name": "PATT PATTISOUR",
+    "external_id": null,
+    "lab": "Linda L. Ng, D.D.S. Inc."
+  },
+  {
+    "id": 1182,
+    "name": "TUAN MINH DOAN",
+    "external_id": null,
+    "lab": "Linh Hoang Nguyen DDS"
+  },
+  {
+    "id": 1183,
+    "name": "THAI SONNY",
+    "external_id": null,
+    "lab": "Linh Hoang Nguyen DDS"
+  },
+  {
+    "id": 1184,
+    "name": "AMBER LICANO",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 1185,
+    "name": "SOPHIA QUINTANA",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 1186,
+    "name": "TYLER RYDER",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 1187,
+    "name": "VIRGINIA COLE",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 1188,
+    "name": "LAMYEE SINGAM",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 1189,
+    "name": "MORIS GALVEZ",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 1190,
+    "name": "DANA RIDDICK",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 1191,
+    "name": "ARTEKA ROBINSON",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 1192,
+    "name": "LINDA NULANZ",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 1193,
+    "name": "FRED SPARREVOHN",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 1194,
+    "name": "TAYLOR BUDA",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 1195,
+    "name": "MATHEW MADRZYK",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 1196,
+    "name": "TORRES ARMANDO",
+    "external_id": null,
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 1197,
+    "name": "GAY NGUYEN",
+    "external_id": null,
+    "lab": "Los Alisos Dentistry"
+  },
+  {
+    "id": 1198,
+    "name": "BASTANHAGH SEDIGHEH",
+    "external_id": null,
+    "lab": "Los Alisos Dentistry"
+  },
+  {
+    "id": 1199,
+    "name": "JOHN PARGEE",
+    "external_id": null,
+    "lab": "Los Alisos Dentistry"
+  },
+  {
+    "id": 1200,
+    "name": "MIGUEL VILLA JE",
+    "external_id": "9270",
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 1201,
+    "name": "ARAMZA FERNANDO",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 1202,
+    "name": "AGUILAR ELSA",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 1203,
+    "name": "ELENA PAMPAGNO",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 1204,
+    "name": "ALICIA GARCIA",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 1205,
+    "name": "CRISTINA AZPEITA",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 1206,
+    "name": "CORNISHA HALL",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 1207,
+    "name": "ABEL LBARRA",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 1208,
+    "name": "OSEAN REYNOSO",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 1209,
+    "name": "SHIRLYN RHODES",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 1210,
+    "name": "ROSA CONTRERAS",
+    "external_id": "008609",
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 1211,
+    "name": "RANDY CHAVES",
+    "external_id": null,
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 1212,
+    "name": "ANGELA GRAVES",
+    "external_id": null,
+    "lab": "Majestic Dental"
+  },
+  {
+    "id": 1213,
+    "name": "PARIS KIRSCHBAUER",
+    "external_id": null,
+    "lab": "Majestic Dental"
+  },
+  {
+    "id": 1214,
+    "name": "HENRY CHEN",
+    "external_id": null,
+    "lab": "Maranatha Dental"
+  },
+  {
+    "id": 1215,
+    "name": "JONATHAN NGUYEN",
+    "external_id": null,
+    "lab": "Maranatha Dental"
+  },
+  {
+    "id": 1216,
+    "name": "MAHMOOD MIRBAGHERI",
+    "external_id": null,
+    "lab": "Maranatha Dental"
+  },
+  {
+    "id": 1217,
+    "name": "SANDRA MARTINEZ",
+    "external_id": null,
+    "lab": "Maranatha Dental"
+  },
+  {
+    "id": 1218,
+    "name": "NINE CHANG",
+    "external_id": null,
+    "lab": "Maranatha Dental"
+  },
+  {
+    "id": 1219,
+    "name": "JOHN PANGELINAN",
+    "external_id": null,
+    "lab": "Maranatha Dental"
+  },
+  {
+    "id": 1220,
+    "name": "CHERYL TIANGCO",
+    "external_id": null,
+    "lab": "Marcelo G. Moncada DDS"
+  },
+  {
+    "id": 1221,
+    "name": "NUNEZ SOZA JANET",
+    "external_id": null,
+    "lab": "Mehta Dental Group - (Anaheim)"
+  },
+  {
+    "id": 1222,
+    "name": "WINSTEAD MARELYN",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Brea) - RTE - JES"
+  },
+  {
+    "id": 1223,
+    "name": "JOHN GAINES",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Los Alamitos)"
+  },
+  {
+    "id": 1224,
+    "name": "WILSON AUBREANA",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Los Alamitos)"
+  },
+  {
+    "id": 1225,
+    "name": "ROSA COBOS",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Tustin)"
+  },
+  {
+    "id": 1226,
+    "name": "Pamela Stanley",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Tustin)"
+  },
+  {
+    "id": 1227,
+    "name": "WYLIE REHMERT",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Tustin)"
+  },
+  {
+    "id": 1228,
+    "name": "NIXON DONALD",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Tustin)"
+  },
+  {
+    "id": 1229,
+    "name": "GUERRA ANGEL",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Tustin)"
+  },
+  {
+    "id": 1230,
+    "name": "SHUI CHRISTINE",
+    "external_id": null,
+    "lab": "Mehta Dental Group (Tustin)"
+  },
+  {
+    "id": 1231,
+    "name": "JHON CORDTS",
+    "external_id": null,
+    "lab": "Mesa Dental Center"
+  },
+  {
+    "id": 1232,
+    "name": "HOOD JASON",
+    "external_id": null,
+    "lab": "Mesa Dental Center"
+  },
+  {
+    "id": 1233,
+    "name": "MARK ROMERO",
+    "external_id": null,
+    "lab": "Mesa Dental Center"
+  },
+  {
+    "id": 1234,
+    "name": "ANTONIA PITTMAN",
+    "external_id": null,
+    "lab": "Michelsen Dental"
+  },
+  {
+    "id": 1235,
+    "name": "SAJCHE OSCAR",
+    "external_id": null,
+    "lab": "Mindfulness Dental"
+  },
+  {
+    "id": 1236,
+    "name": "DUNG PHAN",
+    "external_id": null,
+    "lab": "My Care Dental"
+  },
+  {
+    "id": 1237,
+    "name": "BICH VAN TRAN",
+    "external_id": null,
+    "lab": "My Care Dental"
+  },
+  {
+    "id": 1238,
+    "name": "HUY GIAO NGUYEN",
+    "external_id": null,
+    "lab": "My Care Dental"
+  },
+  {
+    "id": 1239,
+    "name": "PHAM LUONG",
+    "external_id": null,
+    "lab": "My Care Dental"
+  },
+  {
+    "id": 1240,
+    "name": "FANG SUN",
+    "external_id": null,
+    "lab": "My OC Dental Care"
+  },
+  {
+    "id": 1241,
+    "name": "ANDREA PARR",
+    "external_id": null,
+    "lab": "My OC Dental Care"
+  },
+  {
+    "id": 1242,
+    "name": "CHRIS VU",
+    "external_id": null,
+    "lab": "Nathan Nguyen DDS"
+  },
+  {
+    "id": 1243,
+    "name": "CHHUNLY PIN",
+    "external_id": null,
+    "lab": "Nathan Nguyen DDS"
+  },
+  {
+    "id": 1244,
+    "name": "MARIA PHUONG NGUYEN",
+    "external_id": null,
+    "lab": "Nathan Nguyen DDS"
+  },
+  {
+    "id": 1245,
+    "name": "BRANDON DOAN",
+    "external_id": null,
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1246,
+    "name": "HANH PHAM",
+    "external_id": "2635",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1247,
+    "name": "PHAM GIAM",
+    "external_id": "2396",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1248,
+    "name": "JOE LE",
+    "external_id": null,
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1249,
+    "name": "NGOC TRAN",
+    "external_id": "2261",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1250,
+    "name": "OANH LE",
+    "external_id": "244",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1251,
+    "name": "SUZAN FARMER",
+    "external_id": "3084",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1252,
+    "name": "HY NGUYEN",
+    "external_id": "5773",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1253,
+    "name": "MINH HA NGUYEN",
+    "external_id": "5449",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1254,
+    "name": "MAI HOANG VU",
+    "external_id": "2716",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1255,
+    "name": "HOANG MY TRAN",
+    "external_id": "6518",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1256,
+    "name": "NGUYEN VU 1273",
+    "external_id": null,
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1257,
+    "name": "TAN TRAN",
+    "external_id": "2624",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1258,
+    "name": "AU PHUONG 5783",
+    "external_id": null,
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1259,
+    "name": "KOBUKI LITA 2898",
+    "external_id": null,
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1260,
+    "name": "TRAN LINH",
+    "external_id": "24",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1261,
+    "name": "HO THANH",
+    "external_id": null,
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1262,
+    "name": "CAO LUY 6712",
+    "external_id": null,
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 1263,
+    "name": "DANIEL MUNOZ",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 1264,
+    "name": "CAMPOS JUAN",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 1265,
+    "name": "JIMMIE CRUZ",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 1266,
+    "name": "ELIZEH ALIAKBARZADOH",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 1267,
+    "name": "ALEX MONCADO",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 1268,
+    "name": "FIGUERA CHRISTOPHER",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 1269,
+    "name": "XUAN HUYNH",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 1270,
+    "name": "JOSE ALFREDO GOMEZ",
+    "external_id": null,
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 1271,
+    "name": "SHARABI TSVIA",
+    "external_id": null,
+    "lab": "Olshansky Victoria DDS"
+  },
+  {
+    "id": 1272,
+    "name": "SLEEM HALA",
+    "external_id": null,
+    "lab": "Olshansky Victoria DDS"
+  },
+  {
+    "id": 1273,
+    "name": "GUTMAN BORIS",
+    "external_id": null,
+    "lab": "Olshansky Victoria DDS"
+  },
+  {
+    "id": 1274,
+    "name": "AKSELORD ALEX",
+    "external_id": null,
+    "lab": "Olshansky Victoria DDS"
+  },
+  {
+    "id": 1275,
+    "name": "SHEYNIS GENE",
+    "external_id": null,
+    "lab": "Olshansky Victoria DDS"
+  },
+  {
+    "id": 1276,
+    "name": "UMALI JOANNA",
+    "external_id": null,
+    "lab": "Omnia Dental (Chino Hills ) - RTE JES"
+  },
+  {
+    "id": 1277,
+    "name": "IMPERIAL RICHARD",
+    "external_id": null,
+    "lab": "Omnia Dental (Chino Hills ) - RTE JES"
+  },
+  {
+    "id": 1278,
+    "name": "BELL MARIAN",
+    "external_id": null,
+    "lab": "Omnia Dental (Chino Hills ) - RTE JES"
+  },
+  {
+    "id": 1279,
+    "name": "RUSSELL LAKE",
+    "external_id": null,
+    "lab": "Omnia Dental (Chino Hills ) - RTE JES"
+  },
+  {
+    "id": 1280,
+    "name": "Imelda Martinez",
+    "external_id": null,
+    "lab": "Open Door Dental"
+  },
+  {
+    "id": 1281,
+    "name": "MASOUEL HAKIMI",
+    "external_id": null,
+    "lab": "Open Door Dental"
+  },
+  {
+    "id": 1282,
+    "name": "MARIA ROMERO",
+    "external_id": null,
+    "lab": "Open Door Dental"
+  },
+  {
+    "id": 1283,
+    "name": "BENJAMIN STEELE",
+    "external_id": null,
+    "lab": "Open Door Dental"
+  },
+  {
+    "id": 1284,
+    "name": "AMANDA WASSERMAN",
+    "external_id": null,
+    "lab": "Orange Periodontics and Dental Implantology"
+  },
+  {
+    "id": 1285,
+    "name": "SANDRA HERNANDEZ",
+    "external_id": null,
+    "lab": "Orange Periodontics and Dental Implantology"
+  },
+  {
+    "id": 1286,
+    "name": "OSCAR RODRIGUEZ",
+    "external_id": null,
+    "lab": "Oxy Dental (East Hollywood on Vermont)"
+  },
+  {
+    "id": 1287,
+    "name": "DIAZ JOSE",
+    "external_id": null,
+    "lab": "Oxy Dental (East Hollywood on Vermont)"
+  },
+  {
+    "id": 1288,
+    "name": "DAVID MEJIA",
+    "external_id": null,
+    "lab": "Oxy Dental (East Hollywood on Vermont)"
+  },
+  {
+    "id": 1289,
+    "name": "IDALIA BONILLA",
+    "external_id": null,
+    "lab": "Oxy Dental (East Hollywood on Vermont)"
+  },
+  {
+    "id": 1290,
+    "name": "KATIE BECK",
+    "external_id": null,
+    "lab": "Oxy Dental (East Hollywood on Vermont)"
+  },
+  {
+    "id": 1291,
+    "name": "LIMA HUGO",
+    "external_id": null,
+    "lab": "Oxy Dental (East Hollywood on Vermont)"
+  },
+  {
+    "id": 1292,
+    "name": "CASTANEDA HERMINDA",
+    "external_id": null,
+    "lab": "Oxy Dental (East Hollywood on Vermont)"
+  },
+  {
+    "id": 1293,
+    "name": "RIOS MARLENY",
+    "external_id": null,
+    "lab": "Oxy Dental (East Hollywood on Vermont)"
+  },
+  {
+    "id": 1294,
+    "name": "QUINONEZ DENNIS",
+    "external_id": null,
+    "lab": "Oxy Dental (East Hollywood on Vermont)"
+  },
+  {
+    "id": 1295,
+    "name": "CAMANERO BYRON",
+    "external_id": null,
+    "lab": "Pacific Family Dental Office"
+  },
+  {
+    "id": 1296,
+    "name": "MARTHA MEDINA",
+    "external_id": null,
+    "lab": "Pacific Ocean Dental Group"
+  },
+  {
+    "id": 1297,
+    "name": "JAMES BRANSCOMB",
+    "external_id": null,
+    "lab": "PALM DESERT- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1298,
+    "name": "CHARLES CHRISTY",
+    "external_id": null,
+    "lab": "PALM DESERT- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1299,
+    "name": "TABOUDU ANDREA",
+    "external_id": null,
+    "lab": "PALM DESERT- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1300,
+    "name": "VERONICA GOMEZ",
+    "external_id": null,
+    "lab": "PALM DESERT- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1301,
+    "name": "KRISTIAN RADEV",
+    "external_id": null,
+    "lab": "PALM DESERT- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1302,
+    "name": "ARCINIEGA BRYAN",
+    "external_id": null,
+    "lab": "Palmdale Total Dentistry"
+  },
+  {
+    "id": 1303,
+    "name": "CHEWNING JOEL",
+    "external_id": null,
+    "lab": "Peace Kim"
+  },
+  {
+    "id": 1304,
+    "name": "HUDNALL MATHEW",
+    "external_id": null,
+    "lab": "Peace Kim"
+  },
+  {
+    "id": 1305,
+    "name": "AUER ROGER",
+    "external_id": null,
+    "lab": "Peace Kim"
+  },
+  {
+    "id": 1306,
+    "name": "SALLOUM NABIL",
+    "external_id": null,
+    "lab": "Peace Kim"
+  },
+  {
+    "id": 1307,
+    "name": "RUIZ JOEL",
+    "external_id": null,
+    "lab": "Peace Kim"
+  },
+  {
+    "id": 1308,
+    "name": "CASILLAS JOSE",
+    "external_id": null,
+    "lab": "Pearly Smile Dental"
+  },
+  {
+    "id": 1309,
+    "name": "SOSA RENEE",
+    "external_id": null,
+    "lab": "Peter Tran DDS"
+  },
+  {
+    "id": 1310,
+    "name": "JOSE HERERRA",
+    "external_id": null,
+    "lab": "Peter Tran DDS"
+  },
+  {
+    "id": 1311,
+    "name": "JESUS RENDON",
+    "external_id": null,
+    "lab": "Petri Dental"
+  },
+  {
+    "id": 1312,
+    "name": "ARJOLO SINO",
+    "external_id": null,
+    "lab": "Petri Dental"
+  },
+  {
+    "id": 1313,
+    "name": "Daisaburo Matsuura",
+    "external_id": null,
+    "lab": "Polaris Dental Care"
+  },
+  {
+    "id": 1314,
+    "name": "YVETTE PEREZ",
+    "external_id": null,
+    "lab": "Precision Dental"
+  },
+  {
+    "id": 1315,
+    "name": "SCOTTIE TUAN NGUYEN",
+    "external_id": null,
+    "lab": "Precision Dental"
+  },
+  {
+    "id": 1316,
+    "name": "CHRISTINA DO",
+    "external_id": null,
+    "lab": "Precision Dental"
+  },
+  {
+    "id": 1317,
+    "name": "DAVID DUNN",
+    "external_id": null,
+    "lab": "Precision Dental"
+  },
+  {
+    "id": 1318,
+    "name": "KRISTEN WOO",
+    "external_id": null,
+    "lab": "Premier Palm Dental"
+  },
+  {
+    "id": 1319,
+    "name": "HAVOK WHITSON",
+    "external_id": null,
+    "lab": "Premier Palm Dental"
+  },
+  {
+    "id": 1320,
+    "name": "ANTHONY ROMERO",
+    "external_id": null,
+    "lab": "Premier Palm Dental"
+  },
+  {
+    "id": 1321,
+    "name": "MAHARIA AWKIT",
+    "external_id": null,
+    "lab": "Quick Silver Dental Laboratories, INC."
+  },
+  {
+    "id": 1322,
+    "name": "LATIFI RAIM",
+    "external_id": null,
+    "lab": "Quick Silver Dental Laboratories, INC."
+  },
+  {
+    "id": 1323,
+    "name": "MIRZA TIMUR",
+    "external_id": null,
+    "lab": "Quick Silver Dental Laboratories, INC."
+  },
+  {
+    "id": 1324,
+    "name": "VEGA ANGELICA",
+    "external_id": null,
+    "lab": "Quick Silver Dental Laboratories, INC."
+  },
+  {
+    "id": 1325,
+    "name": "MAHAR KADMANI",
+    "external_id": null,
+    "lab": "Quick Silver Dental Laboratories, INC."
+  },
+  {
+    "id": 1326,
+    "name": "TUAN NGUYEN",
+    "external_id": null,
+    "lab": "Quynhchau Le Dental Office"
+  },
+  {
+    "id": 1327,
+    "name": "VU DOROTHY",
+    "external_id": null,
+    "lab": "Quynhchau Le Dental Office"
+  },
+  {
+    "id": 1328,
+    "name": "TRAN MAI",
+    "external_id": null,
+    "lab": "Quynhchau Le Dental Office"
+  },
+  {
+    "id": 1329,
+    "name": "LISA DENNIS-TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1330,
+    "name": "KEITH MONDAY - TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1331,
+    "name": "LESLIE ABRAM-TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1332,
+    "name": "DIRK HILL",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1333,
+    "name": "CHAD YEARGAIN",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1334,
+    "name": "CAROL NORRIS-TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1335,
+    "name": "LA DONNA LAWRENCE RUFFIN-TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1336,
+    "name": "WALLACE WEAVER - TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1337,
+    "name": "EILEEN PIRKUK",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1338,
+    "name": "AMBER PANDY-TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1339,
+    "name": "REBECCA QUINTERO-TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1340,
+    "name": "KATE ANTOSSIAN-TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1341,
+    "name": "KRYSTLE ALMIRANEZ-TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1342,
+    "name": "ROSALBA CRUZ",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1343,
+    "name": "ROY MARTINEZ-TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1344,
+    "name": "MAO NGUYEN - TD",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1345,
+    "name": "MENDIRIL SAMANTHA",
+    "external_id": null,
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 1346,
+    "name": "GREGG WOLFF",
+    "external_id": null,
+    "lab": "RANCHO MIRAGE- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1347,
+    "name": "LAURENCE OBIRIEN",
+    "external_id": null,
+    "lab": "RANCHO MIRAGE- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1348,
+    "name": "JOSEPH EDWARD SCHNARR",
+    "external_id": null,
+    "lab": "RANCHO MIRAGE- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1349,
+    "name": "MEGAN WARD",
+    "external_id": null,
+    "lab": "RANCHO MIRAGE- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1350,
+    "name": "CONNOR BUSH",
+    "external_id": null,
+    "lab": "RANCHO MIRAGE- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1351,
+    "name": "BRETT JONES",
+    "external_id": null,
+    "lab": "RANCHO MIRAGE- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1352,
+    "name": "VANESSA BLANDON",
+    "external_id": null,
+    "lab": "RANCHO MIRAGE- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1353,
+    "name": "MARIA CASTRO",
+    "external_id": null,
+    "lab": "RANCHO MIRAGE- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1354,
+    "name": "JUAN MIRELES",
+    "external_id": null,
+    "lab": "RANCHO MIRAGE- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1355,
+    "name": "SIMMONS VALERIE",
+    "external_id": null,
+    "lab": "Richard H Baldwin, D.M.D."
+  },
+  {
+    "id": 1356,
+    "name": "PARKER READ",
+    "external_id": null,
+    "lab": "Richard H Baldwin, D.M.D."
+  },
+  {
+    "id": 1357,
+    "name": "ASHTON JOHN",
+    "external_id": null,
+    "lab": "Richard H Baldwin, D.M.D."
+  },
+  {
+    "id": 1358,
+    "name": "JESSE RANGEL",
+    "external_id": null,
+    "lab": "Rocedent Family Dental - EG"
+  },
+  {
+    "id": 1359,
+    "name": "DENNISE CASHMAN",
+    "external_id": null,
+    "lab": "Rocedent Family Dental - EG"
+  },
+  {
+    "id": 1360,
+    "name": "LORENA CONTRERAS",
+    "external_id": null,
+    "lab": "Rocedent Family Dental - EG"
+  },
+  {
+    "id": 1361,
+    "name": "SANDRA AGUDELO",
+    "external_id": null,
+    "lab": "Rocedent Family Dental - EG"
+  },
+  {
+    "id": 1362,
+    "name": "IVANE GONZALEZ",
+    "external_id": null,
+    "lab": "Rosedale Dental Care Group"
+  },
+  {
+    "id": 1363,
+    "name": "VAKIA PATTERSON",
+    "external_id": null,
+    "lab": "Rosy Dental"
+  },
+  {
+    "id": 1364,
+    "name": "JESSICA SAPIEN",
+    "external_id": null,
+    "lab": "Rosy Dental"
+  },
+  {
+    "id": 1365,
+    "name": "SAYDA JR",
+    "external_id": null,
+    "lab": "Ruben Jr - LAB (Huntington Park)"
+  },
+  {
+    "id": 1366,
+    "name": "OSMAN JR",
+    "external_id": null,
+    "lab": "Ruben Jr - LAB (Huntington Park)"
+  },
+  {
+    "id": 1367,
+    "name": "RICHARD RANGEL",
+    "external_id": null,
+    "lab": "Rubi Montejano DDS"
+  },
+  {
+    "id": 1368,
+    "name": "DEBRA SOLORIO",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1369,
+    "name": "HUNTER GARCIA",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1370,
+    "name": "DAWN WELLS",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1371,
+    "name": "JOSHUA STACHOWIAK",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1372,
+    "name": "ANA ORELLANA",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1373,
+    "name": "KAREN E LEMME",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1374,
+    "name": "KATHLEEN KIRKHOFER",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1375,
+    "name": "ERIKA M NERIA",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1376,
+    "name": "BARBARA ZAMUDIO",
+    "external_id": null,
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 1377,
+    "name": "PETER TARANTINO",
+    "external_id": null,
+    "lab": "San Diego Dental Lounge"
+  },
+  {
+    "id": 1378,
+    "name": "VIRGINIA CURTISS",
+    "external_id": null,
+    "lab": "San Diego Dental Lounge"
+  },
+  {
+    "id": 1379,
+    "name": "MOHAMED ABOOD",
+    "external_id": null,
+    "lab": "San Diego Dental Lounge"
+  },
+  {
+    "id": 1380,
+    "name": "STROBEL KADEN",
+    "external_id": null,
+    "lab": "San Diego Dental Lounge"
+  },
+  {
+    "id": 1381,
+    "name": "IRIS CAMONA",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1382,
+    "name": "CHRISTINE LEE",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1383,
+    "name": "GABRIELA HERNANDEZ",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1384,
+    "name": "CHRISTIAN GOMEZ",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1385,
+    "name": "JOSE GOMEZ",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1386,
+    "name": "LUZ RODAS",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1387,
+    "name": "OSWALDO ERREGUIN",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1388,
+    "name": "CLAUDIA MORALES",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1389,
+    "name": "EVA OLMOS",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1390,
+    "name": "JANETH LOPEZ",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1391,
+    "name": "RAFAEL MORALES",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1392,
+    "name": "CARLOS HERNANDEZ",
+    "external_id": "54043",
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1393,
+    "name": "FERNANDO CORAL",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1394,
+    "name": "JONATHAN BANUELOS",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1395,
+    "name": "ESTEBAN CRUZ",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1396,
+    "name": "AURELIO ROSALES PATINO",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1397,
+    "name": "JORGE SANCHEZ",
+    "external_id": null,
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 1398,
+    "name": "JESUS NUNEZ",
+    "external_id": "2066",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 1399,
+    "name": "MARIA PARTICIA",
+    "external_id": "7477",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 1400,
+    "name": "NICOLE SCHECK",
+    "external_id": "15715",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 1401,
+    "name": "JOSE SANCHEZ",
+    "external_id": null,
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 1402,
+    "name": "MARTIN NAVANO",
+    "external_id": null,
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 1403,
+    "name": "OLIVIA AMADOR",
+    "external_id": "2051",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 1404,
+    "name": "WENDY ALONSO",
+    "external_id": null,
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 1405,
+    "name": "TERESA FLORES",
+    "external_id": null,
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 1406,
+    "name": "LOPEZ CYNTHIA",
+    "external_id": null,
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 1407,
+    "name": "SAMBO GLESLY",
+    "external_id": null,
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 1408,
+    "name": "RANDY POLK",
+    "external_id": null,
+    "lab": "Santa Fe Family Dental Center"
+  },
+  {
+    "id": 1409,
+    "name": "CRAWFORD MAUREEN",
+    "external_id": null,
+    "lab": "Serenity Dental Spa"
+  },
+  {
+    "id": 1410,
+    "name": "MANZANILLA PATRICIA",
+    "external_id": null,
+    "lab": "Serenity Dental Spa"
+  },
+  {
+    "id": 1411,
+    "name": "NGUYEN CHI",
+    "external_id": null,
+    "lab": "SGTD Global Dental Center"
+  },
+  {
+    "id": 1412,
+    "name": "VIVIAN TRAN",
+    "external_id": null,
+    "lab": "SGTD Global Dental Center"
+  },
+  {
+    "id": 1413,
+    "name": "TUYET QUACH",
+    "external_id": null,
+    "lab": "SGTD Global Dental Center"
+  },
+  {
+    "id": 1414,
+    "name": "VU LUYEN",
+    "external_id": null,
+    "lab": "SGTD Global Dental Center"
+  },
+  {
+    "id": 1415,
+    "name": "MORALES IDSEL",
+    "external_id": null,
+    "lab": "Simply Dentistry"
+  },
+  {
+    "id": 1416,
+    "name": "PATTON BLAINE",
+    "external_id": null,
+    "lab": "Simply Dentistry"
+  },
+  {
+    "id": 1417,
+    "name": "VAZQUEZ FELIPE",
+    "external_id": null,
+    "lab": "Simply Dentistry"
+  },
+  {
+    "id": 1418,
+    "name": "LAAKANIEMI KAREN",
+    "external_id": null,
+    "lab": "Simply Dentistry"
+  },
+  {
+    "id": 1419,
+    "name": "SILVIA RUIZ",
+    "external_id": null,
+    "lab": "Simply Dentistry"
+  },
+  {
+    "id": 1420,
+    "name": "CHEN RICKY",
+    "external_id": null,
+    "lab": "Simply Dentistry"
+  },
+  {
+    "id": 1421,
+    "name": "HUYNH JOHNNY",
+    "external_id": null,
+    "lab": "Simply Dentistry"
+  },
+  {
+    "id": 1422,
+    "name": "LOUIS MAUJI",
+    "external_id": null,
+    "lab": "Smile San Clemente"
+  },
+  {
+    "id": 1423,
+    "name": "MARY BARKER",
+    "external_id": null,
+    "lab": "Smile San Clemente"
+  },
+  {
+    "id": 1424,
+    "name": "PATRICA RUTH",
+    "external_id": null,
+    "lab": "Smile San Clemente"
+  },
+  {
+    "id": 1425,
+    "name": "SHANNA TAKAYAMA",
+    "external_id": null,
+    "lab": "Smile San Clemente"
+  },
+  {
+    "id": 1426,
+    "name": "ANTONIO AGUILAR",
+    "external_id": null,
+    "lab": "Smile San Clemente"
+  },
+  {
+    "id": 1427,
+    "name": "ERIC JOHNSON",
+    "external_id": null,
+    "lab": "Smile San Clemente"
+  },
+  {
+    "id": 1428,
+    "name": "BOB MARTINEZ",
+    "external_id": null,
+    "lab": "Smile San Clemente"
+  },
+  {
+    "id": 1429,
+    "name": "CYRUS NASSERI",
+    "external_id": null,
+    "lab": "Smile San Clemente"
+  },
+  {
+    "id": 1430,
+    "name": "MARTINEZ ROBERT",
+    "external_id": null,
+    "lab": "Smile San Clemente"
+  },
+  {
+    "id": 1431,
+    "name": "MELISSA LUNAR",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 1432,
+    "name": "GUADALUPE MAGDALENO",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 1433,
+    "name": "ADOLFO SOTO",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 1434,
+    "name": "MARIA RUBALCAVA",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 1435,
+    "name": "CECILIA MELGOZA",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 1436,
+    "name": "GLADIS QUIRARTE",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 1437,
+    "name": "MANUEL GOMEZ",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 1438,
+    "name": "HOLY BREECHEN",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 1439,
+    "name": "JOEL MORENO",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 1440,
+    "name": "LAGUNAS ARTURO",
+    "external_id": null,
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 1441,
+    "name": "DUSTIN MIXER",
+    "external_id": "8301",
+    "lab": "Smiles by Alex"
+  },
+  {
+    "id": 1442,
+    "name": "DAVID MIELE",
+    "external_id": null,
+    "lab": "Smiles of San Marcos - RTE - MES"
+  },
+  {
+    "id": 1443,
+    "name": "AURELIO MARIN AVILA",
+    "external_id": null,
+    "lab": "Smiles of San Marcos - RTE - MES"
+  },
+  {
+    "id": 1444,
+    "name": "MAURICIO CASTILLO",
+    "external_id": null,
+    "lab": "Smiles of San Marcos - RTE - MES"
+  },
+  {
+    "id": 1445,
+    "name": "CRAIG NICHOLSON",
+    "external_id": null,
+    "lab": "Smiles of San Marcos - RTE - MES"
+  },
+  {
+    "id": 1446,
+    "name": "ESTUARDO MANGADID",
+    "external_id": null,
+    "lab": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 1447,
+    "name": "GLORIA GARCIA",
+    "external_id": null,
+    "lab": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 1448,
+    "name": "YAJAIRA SANCHEZ",
+    "external_id": null,
+    "lab": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 1449,
+    "name": "MARTHA NAVARRO",
+    "external_id": null,
+    "lab": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 1450,
+    "name": "AHMADREZA JAVANMARDI",
+    "external_id": null,
+    "lab": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 1451,
+    "name": "VALERIO GARCIA HERNANDEZ",
+    "external_id": null,
+    "lab": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 1452,
+    "name": "AMIN NOURI",
+    "external_id": null,
+    "lab": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 1453,
+    "name": "MAYRA ALVIZO",
+    "external_id": null,
+    "lab": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 1454,
+    "name": "MEGAN BECEMA",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 1455,
+    "name": "LORRAIM FELIX",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 1456,
+    "name": "MONIQUE GUEMERO",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 1457,
+    "name": "MARIA TERESA PEREA",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 1458,
+    "name": "MANUEL JAUREGUI",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 1459,
+    "name": "CYNTHIA HUTCHINS",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 1460,
+    "name": "JOSE MATA",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 1461,
+    "name": "ANTHONY USLU",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 1462,
+    "name": "WINNIE TRINH",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 1463,
+    "name": "PATRITTI MATTHEW",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 1464,
+    "name": "GARCIA YVONNE",
+    "external_id": null,
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 1465,
+    "name": "Felix Jocson",
+    "external_id": null,
+    "lab": "St. Anthony Family Dentistry"
+  },
+  {
+    "id": 1466,
+    "name": "Nelly Gonzalez",
+    "external_id": null,
+    "lab": "St. Anthony Family Dentistry"
+  },
+  {
+    "id": 1467,
+    "name": "HOANG AILENE",
+    "external_id": null,
+    "lab": "Sunrise Smiles"
+  },
+  {
+    "id": 1468,
+    "name": "MARIA FARSAN",
+    "external_id": null,
+    "lab": "Sunset Dental Arts"
+  },
+  {
+    "id": 1469,
+    "name": "DAVID LOYA",
+    "external_id": null,
+    "lab": "Teresa M. Avendano-Galvez, DMD - J"
+  },
+  {
+    "id": 1470,
+    "name": "LETICIA BRAJA",
+    "external_id": null,
+    "lab": "Teresa M. Avendano-Galvez, DMD - J"
+  },
+  {
+    "id": 1471,
+    "name": "MAURICIO BARAHONA",
+    "external_id": null,
+    "lab": "Teresa M. Avendano-Galvez, DMD - J"
+  },
+  {
+    "id": 1472,
+    "name": "LAURA PEREZ",
+    "external_id": null,
+    "lab": "Teresa M. Avendano-Galvez, DMD - J"
+  },
+  {
+    "id": 1473,
+    "name": "AIDA TORRES",
+    "external_id": null,
+    "lab": "The Joy Of Dentistry RTE JES"
+  },
+  {
+    "id": 1474,
+    "name": "ELDIDA RAMIREZ",
+    "external_id": null,
+    "lab": "The Joy Of Dentistry RTE JES"
+  },
+  {
+    "id": 1475,
+    "name": "LARETO RAMIREZ",
+    "external_id": null,
+    "lab": "The Joy Of Dentistry RTE JES"
+  },
+  {
+    "id": 1476,
+    "name": "ROZIELYN MENDEZ",
+    "external_id": null,
+    "lab": "The Joy Of Dentistry RTE JES"
+  },
+  {
+    "id": 1477,
+    "name": "ISRAEL ESCOBAR LOPEZ",
+    "external_id": null,
+    "lab": "The Ontario Dentist - RTE JES"
+  },
+  {
+    "id": 1478,
+    "name": "William Darron",
+    "external_id": null,
+    "lab": "The Ontario Dentist - RTE JES"
+  },
+  {
+    "id": 1479,
+    "name": "MALISA CAUDILLO",
+    "external_id": null,
+    "lab": "The Ontario Dentist - RTE JES"
+  },
+  {
+    "id": 1480,
+    "name": "ADRIANA ROBLES",
+    "external_id": null,
+    "lab": "Today Dental Practice"
+  },
+  {
+    "id": 1481,
+    "name": "WEI LIU BAJANEK",
+    "external_id": null,
+    "lab": "Today Dental Practice"
+  },
+  {
+    "id": 1482,
+    "name": "TU LUONG",
+    "external_id": null,
+    "lab": "Tooth Fairy Dental"
+  },
+  {
+    "id": 1483,
+    "name": "LAN TA KAMO",
+    "external_id": null,
+    "lab": "Tooth Fairy Dental"
+  },
+  {
+    "id": 1484,
+    "name": "MARIA G ABURTO",
+    "external_id": null,
+    "lab": "Torres Family Dental"
+  },
+  {
+    "id": 1485,
+    "name": "JOSEFA MONTOYER",
+    "external_id": null,
+    "lab": "Torres Family Dental"
+  },
+  {
+    "id": 1486,
+    "name": "ROBERTO GUILLEN",
+    "external_id": null,
+    "lab": "Torres Family Dental"
+  },
+  {
+    "id": 1487,
+    "name": "JULIO SALINAS",
+    "external_id": null,
+    "lab": "Torres Family Dental"
+  },
+  {
+    "id": 1488,
+    "name": "GUADALUPE VARGAS",
+    "external_id": null,
+    "lab": "Torres Family Dental"
+  },
+  {
+    "id": 1489,
+    "name": "ARMANDO CRUZ",
+    "external_id": null,
+    "lab": "Torres Family Dental"
+  },
+  {
+    "id": 1490,
+    "name": "LILIA HERNANDEZ",
+    "external_id": null,
+    "lab": "Torres Family Dental"
+  },
+  {
+    "id": 1491,
+    "name": "JOHN THOMAS",
+    "external_id": null,
+    "lab": "Total Care Implant Dentistry (Palm Desert)"
+  },
+  {
+    "id": 1492,
+    "name": "MARY NICHOLAS",
+    "external_id": null,
+    "lab": "Total Care Implant Dentistry (Palm Desert)"
+  },
+  {
+    "id": 1493,
+    "name": "CONTRERAS LIZETTE",
+    "external_id": null,
+    "lab": "Total Care Implant Dentistry (Palm Desert)"
+  },
+  {
+    "id": 1494,
+    "name": "AGUAYO RACHAEL",
+    "external_id": null,
+    "lab": "Total Care Implant Dentistry (Palm Desert)"
+  },
+  {
+    "id": 1495,
+    "name": "RILEY MICHAEL",
+    "external_id": null,
+    "lab": "Total Care Implant Dentistry (Palm Desert)"
+  },
+  {
+    "id": 1496,
+    "name": "TERRY GRIMSLEY",
+    "external_id": null,
+    "lab": "Total Family Dental Group"
+  },
+  {
+    "id": 1497,
+    "name": "MADELINE DRAKE",
+    "external_id": null,
+    "lab": "Total Family Dental Group"
+  },
+  {
+    "id": 1498,
+    "name": "ROSEANA CLAIBORNE",
+    "external_id": null,
+    "lab": "Total Family Dental Group"
+  },
+  {
+    "id": 1499,
+    "name": "LARRY MERCADANTE",
+    "external_id": null,
+    "lab": "Transformation Dental Partners"
+  },
+  {
+    "id": 1500,
+    "name": "NGUYEN CHINH",
+    "external_id": null,
+    "lab": "Tri An Dental"
+  },
+  {
+    "id": 1501,
+    "name": "ANDY VU",
+    "external_id": null,
+    "lab": "Tri An Dental"
+  },
+  {
+    "id": 1502,
+    "name": "TIFFANY NGUYEN",
+    "external_id": null,
+    "lab": "Tri An Dental"
+  },
+  {
+    "id": 1503,
+    "name": "VU PHUONG",
+    "external_id": null,
+    "lab": "Tri An Dental"
+  },
+  {
+    "id": 1504,
+    "name": "FRANK SEAN",
+    "external_id": null,
+    "lab": "TruGLO Modern Dental (Beverly Hills)"
+  },
+  {
+    "id": 1505,
+    "name": "MANDANIN EMELIA",
+    "external_id": null,
+    "lab": "TruGLO Modern Dental (Calabasas)"
+  },
+  {
+    "id": 1506,
+    "name": "RAMOS JACQUELINE",
+    "external_id": null,
+    "lab": "TruGLO Modern Dental (La Jolla)"
+  },
+  {
+    "id": 1507,
+    "name": "TAM THANH TA",
+    "external_id": null,
+    "lab": "TV Dental Lab"
+  },
+  {
+    "id": 1508,
+    "name": "RAMEZ AYAD",
+    "external_id": null,
+    "lab": "TV Dental Lab"
+  },
+  {
+    "id": 1509,
+    "name": "JULIEANNE LAM PHAN",
+    "external_id": null,
+    "lab": "TV Dental Lab"
+  },
+  {
+    "id": 1510,
+    "name": "NAM BUI",
+    "external_id": null,
+    "lab": "TV Dental Lab"
+  },
+  {
+    "id": 1511,
+    "name": "SHERRY CHANG",
+    "external_id": null,
+    "lab": "TV Dental Lab"
+  },
+  {
+    "id": 1512,
+    "name": "FRED NACLE",
+    "external_id": null,
+    "lab": "TV Dental Lab"
+  },
+  {
+    "id": 1513,
+    "name": "TENEESA BUNN",
+    "external_id": null,
+    "lab": "TV Dental Lab"
+  },
+  {
+    "id": 1514,
+    "name": "HANH LUU",
+    "external_id": null,
+    "lab": "Unistar Dental"
+  },
+  {
+    "id": 1515,
+    "name": "MARIE NGUYEN",
+    "external_id": null,
+    "lab": "Unistar Dental"
+  },
+  {
+    "id": 1516,
+    "name": "PAMELA HOWELL",
+    "external_id": null,
+    "lab": "Unistar Dental"
+  },
+  {
+    "id": 1517,
+    "name": "SON TRAN",
+    "external_id": null,
+    "lab": "Unistar Dental"
+  },
+  {
+    "id": 1518,
+    "name": "ANA MARRON",
+    "external_id": null,
+    "lab": "Urban Dental"
+  },
+  {
+    "id": 1519,
+    "name": "ROGHIEH RANJI",
+    "external_id": null,
+    "lab": "Urban Dental"
+  },
+  {
+    "id": 1520,
+    "name": "NORMA GONZALEZ",
+    "external_id": null,
+    "lab": "Urban Dental"
+  },
+  {
+    "id": 1521,
+    "name": "FRANCISCO VARGAS",
+    "external_id": null,
+    "lab": "Urban Dental"
+  },
+  {
+    "id": 1522,
+    "name": "GALDINO VARGAS",
+    "external_id": null,
+    "lab": "Urban Dental"
+  },
+  {
+    "id": 1523,
+    "name": "IVANA PETROVIC",
+    "external_id": null,
+    "lab": "USC Dental Clinic RTE JES"
+  },
+  {
+    "id": 1524,
+    "name": "ELIZABETH MASSARI",
+    "external_id": null,
+    "lab": "USC Dental Clinic RTE JES"
+  },
+  {
+    "id": 1525,
+    "name": "SANDRA FLORES",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 1526,
+    "name": "LEE LEE",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 1527,
+    "name": "MIGUEL GONZALO",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 1528,
+    "name": "TYLER VIDA",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 1529,
+    "name": "JUAN MENDOZC",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 1530,
+    "name": "BERTLA PARRINGTON",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 1531,
+    "name": "DENNIS CONNS",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 1532,
+    "name": "FALAGILAGI MENIGILIJA",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 1533,
+    "name": "SUSAN EHTMAN",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 1534,
+    "name": "NAVARRO LIDIA",
+    "external_id": null,
+    "lab": "Village Family dental Office"
+  },
+  {
+    "id": 1535,
+    "name": "YOLANDA MONTESDIOCA",
+    "external_id": null,
+    "lab": "Villegas Dental Laboratory"
+  },
+  {
+    "id": 1536,
+    "name": "MIGUEL CHAMORRO",
+    "external_id": null,
+    "lab": "Villegas Dental Laboratory"
+  },
+  {
+    "id": 1537,
+    "name": "MARIA DUARTE",
+    "external_id": null,
+    "lab": "Villegas Dental Laboratory"
+  },
+  {
+    "id": 1538,
+    "name": "OSCAR NISABAN",
+    "external_id": null,
+    "lab": "Villegas Dental Laboratory"
+  },
+  {
+    "id": 1539,
+    "name": "CARMEN LIZA",
+    "external_id": null,
+    "lab": "Villegas Dental Laboratory"
+  },
+  {
+    "id": 1540,
+    "name": "WILLIAM MEIER",
+    "external_id": null,
+    "lab": "Vineyard Family Dentist Ontario Ortho Center - RTE"
+  },
+  {
+    "id": 1541,
+    "name": "IRMA MARTINEZDE LEO",
+    "external_id": null,
+    "lab": "Vineyard Family Dentist Ontario Ortho Center - RTE"
+  },
+  {
+    "id": 1542,
+    "name": "RYAN HANNA",
+    "external_id": null,
+    "lab": "Vineyard Family Dentist Ontario Ortho Center - RTE"
+  },
+  {
+    "id": 1543,
+    "name": "MARIBEL GALLARDO",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 1544,
+    "name": "TIFFANY PHAM",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 1545,
+    "name": "RAN HOY",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 1546,
+    "name": "CELINA LOPEZ DUENAS",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 1547,
+    "name": "KEVIN LAO",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 1548,
+    "name": "UNY SERYVATH",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 1549,
+    "name": "ROSA MUNGUIA",
+    "external_id": null,
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 1550,
+    "name": "JOSE CERVANTES",
+    "external_id": null,
+    "lab": "Vu Paramount Dental Group"
+  },
+  {
+    "id": 1551,
+    "name": "ANGEL RODRIGUEZ",
+    "external_id": "772",
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 1552,
+    "name": "SANDRA SERRANO",
+    "external_id": "671",
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 1553,
+    "name": "CHANH NGUYEN",
+    "external_id": "498",
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 1554,
+    "name": "DARIA YAKOVLEVA",
+    "external_id": null,
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 1555,
+    "name": "ABDUL HALI HABU",
+    "external_id": null,
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 1556,
+    "name": "NERMEEN MICHAEL",
+    "external_id": null,
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 1557,
+    "name": "RACHEL HAGEMANN",
+    "external_id": null,
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 1558,
+    "name": "ANDY ANMINH VAN",
+    "external_id": null,
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 1559,
+    "name": "HOPTON TICEY",
+    "external_id": null,
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 1560,
+    "name": "MELINA VILLEGAS",
+    "external_id": null,
+    "lab": "West Dental - (Compton ) RTE: JES"
+  },
+  {
+    "id": 1561,
+    "name": "TRINH THOMAS",
+    "external_id": null,
+    "lab": "Westpark Dental"
+  },
+  {
+    "id": 1562,
+    "name": "SILYAEV VLADIMIR",
+    "external_id": null,
+    "lab": "Westpark Dental"
+  },
+  {
+    "id": 1563,
+    "name": "GARCIA ARCELIA",
+    "external_id": null,
+    "lab": "Whittier Dental Group"
+  },
+  {
+    "id": 1564,
+    "name": "SIXTA LUNA RENTERIA",
+    "external_id": null,
+    "lab": "Whittier Dental Group"
+  },
+  {
+    "id": 1565,
+    "name": "REYNA ROJOS",
+    "external_id": null,
+    "lab": "Your OC Dentist Corp"
+  },
+  {
+    "id": 1566,
+    "name": "ANA ALBERTO",
+    "external_id": null,
+    "lab": "Your OC Dentist Corp"
+  },
+  {
+    "id": 1567,
+    "name": "THANH MY",
+    "external_id": null,
+    "lab": "YOYO'S DAD LAB"
+  },
+  {
+    "id": 1568,
+    "name": "ROWENA BACUCANG",
+    "external_id": null,
+    "lab": "Yvonne P. Arafiles DDS"
+  },
+  {
+    "id": 1569,
+    "name": "PAULINO ETHAN JOHN",
+    "external_id": null,
+    "lab": "Zapanta-Chavez Dentistry (LA)"
+  },
+  {
+    "id": 1570,
+    "name": "LUIS CHAVEZ",
+    "external_id": null,
+    "lab": "Zapanta-Chavez Dentistry (LA)"
+  }
+]

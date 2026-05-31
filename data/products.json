@@ -1,0 +1,442 @@
+[
+  {
+    "id": 1,
+    "name": "Zirconia - Multilayer Veneer",
+    "category": "Zirconia"
+  },
+  {
+    "id": 2,
+    "name": "Implant - SRC Zirconia Full Contour (Model-Less)",
+    "category": "Implant"
+  },
+  {
+    "id": 3,
+    "name": "Implant - Abutment CUSTOM Titanium",
+    "category": "Implant"
+  },
+  {
+    "id": 4,
+    "name": "Zirconia - Full Contour",
+    "category": "Zirconia"
+  },
+  {
+    "id": 5,
+    "name": "Zirconia - Full Contour Bridge",
+    "category": "Zirconia"
+  },
+  {
+    "id": 6,
+    "name": "Bite Block",
+    "category": "Bite Block"
+  },
+  {
+    "id": 7,
+    "name": "Stayplate 4-6 Teeth (Set Up)",
+    "category": "Stayplate"
+  },
+  {
+    "id": 8,
+    "name": "Stayplate 4-6 Teeth (Finish)",
+    "category": "Stayplate"
+  },
+  {
+    "id": 9,
+    "name": "Stayplate 1-3 Teeth (Set Up)",
+    "category": "Stayplate"
+  },
+  {
+    "id": 10,
+    "name": "Valplast (Finish)",
+    "category": "Valplast"
+  },
+  {
+    "id": 11,
+    "name": "Full Denture (Finish)",
+    "category": "Denture"
+  },
+  {
+    "id": 12,
+    "name": "Implant - Cement Retained Zirconia Full Contour",
+    "category": "Implant"
+  },
+  {
+    "id": 13,
+    "name": "Zirconia - Full Contour Bridge ( Model-Less)",
+    "category": "Zirconia"
+  },
+  {
+    "id": 14,
+    "name": "Zirconia - Multilayered Full Contour (Model-Less)",
+    "category": "Zirconia"
+  },
+  {
+    "id": 15,
+    "name": "Cast Post (Impression)",
+    "category": "Cast Post"
+  },
+  {
+    "id": 16,
+    "name": "Zirconia - Full Contour (Model-Less)",
+    "category": "Zirconia"
+  },
+  {
+    "id": 17,
+    "name": "3D Model (Prep Die)",
+    "category": "3D Model"
+  },
+  {
+    "id": 18,
+    "name": "Repair Crown (Not Our Work)",
+    "category": "Repair"
+  },
+  {
+    "id": 19,
+    "name": "Stayplate 1-3 Teeth",
+    "category": "Stayplate"
+  },
+  {
+    "id": 20,
+    "name": "Adjustment",
+    "category": "Other"
+  },
+  {
+    "id": 21,
+    "name": "Nightguard (Hard&Soft)",
+    "category": "Nightguard"
+  },
+  {
+    "id": 22,
+    "name": "Repair (Add Tooth)",
+    "category": "Repair"
+  },
+  {
+    "id": 23,
+    "name": "Stayplate 1-3 Teeth (Finish)",
+    "category": "Stayplate"
+  },
+  {
+    "id": 24,
+    "name": "Stayplate 7-11 Teeth (Set Up)",
+    "category": "Stayplate"
+  },
+  {
+    "id": 25,
+    "name": "Zirconia - Multilayered Full Contour (Model-Less).",
+    "category": "Zirconia"
+  },
+  {
+    "id": 26,
+    "name": "PFM - Non Precious",
+    "category": "PFM"
+  },
+  {
+    "id": 27,
+    "name": "Stayplate 7-11 Teeth (Finish)",
+    "category": "Stayplate"
+  },
+  {
+    "id": 28,
+    "name": "PFM - Non Precious Bridge",
+    "category": "PFM"
+  },
+  {
+    "id": 29,
+    "name": "Implant - SRC Zirconia Full Contour",
+    "category": "Implant"
+  },
+  {
+    "id": 30,
+    "name": "3D Model (Prep w/adjacent teeth)",
+    "category": "3D Model"
+  },
+  {
+    "id": 31,
+    "name": "Metal Frame & Bite Block",
+    "category": "Other"
+  },
+  {
+    "id": 32,
+    "name": "Case Returned to Dr. (work not done)",
+    "category": "Other"
+  },
+  {
+    "id": 33,
+    "name": "Zirconia - Multilayered Full Contour",
+    "category": "Zirconia"
+  },
+  {
+    "id": 34,
+    "name": "Valplast Partial",
+    "category": "Valplast"
+  },
+  {
+    "id": 35,
+    "name": "Zirconia - Multilayer Veneer (Model-Less)",
+    "category": "Zirconia"
+  },
+  {
+    "id": 36,
+    "name": "Implant - Crown Over Drs Abutment",
+    "category": "Implant"
+  },
+  {
+    "id": 37,
+    "name": "Stayplate 4-6 Teeth",
+    "category": "Stayplate"
+  },
+  {
+    "id": 38,
+    "name": "Nightguard (Hard)",
+    "category": "Nightguard"
+  },
+  {
+    "id": 39,
+    "name": "Full Metal Crown - Non Precious",
+    "category": "Metal Crown"
+  },
+  {
+    "id": 40,
+    "name": "Partial (Teeth Set Up)",
+    "category": "Other"
+  },
+  {
+    "id": 41,
+    "name": "Retainer Hawley",
+    "category": "Other"
+  },
+  {
+    "id": 42,
+    "name": "Rapid Palatal Expander",
+    "category": "Other"
+  },
+  {
+    "id": 43,
+    "name": "E.Max - Crown (Model-Less)",
+    "category": "E.Max"
+  },
+  {
+    "id": 44,
+    "name": "Zirconia - Inlay/Onlay",
+    "category": "Zirconia"
+  },
+  {
+    "id": 45,
+    "name": "E.Max - Crown",
+    "category": "E.Max"
+  },
+  {
+    "id": 46,
+    "name": "Implant - Cement Retained PFM Crown",
+    "category": "Implant"
+  },
+  {
+    "id": 47,
+    "name": "Implant - SRC PFM Crown",
+    "category": "Implant"
+  },
+  {
+    "id": 48,
+    "name": "Metal Partial Acrylic (Finish)",
+    "category": "Other"
+  },
+  {
+    "id": 49,
+    "name": "Reline",
+    "category": "Other"
+  },
+  {
+    "id": 50,
+    "name": "Zirconia - Porcelain Fused to Zirconia - COPING (",
+    "category": "Zirconia"
+  },
+  {
+    "id": 51,
+    "name": "E.Max - Inlay/Onlay",
+    "category": "E.Max"
+  },
+  {
+    "id": 52,
+    "name": "Immediate Denture",
+    "category": "Other"
+  },
+  {
+    "id": 53,
+    "name": "Implant - SRC Zirconia Multilayer Full Contour (Mo",
+    "category": "Implant"
+  },
+  {
+    "id": 54,
+    "name": "Case Canceled (Not returned to dr. )",
+    "category": "Other"
+  },
+  {
+    "id": 55,
+    "name": "PFM - Non Precious (Model-Less)",
+    "category": "PFM"
+  },
+  {
+    "id": 56,
+    "name": "Full Denture (Teeth Set Up)",
+    "category": "Denture"
+  },
+  {
+    "id": 57,
+    "name": "Unilateral Valplast",
+    "category": "Other"
+  },
+  {
+    "id": 58,
+    "name": "Implant - Cement Retained Zirconia Multilayer Full",
+    "category": "Implant"
+  },
+  {
+    "id": 59,
+    "name": "Zirconia - CUTBACK Esthetic HT",
+    "category": "Zirconia"
+  },
+  {
+    "id": 60,
+    "name": "Valplast Combo (Finish)",
+    "category": "Valplast"
+  },
+  {
+    "id": 61,
+    "name": "Retainer Essix",
+    "category": "Other"
+  },
+  {
+    "id": 62,
+    "name": "Implant - SRC Zirconia Multilayer Full Contour",
+    "category": "Implant"
+  },
+  {
+    "id": 63,
+    "name": "Try-In Resin (Per Tooth)",
+    "category": "Other"
+  },
+  {
+    "id": 64,
+    "name": "Implant - SRC Zirconia Full Contour Bridge",
+    "category": "Implant"
+  },
+  {
+    "id": 65,
+    "name": "Zirconia - Inlay/Onlay (Model-Less)",
+    "category": "Zirconia"
+  },
+  {
+    "id": 66,
+    "name": "PFG - High Noble*",
+    "category": "Other"
+  },
+  {
+    "id": 67,
+    "name": "PFM - Semi Precious*",
+    "category": "PFM"
+  },
+  {
+    "id": 68,
+    "name": "3D Model (Quadrant U/L)",
+    "category": "3D Model"
+  },
+  {
+    "id": 69,
+    "name": "Snap On Denture (Up to 4 Housings)",
+    "category": "Other"
+  },
+  {
+    "id": 70,
+    "name": "Cast Post (Duralay)",
+    "category": "Cast Post"
+  },
+  {
+    "id": 71,
+    "name": "Implant - Scan Body",
+    "category": "Implant"
+  },
+  {
+    "id": 72,
+    "name": "Perio Tray",
+    "category": "Other"
+  },
+  {
+    "id": 73,
+    "name": "Zirconia - Porcelain Fused to Zirconia ( COPING )",
+    "category": "Zirconia"
+  },
+  {
+    "id": 74,
+    "name": "Implant - Analog",
+    "category": "Implant"
+  },
+  {
+    "id": 75,
+    "name": "All-On-4",
+    "category": "All-On-X"
+  },
+  {
+    "id": 76,
+    "name": "Implant - Titanium Custom Abutment",
+    "category": "Implant"
+  },
+  {
+    "id": 77,
+    "name": "Repair (Basic)",
+    "category": "Repair"
+  },
+  {
+    "id": 78,
+    "name": "Premium Teeth",
+    "category": "Other"
+  },
+  {
+    "id": 79,
+    "name": "Custom Tray",
+    "category": "Custom Tray"
+  },
+  {
+    "id": 80,
+    "name": "Zirconia - Multilayered Full Contour Bridge",
+    "category": "Zirconia"
+  },
+  {
+    "id": 81,
+    "name": "Metal Partial (Unilateral)",
+    "category": "Other"
+  },
+  {
+    "id": 82,
+    "name": "Nightguard (Soft)",
+    "category": "Nightguard"
+  },
+  {
+    "id": 83,
+    "name": "Reset Teeth",
+    "category": "Other"
+  },
+  {
+    "id": 84,
+    "name": "Diagnostic Wax Up",
+    "category": "Diagnostic"
+  },
+  {
+    "id": 85,
+    "name": "E.Max - crown_Veneer Layered (Model-Less)",
+    "category": "E.Max"
+  },
+  {
+    "id": 86,
+    "name": "Full Gold Crown - High Noble Yellow gold*",
+    "category": "Gold Crown"
+  },
+  {
+    "id": 87,
+    "name": "E.Max - Veneer (Model-Less)",
+    "category": "E.Max"
+  },
+  {
+    "id": 88,
+    "name": "E.Max - Inlay/Onlay (Model-Less)",
+    "category": "E.Max"
+  }
+]

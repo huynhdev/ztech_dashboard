@@ -1,0 +1,1486 @@
+[
+  {
+    "id": 1,
+    "name": "Le, Tommy DDS",
+    "route": "A",
+    "raw": "Le, Tommy DDS - RTE: A",
+    "lab": "123 Dental"
+  },
+  {
+    "id": 2,
+    "name": "Vo, Ngoc Lan DDS",
+    "route": "JES",
+    "raw": "Vo, Ngoc Lan DDS - RTE: JES",
+    "lab": "21 Dental Group"
+  },
+  {
+    "id": 3,
+    "name": "Charisma F. Lasam DDS",
+    "route": "JES",
+    "raw": "Charisma F. Lasam DDS - RTE: JES",
+    "lab": "4th Vermont Dental Care"
+  },
+  {
+    "id": 4,
+    "name": "Bui Daniel, RTE - JES",
+    "route": null,
+    "raw": "Bui Daniel, RTE - JES",
+    "lab": "ABC Dental Inc"
+  },
+  {
+    "id": 5,
+    "name": "Access Dental Care (Dr. Torres)",
+    "route": "JES",
+    "raw": "Access Dental Care (Dr. Torres)- RTE: JES",
+    "lab": "Access Dental Care"
+  },
+  {
+    "id": 6,
+    "name": "ACE Dental LAB - FEDEX",
+    "route": null,
+    "raw": "ACE Dental LAB - FEDEX",
+    "lab": "Ace Dental Lab - Illinois"
+  },
+  {
+    "id": 7,
+    "name": "Woodsen, Alan B. DDS",
+    "route": "JES",
+    "raw": "Woodsen, Alan B. DDS - RTE: JES",
+    "lab": "Alan B. Woodson DDS"
+  },
+  {
+    "id": 8,
+    "name": "Broas, Albert D.D.S Inc",
+    "route": "MES",
+    "raw": "Broas, Albert D.D.S Inc - RTE: MES",
+    "lab": "Albert Broas D.D.S Inc"
+  },
+  {
+    "id": 9,
+    "name": "Shahzadi, Frank DDS",
+    "route": "JES",
+    "raw": "Shahzadi, Frank DDS - RTE: JES",
+    "lab": "Aliso Niguel Dental Group"
+  },
+  {
+    "id": 10,
+    "name": "Mai, Chau Linh DDS",
+    "route": "C",
+    "raw": "Mai, Chau Linh DDS - RTE: C",
+    "lab": "All Children's Dental (Anaheim)"
+  },
+  {
+    "id": 11,
+    "name": "Mai, Chau Linh DDS",
+    "route": "B",
+    "raw": "Mai, Chau Linh DDS - RTE: B",
+    "lab": "All Children's Dental (Westminster)"
+  },
+  {
+    "id": 12,
+    "name": "Hussein, Thayer DDS",
+    "route": "A",
+    "raw": "Hussein, Thayer DDS - RTE: A",
+    "lab": "Allstar Dental"
+  },
+  {
+    "id": 13,
+    "name": "Altamed Dental",
+    "route": "C",
+    "raw": "Altamed Dental - RTE: C",
+    "lab": "AltaMed Dental (Trailer Anaheim)"
+  },
+  {
+    "id": 14,
+    "name": "AltaMed Medical and Dental Group (1st Street) RTE:",
+    "route": null,
+    "raw": "AltaMed Medical and Dental Group (1st Street) RTE:",
+    "lab": "AltaMed Medical and Dental Group (1st Street)"
+  },
+  {
+    "id": 15,
+    "name": "AltaMed",
+    "route": "JES",
+    "raw": "AltaMed - RTE: JES",
+    "lab": "AltaMed Medical and Dental Group (Boyle Heights)"
+  },
+  {
+    "id": 16,
+    "name": "Altamed",
+    "route": "JES",
+    "raw": "Altamed - RTE: JES",
+    "lab": "AltaMed Medical and Dental Group (El Monte)"
+  },
+  {
+    "id": 17,
+    "name": "Altamed Dental (HNTB Main)",
+    "route": "JES",
+    "raw": "Altamed Dental (HNTB Main) - RTE: JES",
+    "lab": "AltaMed Medical and Dental Group (HNTB Main)"
+  },
+  {
+    "id": 18,
+    "name": "Ayala, Marcela DDS",
+    "route": "C",
+    "raw": "Ayala, Marcela DDS - RTE: C",
+    "lab": "AM Dental Group"
+  },
+  {
+    "id": 19,
+    "name": "Collantes, Ana Maria DDS",
+    "route": "MES",
+    "raw": "Collantes, Ana Maria DDS - RTE: MES",
+    "lab": "American Bright Dental"
+  },
+  {
+    "id": 20,
+    "name": "Dr. Avani",
+    "route": null,
+    "raw": "Dr. Avani",
+    "lab": "Anaheim Family Dental"
+  },
+  {
+    "id": 21,
+    "name": "Tran, Andy",
+    "route": null,
+    "raw": "Tran, Andy",
+    "lab": "Andy Tran DDS - FEDEX"
+  },
+  {
+    "id": 22,
+    "name": "Itshovich, Miro DDS - RTE JES",
+    "route": null,
+    "raw": "Itshovich, Miro DDS - RTE JES",
+    "lab": "Angelic Dentistry - Van Nuys"
+  },
+  {
+    "id": 23,
+    "name": "Lara, Jose Eduardo DDS",
+    "route": "C",
+    "raw": "Lara, Jose Eduardo DDS - RTE: C",
+    "lab": "Atwood Family Dentistry"
+  },
+  {
+    "id": 24,
+    "name": "Jason Ballou, DDS",
+    "route": "JES",
+    "raw": "Jason Ballou, DDS - RTE: JES",
+    "lab": "Ballou Dental Arts"
+  },
+  {
+    "id": 25,
+    "name": "Pearce, Linda DDS",
+    "route": "B",
+    "raw": "Pearce, Linda DDS - RTE: B",
+    "lab": "Bay Dental - Pearce Dental Inc."
+  },
+  {
+    "id": 26,
+    "name": "Dr. Iman Malek Hedayat, DDS",
+    "route": null,
+    "raw": "Dr. Iman Malek Hedayat, DDS",
+    "lab": "Bay Dental Practice (LB)"
+  },
+  {
+    "id": 27,
+    "name": "Roya Nematollahi DDS",
+    "route": "A",
+    "raw": "Roya Nematollahi DDS - RTE: A",
+    "lab": "Bella Dental Group"
+  },
+  {
+    "id": 28,
+    "name": "Nguyen, Christina DDS",
+    "route": "B",
+    "raw": "Nguyen, Christina DDS - RTE: B",
+    "lab": "Bella Terra Dentistry"
+  },
+  {
+    "id": 29,
+    "name": "Bernardo, Maria Pilar DDS.",
+    "route": "JES",
+    "raw": "Bernardo, Maria Pilar DDS. - RTE: JES",
+    "lab": "Bernardo, Maria Pilar DDS"
+  },
+  {
+    "id": 30,
+    "name": "Dr. Yigal Prilutsky",
+    "route": null,
+    "raw": "Dr. Yigal Prilutsky",
+    "lab": "Beverlywood Dental - RTE JES"
+  },
+  {
+    "id": 31,
+    "name": "Moshashaei, Shervin DDS",
+    "route": "FEDEX",
+    "raw": "Moshashaei, Shervin DDS - RTE: FEDEX",
+    "lab": "Bliss Dental Arts"
+  },
+  {
+    "id": 32,
+    "name": "Wang, James H DDS",
+    "route": "A",
+    "raw": "Wang, James H DDS - RTE: A",
+    "lab": "Bristol Dental Care"
+  },
+  {
+    "id": 33,
+    "name": "Trung Tan, Nghiem DDS",
+    "route": "C",
+    "raw": "Trung Tan, Nghiem DDS - RTE: C",
+    "lab": "Brookhurst Dental Group"
+  },
+  {
+    "id": 34,
+    "name": "Bui, Steven DDS",
+    "route": "B",
+    "raw": "Bui, Steven DDS - RTE: B",
+    "lab": "Bui Steven T DDS"
+  },
+  {
+    "id": 35,
+    "name": "Bui, James DDS",
+    "route": "A",
+    "raw": "Bui, James DDS - RTE: A",
+    "lab": "Bui, James DDS"
+  },
+  {
+    "id": 36,
+    "name": "Lawrence Busch, DMD",
+    "route": "FEDEX",
+    "raw": "Lawrence Busch, DMD - RTE: FEDEX",
+    "lab": "Busch, Lawrence DMD"
+  },
+  {
+    "id": 37,
+    "name": "Dr Dina Mattar - RTE",
+    "route": null,
+    "raw": "Dr Dina Mattar - RTE",
+    "lab": "California Dental Group"
+  },
+  {
+    "id": 38,
+    "name": "Dickey, James - RTE JES",
+    "route": null,
+    "raw": "Dickey, James - RTE JES",
+    "lab": "California Dentistry & Braces"
+  },
+  {
+    "id": 39,
+    "name": "Chandrakant B Patel",
+    "route": "JES",
+    "raw": "Chandrakant B Patel - RTE: JES",
+    "lab": "CB Patel DDS"
+  },
+  {
+    "id": 40,
+    "name": "Henry D.",
+    "route": "FEDEX",
+    "raw": "Henry D. - RTE: FEDEX",
+    "lab": "CBS Dental Lab"
+  },
+  {
+    "id": 41,
+    "name": "Shahoveisi, Sam DDS",
+    "route": "JES",
+    "raw": "Shahoveisi, Sam DDS - RTE: JES",
+    "lab": "City Dental Centers - Azusa"
+  },
+  {
+    "id": 42,
+    "name": "Dr. Thanhlong Nguyen, DDS",
+    "route": "B",
+    "raw": "Dr. Thanhlong Nguyen, DDS - RTE: B",
+    "lab": "Civic Dental"
+  },
+  {
+    "id": 43,
+    "name": "CJ Dental Utah",
+    "route": null,
+    "raw": "CJ Dental Utah",
+    "lab": "CJ Dental Utah - FEDEX"
+  },
+  {
+    "id": 44,
+    "name": "Michael Dong DDS",
+    "route": "JES",
+    "raw": "Michael Dong DDS - RTE: JES",
+    "lab": "Coastline Dental Care"
+  },
+  {
+    "id": 45,
+    "name": "Dr. Matthew Phong Tran",
+    "route": "JES",
+    "raw": "Dr. Matthew Phong Tran - RTE: JES",
+    "lab": "Comfortable Family Dentistry"
+  },
+  {
+    "id": 46,
+    "name": "Commerce Dental",
+    "route": "JES",
+    "raw": "Commerce Dental - RTE: JES",
+    "lab": "Commerce Dental"
+  },
+  {
+    "id": 47,
+    "name": "Bagay, Bernadette L Gauring",
+    "route": "JES",
+    "raw": "Bagay, Bernadette L Gauring - RTE: JES",
+    "lab": "Covina Dental"
+  },
+  {
+    "id": 48,
+    "name": "Dr. Torres",
+    "route": "JES",
+    "raw": "Dr. Torres - RTE: JES",
+    "lab": "Crossroads Family Dental"
+  },
+  {
+    "id": 49,
+    "name": "Douglas G. Ness DDS",
+    "route": "MES",
+    "raw": "Douglas G. Ness DDS -RTE: MES",
+    "lab": "Crown Dental"
+  },
+  {
+    "id": 50,
+    "name": "Dawood, Paul DDS DDS",
+    "route": "B",
+    "raw": "Dawood, Paul DDS DDS - RTE: B",
+    "lab": "Dawood, Paul DDS (FV)"
+  },
+  {
+    "id": 51,
+    "name": "Dawood, Paul DDS",
+    "route": "C",
+    "raw": "Dawood, Paul DDS - RTE: C",
+    "lab": "Dawood, Paul DDS (GG)"
+  },
+  {
+    "id": 52,
+    "name": "Cho, Yong Dr. , RTE JES",
+    "route": null,
+    "raw": "Cho, Yong Dr. , RTE JES",
+    "lab": "Day Creek Dental Care"
+  },
+  {
+    "id": 53,
+    "name": "Hoyong Choi",
+    "route": null,
+    "raw": "Hoyong Choi",
+    "lab": "Del Amo Dental Group"
+  },
+  {
+    "id": 54,
+    "name": "Acuna, Jaime DDS.",
+    "route": "MES",
+    "raw": "Acuna, Jaime DDS.- RTE: MES",
+    "lab": "Dental Arts of Palm Ave"
+  },
+  {
+    "id": 55,
+    "name": "Dr. Danny Lee",
+    "route": null,
+    "raw": "Dr. Danny Lee",
+    "lab": "Dental Spa & Implant Center of West Covina - RTE J"
+  },
+  {
+    "id": 56,
+    "name": "Martha Alvarez DDS",
+    "route": null,
+    "raw": "Martha Alvarez DDS",
+    "lab": "Dentist 4 U"
+  },
+  {
+    "id": 57,
+    "name": "Padua, Alvina, RTE JES",
+    "route": null,
+    "raw": "Padua, Alvina, RTE JES",
+    "lab": "Dr. Alvina Padua"
+  },
+  {
+    "id": 58,
+    "name": "Dr. Rusell DDS",
+    "route": null,
+    "raw": "Dr. Rusell DDS",
+    "lab": "Dr. Russel Nolasco RTE JES"
+  },
+  {
+    "id": 59,
+    "name": "Gerald Watson - RTE: PICK UP",
+    "route": null,
+    "raw": "Gerald Watson - RTE: PICK UP",
+    "lab": "Dyno Tech Dental Lab"
+  },
+  {
+    "id": 60,
+    "name": "Ruben Hurtado DDS",
+    "route": "JES",
+    "raw": "Ruben Hurtado DDS - RTE: JES",
+    "lab": "El Camino Dental & Braces"
+  },
+  {
+    "id": 61,
+    "name": "Sara Saber DDS",
+    "route": "JES",
+    "raw": "Sara Saber DDS - RTE: JES",
+    "lab": "Elite Dental"
+  },
+  {
+    "id": 62,
+    "name": "Dr. Micah Tabanfar - RTE JES",
+    "route": null,
+    "raw": "Dr. Micah Tabanfar - RTE JES",
+    "lab": "Encino Total Dentistry"
+  },
+  {
+    "id": 63,
+    "name": "Winn, Brigitte DDS - JES",
+    "route": null,
+    "raw": "Winn, Brigitte DDS - JES",
+    "lab": "EP Dental Group - Cerritos"
+  },
+  {
+    "id": 64,
+    "name": "Francis Mceldowney DDS",
+    "route": "A",
+    "raw": "Francis Mceldowney DDS - RTE: A",
+    "lab": "Euclid Dental Center"
+  },
+  {
+    "id": 65,
+    "name": "Families Together of Orange County",
+    "route": "C",
+    "raw": "Families Together of Orange County - RTE: C",
+    "lab": "F.T.O.C. Dental (Garden Grove)"
+  },
+  {
+    "id": 66,
+    "name": "Families Together of Orange County",
+    "route": "A",
+    "raw": "Families Together of Orange County - RTE: A",
+    "lab": "F.T.O.C. Dental (Tustin)"
+  },
+  {
+    "id": 67,
+    "name": "Hassan Fayoumi, DDS",
+    "route": "JES",
+    "raw": "Hassan Fayoumi, DDS - RTE: JES",
+    "lab": "Farwest Dental Group (Compton)"
+  },
+  {
+    "id": 68,
+    "name": "Nguyen, Minh DDS",
+    "route": "B",
+    "raw": "Nguyen, Minh DDS RTE: B",
+    "lab": "First Dental"
+  },
+  {
+    "id": 69,
+    "name": "Tommy Le, DDS",
+    "route": "B",
+    "raw": "Tommy Le, DDS - RTE: B",
+    "lab": "Fountain Valley Dental Esthetics"
+  },
+  {
+    "id": 70,
+    "name": "Dr. Jinyuan Li - TRE -JES",
+    "route": null,
+    "raw": "Dr. Jinyuan Li - TRE -JES",
+    "lab": "Gabrie Dental Center"
+  },
+  {
+    "id": 71,
+    "name": "Gi Seo",
+    "route": "JES",
+    "raw": "Gi Seo - RTE: JES",
+    "lab": "Good Kids Dental"
+  },
+  {
+    "id": 72,
+    "name": "Doostan, Afshin DDS",
+    "route": "JES",
+    "raw": "Doostan, Afshin DDS - RTE: JES",
+    "lab": "Healthy Smiles Premier Dental"
+  },
+  {
+    "id": 73,
+    "name": "Nguyen, Hop T DDS",
+    "route": "JES",
+    "raw": "Nguyen, Hop T DDS - RTE: JES",
+    "lab": "Hop T Nguyen (LA)"
+  },
+  {
+    "id": 74,
+    "name": "Shi, Andrew DDS - RTE: A/JES",
+    "route": null,
+    "raw": "Shi, Andrew DDS - RTE: A/JES",
+    "lab": "IQ Dental Group"
+  },
+  {
+    "id": 75,
+    "name": "Gonzalez, Pablo DDS",
+    "route": "MES",
+    "raw": "Gonzalez, Pablo DDS - RTE: MES",
+    "lab": "Iris Dental Care"
+  },
+  {
+    "id": 76,
+    "name": "Quan Tran, DDS",
+    "route": "A",
+    "raw": "Quan Tran, DDS - RTE: A",
+    "lab": "Irvine Dental"
+  },
+  {
+    "id": 77,
+    "name": "Kids & Adults Dental Care",
+    "route": "JES",
+    "raw": "Kids & Adults Dental Care - RTE: JES",
+    "lab": "Kids & Adults Dental Care (Compton)"
+  },
+  {
+    "id": 78,
+    "name": "Shin, Jennifer DDS",
+    "route": "JES",
+    "raw": "Shin, Jennifer DDS - RTE: JES",
+    "lab": "Kids Care Dentistry"
+  },
+  {
+    "id": 79,
+    "name": "Chebbi, Kais DDS",
+    "route": "JES",
+    "raw": "Chebbi, Kais DDS - RTE: JES",
+    "lab": "Kids Dental Care"
+  },
+  {
+    "id": 80,
+    "name": "Dr. Jingyuan Li -",
+    "route": null,
+    "raw": "Dr. Jingyuan Li -",
+    "lab": "KindLi Dental Center - RTE JES"
+  },
+  {
+    "id": 81,
+    "name": "Altamimi, Wesam DDS",
+    "route": "MES",
+    "raw": "Altamimi, Wesam DDS - RTE: MES",
+    "lab": "La Perle Dental"
+  },
+  {
+    "id": 82,
+    "name": "Arriaza, Dennis DDS",
+    "route": "JES",
+    "raw": "Arriaza, Dennis DDS - RTE: JES",
+    "lab": "La Vid Dental Lab"
+  },
+  {
+    "id": 83,
+    "name": "Papadopoulos, Michael DDS",
+    "route": "JES",
+    "raw": "Papadopoulos, Michael DDS - RTE: JES",
+    "lab": "Long Beach Dental Group"
+  },
+  {
+    "id": 84,
+    "name": "Cooley, Holme DDS",
+    "route": "C",
+    "raw": "Cooley, Holme DDS - RTE: C",
+    "lab": "Longwood Dental Group"
+  },
+  {
+    "id": 85,
+    "name": "Los Alisos Dentistry",
+    "route": null,
+    "raw": "Los Alisos Dentistry",
+    "lab": "Los Alisos Dentistry"
+  },
+  {
+    "id": 86,
+    "name": "Gutierrez, Martha DDS",
+    "route": "JES",
+    "raw": "Gutierrez, Martha DDS - RTE: JES",
+    "lab": "Magic Smile Family Dentistry"
+  },
+  {
+    "id": 87,
+    "name": "Kasra Tabesh DDS",
+    "route": "MES",
+    "raw": "Kasra Tabesh DDS - RTE: MES",
+    "lab": "Majestic Dental"
+  },
+  {
+    "id": 88,
+    "name": "Chang, Frank DDS",
+    "route": "B",
+    "raw": "Chang, Frank DDS - RTE: B",
+    "lab": "Maranatha Dental"
+  },
+  {
+    "id": 89,
+    "name": "Moncada, Marcelo G DDS",
+    "route": "JES",
+    "raw": "Moncada, Marcelo G DDS -RTE: JES",
+    "lab": "Marcelo G. Moncada DDS"
+  },
+  {
+    "id": 90,
+    "name": "Armen Mardirossian DDS",
+    "route": "JES",
+    "raw": "Armen Mardirossian DDS RTE: JES",
+    "lab": "Mardirossian Periodontics and Implant Dentistry"
+  },
+  {
+    "id": 91,
+    "name": "Mehta Dental Group (Anaheim)",
+    "route": null,
+    "raw": "Mehta Dental Group (Anaheim)",
+    "lab": "Mehta Dental Group - (Anaheim)"
+  },
+  {
+    "id": 92,
+    "name": "Mehta Dental Group (Brea)",
+    "route": null,
+    "raw": "Mehta Dental Group (Brea)",
+    "lab": "Mehta Dental Group (Brea) - RTE - JES"
+  },
+  {
+    "id": 93,
+    "name": "Dr. Ashok S. Mehta, DDS",
+    "route": null,
+    "raw": "Dr. Ashok S. Mehta, DDS",
+    "lab": "Mehta Dental Group (Los Alamitos)"
+  },
+  {
+    "id": 94,
+    "name": "Susan Kwon",
+    "route": "A",
+    "raw": "Susan Kwon - RTE: A",
+    "lab": "Mehta Dental Group (Tustin)"
+  },
+  {
+    "id": 95,
+    "name": "Hisham Al Khateeb",
+    "route": "JES",
+    "raw": "Hisham Al Khateeb - RTE: JES",
+    "lab": "Mesa Dental Center"
+  },
+  {
+    "id": 96,
+    "name": "Michelsen DDS",
+    "route": "A",
+    "raw": "Michelsen DDS - RTE: A",
+    "lab": "Michelsen Dental"
+  },
+  {
+    "id": 97,
+    "name": "Thuan Nguyen, Anthony DDS",
+    "route": "A",
+    "raw": "Thuan Nguyen, Anthony DDS - RTE: A",
+    "lab": "Mint Apple Dental"
+  },
+  {
+    "id": 98,
+    "name": "Cynthia Mora - RTE - MES",
+    "route": null,
+    "raw": "Cynthia Mora - RTE - MES",
+    "lab": "Mora Dental Lab"
+  },
+  {
+    "id": 99,
+    "name": "Pham, Tam DDS",
+    "route": "B",
+    "raw": "Pham, Tam DDS - RTE: B",
+    "lab": "My Care Dental"
+  },
+  {
+    "id": 100,
+    "name": "Fenghua, Fu DDS",
+    "route": "B",
+    "raw": "Fenghua, Fu DDS - RTE: B",
+    "lab": "My OC Dental Care"
+  },
+  {
+    "id": 101,
+    "name": "Nguyen, Nathan DDS",
+    "route": "B",
+    "raw": "Nguyen, Nathan DDS - RTE: B",
+    "lab": "Nathan Nguyen DDS"
+  },
+  {
+    "id": 102,
+    "name": "NATIONAL DENTAL ARTS - RTE: PICKS UP",
+    "route": null,
+    "raw": "NATIONAL DENTAL ARTS - RTE: PICKS UP",
+    "lab": "NATIONAL DENTAL ARTS"
+  },
+  {
+    "id": 103,
+    "name": "THUAN NGUYEN, ANTHONY DDS",
+    "route": "B",
+    "raw": "THUAN NGUYEN, ANTHONY DDS - RTE: B",
+    "lab": "Nhan Hien Dentistry"
+  },
+  {
+    "id": 104,
+    "name": "Sabo, Pooneh DDS",
+    "route": "B",
+    "raw": "Sabo, Pooneh DDS - RTE: B",
+    "lab": "OC Dental Center"
+  },
+  {
+    "id": 105,
+    "name": "Olshansky Victoria DDS",
+    "route": null,
+    "raw": "Olshansky Victoria DDS",
+    "lab": "Olshansky Victoria DDS"
+  },
+  {
+    "id": 106,
+    "name": "Dr. Rupporn Priyawat",
+    "route": null,
+    "raw": "Dr. Rupporn Priyawat",
+    "lab": "Omnia Dental (Chino Hills ) - RTE JES"
+  },
+  {
+    "id": 107,
+    "name": "Open Door Dental",
+    "route": "JES",
+    "raw": "Open Door Dental - RTE: JES",
+    "lab": "Open Door Dental"
+  },
+  {
+    "id": 108,
+    "name": "Dr Cliff Lee",
+    "route": null,
+    "raw": "Dr Cliff Lee",
+    "lab": "Orange Periodontics and Dental Implantology"
+  },
+  {
+    "id": 109,
+    "name": "Orange Sky Dental",
+    "route": null,
+    "raw": "Orange Sky Dental",
+    "lab": "Orange Sky Dental"
+  },
+  {
+    "id": 110,
+    "name": "Kim, William DDS",
+    "route": "JES",
+    "raw": "Kim, William DDS - RTE: JES",
+    "lab": "Oxy Dental (East Hollywood on Vermont)"
+  },
+  {
+    "id": 111,
+    "name": "PALM DESERT- Hospitality Dental Group",
+    "route": "MES",
+    "raw": "PALM DESERT- Hospitality Dental Group - RTE: MES",
+    "lab": "PALM DESERT- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 112,
+    "name": "Aminpour, Joshua DDS",
+    "route": "MES",
+    "raw": "Aminpour, Joshua DDS - RTE: MES",
+    "lab": "Palmdale Total Dentistry"
+  },
+  {
+    "id": 113,
+    "name": "Peace Kim",
+    "route": "JES",
+    "raw": "Peace Kim - RTE: JES",
+    "lab": "Peace Kim"
+  },
+  {
+    "id": 114,
+    "name": "Tran, Kiet DDS",
+    "route": "JES",
+    "raw": "Tran, Kiet DDS - RTE: JES",
+    "lab": "Pearly Smile Dental"
+  },
+  {
+    "id": 115,
+    "name": "Tran, Peter DDS",
+    "route": "JES",
+    "raw": "Tran, Peter DDS - RTE: JES",
+    "lab": "Peter Tran DDS"
+  },
+  {
+    "id": 116,
+    "name": "Piroutek, Gary M. DDS",
+    "route": "B",
+    "raw": "Piroutek, Gary M. DDS - RTE: B",
+    "lab": "Piroutek, Gary. DDS"
+  },
+  {
+    "id": 117,
+    "name": "Dang, Peter DDS",
+    "route": "C",
+    "raw": "Dang, Peter DDS - RTE: C",
+    "lab": "Precision Dental"
+  },
+  {
+    "id": 118,
+    "name": "Chan, Janice DDS",
+    "route": "C",
+    "raw": "Chan, Janice DDS - RTE: C",
+    "lab": "Premier Palm Dental"
+  },
+  {
+    "id": 119,
+    "name": "Rizk, Tony CDT",
+    "route": "A",
+    "raw": "Rizk, Tony CDT - RTE: A",
+    "lab": "Quick Silver Dental Laboratories, INC."
+  },
+  {
+    "id": 120,
+    "name": "Chau Le, Quynh DDS",
+    "route": "B",
+    "raw": "Chau Le, Quynh DDS - RTE: B",
+    "lab": "Quynhchau Le Dental Office"
+  },
+  {
+    "id": 121,
+    "name": "RANCHO CUCAMONGA- Hospitality Dental Group - RTE:",
+    "route": null,
+    "raw": "RANCHO CUCAMONGA- Hospitality Dental Group - RTE:",
+    "lab": "RANCHO CUCAMONGA- Hospitality Dental & Orthodontic"
+  },
+  {
+    "id": 122,
+    "name": "RANCHO MIRAGE- Hospitality Dental Group",
+    "route": "MES",
+    "raw": "RANCHO MIRAGE- Hospitality Dental Group - RTE: MES",
+    "lab": "RANCHO MIRAGE- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 123,
+    "name": "Richard H Baldwin, D.M.D.",
+    "route": null,
+    "raw": "Richard H Baldwin, D.M.D.",
+    "lab": "Richard H Baldwin, D.M.D."
+  },
+  {
+    "id": 124,
+    "name": "Ceballos, Carla DDS",
+    "route": "C",
+    "raw": "Ceballos, Carla DDS - RTE: C",
+    "lab": "Rocedent Family Dental - EG"
+  },
+  {
+    "id": 125,
+    "name": "Vuong, Ron DMD",
+    "route": "B",
+    "raw": "Vuong, Ron DMD - RTE: B",
+    "lab": "Ron An Vuong"
+  },
+  {
+    "id": 126,
+    "name": "Rosy Dental",
+    "route": "A",
+    "raw": "Rosy Dental - RTE: A",
+    "lab": "Rosy Dental"
+  },
+  {
+    "id": 127,
+    "name": "Ruben Jr",
+    "route": null,
+    "raw": "Ruben Jr",
+    "lab": "Ruben Jr - LAB (Huntington Park)"
+  },
+  {
+    "id": 128,
+    "name": "SAN BERNARDINO- Hospitality Dental Group",
+    "route": "JE",
+    "raw": "SAN BERNARDINO- Hospitality Dental Group - RTE: JE",
+    "lab": "SAN BERNARDINO- Hospitality Dental & Orthodontics"
+  },
+  {
+    "id": 129,
+    "name": "Alshawi, Mays DDS",
+    "route": "MES",
+    "raw": "Alshawi, Mays DDS - RTE: MES",
+    "lab": "San Diego Dental Lounge"
+  },
+  {
+    "id": 130,
+    "name": "Ashok Patel, DDS",
+    "route": "JES",
+    "raw": "Ashok Patel, DDS - RTE: JES",
+    "lab": "San Fernando Pacoima"
+  },
+  {
+    "id": 131,
+    "name": "Yadira Gamez DDS",
+    "route": "MES",
+    "raw": "Yadira Gamez DDS - RTE: MES",
+    "lab": "San Ysidro Dental Care"
+  },
+  {
+    "id": 132,
+    "name": "Huang, Angela DDS",
+    "route": "JES",
+    "raw": "Huang, Angela DDS - RTE: JES",
+    "lab": "Serenity Dental Spa"
+  },
+  {
+    "id": 133,
+    "name": "SGTD Global Dental Center",
+    "route": "B",
+    "raw": "SGTD Global Dental Center - RTE: B",
+    "lab": "SGTD Global Dental Center"
+  },
+  {
+    "id": 134,
+    "name": "Nguyen, Khoi DDS",
+    "route": "A",
+    "raw": "Nguyen, Khoi DDS - RTE: A",
+    "lab": "Simply Dentistry"
+  },
+  {
+    "id": 135,
+    "name": "Mahallati, Shahin DDS",
+    "route": "MES",
+    "raw": "Mahallati, Shahin DDS - RTE: MES",
+    "lab": "Smile San Clemente"
+  },
+  {
+    "id": 136,
+    "name": "Chan, Stephan DDS",
+    "route": null,
+    "raw": "Chan, Stephan DDS",
+    "lab": "Smilehaven Dental Center"
+  },
+  {
+    "id": 137,
+    "name": "Ayala, Marcela DDS",
+    "route": "A",
+    "raw": "Ayala, Marcela DDS - RTE: A",
+    "lab": "Smilelife Dental Group"
+  },
+  {
+    "id": 138,
+    "name": "Nguyen, Alex DDS",
+    "route": "B",
+    "raw": "Nguyen, Alex DDS - RTE: B",
+    "lab": "Smiles by Alex"
+  },
+  {
+    "id": 139,
+    "name": "Dr carlos sibaja - DDS",
+    "route": null,
+    "raw": "Dr carlos sibaja - DDS",
+    "lab": "Smiles of San Marcos - RTE - MES"
+  },
+  {
+    "id": 140,
+    "name": "Kalantari, Danial DDS",
+    "route": "B",
+    "raw": "Kalantari, Danial DDS - RTE: B",
+    "lab": "Smiles On Bristol Dentistry"
+  },
+  {
+    "id": 141,
+    "name": "Smiles West (Covina) - RTE JES",
+    "route": null,
+    "raw": "Smiles West (Covina) - RTE JES",
+    "lab": "Smiles West (Covina)"
+  },
+  {
+    "id": 142,
+    "name": "Smiles West (La Puente)",
+    "route": "JES",
+    "raw": "Smiles West (La Puente) - RTE: JES",
+    "lab": "Smiles West (La Puente)"
+  },
+  {
+    "id": 143,
+    "name": "Smiles West (San Bernardino)",
+    "route": "MES",
+    "raw": "Smiles West (San Bernardino) - RTE: MES",
+    "lab": "Smiles West (San Bernardino)"
+  },
+  {
+    "id": 144,
+    "name": "Dawood, Antonious DMD",
+    "route": "B",
+    "raw": "Dawood, Antonious DMD - RTE: B",
+    "lab": "St. Anthony Family Dentistry"
+  },
+  {
+    "id": 145,
+    "name": "Hung, Dang DDS",
+    "route": "B",
+    "raw": "Hung, Dang DDS - RTE: B",
+    "lab": "Sunrise Smiles"
+  },
+  {
+    "id": 146,
+    "name": "Olmos, Cesar DDS",
+    "route": "A",
+    "raw": "Olmos, Cesar DDS - RTE: A",
+    "lab": "Sunset Dental Arts"
+  },
+  {
+    "id": 147,
+    "name": "Tayenaka, Ted DDS",
+    "route": "JES",
+    "raw": "Tayenaka, Ted DDS - RTE: JES",
+    "lab": "Ted Tayenaka DDS"
+  },
+  {
+    "id": 148,
+    "name": "Avendano-Galvez, Teresa M. DMD",
+    "route": "JES",
+    "raw": "Avendano-Galvez, Teresa M. DMD - RTE: JES",
+    "lab": "Teresa M. Avendano-Galvez, DMD - J"
+  },
+  {
+    "id": 149,
+    "name": "Dr Joy Helou DDS",
+    "route": null,
+    "raw": "Dr Joy Helou DDS",
+    "lab": "The Joy Of Dentistry RTE JES"
+  },
+  {
+    "id": 150,
+    "name": "Dr. NeveinE Amer DDS",
+    "route": null,
+    "raw": "Dr. NeveinE Amer DDS",
+    "lab": "The Ontario Dentist - RTE JES"
+  },
+  {
+    "id": 151,
+    "name": "Pham, Mindy ,DDS",
+    "route": null,
+    "raw": "Pham, Mindy ,DDS",
+    "lab": "Tooth Fairy Dental"
+  },
+  {
+    "id": 152,
+    "name": "Torres, Martha DDS",
+    "route": "A",
+    "raw": "Torres, Martha DDS - RTE: A",
+    "lab": "Torres Family Dental"
+  },
+  {
+    "id": 153,
+    "name": "Young Kim, James",
+    "route": "MES",
+    "raw": "Young Kim, James - RTE: MES",
+    "lab": "Total Care Implant Dentistry (Palm Desert)"
+  },
+  {
+    "id": 154,
+    "name": "Chen, Linda DDS Rte JES",
+    "route": null,
+    "raw": "Chen, Linda DDS Rte JES",
+    "lab": "Total Family Dental Group"
+  },
+  {
+    "id": 155,
+    "name": "Li, Davin DDS",
+    "route": "A",
+    "raw": "Li, Davin DDS - RTE: A",
+    "lab": "Transformation Dental Partners"
+  },
+  {
+    "id": 156,
+    "name": "Nguyen, Hung DDS",
+    "route": "B",
+    "raw": "Nguyen, Hung DDS - RTE: B",
+    "lab": "Tri An Dental"
+  },
+  {
+    "id": 157,
+    "name": "Kalasho, Rhonda DDS",
+    "route": "JES",
+    "raw": "Kalasho, Rhonda DDS - RTE: JES",
+    "lab": "TruGLO Modern Dental (Beverly Hills)"
+  },
+  {
+    "id": 158,
+    "name": "Tran, Tami DDS",
+    "route": "A",
+    "raw": "Tran, Tami DDS - RTE: A",
+    "lab": "Tustin Blue Dental Group"
+  },
+  {
+    "id": 159,
+    "name": "TV Dental Lab - RTE: PICKS UP",
+    "route": null,
+    "raw": "TV Dental Lab - RTE: PICKS UP",
+    "lab": "TV Dental Lab"
+  },
+  {
+    "id": 160,
+    "name": "Tran, Henry DDS",
+    "route": "B",
+    "raw": "Tran, Henry DDS - RTE: B",
+    "lab": "Unique Dental (Garden Grove)"
+  },
+  {
+    "id": 161,
+    "name": "Ta, Hien DDS",
+    "route": "C",
+    "raw": "Ta, Hien DDS - RTE: C",
+    "lab": "Unistar Dental"
+  },
+  {
+    "id": 162,
+    "name": "United Dental Centers",
+    "route": "JES",
+    "raw": "United Dental Centers - RTE: JES",
+    "lab": "United Dental Centers"
+  },
+  {
+    "id": 163,
+    "name": "Malek Hedayat, Iman DDS",
+    "route": "A",
+    "raw": "Malek Hedayat, Iman DDS - RTE: A",
+    "lab": "Urban Dental"
+  },
+  {
+    "id": 164,
+    "name": "Villegas Dental Laboratory",
+    "route": "JES",
+    "raw": "Villegas Dental Laboratory - RTE: JES",
+    "lab": "Villegas Dental Laboratory"
+  },
+  {
+    "id": 165,
+    "name": "Dr. Summer Q. Hafar DDS",
+    "route": null,
+    "raw": "Dr. Summer Q. Hafar DDS",
+    "lab": "Vineyard Family Dentist Ontario Ortho Center - RTE"
+  },
+  {
+    "id": 166,
+    "name": "VTA DENTAL LAB - RTE: PICKS UP",
+    "route": null,
+    "raw": "VTA DENTAL LAB - RTE: PICKS UP",
+    "lab": "VTA DENTAL LAB"
+  },
+  {
+    "id": 167,
+    "name": "Vu, Hong DDS",
+    "route": "JES",
+    "raw": "Vu, Hong DDS - RTE: JES",
+    "lab": "Vu Hong T DDS"
+  },
+  {
+    "id": 168,
+    "name": "Raffie Garabedian DMD",
+    "route": null,
+    "raw": "Raffie Garabedian DMD",
+    "lab": "Warner Dental Group"
+  },
+  {
+    "id": 169,
+    "name": "Michael Dao DDS",
+    "route": null,
+    "raw": "Michael Dao DDS",
+    "lab": "West Dental - (Compton ) RTE: JES"
+  },
+  {
+    "id": 170,
+    "name": "Tang, Keith S DDS",
+    "route": "A",
+    "raw": "Tang, Keith S DDS - RTE: A",
+    "lab": "Westpark Dental"
+  },
+  {
+    "id": 171,
+    "name": "Ravizadeh , David Rte JES",
+    "route": null,
+    "raw": "Ravizadeh , David Rte JES",
+    "lab": "Whittier Dental Group"
+  },
+  {
+    "id": 172,
+    "name": "Vasquez, Ryann DDS",
+    "route": "C",
+    "raw": "Vasquez, Ryann DDS - RTE: C",
+    "lab": "Your OC Dentist Corp"
+  },
+  {
+    "id": 173,
+    "name": "Zapanta-Chavez, Christine DDS",
+    "route": "JES",
+    "raw": "Zapanta-Chavez, Christine DDS - RTE: JES",
+    "lab": "Zapanta-Chavez Dentistry (LA)"
+  },
+  {
+    "id": 174,
+    "name": "Dr Hanna Toukatli DDS - JES",
+    "route": null,
+    "raw": "Dr Hanna Toukatli DDS - JES",
+    "lab": "A Brilliant Smile Dental"
+  },
+  {
+    "id": 175,
+    "name": "Fernand Lacayanga, DMD",
+    "route": "MES",
+    "raw": "Fernand Lacayanga, DMD - RTE: MES",
+    "lab": "Allison Avenue Dental"
+  },
+  {
+    "id": 176,
+    "name": "Drew Almodovar DDS, & Susan Millar DDS",
+    "route": "B",
+    "raw": "Drew Almodovar DDS, & Susan Millar DDS - RTE: B",
+    "lab": "Almodovar Dentistry, Inc"
+  },
+  {
+    "id": 177,
+    "name": "Anaheim Mankind Dentistry",
+    "route": null,
+    "raw": "Anaheim Mankind Dentistry",
+    "lab": "Anaheim Mankind Dentistry"
+  },
+  {
+    "id": 178,
+    "name": "Pravinchandra Makadia, DDS - JES",
+    "route": null,
+    "raw": "Pravinchandra Makadia, DDS - JES",
+    "lab": "Bettersmile Dental"
+  },
+  {
+    "id": 179,
+    "name": "Bravo, Luz S.",
+    "route": "C",
+    "raw": "Bravo, Luz S. - RTE: C",
+    "lab": "Bravo Dental Corporation"
+  },
+  {
+    "id": 180,
+    "name": "Steven A. Chapple D.D.S",
+    "route": null,
+    "raw": "Steven A. Chapple D.D.S",
+    "lab": "Brighter Image Dental"
+  },
+  {
+    "id": 181,
+    "name": "CHD Dental Care",
+    "route": "JES",
+    "raw": "CHD Dental Care - RTE: JES",
+    "lab": "CHD Dental Care"
+  },
+  {
+    "id": 182,
+    "name": "Creative Solutions Laboratory LLC",
+    "route": "FEDEX",
+    "raw": "Creative Solutions Laboratory LLC - RTE: FEDEX",
+    "lab": "Creative Solutions Laboratory LLC"
+  },
+  {
+    "id": 183,
+    "name": "Dr. Hung Dinh, DDS",
+    "route": "C",
+    "raw": "Dr. Hung Dinh, DDS - RTE: C",
+    "lab": "D & T Dentistry (Garden Grove)"
+  },
+  {
+    "id": 184,
+    "name": "Dr. Peter A. Defazio Jr., DMD",
+    "route": "FEDEX",
+    "raw": "Dr. Peter A. Defazio Jr., DMD - RTE: FEDEX",
+    "lab": "Defazio Jr., Peter. DMD"
+  },
+  {
+    "id": 185,
+    "name": "Dr Itzel Zuazo DDS",
+    "route": null,
+    "raw": "Dr Itzel Zuazo DDS",
+    "lab": "Dr. Itzel Zuazo - RTE JES"
+  },
+  {
+    "id": 186,
+    "name": "DR. J",
+    "route": null,
+    "raw": "DR. J",
+    "lab": "DR. J"
+  },
+  {
+    "id": 187,
+    "name": "Duong, Hien",
+    "route": "B",
+    "raw": "Duong, Hien - RTE: B",
+    "lab": "Duong, Hien DDS Inc."
+  },
+  {
+    "id": 188,
+    "name": "Marilou Quiroz DDS",
+    "route": "MES",
+    "raw": "Marilou Quiroz DDS - RTE: MES",
+    "lab": "Family First Dental"
+  },
+  {
+    "id": 189,
+    "name": "Haduong, Han DDS",
+    "route": "JES",
+    "raw": "Haduong, Han DDS - RTE: JES",
+    "lab": "Haduong Han DDS"
+  },
+  {
+    "id": 190,
+    "name": "Namsinh, Lily A. DDS",
+    "route": "B",
+    "raw": "Namsinh, Lily A. DDS - RTE: B",
+    "lab": "Harbor Family Dental"
+  },
+  {
+    "id": 191,
+    "name": "Dich Lu DDS",
+    "route": "JES",
+    "raw": "Dich Lu DDS - RTE: JES",
+    "lab": "Healthy Smiles Dental Center"
+  },
+  {
+    "id": 192,
+    "name": "Dang, Nina Nhan DDS",
+    "route": "B",
+    "raw": "Dang, Nina Nhan DDS - RTE: B",
+    "lab": "iSmiles Dentistry"
+  },
+  {
+    "id": 193,
+    "name": "John J. Furesh D.D.S",
+    "route": null,
+    "raw": "John J. Furesh D.D.S",
+    "lab": "John J. Furesh Dental Group"
+  },
+  {
+    "id": 194,
+    "name": "Vo, Sandra DDS",
+    "route": "B",
+    "raw": "Vo, Sandra DDS - RTE: B",
+    "lab": "K & P Dental"
+  },
+  {
+    "id": 195,
+    "name": "Le, Nick DDS",
+    "route": "JES",
+    "raw": "Le, Nick DDS - RTE: JES",
+    "lab": "Le, Nick DDS"
+  },
+  {
+    "id": 196,
+    "name": "Ng, Linda - JES",
+    "route": null,
+    "raw": "Ng, Linda - JES",
+    "lab": "Linda L. Ng, D.D.S. Inc."
+  },
+  {
+    "id": 197,
+    "name": "Nguyen, Linh Hoang DDS",
+    "route": "B",
+    "raw": "Nguyen, Linh Hoang DDS - RTE: B",
+    "lab": "Linh Hoang Nguyen DDS"
+  },
+  {
+    "id": 198,
+    "name": "Dr. Iramania",
+    "route": "JES",
+    "raw": "Dr. Iramania - RTE: JES",
+    "lab": "Mindfulness Dental"
+  },
+  {
+    "id": 199,
+    "name": "Nemazee, Massoud",
+    "route": "JES",
+    "raw": "Nemazee, Massoud - RTE: JES",
+    "lab": "Pacific Family Dental Office"
+  },
+  {
+    "id": 200,
+    "name": "Lim S Hyun DDS, MS",
+    "route": "MES",
+    "raw": "Lim S Hyun DDS, MS - RTE: MES",
+    "lab": "Pacific Ocean Dental Group"
+  },
+  {
+    "id": 201,
+    "name": "Petri, Odeta DDS",
+    "route": "A",
+    "raw": "Petri, Odeta DDS - RTE: A",
+    "lab": "Petri Dental"
+  },
+  {
+    "id": 202,
+    "name": "Dr Irfan Kahn DDS",
+    "route": "FEDEX",
+    "raw": "Dr Irfan Kahn DDS - RTE: FEDEX",
+    "lab": "Polaris Dental Care"
+  },
+  {
+    "id": 203,
+    "name": "Saucedo, Ruben - RTE JES",
+    "route": null,
+    "raw": "Saucedo, Ruben - RTE JES",
+    "lab": "Rosedale Dental Care Group"
+  },
+  {
+    "id": 204,
+    "name": "Montejano, Rubi DDS",
+    "route": "JES",
+    "raw": "Montejano, Rubi DDS - RTE: JES",
+    "lab": "Rubi Montejano DDS"
+  },
+  {
+    "id": 205,
+    "name": "Rodriquez, Cristina A DDS",
+    "route": "JES",
+    "raw": "Rodriquez, Cristina A DDS - RTE: JES",
+    "lab": "Santa Fe Family Dental Center"
+  },
+  {
+    "id": 206,
+    "name": "Chen, Jing , DDS JES",
+    "route": null,
+    "raw": "Chen, Jing , DDS JES",
+    "lab": "Today Dental Practice"
+  },
+  {
+    "id": 207,
+    "name": "Kalasho, Rhonda DDS",
+    "route": "MES",
+    "raw": "Kalasho, Rhonda DDS - RTE: MES",
+    "lab": "TruGLO Modern Dental (La Jolla)"
+  },
+  {
+    "id": 208,
+    "name": "USC Dental Clinic",
+    "route": null,
+    "raw": "USC Dental Clinic",
+    "lab": "USC Dental Clinic RTE JES"
+  },
+  {
+    "id": 209,
+    "name": "Vu, Khang DDS",
+    "route": "JES",
+    "raw": "Vu, Khang DDS - RTE: JES",
+    "lab": "Vu Paramount Dental Group"
+  },
+  {
+    "id": 210,
+    "name": "Anthony Dao DDS",
+    "route": "JES",
+    "raw": "Anthony Dao DDS - RTE: JES",
+    "lab": "West Dental - (Compton ) RTE: JES"
+  },
+  {
+    "id": 211,
+    "name": "YOYO'S DAD LAB",
+    "route": null,
+    "raw": "YOYO'S DAD LAB",
+    "lab": "YOYO'S DAD LAB"
+  },
+  {
+    "id": 212,
+    "name": "Arafiles, Yvonne P. DDS",
+    "route": "JES",
+    "raw": "Arafiles, Yvonne P. DDS - RTE: JES",
+    "lab": "Yvonne P. Arafiles DDS"
+  }
+]

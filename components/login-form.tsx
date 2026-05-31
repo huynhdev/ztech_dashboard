@@ -3,12 +3,13 @@
 import { useState, useTransition } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { EyeIcon, EyeOffIcon, Loader2Icon, LogInIcon } from "lucide-react"
+import { Loader2Icon, LogInIcon } from "lucide-react"
 
 import { loginSchema, type LoginFormValues } from "@/lib/schemas/login"
 import { login } from "@/app/login/actions"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { PasswordInput } from "@/components/ui/password-input"
 import {
   Field,
   FieldError,
@@ -17,7 +18,6 @@ import {
 } from "@/components/ui/field"
 
 export function LoginForm() {
-  const [showPassword, setShowPassword] = useState(false)
   const [serverError, setServerError] = useState<string | null>(null)
   const [isPending, startTransition] = useTransition()
 
@@ -64,29 +64,13 @@ export function LoginForm() {
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="login-password">Password</FieldLabel>
-              <div className="relative">
-                <Input
-                  {...field}
-                  id="login-password"
-                  type={showPassword ? "text" : "password"}
-                  autoComplete="current-password"
-                  placeholder="Enter your password"
-                  aria-invalid={fieldState.invalid}
-                  className="pr-9"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword((v) => !v)}
-                  aria-label={showPassword ? "Hide password" : "Show password"}
-                  className="absolute inset-y-0 right-0 flex items-center px-2.5 text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {showPassword ? (
-                    <EyeOffIcon className="size-4" />
-                  ) : (
-                    <EyeIcon className="size-4" />
-                  )}
-                </button>
-              </div>
+              <PasswordInput
+                {...field}
+                id="login-password"
+                autoComplete="current-password"
+                placeholder="Enter your password"
+                aria-invalid={fieldState.invalid}
+              />
               {fieldState.error && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}

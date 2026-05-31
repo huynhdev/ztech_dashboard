@@ -5,15 +5,17 @@ import { Badge } from "@/components/ui/badge"
 import { FileSpreadsheetIcon } from "lucide-react"
 import type { Upload } from "@/lib/data"
 
-const statusVariant: Record<Upload["status"], "default" | "secondary" | "destructive"> = {
-  completed: "default",
+const statusVariant: Record<Upload["status"], "default" | "secondary" | "destructive" | "outline"> = {
+  pending: "outline",
   processing: "secondary",
+  completed: "default",
   failed: "destructive",
 }
 
 const statusLabel: Record<Upload["status"], string> = {
-  completed: "Completed",
+  pending: "Pending",
   processing: "Processing",
+  completed: "Completed",
   failed: "Failed",
 }
 
@@ -34,6 +36,31 @@ export const uploadColumns: ColumnDef<Upload>[] = [
     cell: ({ row }) => {
       const status = row.getValue("status") as Upload["status"]
       return <Badge variant={statusVariant[status]}>{statusLabel[status]}</Badge>
+    },
+  },
+  {
+    id: "rows",
+    header: "Progress",
+    cell: ({ row }) => {
+      const u = row.original
+      if (u.status === "failed") {
+        return <span className="text-xs text-destructive">{u.error ?? "Failed"}</span>
+      }
+      const total = u.totalRows ?? u.processedRows
+      if (u.status === "processing" || u.status === "pending") {
+        const percent = total ? Math.min(100, Math.round((u.processedRows / total) * 100)) : 0
+        return (
+          <span className="text-xs text-muted-foreground">
+            {total ? `${percent}% · ${u.processedRows}/${total}` : "Parsing…"}
+          </span>
+        )
+      }
+      return (
+        <span className="text-xs text-muted-foreground">
+          {u.processedRows}/{total} · +{u.insertedCount} new
+          {u.skippedCount > 0 ? ` · ${u.skippedCount} skipped` : ""}
+        </span>
+      )
     },
   },
   {

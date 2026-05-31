@@ -4,8 +4,8 @@ import { uploadColumns } from "@/components/upload-columns"
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { UploadDialog } from "@/components/upload-dialog"
 
-export default function UploadPage() {
-  const uploads = getUploads()
+export default async function UploadPage() {
+  const uploads = await getUploads()
 
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 sm:p-6">

@@ -390,7 +390,11 @@ export function UploadDialog() {
           Upload Files
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-lg">
+      <DialogContent
+        className="sm:max-w-lg"
+        onInteractOutside={(e) => e.preventDefault()}
+        onEscapeKeyDown={(e) => e.preventDefault()}
+      >
         <DialogHeader>
           <DialogTitle>Upload Excel Files</DialogTitle>
           <DialogDescription>

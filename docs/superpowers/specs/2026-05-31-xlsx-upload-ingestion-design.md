@@ -26,7 +26,7 @@ are pivot tables derived from it.
 
 | Decision | Choice |
 |---|---|
-| Data target | Build Supabase schema + ingest; switch dashboard reads to Supabase |
+| Data target | Build Supabase schema + ingest (store data). Dashboard **analytics** reads stay JSON-backed for now (follow-up); only the **upload history** read moves to Supabase. |
 | Accepted format | `.xlsx` only |
 | Initial seed | Start empty (no JSON seed) |
 | Re-upload behavior | Idempotent upsert on a natural dedupe key |
@@ -43,12 +43,19 @@ are pivot tables derived from it.
   ingested as `incoming_cases`, idempotently.
 - The user sees genuine real-time progress (rows processed / total, new entities,
   inserted vs updated) and a final success/failure state.
-- The dashboard analytics read from Supabase and reflect uploaded data.
+- The **upload history** list reads from the Supabase `uploads` table and reflects real
+  uploads.
 
 **Non-Goals**
+- **Migrating the dashboard analytics reads off JSON** (`getSummary`, `getTimeSeries`,
+  `getCategoryBreakdown`, `getTopLabs`, `getTopDoctors`, `getClientHeatmap`,
+  `getClientChanges`) — these stay JSON-backed for now. The interactive client components
+  (`page.tsx`, `ClientHeatmap`) are **not** restructured in this feature. Deferred
+  follow-up. (This means ingested data is stored but not yet visualized; that is
+  intentional for this slice.)
 - Migrating the **users page** (`app/(dashboard)/users/page.tsx`) off `users.json` —
   unrelated to ingestion; separate follow-up.
-- Pushing analytics aggregation into SQL views / RPC — aggregations stay in TypeScript.
+- Pushing analytics aggregation into SQL views / RPC.
 - CSV or `.xls` support — `.xlsx` only.
 - A pre-commit preview/confirm step — ingestion is one-shot.
 - Editing/deleting already-ingested cases through the UI.
@@ -175,33 +182,32 @@ Re-derives the transform that originally produced `data/incoming_cases_raw.json`
 - **Skipped rows**: rows missing Pan, Patient, or Lab are counted toward
   `skipped_count` (not fatal); ingestion continues.
 
-## 7. Read-Path Migration (`lib/data.ts`)
+## 7. Read-Path Changes (`lib/data.ts`) — upload history only
 
-Keep all existing in-memory aggregation logic; replace JSON imports with async Supabase
-fetches of base tables via the server client (`@/lib/supabase/server`), then run the
-same transforms.
+**Scope is deliberately narrow.** The analytics functions (`getSummary`, `getTimeSeries`,
+`getCategoryBreakdown`, `getTopLabs`, `getTopDoctors`, `getClientHeatmap`,
+`getClientChanges`) and their consumers (`app/(dashboard)/page.tsx`, `ClientHeatmap`,
+`client-change-table.tsx`) are **left untouched** — they keep reading the existing
+`data/*.json`. Restructuring those client components for async Supabase reads is a
+separate follow-up.
 
-- `getSummary`, `getTimeSeries`, `getCategoryBreakdown`, `getTopLabs`, `getTopDoctors`,
-  `getClientHeatmap` become `async`; they fetch `incoming_cases` (+ `labs`/`products`/
-  `doctors` as needed) and aggregate in TypeScript.
-- `export const clientChanges = getClientChanges(20)` (computed at import time) becomes an
-  async function `getClientChanges(20)`; `components/client-change-table.tsx` updated to
-  receive it as data.
-- `app/(dashboard)/page.tsx` (server component) `await`s the data functions and passes
-  results to the client chart components (unchanged props).
-- `getUploads()` reads the `uploads` table; the `Upload` type gains `status`/progress/
-  counts and resolves `uploaded_by` -> profile email. Note `id` becomes a UUID string and
-  the `status` union gains `"pending"` (currently `"completed" | "processing" | "failed"`).
-- The dataset is small (hundreds–few thousand rows/week), so fetch-then-aggregate is
-  acceptable; no SQL views/RPC.
-- **`getClientChanges` semantics shift**: it currently splits a single week's file at the
-  data's own date midpoint to derive new/churned labs. Once `incoming_cases` accumulates
-  multiple weeks, that midpoint splits the whole accumulated dataset, not one file. The
-  logic is kept as-is for now, but the planner should be aware the new-vs-churned meaning
-  changes with multi-week data (revisit if it misleads).
+The only read that moves to Supabase is the **upload history**:
 
-Domain `data/*.json` files stop being a data source (the `users.json`-backed users page
-is the only remaining JSON reader and is explicitly out of scope).
+- `getUploads()` becomes `async` and queries the `uploads` table (+ a join/lookup to
+  `profiles` for the uploader email) via the **server** client (`@/lib/supabase/server`).
+- `app/(dashboard)/upload/page.tsx` is already a server component; it becomes `async` and
+  `await`s `getUploads()`.
+- The `Upload` type changes: `id` becomes a uuid string; `status` union gains `"pending"`
+  (currently `"completed" | "processing" | "failed"`); add progress/count fields
+  (`totalRows`, `processedRows`, `insertedCount`, `updatedCount`, `skippedCount`,
+  `newLabsCount`, `newDoctorsCount`, `error`); `fileName`/`uploadedAt`/`uploader` map from
+  `file_name`/`uploaded_at`/`profiles.email`.
+- `components/upload-columns.tsx` updates its `statusVariant`/`statusLabel` maps to include
+  `"pending"` and (optionally) renders progress for in-flight rows.
+
+The JSON consumed by the analytics functions remains in place; `data/incoming_cases.json`
+etc. are untouched by this feature. (The eventual analytics migration off JSON is tracked
+as a follow-up, out of scope here.)
 
 ## 8. Client Changes
 

@@ -104,103 +104,107 @@ export function UploadDialog() {
       return
     }
 
-    const total = files.length
-    let completed = 0
-    const settle = () => {
-      completed += 1
-      if (completed === total) {
-        setUploading(false)
-        router.refresh()
-      }
-    }
-
-    await Promise.all(
-      files.map(async (file) => {
+    // Each ingest creates labs/doctors/products/patients with an insert-if-absent
+    // check (SELECT then INSERT). Two ingests running at once both miss the SELECT
+    // and both INSERT the same name, so one loses on a UNIQUE-constraint violation.
+    // Process files one at a time — waiting for each to reach a terminal state before
+    // starting the next — so their ingests never overlap. (The function returns 202
+    // and ingests in the background, so a sequential *invoke* is not enough; we must
+    // wait for the terminal Realtime UPDATE.)
+    const processFile = (file: File) =>
+      new Promise<void>((resolveFile) => {
         const id = crypto.randomUUID()
         const path = `${id}/${file.name}`
         const set = (patch: Partial<FileProgress>) =>
           setProgress((prev) => ({ ...prev, [id]: { ...prev[id], ...patch } }))
 
-        // Settle exactly once per file regardless of which terminal path fires
-        // (synchronous error OR Realtime UPDATE), so the upload never hangs and
-        // `completed` can't over-count.
+        // Resolve exactly once per file regardless of which terminal path fires
+        // (synchronous error OR Realtime UPDATE), so the sequence never hangs.
         let settled = false
         const settleOnce = (channel?: RealtimeChannel) => {
           if (channel) supabase.removeChannel(channel)
           if (settled) return
           settled = true
-          settle()
+          resolveFile()
         }
 
-        set({ fileName: file.name, status: "pending", processed: 0, total: 0, inserted: 0, skipped: 0, error: null })
+        void (async () => {
+          set({ fileName: file.name, status: "pending", processed: 0, total: 0, inserted: 0, skipped: 0, error: null })
 
-        const { error: insErr } = await supabase
-          .from("uploads")
-          .insert({ id, file_name: file.name, file_path: path, status: "pending", uploaded_by: user.id })
-        if (insErr) {
-          set({ status: "failed", error: insErr.message })
-          settleOnce()
-          return
-        }
-
-        // Subscribe before invoking so the happy-path UPDATEs aren't missed. We do NOT
-        // rely on this channel for liveness on the error paths below — those settle
-        // directly — because the subscription may not be established yet when a fast
-        // failure writes the row.
-        const channel = supabase
-          .channel(`upload-${id}`)
-          .on(
-            "postgres_changes",
-            { event: "UPDATE", schema: "public", table: "uploads", filter: `id=eq.${id}` },
-            (payload) => {
-              const n = payload.new as Record<string, number | string | null>
-              set({
-                status: String(n.status) as FileProgress["status"],
-                processed: Number(n.processed_rows ?? 0),
-                total: Number(n.total_rows ?? 0),
-                inserted: Number(n.inserted_count ?? 0),
-                skipped: Number(n.skipped_count ?? 0),
-                error: (n.error as string | null) ?? null,
-              })
-              if (n.status === "completed" || n.status === "failed") settleOnce(channel)
-            },
-          )
-        channelsRef.current.push(channel)
-
-        // Subscribe and wait until the channel is actually SUBSCRIBED before kicking off
-        // work that could finish near-instantly (tiny file / fast failure); otherwise a
-        // terminal UPDATE fired before the subscription is live would be missed and the
-        // file would never settle. Proceed anyway after a short timeout so a Realtime
-        // hiccup can't block the upload entirely.
-        await new Promise<void>((resolve) => {
-          let done = false
-          const finish = () => {
-            if (done) return
-            done = true
-            resolve()
+          const { error: insErr } = await supabase
+            .from("uploads")
+            .insert({ id, file_name: file.name, file_path: path, status: "pending", uploaded_by: user.id })
+          if (insErr) {
+            set({ status: "failed", error: insErr.message })
+            settleOnce()
+            return
           }
-          channel.subscribe((status) => {
-            if (status === "SUBSCRIBED") finish()
+
+          // Subscribe before invoking so the happy-path UPDATEs aren't missed. We do NOT
+          // rely on this channel for liveness on the error paths below — those settle
+          // directly — because the subscription may not be established yet when a fast
+          // failure writes the row.
+          const channel = supabase
+            .channel(`upload-${id}`)
+            .on(
+              "postgres_changes",
+              { event: "UPDATE", schema: "public", table: "uploads", filter: `id=eq.${id}` },
+              (payload) => {
+                const n = payload.new as Record<string, number | string | null>
+                set({
+                  status: String(n.status) as FileProgress["status"],
+                  processed: Number(n.processed_rows ?? 0),
+                  total: Number(n.total_rows ?? 0),
+                  inserted: Number(n.inserted_count ?? 0),
+                  skipped: Number(n.skipped_count ?? 0),
+                  error: (n.error as string | null) ?? null,
+                })
+                if (n.status === "completed" || n.status === "failed") settleOnce(channel)
+              },
+            )
+          channelsRef.current.push(channel)
+
+          // Subscribe and wait until the channel is actually SUBSCRIBED before kicking off
+          // work that could finish near-instantly (tiny file / fast failure); otherwise a
+          // terminal UPDATE fired before the subscription is live would be missed and the
+          // file would never settle. Proceed anyway after a short timeout so a Realtime
+          // hiccup can't block the upload entirely.
+          await new Promise<void>((resolve) => {
+            let done = false
+            const finish = () => {
+              if (done) return
+              done = true
+              resolve()
+            }
+            channel.subscribe((status) => {
+              if (status === "SUBSCRIBED") finish()
+            })
+            setTimeout(finish, 5000)
           })
-          setTimeout(finish, 5000)
-        })
 
-        const { error: upErr } = await supabase.storage.from("uploads").upload(path, file, { upsert: true })
-        if (upErr) {
-          set({ status: "failed", error: upErr.message })
-          await supabase.from("uploads").update({ status: "failed", error: upErr.message }).eq("id", id)
-          settleOnce(channel)
-          return
-        }
+          const { error: upErr } = await supabase.storage.from("uploads").upload(path, file, { upsert: true })
+          if (upErr) {
+            set({ status: "failed", error: upErr.message })
+            await supabase.from("uploads").update({ status: "failed", error: upErr.message }).eq("id", id)
+            settleOnce(channel)
+            return
+          }
 
-        const { error: fnErr } = await supabase.functions.invoke("process-upload", { body: { uploadId: id } })
-        if (fnErr) {
-          set({ status: "failed", error: fnErr.message })
-          await supabase.from("uploads").update({ status: "failed", error: fnErr.message }).eq("id", id)
-          settleOnce(channel)
-        }
-      }),
-    )
+          const { error: fnErr } = await supabase.functions.invoke("process-upload", { body: { uploadId: id } })
+          if (fnErr) {
+            set({ status: "failed", error: fnErr.message })
+            await supabase.from("uploads").update({ status: "failed", error: fnErr.message }).eq("id", id)
+            settleOnce(channel)
+          }
+        })()
+      })
+
+    for (const file of files) {
+      await processFile(file)
+    }
+
+    setUploading(false)
+    router.refresh()
   }
 
   return (

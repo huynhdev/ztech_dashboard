@@ -22,6 +22,21 @@ function getSecretKey(): string {
   throw new Error("No Supabase secret key (SUPABASE_SECRET_KEYS / SUPABASE_SERVICE_ROLE_KEY)");
 }
 
+// Supabase query helpers reject with a PostgrestError — a plain object, NOT an Error
+// instance — so `String(e)` yields "[object Object]". Pull the human-readable fields
+// (message/details/hint/code) so a failed upload records what actually went wrong.
+function errorMessage(e: unknown): string {
+  if (e instanceof Error) return e.message;
+  if (e && typeof e === "object") {
+    const o = e as Record<string, unknown>;
+    const parts = [o.message, o.details, o.hint, o.code].filter(
+      (v): v is string => typeof v === "string" && v.length > 0,
+    );
+    if (parts.length) return parts.join(" — ");
+  }
+  return String(e);
+}
+
 Deno.serve(async (req) => {
   let uploadId: string | null = null;
   try {
@@ -171,7 +186,7 @@ async function ingest(admin: SupabaseClient, uploadId: string): Promise<void> {
   } catch (e) {
     const { error: markErr } = await admin.from("uploads").update({
       status: "failed",
-      error: e instanceof Error ? e.message : String(e),
+      error: errorMessage(e),
     }).eq("id", uploadId);
     if (markErr) {
       console.error(`upload ${uploadId}: failed to mark failed:`, markErr.message, "original:", e);

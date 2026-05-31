@@ -113,6 +113,22 @@ making re-uploads and overlapping date ranges idempotent.
 as a `text` column with a `check` constraint (or an enum — implementation choice; enum
 preferred for parity with `user_role`).
 
+**New-entity counters**: the UI shows "new labs / new doctors". To back this, `uploads`
+gains `new_labs_count int not null default 0` and `new_doctors_count int not null default 0`,
+updated by the function as it creates entities. (If a counter is dropped from the UI, drop
+the matching column — they must stay reconciled.)
+
+**Explicit grants (required — RLS alone is insufficient).** Per `.claude/rules/supabase.md`,
+new `public` tables are not auto-exposed to the Data API. Each table above gets, as a unit:
+`grant select, insert, update, delete on public.<table> to authenticated;`
+`grant select, insert, update, delete on public.<table> to service_role;`
+then `alter table ... enable row level security;` then the policies. Because the PKs are
+`bigint generated always as identity`, also
+`grant usage, select on all sequences in schema public to authenticated, service_role;`
+(or per-sequence). Scope `authenticated` grants down to `select` only if a table proves
+read-only from the client — but ingestion writes go through the service-role function, so
+`authenticated` realistically needs only `select`; keep `service_role` full.
+
 **Storage**: a private bucket `uploads` created in the migration (insert into
 `storage.buckets`) with storage RLS policies allowing admins to insert/read objects.
 
@@ -174,19 +190,28 @@ same transforms.
 - `app/(dashboard)/page.tsx` (server component) `await`s the data functions and passes
   results to the client chart components (unchanged props).
 - `getUploads()` reads the `uploads` table; the `Upload` type gains `status`/progress/
-  counts and resolves `uploaded_by` -> profile email.
+  counts and resolves `uploaded_by` -> profile email. Note `id` becomes a UUID string and
+  the `status` union gains `"pending"` (currently `"completed" | "processing" | "failed"`).
 - The dataset is small (hundreds–few thousand rows/week), so fetch-then-aggregate is
   acceptable; no SQL views/RPC.
+- **`getClientChanges` semantics shift**: it currently splits a single week's file at the
+  data's own date midpoint to derive new/churned labs. Once `incoming_cases` accumulates
+  multiple weeks, that midpoint splits the whole accumulated dataset, not one file. The
+  logic is kept as-is for now, but the planner should be aware the new-vs-churned meaning
+  changes with multi-week data (revisit if it misleads).
 
 Domain `data/*.json` files stop being a data source (the `users.json`-backed users page
 is the only remaining JSON reader and is explicitly out of scope).
 
 ## 8. Client Changes
 
-- `components/upload-dialog.tsx`: implement `handleUpload` — restrict to a single `.xlsx`
-  file; insert `uploads` row; upload to Storage; invoke `process-upload`; subscribe to
-  Realtime on the row; render a live progress bar + counters (processed/total, inserted/
-  updated/skipped, new labs/doctors); show success/failure end state; handle errors.
+- `components/upload-dialog.tsx`: implement `handleUpload` — insert `uploads` row; upload
+  to Storage; invoke `process-upload`; subscribe to Realtime on the row; render a live
+  progress bar + counters (processed/total, inserted/updated/skipped, new labs/doctors);
+  show success/failure end state; handle errors. This also **narrows existing behavior**:
+  the dialog today accepts multiple files and `.xls`/`.csv` — change the `ACCEPTED`
+  constant to `.xlsx`, remove the `multiple` attribute, simplify drag-drop to a single
+  file, and update the dialog copy accordingly.
 - `components/upload-columns.tsx` + upload page: status badge, progress, row counts,
   uploader email.
 

@@ -360,6 +360,9 @@ allow_dynamic_registration = false
 [functions.keepalive]
 verify_jwt = false
 
+[functions.process-upload]
+verify_jwt = true
+
 [edge_runtime]
 enabled = true
 # Supported request policies: `oneshot`, `per_worker`.

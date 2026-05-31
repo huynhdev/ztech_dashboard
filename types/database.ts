@@ -34,6 +34,128 @@ export type Database = {
   }
   public: {
     Tables: {
+      doctors: {
+        Row: {
+          created_at: string
+          id: number
+          lab_id: number | null
+          name: string
+          raw: string
+          route: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: never
+          lab_id?: number | null
+          name: string
+          raw: string
+          route?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: never
+          lab_id?: number | null
+          name?: string
+          raw?: string
+          route?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "doctors_lab_id_fkey"
+            columns: ["lab_id"]
+            isOneToOne: false
+            referencedRelation: "labs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      incoming_cases: {
+        Row: {
+          amount: number
+          created_at: string
+          dedupe_key: string
+          doctor_id: number | null
+          id: number
+          is_multi_unit: boolean
+          lab_id: number | null
+          order_date: string
+          pan: string | null
+          patient_id: number | null
+          product_id: number | null
+          source_file: string | null
+          status: string | null
+          upload_id: string | null
+        }
+        Insert: {
+          amount?: number
+          created_at?: string
+          dedupe_key: string
+          doctor_id?: number | null
+          id?: never
+          is_multi_unit?: boolean
+          lab_id?: number | null
+          order_date: string
+          pan?: string | null
+          patient_id?: number | null
+          product_id?: number | null
+          source_file?: string | null
+          status?: string | null
+          upload_id?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          dedupe_key?: string
+          doctor_id?: number | null
+          id?: never
+          is_multi_unit?: boolean
+          lab_id?: number | null
+          order_date?: string
+          pan?: string | null
+          patient_id?: number | null
+          product_id?: number | null
+          source_file?: string | null
+          status?: string | null
+          upload_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "incoming_cases_doctor_id_fkey"
+            columns: ["doctor_id"]
+            isOneToOne: false
+            referencedRelation: "doctors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "incoming_cases_lab_id_fkey"
+            columns: ["lab_id"]
+            isOneToOne: false
+            referencedRelation: "labs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "incoming_cases_patient_id_fkey"
+            columns: ["patient_id"]
+            isOneToOne: false
+            referencedRelation: "patients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "incoming_cases_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "incoming_cases_upload_id_fkey"
+            columns: ["upload_id"]
+            isOneToOne: false
+            referencedRelation: "uploads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       keepalive: {
         Row: {
           id: number
@@ -46,6 +168,77 @@ export type Database = {
         Update: {
           id?: number
           pinged_at?: string
+        }
+        Relationships: []
+      }
+      labs: {
+        Row: {
+          created_at: string
+          id: number
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: never
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: never
+          name?: string
+        }
+        Relationships: []
+      }
+      patients: {
+        Row: {
+          created_at: string
+          external_id: string | null
+          id: number
+          lab_id: number | null
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          external_id?: string | null
+          id?: never
+          lab_id?: number | null
+          name: string
+        }
+        Update: {
+          created_at?: string
+          external_id?: string | null
+          id?: never
+          lab_id?: number | null
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "patients_lab_id_fkey"
+            columns: ["lab_id"]
+            isOneToOne: false
+            referencedRelation: "labs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          category: string | null
+          created_at: string
+          id: number
+          name: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          id?: never
+          name: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          id?: never
+          name?: string
         }
         Relationships: []
       }
@@ -76,6 +269,65 @@ export type Database = {
         }
         Relationships: []
       }
+      uploads: {
+        Row: {
+          error: string | null
+          file_name: string
+          file_path: string | null
+          id: string
+          inserted_count: number
+          new_doctors_count: number
+          new_labs_count: number
+          processed_rows: number
+          skipped_count: number
+          status: Database["public"]["Enums"]["upload_status"]
+          total_rows: number | null
+          updated_count: number
+          uploaded_at: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          error?: string | null
+          file_name: string
+          file_path?: string | null
+          id?: string
+          inserted_count?: number
+          new_doctors_count?: number
+          new_labs_count?: number
+          processed_rows?: number
+          skipped_count?: number
+          status?: Database["public"]["Enums"]["upload_status"]
+          total_rows?: number | null
+          updated_count?: number
+          uploaded_at?: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          error?: string | null
+          file_name?: string
+          file_path?: string | null
+          id?: string
+          inserted_count?: number
+          new_doctors_count?: number
+          new_labs_count?: number
+          processed_rows?: number
+          skipped_count?: number
+          status?: Database["public"]["Enums"]["upload_status"]
+          total_rows?: number | null
+          updated_count?: number
+          uploaded_at?: string
+          uploaded_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "uploads_uploaded_by_fkey"
+            columns: ["uploaded_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -85,6 +337,7 @@ export type Database = {
       is_admin: { Args: never; Returns: boolean }
     }
     Enums: {
+      upload_status: "pending" | "processing" | "completed" | "failed"
       user_role: "admin" | "operator" | "viewer"
     }
     CompositeTypes: {
@@ -216,7 +469,9 @@ export const Constants = {
   },
   public: {
     Enums: {
+      upload_status: ["pending", "processing", "completed", "failed"],
       user_role: ["admin", "operator", "viewer"],
     },
   },
 } as const
+

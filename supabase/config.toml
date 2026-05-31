@@ -361,7 +361,12 @@ allow_dynamic_registration = false
 verify_jwt = false
 
 [functions.process-upload]
-verify_jwt = true
+# verify_jwt = false: this project uses the new sb_secret_ API-key model, whose keys are
+# not JWTs the Functions gateway can verify — a verify_jwt = true gateway would 401 the
+# internal self-invoke and the ingest chain would die after the first chunk. The function
+# self-authorizes instead (secret-key check for the 2_upsert_data self-invoke, user-JWT
+# validation for the browser's 1_parsed_data invoke), mirroring the keepalive function.
+verify_jwt = false
 
 [edge_runtime]
 enabled = true

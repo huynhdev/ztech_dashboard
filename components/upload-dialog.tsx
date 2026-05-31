@@ -341,7 +341,7 @@ export function UploadDialog() {
 
           const { error: fnErr } = await supabase.functions.invoke(
             "process-upload",
-            { body: { uploadId: id } }
+            { body: { uploadId: id, step: "1_parsed_data" } }
           )
           if (fnErr) {
             set({ status: "failed", error: fnErr.message })
@@ -357,6 +357,19 @@ export function UploadDialog() {
     for (const file of readyFiles) {
       await processFile(file)
     }
+
+    // These files have reached a terminal state and now live in the `progress` section
+    // (keyed by upload id). Drop them from the pending list + checks so the Upload button
+    // no longer counts them as ready to (re)upload — otherwise it keeps showing e.g.
+    // "Upload (2)" after a completed run.
+    const processedKeys = new Set(readyFiles.map(fileKey))
+    setFiles((prev) => prev.filter((f) => !processedKeys.has(fileKey(f))))
+    setChecks((prev) => {
+      const next = { ...prev }
+      for (const key of processedKeys) delete next[key]
+      return next
+    })
+    for (const key of processedKeys) checkingRef.current.delete(key)
 
     setUploading(false)
     router.refresh()

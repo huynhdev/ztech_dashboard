@@ -44,7 +44,14 @@ export const uploadColumns: ColumnDef<Upload>[] = [
     cell: ({ row }) => {
       const u = row.original
       if (u.status === "failed") {
-        return <span className="text-xs text-destructive">{u.error ?? "Failed"}</span>
+        return (
+          <span
+            className="line-clamp-2 max-w-xs whitespace-normal text-xs text-destructive"
+            title={u.error ?? "Failed"}
+          >
+            {u.error ?? "Failed"}
+          </span>
+        )
       }
       if (u.status === "processing" || u.status === "pending") {
         // totalRows is null until the workbook is parsed — show "Parsing…" until then

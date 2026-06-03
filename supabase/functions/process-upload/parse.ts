@@ -19,6 +19,9 @@ export interface ParsedRow {
 export interface SkippedRow {
   reason: string;
   raw: unknown;
+  // "header" marks the single diagnostic row emitted when no sheet matched the
+  // template; "row" (or absent) marks an individual data row that was dropped.
+  kind?: "header" | "row";
 }
 
 export interface ParseResult {
@@ -70,12 +73,25 @@ function parseProduct(raw: string): { name: string; category: string; isMultiUni
 export function parseWorkbook(bytes: Uint8Array): ParseResult {
   const wb = XLSX.read(bytes, { type: "array", cellDates: true });
 
+  // Best partial header match across all sheets, used to explain the failure if
+  // no sheet has the full set. Headers live near the top, so only the first rows
+  // are considered candidates.
+  let best: { sheet: string; missing: string[] } | null = null;
+
   for (const sheetName of wb.SheetNames) {
     const matrix = XLSX.utils.sheet_to_json(wb.Sheets[sheetName], {
       header: 1,
       raw: true,
       defval: null,
     }) as unknown[][];
+
+    for (let i = 0; i < Math.min(matrix.length, 30); i++) {
+      const cells = (matrix[i] ?? []).map(norm);
+      const missing = HEADER_KEYS.filter((k) => !cells.some((c) => matches(c, k)));
+      if (best === null || missing.length < best.missing.length) {
+        best = { sheet: sheetName, missing };
+      }
+    }
 
     const headerIdx = matrix.findIndex((row) => {
       const cells = (row ?? []).map(norm);
@@ -137,5 +153,10 @@ export function parseWorkbook(bytes: Uint8Array): ParseResult {
     return { rows, skipped };
   }
 
-  return { rows: [], skipped: [{ reason: "no detail sheet found", raw: wb.SheetNames }] };
+  const detail =
+    best && best.missing.length < HEADER_KEYS.length
+      ? `Closest sheet "${best.sheet}" is missing column(s): ${best.missing.join(", ")}.`
+      : "No sheet contained the expected column headers.";
+  const reason = `No detail sheet found. ${detail} Expected columns: ${HEADER_KEYS.join(", ")}.`;
+  return { rows: [], skipped: [{ reason, raw: wb.SheetNames, kind: "header" }] };
 }

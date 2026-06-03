@@ -244,8 +244,8 @@ async function parseStep(
     // A workbook with no parseable detail sheet is a failure, not a 0-row success.
     if (rows.length === 0) {
       const reason =
-        skipped.find((s) => s.reason === "no detail sheet found")?.reason ??
-        "no parseable rows found"
+        skipped.find((s) => s.kind === "header")?.reason ??
+        "No parseable rows found. Every row was missing a patient, lab, or order date."
       throw new Error(reason)
     }
 

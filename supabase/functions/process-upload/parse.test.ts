@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
+import { assertEquals, assertStringIncludes } from "https://deno.land/std@0.224.0/assert/mod.ts";
 import * as XLSX from "https://cdn.sheetjs.com/xlsx-0.20.3/package/xlsx.mjs";
 import { parseWorkbook } from "./parse.ts";
 
@@ -69,5 +69,25 @@ Deno.test("returns the no-detail-sheet sentinel when no sheet has the expected h
   const { rows, skipped } = parseWorkbook(bytes);
   assertEquals(rows.length, 0);
   assertEquals(skipped.length, 1);
-  assertEquals(skipped[0].reason, "no detail sheet found");
+  assertEquals(skipped[0].kind, "header");
+  assertStringIncludes(skipped[0].reason, "No detail sheet found");
+  assertStringIncludes(skipped[0].reason, "No sheet contained the expected column headers");
+  assertStringIncludes(skipped[0].reason, "Expected columns:");
+});
+
+Deno.test("names the missing columns when a sheet is close to the template", () => {
+  const wb = XLSX.utils.book_new();
+  // Header row matches everything except "doctor" and "amount".
+  const detail = XLSX.utils.aoa_to_sheet([
+    ["No", "Pan", "Patient", "Lab", "Order date", "Product", "Status"],
+    [1, "Z172", "JILL SHELTON", "123 Dental", new Date(Date.UTC(2026, 4, 11)), "Crown", "Shipped"],
+  ]);
+  XLSX.utils.book_append_sheet(wb, detail, "Cases");
+  const bytes = new Uint8Array(XLSX.write(wb, { type: "array", bookType: "xlsx" }));
+
+  const { rows, skipped } = parseWorkbook(bytes);
+  assertEquals(rows.length, 0);
+  assertEquals(skipped.length, 1);
+  assertEquals(skipped[0].kind, "header");
+  assertStringIncludes(skipped[0].reason, 'Closest sheet "Cases" is missing column(s): doctor, amount');
 });

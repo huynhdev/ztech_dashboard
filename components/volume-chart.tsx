@@ -9,10 +9,11 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Legend,
+  LabelList,
 } from "recharts"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
+import { ChartLegend, type ChartSeries } from "@/components/chart-legend"
 import type { TimeSeriesPoint } from "@/lib/data"
 
 interface VolumeChartProps {
@@ -24,16 +25,36 @@ interface VolumeChartProps {
 // computed min-width stays under the card and the chart just fills it (no scroll).
 const MIN_PX_PER_POINT = 44
 
+const SERIES: ChartSeries[] = [
+  { key: "shipped", name: "Shipped", color: "#10b981" },
+  { key: "inProduction", name: "In Production", color: "#3b82f6" },
+  { key: "hold", name: "On Hold", color: "#ef4444" },
+]
+
+function hideZero(value: string | number | boolean | null | undefined): string {
+  return value ? String(value) : ""
+}
+
 export const VolumeChart = memo(function VolumeChart({
   data,
 }: VolumeChartProps) {
   const [mounted, setMounted] = useState(false)
   useEffect(() => setMounted(true), [])
 
+  const [hidden, setHidden] = useState<Set<string>>(new Set())
+  const toggle = (key: string) =>
+    setHidden((prev) => {
+      const next = new Set(prev)
+      if (next.has(key)) next.delete(key)
+      else next.add(key)
+      return next
+    })
+
   return (
     <Card>
-      <CardHeader className="pb-2">
+      <CardHeader className="flex flex-row items-center justify-between gap-4 pb-2">
         <CardTitle className="text-sm font-medium">Volume Trend</CardTitle>
+        <ChartLegend series={SERIES} hidden={hidden} onToggle={toggle} />
       </CardHeader>
       <CardContent className="pt-0">
         <div className="h-[280px] overflow-x-auto">
@@ -75,31 +96,25 @@ export const VolumeChart = memo(function VolumeChart({
                       fontSize: 12,
                     }}
                   />
-                  <Legend
-                    iconSize={8}
-                    wrapperStyle={{ fontSize: 11, paddingTop: 8 }}
-                  />
-                  <Bar
-                    dataKey="shipped"
-                    name="Shipped"
-                    fill="#10b981"
-                    radius={[3, 3, 0, 0]}
-                    stackId="status"
-                  />
-                  <Bar
-                    dataKey="inProduction"
-                    name="In Production"
-                    fill="#3b82f6"
-                    radius={[0, 0, 0, 0]}
-                    stackId="status"
-                  />
-                  <Bar
-                    dataKey="hold"
-                    name="On Hold"
-                    fill="#ef4444"
-                    radius={[3, 3, 0, 0]}
-                    stackId="status"
-                  />
+                  {SERIES.map((s) => (
+                    <Bar
+                      key={s.key}
+                      dataKey={s.key}
+                      name={s.name}
+                      fill={s.color}
+                      radius={[3, 3, 0, 0]}
+                      stackId="status"
+                      hide={hidden.has(s.key)}
+                    >
+                      <LabelList
+                        dataKey={s.key}
+                        position="center"
+                        fontSize={10}
+                        fill="#fff"
+                        formatter={hideZero}
+                      />
+                    </Bar>
+                  ))}
                 </BarChart>
               </ResponsiveContainer>
             </div>

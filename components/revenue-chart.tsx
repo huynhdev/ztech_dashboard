@@ -9,6 +9,7 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  LabelList,
 } from "recharts"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -23,9 +24,12 @@ interface RevenueChartProps {
 // computed min-width stays under the card and the chart just fills it (no scroll).
 const MIN_PX_PER_POINT = 44
 
-function formatCurrency(value: number): string {
-  if (value >= 1000) return `$${(value / 1000).toFixed(1)}k`
-  return `$${value}`
+function formatCurrency(
+  value: string | number | boolean | null | undefined
+): string {
+  const n = Number(value)
+  if (n >= 1000) return `$${(n / 1000).toFixed(1)}k`
+  return `$${n}`
 }
 
 // Memoized so parent state changes (date-picker selection, tooltip) don't
@@ -104,7 +108,16 @@ export const RevenueChart = memo(function RevenueChart({
                     stroke="#10b981"
                     strokeWidth={2}
                     fill="url(#revenueGrad)"
-                  />
+                  >
+                    <LabelList
+                      dataKey="revenue"
+                      position="top"
+                      offset={8}
+                      fontSize={10}
+                      fill="var(--foreground)"
+                      formatter={formatCurrency}
+                    />
+                  </Area>
                 </AreaChart>
               </ResponsiveContainer>
             </div>

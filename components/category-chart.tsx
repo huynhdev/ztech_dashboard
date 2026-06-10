@@ -10,6 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
   Cell,
+  LabelList,
 } from "recharts"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -68,6 +69,7 @@ export const CategoryChart = memo(function CategoryChart({
                   tick={{ fontSize: 11 }}
                   tickLine={false}
                   axisLine={false}
+                  domain={[0, (max: number) => Math.ceil(max * 1.1)]}
                 />
                 <YAxis
                   type="category"
@@ -97,6 +99,13 @@ export const CategoryChart = memo(function CategoryChart({
                       fillOpacity={0.85}
                     />
                   ))}
+                  <LabelList
+                    dataKey="count"
+                    position="right"
+                    offset={6}
+                    fontSize={10}
+                    fill="var(--foreground)"
+                  />
                 </Bar>
               </BarChart>
             </ResponsiveContainer>

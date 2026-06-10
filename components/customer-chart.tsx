@@ -9,10 +9,11 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Legend,
+  LabelList,
 } from "recharts"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
+import { ChartLegend, type ChartSeries } from "@/components/chart-legend"
 import type { TimeSeriesPoint } from "@/lib/data"
 
 interface CustomerChartProps {
@@ -24,16 +25,32 @@ interface CustomerChartProps {
 // computed min-width stays under the card and the chart just fills it (no scroll).
 const MIN_PX_PER_POINT = 44
 
+const SERIES: ChartSeries[] = [
+  { key: "uniqueLabs", name: "Labs", color: "#8b5cf6" },
+  { key: "uniqueDoctors", name: "Doctors", color: "#f59e0b" },
+  { key: "uniquePatients", name: "Patients", color: "#3b82f6" },
+]
+
 export const CustomerChart = memo(function CustomerChart({
   data,
 }: CustomerChartProps) {
   const [mounted, setMounted] = useState(false)
   useEffect(() => setMounted(true), [])
 
+  const [hidden, setHidden] = useState<Set<string>>(new Set())
+  const toggle = (key: string) =>
+    setHidden((prev) => {
+      const next = new Set(prev)
+      if (next.has(key)) next.delete(key)
+      else next.add(key)
+      return next
+    })
+
   return (
     <Card>
-      <CardHeader className="pb-2">
+      <CardHeader className="flex flex-row items-center justify-between gap-4 pb-2">
         <CardTitle className="text-sm font-medium">Customer Trend</CardTitle>
+        <ChartLegend series={SERIES} hidden={hidden} onToggle={toggle} />
       </CardHeader>
       <CardContent className="pt-0">
         <div className="h-[280px] overflow-x-auto">
@@ -75,37 +92,27 @@ export const CustomerChart = memo(function CustomerChart({
                       fontSize: 12,
                     }}
                   />
-                  <Legend
-                    iconSize={8}
-                    wrapperStyle={{ fontSize: 11, paddingTop: 8 }}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="uniqueLabs"
-                    name="Labs"
-                    stroke="#8b5cf6"
-                    strokeWidth={2}
-                    dot={{ r: 3 }}
-                    activeDot={{ r: 5 }}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="uniqueDoctors"
-                    name="Doctors"
-                    stroke="#f59e0b"
-                    strokeWidth={2}
-                    dot={{ r: 3 }}
-                    activeDot={{ r: 5 }}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="uniquePatients"
-                    name="Patients"
-                    stroke="#3b82f6"
-                    strokeWidth={2}
-                    dot={{ r: 3 }}
-                    activeDot={{ r: 5 }}
-                  />
+                  {SERIES.map((s) => (
+                    <Line
+                      key={s.key}
+                      type="monotone"
+                      dataKey={s.key}
+                      name={s.name}
+                      stroke={s.color}
+                      strokeWidth={2}
+                      dot={{ r: 3 }}
+                      activeDot={{ r: 5 }}
+                      hide={hidden.has(s.key)}
+                    >
+                      <LabelList
+                        dataKey={s.key}
+                        position="top"
+                        offset={8}
+                        fontSize={10}
+                        fill={s.color}
+                      />
+                    </Line>
+                  ))}
                 </LineChart>
               </ResponsiveContainer>
             </div>

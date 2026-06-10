@@ -18,6 +18,11 @@ interface RevenueChartProps {
   data: TimeSeriesPoint[];
 }
 
+// Minimum horizontal space per data point. With daily granularity over a few months
+// this pushes the chart past the card width so it scrolls; for weekly/monthly the
+// computed min-width stays under the card and the chart just fills it (no scroll).
+const MIN_PX_PER_POINT = 44;
+
 function formatCurrency(value: number): string {
   if (value >= 1000) return `$${(value / 1000).toFixed(1)}k`;
   return `$${value}`;
@@ -35,10 +40,14 @@ export function RevenueChart({ data }: RevenueChartProps) {
         </CardTitle>
       </CardHeader>
       <CardContent className="pt-0">
-        <div className="h-[280px]">
+        <div className="h-[280px] overflow-x-auto">
           {!mounted ? (
             <Skeleton className="size-full" />
           ) : (
+          <div
+            className="h-full"
+            style={{ minWidth: `${data.length * MIN_PX_PER_POINT}px` }}
+          >
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart
               data={data}
@@ -52,7 +61,7 @@ export function RevenueChart({ data }: RevenueChartProps) {
               </defs>
               <CartesianGrid
                 strokeDasharray="3 3"
-                stroke="hsl(var(--border))"
+                stroke="var(--border)"
                 vertical={false}
               />
               <XAxis
@@ -75,8 +84,9 @@ export function RevenueChart({ data }: RevenueChartProps) {
                 ]}
                 contentStyle={{
                   borderRadius: "8px",
-                  border: "1px solid hsl(var(--border))",
-                  background: "hsl(var(--card))",
+                  border: "1px solid var(--border)",
+                  background: "var(--card)",
+                  color: "var(--foreground)",
                   fontSize: 12,
                 }}
               />
@@ -89,6 +99,7 @@ export function RevenueChart({ data }: RevenueChartProps) {
               />
             </AreaChart>
           </ResponsiveContainer>
+          </div>
           )}
         </div>
       </CardContent>

@@ -42,7 +42,7 @@ export function VolumeChart({ data }: VolumeChartProps) {
             >
               <CartesianGrid
                 strokeDasharray="3 3"
-                stroke="hsl(var(--border))"
+                stroke="var(--border)"
                 vertical={false}
               />
               <XAxis
@@ -60,8 +60,9 @@ export function VolumeChart({ data }: VolumeChartProps) {
               <Tooltip
                 contentStyle={{
                   borderRadius: "8px",
-                  border: "1px solid hsl(var(--border))",
-                  background: "hsl(var(--card))",
+                  border: "1px solid var(--border)",
+                  background: "var(--card)",
+                  color: "var(--foreground)",
                   fontSize: 12,
                 }}
               />

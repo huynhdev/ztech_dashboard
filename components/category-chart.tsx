@@ -58,7 +58,7 @@ export function CategoryChart({ data }: CategoryChartProps) {
             >
               <CartesianGrid
                 strokeDasharray="3 3"
-                stroke="hsl(var(--border))"
+                stroke="var(--border)"
                 horizontal={false}
               />
               <XAxis
@@ -76,13 +76,16 @@ export function CategoryChart({ data }: CategoryChartProps) {
                 width={80}
               />
               <Tooltip
+                cursor={{ fill: "var(--muted)", fillOpacity: 0.4 }}
                 formatter={(value) => [Number(value), "Count"]}
                 contentStyle={{
                   borderRadius: "8px",
-                  border: "1px solid hsl(var(--border))",
-                  background: "hsl(var(--card))",
+                  border: "1px solid var(--border)",
+                  background: "var(--card)",
+                  color: "var(--foreground)",
                   fontSize: 12,
                 }}
+                itemStyle={{ color: "var(--foreground)" }}
               />
               <Bar dataKey="count" radius={[0, 4, 4, 0]}>
                 {top10.map((_, index) => (

@@ -14,46 +14,60 @@ export async function getIncomingCases(
   range?: DateRangeFilter,
 ): Promise<CaseRow[]> {
   const supabase = await createClient();
-  let query = supabase
-    .from("incoming_cases")
-    .select(
-      "order_date, amount, status, lab_id, doctor_id, patient_id, labs(name), doctors(name), products(category)",
-    )
-    .order("order_date", { ascending: true });
 
-  if (range?.from) query = query.gte("order_date", range.from);
-  if (range?.to) query = query.lte("order_date", range.to);
+  // PostgREST caps a single response at 1000 rows, so page through the full result
+  // set with .range() — a dental lab accumulates far more than 1000 cases and the
+  // analytics in `@/lib/data` need every matching row, not just the first page.
+  const PAGE = 1000;
+  type Row = {
+    order_date: string;
+    amount: number;
+    status: string | null;
+    lab_id: number | null;
+    doctor_id: number | null;
+    patient_id: number | null;
+    labs: { name: string } | null;
+    doctors: { name: string } | null;
+    products: { category: string | null } | null;
+  };
+  const all: Row[] = [];
+  for (let offset = 0; ; offset += PAGE) {
+    let query = supabase
+      .from("incoming_cases")
+      .select(
+        "order_date, amount, status, lab_id, doctor_id, patient_id, labs(name), doctors(name), products(category)",
+      )
+      .order("order_date", { ascending: true })
+      .range(offset, offset + PAGE - 1);
 
-  const { data, error } = await query;
+    if (range?.from) query = query.gte("order_date", range.from);
+    if (range?.to) query = query.lte("order_date", range.to);
 
-  if (error) {
-    console.error(
-      "[getIncomingCases] Supabase error:",
-      error.message,
-      error.code,
-    );
-    return [];
+    const { data, error } = await query;
+    if (error) {
+      console.error(
+        "[getIncomingCases] Supabase error:",
+        error.message,
+        error.code,
+      );
+      return [];
+    }
+    if (!data || data.length === 0) break;
+    all.push(...(data as unknown as Row[]));
+    if (data.length < PAGE) break;
   }
-  if (!data) return [];
 
-  return data.map((c) => {
-    // supabase-js types these many-to-one embeds as arrays, but a to-one embed
-    // returns a single object (or null) at runtime; bridge via unknown.
-    const lab = c.labs as unknown as { name: string } | null;
-    const doctor = c.doctors as unknown as { name: string } | null;
-    const product = c.products as unknown as { category: string | null } | null;
-    return {
-      orderDate: c.order_date,
-      amount: c.amount,
-      status: c.status,
-      labId: c.lab_id,
-      labName: lab?.name ?? "",
-      doctorId: c.doctor_id,
-      doctorName: doctor?.name ?? "",
-      patientId: c.patient_id,
-      category: product?.category ?? "",
-    };
-  });
+  return all.map((c) => ({
+    orderDate: c.order_date,
+    amount: c.amount,
+    status: c.status,
+    labId: c.lab_id,
+    labName: c.labs?.name ?? "",
+    doctorId: c.doctor_id,
+    doctorName: c.doctors?.name ?? "",
+    patientId: c.patient_id,
+    category: c.products?.category ?? "",
+  }));
 }
 
 // Earliest and latest order_date across all cases, used to seed the default

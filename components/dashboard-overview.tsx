@@ -6,6 +6,7 @@ import type { DateRange } from "react-day-picker"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { DateRangePicker } from "@/components/date-range-picker"
+import { QuickRangeFilter } from "@/components/quick-range-filter"
 import { KpiCards } from "@/components/kpi-cards"
 import { RevenueChart } from "@/components/revenue-chart"
 import { CustomerChart } from "@/components/customer-chart"
@@ -73,7 +74,10 @@ export function DashboardOverview({
     <>
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-medium">Operations Overview</h2>
-        <DateRangePicker value={range} onChange={handleRangeChange} />
+        <div className="flex items-center gap-2">
+          <QuickRangeFilter onSelect={handleRangeChange} />
+          <DateRangePicker value={range} onChange={handleRangeChange} />
+        </div>
       </div>
 
       <div

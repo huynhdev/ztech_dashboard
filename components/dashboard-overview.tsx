@@ -1,43 +1,35 @@
-"use client";
+"use client"
 
-import { useMemo, useState, useTransition } from "react";
-import { format, parseISO } from "date-fns";
-import type { DateRange } from "react-day-picker";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { DateRangePicker } from "@/components/date-range-picker";
-import { KpiCards } from "@/components/kpi-cards";
-import { RevenueChart } from "@/components/revenue-chart";
-import { CustomerChart } from "@/components/customer-chart";
-import { VolumeChart } from "@/components/volume-chart";
-import { CategoryChart } from "@/components/category-chart";
-import { TopTable } from "@/components/top-table";
-import { ClientHeatmap } from "@/components/client-heatmap";
-import { cn } from "@/lib/utils";
-import {
-  getSummary,
-  getTimeSeries,
-  getCategoryBreakdown,
-  getTopLabs,
-  getTopDoctors,
-  type CaseRow,
-  type TimeGranularity,
-} from "@/lib/data";
+import { useState, useTransition } from "react"
+import { format, parseISO } from "date-fns"
+import type { DateRange } from "react-day-picker"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DateRangePicker } from "@/components/date-range-picker"
+import { KpiCards } from "@/components/kpi-cards"
+import { RevenueChart } from "@/components/revenue-chart"
+import { CustomerChart } from "@/components/customer-chart"
+import { VolumeChart } from "@/components/volume-chart"
+import { CategoryChart } from "@/components/category-chart"
+import { TopTable } from "@/components/top-table"
+import { ClientHeatmap } from "@/components/client-heatmap"
+import { cn } from "@/lib/utils"
+import type { DashboardOverviewData, TimeGranularity } from "@/lib/data"
 
 export function DashboardOverview({
-  cases,
+  data,
   from,
   to,
 }: {
-  cases: CaseRow[];
-  from: string;
-  to: string;
+  data: DashboardOverviewData
+  from: string
+  to: string
 }) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [isPending, startTransition] = useTransition();
-  const [granularity, setGranularity] = useState<TimeGranularity>("daily");
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const [isPending, startTransition] = useTransition()
+  const [granularity, setGranularity] = useState<TimeGranularity>("daily")
 
   // Local state mirrors the URL-driven range so an in-progress selection (first
   // click of a range) renders immediately; once both ends are picked we write to
@@ -46,41 +38,36 @@ export function DashboardOverview({
   const [range, setRange] = useState<DateRange | undefined>({
     from: parseISO(from),
     to: parseISO(to),
-  });
-  const [syncedKey, setSyncedKey] = useState(`${from}|${to}`);
+  })
+  const [syncedKey, setSyncedKey] = useState(`${from}|${to}`)
   if (syncedKey !== `${from}|${to}`) {
-    setSyncedKey(`${from}|${to}`);
-    setRange({ from: parseISO(from), to: parseISO(to) });
+    setSyncedKey(`${from}|${to}`)
+    setRange({ from: parseISO(from), to: parseISO(to) })
   }
 
   function handleRangeChange(next: DateRange | undefined) {
-    setRange(next);
+    setRange(next)
     // Wait for a complete range before navigating; ignore the partial first click.
-    if (next?.from && !next?.to) return;
+    if (next?.from && !next?.to) return
 
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams.toString())
     if (next?.from && next?.to) {
-      params.set("from", format(next.from, "yyyy-MM-dd"));
-      params.set("to", format(next.to, "yyyy-MM-dd"));
+      params.set("from", format(next.from, "yyyy-MM-dd"))
+      params.set("to", format(next.to, "yyyy-MM-dd"))
     } else {
-      params.delete("from");
-      params.delete("to");
+      params.delete("from")
+      params.delete("to")
     }
-    const qs = params.toString();
+    const qs = params.toString()
     startTransition(() => {
-      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
-    });
+      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false })
+    })
   }
 
-  // `cases` arrive already filtered to [from, to] from the server.
-  const summary = useMemo(() => getSummary(cases), [cases]);
-  const categories = useMemo(() => getCategoryBreakdown(cases), [cases]);
-  const topLabs = useMemo(() => getTopLabs(cases, 10), [cases]);
-  const topDoctors = useMemo(() => getTopDoctors(cases, 10), [cases]);
-  const timeSeries = useMemo(
-    () => getTimeSeries(cases, granularity),
-    [cases, granularity],
-  );
+  // All aggregates arrive precomputed from the server; the granularity tabs
+  // just pick one of the three precomputed series.
+  const { summary } = data
+  const timeSeries = data.series[granularity]
 
   return (
     <>
@@ -92,7 +79,7 @@ export function DashboardOverview({
       <div
         className={cn(
           "flex flex-col gap-4 transition-opacity",
-          isPending && "pointer-events-none opacity-60",
+          isPending && "pointer-events-none opacity-60"
         )}
       >
         <KpiCards
@@ -132,16 +119,16 @@ export function DashboardOverview({
 
         <div className="grid gap-4 lg:grid-cols-2">
           <VolumeChart data={timeSeries} />
-          <CategoryChart data={categories} />
+          <CategoryChart data={data.categories} />
         </div>
 
         <div className="grid gap-4 lg:grid-cols-2">
-          <TopTable title="Top 10 Labs" data={topLabs} />
-          <TopTable title="Top 10 Doctors" data={topDoctors} />
+          <TopTable title="Top 10 Labs" data={data.topLabs} />
+          <TopTable title="Top 10 Doctors" data={data.topDoctors} />
         </div>
 
-        <ClientHeatmap cases={cases} />
+        <ClientHeatmap labs={data.heatmapLabs} />
       </div>
     </>
-  );
+  )
 }

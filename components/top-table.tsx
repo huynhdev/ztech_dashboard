@@ -1,6 +1,7 @@
-"use client";
+"use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { memo } from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Table,
   TableBody,
@@ -8,15 +9,15 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import type { TopEntity } from "@/lib/data";
+} from "@/components/ui/table"
+import type { TopEntity } from "@/lib/data"
 
 interface TopTableProps {
-  title: string;
-  data: TopEntity[];
+  title: string
+  data: TopEntity[]
 }
 
-export function TopTable({ title, data }: TopTableProps) {
+export const TopTable = memo(function TopTable({ title, data }: TopTableProps) {
   return (
     <Card>
       <CardHeader className="pb-2">
@@ -53,5 +54,5 @@ export function TopTable({ title, data }: TopTableProps) {
         </Table>
       </CardContent>
     </Card>
-  );
-}
+  )
+})

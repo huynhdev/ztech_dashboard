@@ -56,6 +56,39 @@ Deno.test("parses the detail sheet, ignores pivots, extracts entities", () => {
   assertEquals(rows[1].amount, 0);
 });
 
+Deno.test("parses a raw ZTECH export via column aliases (Client/Ordered/Products)", () => {
+  const wb = XLSX.utils.book_new();
+  const detail = XLSX.utils.aoa_to_sheet(
+    [
+      [
+        "Invoice", "Client", "Doctor", "Patient", "Pan", "Products", "Units",
+        "Ordered", "Due", "Appt", "Completed", "Shipped", "Status", "Amount",
+      ],
+      [
+        44553, "123 Dental", "Le, Tommy DDS - RTE: A", "DANIEL DANG", "Z134",
+        "Zirconia - Full Contour", 1, new Date(Date.UTC(2026, 2, 19)),
+        new Date(Date.UTC(2026, 2, 27)), null, null, null, "Shipped", 58.59,
+      ],
+    ],
+    { cellDates: true },
+  );
+  XLSX.utils.book_append_sheet(wb, detail, "ZTECH");
+  const bytes = new Uint8Array(XLSX.write(wb, { type: "array", bookType: "xlsx" }));
+
+  const { rows, skipped } = parseWorkbook(bytes);
+  assertEquals(skipped.length, 0);
+  assertEquals(rows.length, 1);
+  assertEquals(rows[0].pan, "Z134");
+  assertEquals(rows[0].lab, "123 Dental");
+  assertEquals(rows[0].orderDate, "2026-03-19");
+  assertEquals(rows[0].productName, "Zirconia - Full Contour");
+  assertEquals(rows[0].category, "Zirconia");
+  assertEquals(rows[0].doctorName, "Le, Tommy DDS");
+  assertEquals(rows[0].route, "A");
+  assertEquals(rows[0].status, "Shipped");
+  assertEquals(rows[0].amount, 58.59);
+});
+
 Deno.test("returns the no-detail-sheet sentinel when no sheet has the expected header", () => {
   const wb = XLSX.utils.book_new();
   const pivot = XLSX.utils.aoa_to_sheet([

@@ -336,6 +336,19 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_dashboard_overview: {
+        Args: { p_from: string; p_to: string }
+        Returns: Json
+      }
+      import_upload_chunk: {
+        Args: { p_rows: Json; p_source_file: string; p_upload_id: string }
+        Returns: {
+          inserted_count: number
+          new_doctors_count: number
+          new_labs_count: number
+          updated_count: number
+        }[]
+      }
       invoke_keepalive_edge_function: { Args: never; Returns: undefined }
       is_admin: { Args: never; Returns: boolean }
     }

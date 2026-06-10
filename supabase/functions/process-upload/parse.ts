@@ -29,7 +29,25 @@ export interface ParseResult {
   skipped: SkippedRow[];
 }
 
-const HEADER_KEYS = ["pan", "patient", "lab", "doctor", "order date", "product", "status", "amount"];
+// Each required field accepts one or more header aliases. Different exports label the
+// same column differently — the analyst template uses "Lab"/"Order date"/"Product",
+// while a raw ZTECH export uses "Client"/"Ordered"/"Products" — so a field counts as
+// present when ANY of its aliases matches a header cell. Sheets are always matched by
+// their columns, never by sheet name.
+const HEADER_FIELDS: { label: string; aliases: string[] }[] = [
+  { label: "pan", aliases: ["pan"] },
+  { label: "patient", aliases: ["patient"] },
+  { label: "lab", aliases: ["lab", "client"] },
+  { label: "doctor", aliases: ["doctor"] },
+  { label: "order date", aliases: ["order date", "ordered"] },
+  { label: "product", aliases: ["product", "products"] },
+  { label: "status", aliases: ["status"] },
+  { label: "amount", aliases: ["amount"] },
+];
+
+function aliasesFor(label: string): string[] {
+  return HEADER_FIELDS.find((f) => f.label === label)!.aliases;
+}
 
 function norm(v: unknown): string {
   return String(v ?? "").trim().toLowerCase();
@@ -39,6 +57,10 @@ function norm(v: unknown): string {
 // but NOT "status notes" shadowing a real "status" column elsewhere in the row.
 function matches(cell: string, key: string): boolean {
   return cell === key || (cell.startsWith(key) && cell[key.length] === " ");
+}
+
+function matchesField(cell: string, aliases: string[]): boolean {
+  return aliases.some((a) => matches(cell, a));
 }
 
 function toDateString(v: unknown): string | null {
@@ -87,7 +109,9 @@ export function parseWorkbook(bytes: Uint8Array): ParseResult {
 
     for (let i = 0; i < Math.min(matrix.length, 30); i++) {
       const cells = (matrix[i] ?? []).map(norm);
-      const missing = HEADER_KEYS.filter((k) => !cells.some((c) => matches(c, k)));
+      const missing = HEADER_FIELDS.filter(
+        (f) => !cells.some((c) => matchesField(c, f.aliases)),
+      ).map((f) => f.label);
       if (best === null || missing.length < best.missing.length) {
         best = { sheet: sheetName, missing };
       }
@@ -95,12 +119,13 @@ export function parseWorkbook(bytes: Uint8Array): ParseResult {
 
     const headerIdx = matrix.findIndex((row) => {
       const cells = (row ?? []).map(norm);
-      return HEADER_KEYS.every((k) => cells.some((c) => matches(c, k)));
+      return HEADER_FIELDS.every((f) => cells.some((c) => matchesField(c, f.aliases)));
     });
     if (headerIdx === -1) continue;
 
     const header = matrix[headerIdx].map(norm);
-    const col = (key: string) => header.findIndex((c) => matches(c, key));
+    const col = (label: string) =>
+      header.findIndex((c) => matchesField(c, aliasesFor(label)));
     const idx = {
       pan: col("pan"),
       patient: col("patient"),
@@ -154,9 +179,9 @@ export function parseWorkbook(bytes: Uint8Array): ParseResult {
   }
 
   const detail =
-    best && best.missing.length < HEADER_KEYS.length
+    best && best.missing.length < HEADER_FIELDS.length
       ? `Closest sheet "${best.sheet}" is missing column(s): ${best.missing.join(", ")}.`
       : "No sheet contained the expected column headers.";
-  const reason = `No detail sheet found. ${detail} Expected columns: ${HEADER_KEYS.join(", ")}.`;
+  const reason = `No detail sheet found. ${detail} Expected columns: ${HEADER_FIELDS.map((f) => f.label).join(", ")}.`;
   return { rows: [], skipped: [{ reason, raw: wb.SheetNames, kind: "header" }] };
 }

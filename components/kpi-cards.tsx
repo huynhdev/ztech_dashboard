@@ -1,5 +1,6 @@
-"use client";
+"use client"
 
+import { memo } from "react"
 import {
   DollarSign,
   Building2,
@@ -8,17 +9,17 @@ import {
   Truck,
   Clock,
   PauseCircle,
-} from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+} from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
 
 interface KpiCardsProps {
-  totalRevenue: number;
-  totalCases: number;
-  uniqueLabCount: number;
-  uniqueDoctorCount: number;
-  shipped: number;
-  inProduction: number;
-  hold: number;
+  totalRevenue: number
+  totalCases: number
+  uniqueLabCount: number
+  uniqueDoctorCount: number
+  shipped: number
+  inProduction: number
+  hold: number
 }
 
 function formatCurrency(value: number): string {
@@ -27,7 +28,7 @@ function formatCurrency(value: number): string {
     currency: "USD",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
-  }).format(value);
+  }).format(value)
 }
 
 const kpis = [
@@ -87,13 +88,13 @@ const kpis = [
     color: "text-red-600",
     bg: "bg-red-50",
   },
-];
+]
 
-export function KpiCards(props: KpiCardsProps) {
+export const KpiCards = memo(function KpiCards(props: KpiCardsProps) {
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-7">
       {kpis.map((kpi) => {
-        const Icon = kpi.icon;
+        const Icon = kpi.icon
         return (
           <Card key={kpi.key} className="gap-0 py-4">
             <CardContent className="px-4">
@@ -110,8 +111,8 @@ export function KpiCards(props: KpiCardsProps) {
               </p>
             </CardContent>
           </Card>
-        );
+        )
       })}
     </div>
-  );
-}
+  )
+})

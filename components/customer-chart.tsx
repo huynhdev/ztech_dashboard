@@ -10,6 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
   LabelList,
+  type TooltipContentProps,
 } from "recharts"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ChartLegend, type ChartSeries } from "@/components/chart-legend"
@@ -25,6 +26,26 @@ const SERIES: ChartSeries[] = [
   { key: "uniqueDoctors", name: "Doctors", color: "#f59e0b" },
   { key: "uniquePatients", name: "Patients", color: "#3b82f6" },
 ]
+
+function CustomerTooltip({ active, payload, label }: TooltipContentProps) {
+  if (!active || !payload?.length) return null
+  // Hidden series are excluded from the payload, so the total tracks the legend toggles.
+  const total = payload.reduce(
+    (sum, entry) => sum + (Number(entry.value) || 0),
+    0
+  )
+  return (
+    <div className="rounded-lg border bg-card px-3 py-2 text-xs text-foreground shadow-sm">
+      <p className="mb-1 font-medium">{String(label)}</p>
+      {payload.map((entry) => (
+        <p key={String(entry.dataKey)} style={{ color: entry.color }}>
+          {entry.name} : {entry.value}
+        </p>
+      ))}
+      <p className="mt-1 border-t pt-1 font-medium">Total : {total}</p>
+    </div>
+  )
+}
 
 export const CustomerChart = memo(function CustomerChart({
   data,
@@ -68,15 +89,7 @@ export const CustomerChart = memo(function CustomerChart({
                 axisLine={false}
                 width={35}
               />
-              <Tooltip
-                contentStyle={{
-                  borderRadius: "8px",
-                  border: "1px solid var(--border)",
-                  background: "var(--card)",
-                  color: "var(--foreground)",
-                  fontSize: 12,
-                }}
-              />
+              <Tooltip content={CustomerTooltip} />
               {SERIES.map((s) => (
                 <Line
                   key={s.key}

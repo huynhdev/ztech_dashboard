@@ -8,6 +8,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { DateRangePicker } from "@/components/date-range-picker"
 import { QuickRangeFilter } from "@/components/quick-range-filter"
 import { KpiCards } from "@/components/kpi-cards"
+import { IncomingCaseChart } from "@/components/incoming-case-chart"
 import { RevenueChart } from "@/components/revenue-chart"
 import { CustomerChart } from "@/components/customer-chart"
 import { VolumeChart } from "@/components/volume-chart"
@@ -116,6 +117,10 @@ export function DashboardOverview({
           </Tabs>
         </div>
 
+        <IncomingCaseChart data={timeSeries} />
+
+        <ClientHeatmap labs={data.heatmapLabs} />
+
         <div className="grid gap-4 lg:grid-cols-2">
           <RevenueChart data={timeSeries} />
           <CustomerChart data={timeSeries} />
@@ -130,8 +135,6 @@ export function DashboardOverview({
           <TopTable title="Top 10 Labs" data={data.topLabs} />
           <TopTable title="Top 10 Doctors" data={data.topDoctors} />
         </div>
-
-        <ClientHeatmap labs={data.heatmapLabs} />
       </div>
     </>
   )

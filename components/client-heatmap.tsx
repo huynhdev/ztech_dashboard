@@ -1,6 +1,14 @@
 "use client"
 
-import { memo, useCallback, useMemo, useState } from "react"
+import {
+  memo,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+  type MouseEvent,
+} from "react"
+import { useVirtualizer } from "@tanstack/react-virtual"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Select,
@@ -14,6 +22,7 @@ import {
   buildHeatmap,
   type HeatmapData,
   type HeatmapLab,
+  type HeatmapRow,
   type HeatmapSort,
 } from "@/lib/data"
 
@@ -30,6 +39,33 @@ function getDayOfWeek(dateStr: string): string {
 // Fixed pixel width per day column so the grid scrolls at a readable size instead of
 // crushing ~90 days into the card width. Wide enough to fit a "DD/M" header label.
 const CELL_W = 28
+// Row height = aspect-square cell (CELL_W) + py-px (1px top + bottom). Must stay in
+// sync with the row classes below — the virtualizer positions rows by this constant.
+const ROW_H = CELL_W + 2
+
+function activeRange(row: HeatmapRow): string {
+  return row.firstActiveDate === row.lastActiveDate
+    ? row.lastActiveDate
+    : `${row.firstActiveDate} → ${row.lastActiveDate}`
+}
+
+const amountFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+})
+
+const compactFormatter = new Intl.NumberFormat("en-US", {
+  notation: "compact",
+  maximumFractionDigits: 1,
+})
+
+// Day cells are CELL_W wide — "$1,234.56" can't fit, so footer amounts render
+// compact ("5.2K"); the hover tooltip carries the exact value.
+function formatCellAmount(v: number): string {
+  return v >= 1000 ? compactFormatter.format(v) : String(Math.round(v))
+}
 
 function getCellColor(count: number, max: number): string {
   if (count === 0) return "bg-muted/40"
@@ -42,16 +78,35 @@ function getCellColor(count: number, max: number): string {
 }
 
 interface TooltipState {
-  lab: string
-  date: string
-  count: number
+  title: string
+  detail: string
   x: number
   y: number
+  // Totals sit at the card's right edge; right-aligning keeps the tooltip inside it.
+  align: "center" | "right"
+}
+
+function tooltipAnchor(
+  e: MouseEvent<HTMLElement>,
+  align: TooltipState["align"]
+): Pick<TooltipState, "x" | "y" | "align"> {
+  const rect = e.currentTarget.getBoundingClientRect()
+  const parentRect =
+    e.currentTarget.closest("[data-heatmap]")?.getBoundingClientRect() ?? rect
+  return {
+    x:
+      (align === "center" ? rect.left + rect.width / 2 : rect.right) -
+      parentRect.left,
+    y: rect.top - parentRect.top - 4,
+    align,
+  }
 }
 
 // The grid is by far the largest DOM subtree on the page (labs × days cells).
-// It's memoized so the hover tooltip — state held by the parent — repaints
-// without re-rendering every cell.
+// Rows are virtualized: only the ~20 visible rows (plus overscan) are mounted,
+// so "All labs" doesn't put labs × days cells in the DOM at once. It's also
+// memoized so the hover tooltip — state held by the parent — repaints without
+// re-rendering the mounted cells.
 const HeatmapGrid = memo(function HeatmapGrid({
   data,
   onCellEnter,
@@ -61,8 +116,20 @@ const HeatmapGrid = memo(function HeatmapGrid({
   onCellEnter: (tooltip: TooltipState) => void
   onCellLeave: () => void
 }) {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const virtualizer = useVirtualizer({
+    count: data.rows.length,
+    getScrollElement: () => scrollRef.current,
+    estimateSize: () => ROW_H,
+    overscan: 8,
+  })
+
+  const grandCases = data.rows.reduce((sum, r) => sum + r.totalCases, 0)
+  const grandAmount = data.rows.reduce((sum, r) => sum + r.totalAmount, 0)
+  const grandRedo = data.rows.reduce((sum, r) => sum + r.totalRedo, 0)
+
   return (
-    <div className="max-h-[600px] overflow-auto">
+    <div ref={scrollRef} className="max-h-[600px] overflow-auto">
       <div className="w-max">
         {/* Date header row — sticky on top; corners pinned to both edges */}
         <div className="sticky top-0 z-30 mb-1 flex bg-card">
@@ -83,61 +150,251 @@ const HeatmapGrid = memo(function HeatmapGrid({
               </div>
             ))}
           </div>
-          <div className="sticky right-0 z-40 w-[50px] shrink-0 border-l border-border/50 bg-card" />
+          <div className="sticky right-0 z-40 flex w-[176px] shrink-0 items-end border-l border-border/50 bg-card pb-px">
+            <span className="w-[44px] text-right text-[9px] leading-tight text-muted-foreground">
+              Cases
+            </span>
+            <span className="w-[36px] text-right text-[9px] leading-tight text-muted-foreground">
+              Redo
+            </span>
+            <span className="flex-1 pr-0.5 text-right text-[9px] leading-tight text-muted-foreground">
+              Amount
+            </span>
+          </div>
         </div>
 
-        {/* Heatmap rows */}
-        {data.rows.map((row) => (
-          <div
-            key={row.labId ?? "unknown"}
-            className="group flex items-center py-px"
-          >
-            <div
-              className="sticky left-0 z-20 w-[160px] shrink-0 truncate border-r border-border/50 bg-card pr-2 text-[11px] leading-tight"
-              title={row.labName}
-            >
-              {row.labName}
+        {/* Heatmap rows — absolutely positioned inside a spacer sized to the
+            full row count, so the scrollbar behaves as if every row existed */}
+        <div
+          className="relative"
+          style={{ height: virtualizer.getTotalSize() }}
+        >
+          {virtualizer.getVirtualItems().map((virtualRow) => {
+            const row = data.rows[virtualRow.index]
+            return (
+              <div
+                key={row.labId ?? "unknown"}
+                className="group absolute top-0 left-0 flex w-full items-center py-px"
+                style={{
+                  height: ROW_H,
+                  transform: `translateY(${virtualRow.start}px)`,
+                }}
+              >
+                <div
+                  className="sticky left-0 z-20 flex h-full w-[160px] shrink-0 items-center border-r border-border/50 bg-card pr-2 text-[11px] leading-tight"
+                  title={row.labName}
+                >
+                  <span className="truncate">{row.labName}</span>
+                </div>
+                <div className="flex gap-px">
+                  {data.dates.map((d) => {
+                    const count = row.cells[d] ?? 0
+                    return (
+                      <div
+                        key={d}
+                        className={`flex aspect-square shrink-0 cursor-pointer items-center justify-center rounded-sm transition-opacity ${getCellColor(count, data.maxCount)} hover:opacity-80`}
+                        style={{ width: CELL_W }}
+                        onMouseEnter={(e) => {
+                          onCellEnter({
+                            title: row.labName,
+                            detail: `${d} · ${
+                              count === 0
+                                ? "No orders"
+                                : `${count} case${count > 1 ? "s" : ""}`
+                            }`,
+                            ...tooltipAnchor(e, "center"),
+                          })
+                        }}
+                        onMouseLeave={onCellLeave}
+                      >
+                        {count > 0 && (
+                          <span className="text-[9px] font-medium text-white mix-blend-difference">
+                            {count}
+                          </span>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
+                <div className="sticky right-0 z-20 flex h-full w-[176px] shrink-0 items-center border-l border-border/50 bg-card pl-1">
+                  <div
+                    className="w-[44px] text-right"
+                    onMouseEnter={(e) =>
+                      onCellEnter({
+                        title: row.labName,
+                        detail: `${row.totalCases} case${row.totalCases === 1 ? "" : "s"} · ${activeRange(row)}`,
+                        ...tooltipAnchor(e, "right"),
+                      })
+                    }
+                    onMouseLeave={onCellLeave}
+                  >
+                    <Badge variant="secondary" className="text-[9px]">
+                      {row.totalCases}
+                    </Badge>
+                  </div>
+                  <div
+                    className={`w-[36px] text-right text-[10px] tabular-nums ${
+                      row.totalRedo > 0
+                        ? "font-medium text-amber-600 dark:text-amber-400"
+                        : "text-muted-foreground/50"
+                    }`}
+                    onMouseEnter={(e) =>
+                      onCellEnter({
+                        title: row.labName,
+                        detail: `${row.totalRedo} redo case${row.totalRedo === 1 ? "" : "s"} · ${activeRange(row)}`,
+                        ...tooltipAnchor(e, "right"),
+                      })
+                    }
+                    onMouseLeave={onCellLeave}
+                  >
+                    {row.totalRedo}
+                  </div>
+                  <div
+                    className="flex-1 pr-0.5 text-right text-[10px] text-muted-foreground tabular-nums"
+                    onMouseEnter={(e) =>
+                      onCellEnter({
+                        title: row.labName,
+                        detail: `${amountFormatter.format(row.totalAmount)} · ${activeRange(row)}`,
+                        ...tooltipAnchor(e, "right"),
+                      })
+                    }
+                    onMouseLeave={onCellLeave}
+                  >
+                    {amountFormatter.format(row.totalAmount)}
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Footer totals — pinned to the bottom edge of the scroll viewport */}
+        <div className="sticky bottom-0 z-30 border-t border-border/50 bg-card">
+          <div className="flex items-center py-px" style={{ height: ROW_H }}>
+            <div className="sticky left-0 z-20 flex h-full w-[160px] shrink-0 items-center border-r border-border/50 bg-card pr-2 text-[9px] font-medium tracking-wide text-muted-foreground">
+              TOTAL CASE/DAY
             </div>
             <div className="flex gap-px">
               {data.dates.map((d) => {
-                const count = row.cells[d] ?? 0
+                const total = data.dailyCases[d] ?? 0
                 return (
                   <div
                     key={d}
-                    className={`flex aspect-square shrink-0 cursor-pointer items-center justify-center rounded-sm transition-opacity ${getCellColor(count, data.maxCount)} hover:opacity-80`}
+                    className="flex shrink-0 items-center justify-center"
                     style={{ width: CELL_W }}
-                    onMouseEnter={(e) => {
-                      const rect = e.currentTarget.getBoundingClientRect()
-                      const parentRect =
-                        e.currentTarget
-                          .closest("[data-heatmap]")
-                          ?.getBoundingClientRect() ?? rect
+                    onMouseEnter={(e) =>
                       onCellEnter({
-                        lab: row.labName,
-                        date: d,
-                        count,
-                        x: rect.left - parentRect.left + rect.width / 2,
-                        y: rect.top - parentRect.top - 4,
+                        title: "Total cases / day",
+                        detail: `${d} · ${total} case${total === 1 ? "" : "s"}`,
+                        ...tooltipAnchor(e, "center"),
                       })
-                    }}
+                    }
                     onMouseLeave={onCellLeave}
                   >
-                    {count > 0 && (
-                      <span className="text-[9px] font-medium text-white mix-blend-difference">
-                        {count}
-                      </span>
-                    )}
+                    <span
+                      className={`text-[9px] tabular-nums ${
+                        total > 0 ? "font-medium" : "text-muted-foreground/40"
+                      }`}
+                    >
+                      {total}
+                    </span>
                   </div>
                 )
               })}
             </div>
-            <div className="sticky right-0 z-20 w-[50px] shrink-0 border-l border-border/50 bg-card pl-1 text-right">
-              <Badge variant="secondary" className="text-[9px]">
-                {row.totalCases}
-              </Badge>
+            <div className="sticky right-0 z-20 flex h-full w-[176px] shrink-0 items-center border-l border-border/50 bg-card pl-1">
+              <div className="w-[44px] text-right">
+                <Badge variant="secondary" className="text-[9px]">
+                  {grandCases}
+                </Badge>
+              </div>
+              <div className="w-[36px]" />
+              <div className="flex-1" />
             </div>
           </div>
-        ))}
+          <div className="flex items-center py-px" style={{ height: ROW_H }}>
+            <div className="sticky left-0 z-20 flex h-full w-[160px] shrink-0 items-center border-r border-border/50 bg-card pr-2 text-[9px] font-medium tracking-wide text-muted-foreground">
+              TOTAL REDO CASE/DAY
+            </div>
+            <div className="flex gap-px">
+              {data.dates.map((d) => {
+                const total = data.dailyRedos[d] ?? 0
+                return (
+                  <div
+                    key={d}
+                    className="flex shrink-0 items-center justify-center"
+                    style={{ width: CELL_W }}
+                    onMouseEnter={(e) =>
+                      onCellEnter({
+                        title: "Total redo cases / day",
+                        detail: `${d} · ${total} redo case${total === 1 ? "" : "s"}`,
+                        ...tooltipAnchor(e, "center"),
+                      })
+                    }
+                    onMouseLeave={onCellLeave}
+                  >
+                    <span
+                      className={`text-[9px] tabular-nums ${
+                        total > 0
+                          ? "font-medium text-amber-600 dark:text-amber-400"
+                          : "text-muted-foreground/40"
+                      }`}
+                    >
+                      {total}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+            <div className="sticky right-0 z-20 flex h-full w-[176px] shrink-0 items-center border-l border-border/50 bg-card pl-1">
+              <div className="w-[44px]" />
+              <div className="w-[36px] text-right text-[10px] font-medium text-amber-600 tabular-nums dark:text-amber-400">
+                {grandRedo}
+              </div>
+              <div className="flex-1" />
+            </div>
+          </div>
+          <div className="flex items-center py-px" style={{ height: ROW_H }}>
+            <div className="sticky left-0 z-20 flex h-full w-[160px] shrink-0 items-center border-r border-border/50 bg-card pr-2 text-[9px] font-medium tracking-wide text-muted-foreground">
+              TOTAL AMOUNT/DAY
+            </div>
+            <div className="flex gap-px">
+              {data.dates.map((d) => {
+                const total = data.dailyAmounts[d] ?? 0
+                return (
+                  <div
+                    key={d}
+                    className="flex shrink-0 items-center justify-center"
+                    style={{ width: CELL_W }}
+                    onMouseEnter={(e) =>
+                      onCellEnter({
+                        title: "Total amount / day",
+                        detail: `${d} · ${amountFormatter.format(total)}`,
+                        ...tooltipAnchor(e, "center"),
+                      })
+                    }
+                    onMouseLeave={onCellLeave}
+                  >
+                    <span
+                      className={`text-[8px] tabular-nums ${
+                        total > 0 ? "font-medium" : "text-muted-foreground/40"
+                      }`}
+                    >
+                      {formatCellAmount(total)}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+            <div className="sticky right-0 z-20 flex h-full w-[176px] shrink-0 items-center border-l border-border/50 bg-card pl-1">
+              <div className="w-[44px]" />
+              <div className="w-[36px]" />
+              <div className="flex-1 pr-0.5 text-right text-[10px] font-medium tabular-nums">
+                {amountFormatter.format(grandAmount)}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -169,16 +426,14 @@ function HeatmapBody({ data }: { data: HeatmapData }) {
           style={{
             left: tooltip.x,
             top: tooltip.y,
-            transform: "translate(-50%, -100%)",
+            transform:
+              tooltip.align === "center"
+                ? "translate(-50%, -100%)"
+                : "translate(-100%, -100%)",
           }}
         >
-          <p className="text-[11px] font-medium">{tooltip.lab}</p>
-          <p className="text-[10px] text-muted-foreground">
-            {tooltip.date} &middot;{" "}
-            {tooltip.count === 0
-              ? "No orders"
-              : `${tooltip.count} case${tooltip.count > 1 ? "s" : ""}`}
-          </p>
+          <p className="text-[11px] font-medium">{tooltip.title}</p>
+          <p className="text-[10px] text-muted-foreground">{tooltip.detail}</p>
         </div>
       )}
     </>
@@ -187,10 +442,10 @@ function HeatmapBody({ data }: { data: HeatmapData }) {
 
 export function ClientHeatmap({ labs }: { labs: HeatmapLab[] }) {
   const [sort, setSort] = useState<HeatmapSort>("last-active")
-  const [limit, setLimit] = useState(40)
+  const [limit, setLimit] = useState<number | "all">("all")
 
   const data = useMemo(
-    () => buildHeatmap(labs, limit, sort),
+    () => buildHeatmap(labs, limit === "all" ? labs.length : limit, sort),
     [labs, limit, sort]
   )
 
@@ -209,7 +464,7 @@ export function ClientHeatmap({ labs }: { labs: HeatmapLab[] }) {
           <div className="flex items-center gap-2">
             <Select
               value={String(limit)}
-              onValueChange={(v) => setLimit(Number(v))}
+              onValueChange={(v) => setLimit(v === "all" ? "all" : Number(v))}
             >
               <SelectTrigger className="h-7 w-[90px] cursor-pointer text-xs">
                 <SelectValue />
@@ -224,7 +479,7 @@ export function ClientHeatmap({ labs }: { labs: HeatmapLab[] }) {
                 <SelectItem value="80" className="cursor-pointer text-xs">
                   Top 80
                 </SelectItem>
-                <SelectItem value="220" className="cursor-pointer text-xs">
+                <SelectItem value="all" className="cursor-pointer text-xs">
                   All labs
                 </SelectItem>
               </SelectContent>

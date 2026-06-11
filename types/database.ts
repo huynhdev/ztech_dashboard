@@ -77,6 +77,7 @@ export type Database = {
           doctor_id: number | null
           id: number
           is_multi_unit: boolean
+          is_redo: boolean
           lab_id: number | null
           order_date: string
           pan: string | null
@@ -93,6 +94,7 @@ export type Database = {
           doctor_id?: number | null
           id?: never
           is_multi_unit?: boolean
+          is_redo?: boolean
           lab_id?: number | null
           order_date: string
           pan?: string | null
@@ -109,6 +111,7 @@ export type Database = {
           doctor_id?: number | null
           id?: never
           is_multi_unit?: boolean
+          is_redo?: boolean
           lab_id?: number | null
           order_date?: string
           pan?: string | null

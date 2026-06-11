@@ -27,6 +27,12 @@ function formatCurrency(
   return `$${n}`
 }
 
+function formatFullCurrency(
+  value: string | number | boolean | null | undefined
+): string {
+  return `$${Number(value).toLocaleString()}`
+}
+
 // Memoized so parent state changes (date-picker selection, tooltip) don't
 // re-render the chart; it only re-renders when `data` identity changes.
 export const RevenueChart = memo(function RevenueChart({
@@ -70,7 +76,7 @@ export const RevenueChart = memo(function RevenueChart({
               />
               <Tooltip
                 formatter={(value) => [
-                  `$${Number(value).toLocaleString()}`,
+                  formatFullCurrency(Number(value)),
                   "Revenue",
                 ]}
                 contentStyle={{
@@ -94,7 +100,7 @@ export const RevenueChart = memo(function RevenueChart({
                   offset={8}
                   fontSize={10}
                   fill="var(--foreground)"
-                  formatter={formatCurrency}
+                  formatter={formatFullCurrency}
                 />
               </Area>
             </AreaChart>

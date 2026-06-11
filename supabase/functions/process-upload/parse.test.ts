@@ -56,6 +56,29 @@ Deno.test("parses the detail sheet, ignores pivots, extracts entities", () => {
   assertEquals(rows[1].amount, 0);
 });
 
+Deno.test("normalizes placeholder PANs (0 or blank) to empty string", () => {
+  const wb = XLSX.utils.book_new();
+  const detail = XLSX.utils.aoa_to_sheet(
+    [
+      ["No", "Pan", "Patient", "Lab", "Doctor", "Order date", "Product", "Status", "Amount"],
+      [1, 0, "L TUYET", "iSmiles Dentistry", "Dang, Nina Nhan DDS", new Date(Date.UTC(2026, 2, 2)), "Zirconia - Full Contour", "Shipped", 0],
+      [2, "0", "TONY THAI", "Tustin Blue", "Vu, Diana DDS", new Date(Date.UTC(2026, 2, 3)), "Zirconia - Full Contour", "Shipped", 0],
+      [3, null, "PARTS", "Mehta Dental Group", "Mehta, R DDS", new Date(Date.UTC(2026, 3, 8)), "Parts", "Shipped", 53.29],
+      [4, "A11", "THAO TRAN", "SGTD Global", "Tran, T DDS", new Date(Date.UTC(2026, 2, 2)), "Zirconia - Full Contour", "Shipped", 246.41],
+    ],
+    { cellDates: true },
+  );
+  XLSX.utils.book_append_sheet(wb, detail, "MAR.2026 DETAIL");
+  const bytes = new Uint8Array(XLSX.write(wb, { type: "array", bookType: "xlsx" }));
+
+  const { rows } = parseWorkbook(bytes);
+  assertEquals(rows.length, 4);
+  assertEquals(rows[0].pan, ""); // numeric 0 placeholder
+  assertEquals(rows[1].pan, ""); // string "0" placeholder
+  assertEquals(rows[2].pan, ""); // genuinely blank
+  assertEquals(rows[3].pan, "A11"); // real PAN untouched
+});
+
 Deno.test("parses a raw ZTECH export via column aliases (Client/Ordered/Products)", () => {
   const wb = XLSX.utils.book_new();
   const detail = XLSX.utils.aoa_to_sheet(

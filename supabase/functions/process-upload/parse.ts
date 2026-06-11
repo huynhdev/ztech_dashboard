@@ -14,6 +14,7 @@ export interface ParsedRow {
   isMultiUnit: boolean;
   status: string;
   amount: number;
+  isRedo: boolean;
 }
 
 export interface SkippedRow {
@@ -74,6 +75,14 @@ function toDateString(v: unknown): string | null {
   return null;
 }
 
+// Real PANs are alphanumeric tray numbers ("A11"); analysts backfill empty Pan
+// cells with a literal 0. Pan is the first dedupe_key segment, so blank vs 0
+// must normalize identically or re-uploads duplicate the row.
+function parsePan(v: unknown): string {
+  const s = String(v ?? "").trim();
+  return s === "0" ? "" : s;
+}
+
 function parsePatient(raw: string): { name: string; externalId: string | null } {
   const m = raw.match(/^(.*?)\s*#\s*(\S+)\s*$/);
   return m ? { name: m[1].trim(), externalId: m[2].trim() } : { name: raw.trim(), externalId: null };
@@ -90,6 +99,27 @@ function parseProduct(raw: string): { name: string; category: string; isMultiUni
   const i = name.indexOf(" - ");
   const category = i >= 0 ? name.slice(0, i).trim() : name;
   return { name, category, isMultiUnit };
+}
+
+// Locate the redo-marker column. Exports flag a redo case in a "REDO" column
+// (value 1) or an "R" column (value 'R'). In the analyst DETAIL template those
+// labels sit one row ABOVE the main column headers, so we also scan that row.
+// Returns -1 for older files without the column (every row is then non-redo).
+function findRedoCol(header: string[], above: string[]): number {
+  const pick = (cells: string[]): number => {
+    const redo = cells.indexOf("redo");
+    if (redo >= 0) return redo;
+    return cells.indexOf("r");
+  };
+  const inHeader = pick(header);
+  return inHeader >= 0 ? inHeader : pick(above);
+}
+
+function isRedoValue(v: unknown): boolean {
+  if (v === null || v === undefined) return false;
+  if (typeof v === "number") return v !== 0;
+  const s = String(v).trim().toLowerCase();
+  return s !== "" && s !== "0" && s !== "false" && s !== "no";
 }
 
 export function parseWorkbook(bytes: Uint8Array): ParseResult {
@@ -136,6 +166,10 @@ export function parseWorkbook(bytes: Uint8Array): ParseResult {
       status: col("status"),
       amount: col("amount"),
     };
+    const redoCol = findRedoCol(
+      header,
+      headerIdx > 0 ? (matrix[headerIdx - 1] ?? []).map(norm) : [],
+    );
 
     const rows: ParsedRow[] = [];
     const skipped: SkippedRow[] = [];
@@ -159,7 +193,7 @@ export function parseWorkbook(bytes: Uint8Array): ParseResult {
       const amountNum = Number(r[idx.amount] ?? 0);
 
       rows.push({
-        pan: String(r[idx.pan] ?? "").trim(),
+        pan: parsePan(r[idx.pan]),
         patientName,
         externalId,
         lab,
@@ -172,6 +206,7 @@ export function parseWorkbook(bytes: Uint8Array): ParseResult {
         isMultiUnit,
         status: String(r[idx.status] ?? "").trim(),
         amount: Number.isFinite(amountNum) ? amountNum : 0,
+        isRedo: redoCol >= 0 && isRedoValue(r[redoCol]),
       });
     }
 

@@ -33,6 +33,7 @@ export interface TimeSeriesPoint {
   shipped: number
   inProduction: number
   hold: number
+  redo: number
 }
 
 // A time-series point as returned by the RPC — labels are a presentation
@@ -70,6 +71,7 @@ export interface DashboardSummary {
   shipped: number
   inProduction: number
   hold: number
+  redo: number
 }
 
 export interface CategoryBreakdown {
@@ -94,6 +96,11 @@ export interface HeatmapLab {
   labId: number | null
   labName: string
   cells: Record<string, number>
+  amounts: Record<string, number>
+  // Sparse: only days with at least one redo are present.
+  redos: Record<string, number>
+  totalAmount: number
+  totalRedo: number
 }
 
 export interface DashboardOverviewData {
@@ -111,15 +118,23 @@ export interface HeatmapRow {
   labId: number | null
   labName: string
   totalCases: number
+  totalAmount: number
+  totalRedo: number
   lastActiveDate: string
   firstActiveDate: string
   cells: Record<string, number>
+  amounts: Record<string, number>
+  redos: Record<string, number>
 }
 
 export interface HeatmapData {
   dates: string[]
   rows: HeatmapRow[]
   maxCount: number
+  // Per-day totals across the rows above (i.e. they respect the Top-N limit).
+  dailyCases: Record<string, number>
+  dailyAmounts: Record<string, number>
+  dailyRedos: Record<string, number>
 }
 
 export function buildHeatmap(
@@ -143,9 +158,13 @@ export function buildHeatmap(
       labId: lab.labId,
       labName: lab.labName,
       totalCases,
+      totalAmount: lab.totalAmount,
+      totalRedo: lab.totalRedo,
       lastActiveDate: lastActive,
       firstActiveDate: firstActive,
       cells: lab.cells,
+      amounts: lab.amounts,
+      redos: lab.redos,
     }
   })
 
@@ -162,12 +181,21 @@ export function buildHeatmap(
   rows = rows.slice(0, limit)
 
   let maxCount = 0
+  const dailyCases: Record<string, number> = {}
+  const dailyAmounts: Record<string, number> = {}
+  const dailyRedos: Record<string, number> = {}
   for (const r of rows) {
     for (const d of dates) {
       const v = r.cells[d] ?? 0
       if (v > maxCount) maxCount = v
+      if (v > 0) {
+        dailyCases[d] = (dailyCases[d] ?? 0) + v
+        dailyAmounts[d] = (dailyAmounts[d] ?? 0) + (r.amounts[d] ?? 0)
+        const redo = r.redos[d] ?? 0
+        if (redo > 0) dailyRedos[d] = (dailyRedos[d] ?? 0) + redo
+      }
     }
   }
 
-  return { dates, rows, maxCount }
+  return { dates, rows, maxCount, dailyCases, dailyAmounts, dailyRedos }
 }

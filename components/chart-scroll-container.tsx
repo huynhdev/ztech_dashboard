@@ -7,7 +7,9 @@ import type { TimeSeriesPoint } from "@/lib/data"
 // Minimum horizontal space per data point. With daily granularity over a few months
 // this pushes the chart past the card width so it scrolls; for weekly/monthly the
 // computed min-width stays under the card and the chart just fills it (no scroll).
-const MIN_PX_PER_POINT = 44
+// Charts with wide per-point labels (e.g. full currency amounts) should pass a
+// larger value via minPxPerPoint.
+const DEFAULT_MIN_PX_PER_POINT = 44
 
 // While the skeleton is up the scrollable inner div is gone, so the browser clamps
 // scrollLeft back to 0 and the remounted chart measures its final width once,
@@ -17,11 +19,13 @@ const SWITCH_DELAY_MS = 200
 interface ChartScrollContainerProps {
   data: TimeSeriesPoint[]
   children: ReactNode
+  minPxPerPoint?: number
 }
 
 export function ChartScrollContainer({
   data,
   children,
+  minPxPerPoint = DEFAULT_MIN_PX_PER_POINT,
 }: ChartScrollContainerProps) {
   // The series currently on screen; starts null so SSR/hydration renders the
   // skeleton until the container can be measured client-side.
@@ -40,7 +44,7 @@ export function ChartScrollContainer({
       ) : (
         <div
           className="h-full"
-          style={{ minWidth: `${data.length * MIN_PX_PER_POINT}px` }}
+          style={{ minWidth: `${data.length * minPxPerPoint}px` }}
         >
           {children}
         </div>

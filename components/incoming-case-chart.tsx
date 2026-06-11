@@ -113,7 +113,9 @@ export const IncomingCaseChart = memo(function IncomingCaseChart({
         <ChartLegend series={SERIES} hidden={hidden} onToggle={toggle} />
       </CardHeader>
       <CardContent className="pt-0">
-        <ChartScrollContainer data={data}>
+        {/* Full-currency Amount labels (~60px at 10px font) need more room per
+            point than the default to stay legible. */}
+        <ChartScrollContainer data={data} minPxPerPoint={72}>
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart
               data={data}

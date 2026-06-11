@@ -44,7 +44,7 @@ export const RevenueChart = memo(function RevenueChart({
         <CardTitle className="text-sm font-medium">Revenue Trend</CardTitle>
       </CardHeader>
       <CardContent className="pt-0">
-        <ChartScrollContainer data={data}>
+        <ChartScrollContainer data={data} minPxPerPoint={72}>
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart
               data={data}

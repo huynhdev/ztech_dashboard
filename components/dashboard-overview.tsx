@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useTransition } from "react"
-import { format, parseISO } from "date-fns"
+import { useEffect, useState, useTransition } from "react"
+import { format, isValid, parseISO } from "date-fns"
 import type { DateRange } from "react-day-picker"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -17,6 +17,34 @@ import { TopTable } from "@/components/top-table"
 import { ClientHeatmap } from "@/components/client-heatmap"
 import { cn } from "@/lib/utils"
 import type { DashboardOverviewData, TimeGranularity } from "@/lib/data"
+
+const RANGE_STORAGE_KEY = "dashboard:date-range"
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
+
+function isIsoDate(value: unknown): value is string {
+  return (
+    typeof value === "string" && ISO_DATE.test(value) && isValid(parseISO(value))
+  )
+}
+
+function readStoredRange(): { from: string; to: string } | null {
+  try {
+    const raw = localStorage.getItem(RANGE_STORAGE_KEY)
+    if (!raw) return null
+    const parsed: unknown = JSON.parse(raw)
+    if (
+      parsed &&
+      typeof parsed === "object" &&
+      isIsoDate((parsed as { from?: unknown }).from) &&
+      isIsoDate((parsed as { to?: unknown }).to)
+    ) {
+      return parsed as { from: string; to: string }
+    }
+  } catch {
+    // Ignore corrupted storage; fall back to the default range.
+  }
+  return null
+}
 
 export function DashboardOverview({
   data,
@@ -47,6 +75,22 @@ export function DashboardOverview({
     setRange({ from: parseISO(from), to: parseISO(to) })
   }
 
+  // Restore the persisted range when arriving without explicit URL params
+  // (e.g. via the sidebar's plain "/" link). Mount-only: an explicit clear
+  // also removes the stored range, so it won't be re-applied.
+  useEffect(() => {
+    if (searchParams.get("from") || searchParams.get("to")) return
+    const stored = readStoredRange()
+    if (!stored) return
+    const params = new URLSearchParams(searchParams.toString())
+    params.set("from", stored.from)
+    params.set("to", stored.to)
+    startTransition(() => {
+      router.replace(`${pathname}?${params.toString()}`, { scroll: false })
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   function handleRangeChange(next: DateRange | undefined) {
     setRange(next)
     // Wait for a complete range before navigating; ignore the partial first click.
@@ -54,11 +98,18 @@ export function DashboardOverview({
 
     const params = new URLSearchParams(searchParams.toString())
     if (next?.from && next?.to) {
-      params.set("from", format(next.from, "yyyy-MM-dd"))
-      params.set("to", format(next.to, "yyyy-MM-dd"))
+      const fromValue = format(next.from, "yyyy-MM-dd")
+      const toValue = format(next.to, "yyyy-MM-dd")
+      params.set("from", fromValue)
+      params.set("to", toValue)
+      localStorage.setItem(
+        RANGE_STORAGE_KEY,
+        JSON.stringify({ from: fromValue, to: toValue })
+      )
     } else {
       params.delete("from")
       params.delete("to")
+      localStorage.removeItem(RANGE_STORAGE_KEY)
     }
     const qs = params.toString()
     startTransition(() => {

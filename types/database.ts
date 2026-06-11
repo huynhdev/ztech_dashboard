@@ -286,6 +286,7 @@ export type Database = {
           skipped_count: number
           status: Database["public"]["Enums"]["upload_status"]
           total_rows: number | null
+          updated_at: string
           updated_count: number
           uploaded_at: string
           uploaded_by: string | null
@@ -303,6 +304,7 @@ export type Database = {
           skipped_count?: number
           status?: Database["public"]["Enums"]["upload_status"]
           total_rows?: number | null
+          updated_at?: string
           updated_count?: number
           uploaded_at?: string
           uploaded_by?: string | null
@@ -320,6 +322,7 @@ export type Database = {
           skipped_count?: number
           status?: Database["public"]["Enums"]["upload_status"]
           total_rows?: number | null
+          updated_at?: string
           updated_count?: number
           uploaded_at?: string
           uploaded_by?: string | null
@@ -339,6 +342,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      fail_stalled_uploads: {
+        Args: { p_stale_after?: string }
+        Returns: number
+      }
       get_dashboard_overview: {
         Args: { p_from: string; p_to: string }
         Returns: Json

@@ -28,6 +28,14 @@ import type { Tables } from "@/types/database"
 
 const ACCEPTED = ".xlsx"
 
+// How long a non-terminal upload row may go without any change before the dialog
+// declares it stalled. A killed edge worker (e.g. "CPU Time exceeded") never runs
+// markFailed, so without this the row stays "processing" forever and blocks the
+// sequential upload queue. Must comfortably exceed the longest legitimately silent
+// window (the parse phase writes nothing between "processing" and total_rows) and
+// stay below the 3-minute server-side fail_stalled_uploads() sweep.
+const STALL_TIMEOUT_MS = 120_000
+
 type FileProgress = {
   fileName: string
   status: "pending" | "processing" | "completed" | "failed"
@@ -248,9 +256,27 @@ export function UploadDialog() {
           resolveFile()
         }
 
+        // Stall detection: applyRow snapshots the fields below, so any real progress
+        // (from Realtime or the poll) refreshes lastChangeAt. The clock starts when the
+        // poll starts (after the function invoke) — storage upload time never counts.
+        let lastChangeAt = Date.now()
+        let lastSnapshot = ""
+
         // One place to apply a row snapshot to the UI — shared by the Realtime UPDATE, the
         // resubscribe refetch, and the poll — settling once the row reaches a terminal state.
         const applyRow = (r: Record<string, number | string | null>) => {
+          const snapshot = JSON.stringify([
+            r.status,
+            r.processed_rows,
+            r.total_rows,
+            r.inserted_count,
+            r.skipped_count,
+            r.error,
+          ])
+          if (snapshot !== lastSnapshot) {
+            lastSnapshot = snapshot
+            lastChangeAt = Date.now()
+          }
           set({
             status: String(r.status) as FileProgress["status"],
             processed: Number(r.processed_rows ?? 0),
@@ -397,9 +423,36 @@ export function UploadDialog() {
             return
           }
 
+          // Watchdog: a worker killed by the runtime (CPU/memory limit) bypasses the
+          // function's catch, so the row never reaches a terminal state on its own.
+          // Mark it failed — guarded to lose against a terminal update racing in, in
+          // which case the refetch picks up the real outcome and settles normally.
+          const failStalled = async () => {
+            const msg =
+              "Processing stalled: the server stopped reporting progress. Re-upload the file to retry."
+            const { data: updated } = await supabase
+              .from("uploads")
+              .update({ status: "failed", error: msg })
+              .eq("id", id)
+              .in("status", ["pending", "processing"])
+              .select("id")
+              .maybeSingle()
+            if (updated) {
+              set({ status: "failed", error: msg })
+              settleOnce()
+            } else {
+              void refetchRow()
+            }
+          }
+
           // Final backstop (see buildChannel): poll the row from the DB so the file still
           // settles and stays in sync even if Realtime never recovers.
+          lastChangeAt = Date.now()
           pollTimer = setInterval(() => {
+            if (Date.now() - lastChangeAt > STALL_TIMEOUT_MS) {
+              void failStalled()
+              return
+            }
             void refetchRow()
           }, 3000)
         })()

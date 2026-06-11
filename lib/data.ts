@@ -114,6 +114,10 @@ export interface DashboardOverviewData {
 
 export type HeatmapSort = "last-active" | "total-cases" | "name"
 
+// Since the RPC returns every lab (inactive ones with empty cells), this
+// filter lets the UI isolate clients with no cases in the selected range.
+export type HeatmapActivity = "all" | "active" | "inactive"
+
 export interface HeatmapRow {
   labId: number | null
   labName: string
@@ -140,7 +144,8 @@ export interface HeatmapData {
 export function buildHeatmap(
   labs: HeatmapLab[],
   limit = 40,
-  sort: HeatmapSort = "last-active"
+  sort: HeatmapSort = "last-active",
+  activity: HeatmapActivity = "all"
 ): HeatmapData {
   const dateSet = new Set<string>()
 
@@ -168,7 +173,14 @@ export function buildHeatmap(
     }
   })
 
+  // Date axis comes from all labs so the "No cases" view keeps the full grid.
   const dates = Array.from(dateSet).sort()
+
+  if (activity !== "all") {
+    rows = rows.filter((r) =>
+      activity === "active" ? r.totalCases > 0 : r.totalCases === 0
+    )
+  }
 
   if (sort === "last-active") {
     rows.sort((a, b) => a.lastActiveDate.localeCompare(b.lastActiveDate))

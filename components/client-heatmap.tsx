@@ -20,6 +20,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import {
   buildHeatmap,
+  type HeatmapActivity,
   type HeatmapData,
   type HeatmapLab,
   type HeatmapRow,
@@ -44,6 +45,7 @@ const CELL_W = 28
 const ROW_H = CELL_W + 2
 
 function activeRange(row: HeatmapRow): string {
+  if (!row.lastActiveDate) return "no cases in range"
   return row.firstActiveDate === row.lastActiveDate
     ? row.lastActiveDate
     : `${row.firstActiveDate} → ${row.lastActiveDate}`
@@ -184,7 +186,11 @@ const HeatmapGrid = memo(function HeatmapGrid({
                   className="sticky left-0 z-20 flex h-full w-[160px] shrink-0 items-center border-r border-border/50 bg-card pr-2 text-[11px] leading-tight"
                   title={row.labName}
                 >
-                  <span className="truncate">{row.labName}</span>
+                  <span
+                    className={`truncate ${row.totalCases === 0 ? "text-muted-foreground" : ""}`}
+                  >
+                    {row.labName}
+                  </span>
                 </div>
                 <div className="flex gap-px">
                   {data.dates.map((d) => {
@@ -443,10 +449,17 @@ function HeatmapBody({ data }: { data: HeatmapData }) {
 export function ClientHeatmap({ labs }: { labs: HeatmapLab[] }) {
   const [sort, setSort] = useState<HeatmapSort>("last-active")
   const [limit, setLimit] = useState<number | "all">("all")
+  const [activity, setActivity] = useState<HeatmapActivity>("all")
 
   const data = useMemo(
-    () => buildHeatmap(labs, limit === "all" ? labs.length : limit, sort),
-    [labs, limit, sort]
+    () =>
+      buildHeatmap(labs, limit === "all" ? labs.length : limit, sort, activity),
+    [labs, limit, sort, activity]
+  )
+
+  const inactiveCount = useMemo(
+    () => labs.filter((lab) => Object.keys(lab.cells).length === 0).length,
+    [labs]
   )
 
   return (
@@ -462,6 +475,25 @@ export function ClientHeatmap({ labs }: { labs: HeatmapLab[] }) {
             </p>
           </div>
           <div className="flex items-center gap-2">
+            <Select
+              value={activity}
+              onValueChange={(v) => setActivity(v as HeatmapActivity)}
+            >
+              <SelectTrigger className="h-7 w-[110px] cursor-pointer text-xs">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all" className="cursor-pointer text-xs">
+                  All activity
+                </SelectItem>
+                <SelectItem value="active" className="cursor-pointer text-xs">
+                  With cases
+                </SelectItem>
+                <SelectItem value="inactive" className="cursor-pointer text-xs">
+                  No cases
+                </SelectItem>
+              </SelectContent>
+            </Select>
             <Select
               value={String(limit)}
               onValueChange={(v) => setLimit(v === "all" ? "all" : Number(v))}
@@ -528,7 +560,8 @@ export function ClientHeatmap({ labs }: { labs: HeatmapLab[] }) {
             <span className="text-[10px] text-muted-foreground">More</span>
           </div>
           <span className="text-[10px] text-muted-foreground">
-            {data.rows.length} labs shown
+            {data.rows.length} labs shown · {inactiveCount} with no cases in
+            range
           </span>
         </div>
       </CardContent>

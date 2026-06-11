@@ -40,6 +40,21 @@ const AMOUNT: ChartSeries = {
 }
 const SERIES: ChartSeries[] = [ACCOUNT, REDO, CASE, AMOUNT]
 
+// Band the chart vertically so series don't cross: the Amount line gets the
+// top ~30% of the plot (huge floor padding on the right axis) while the left
+// axis gets matching headroom to keep the Case line and bars below that band.
+function amountDomain([dataMin, dataMax]: readonly [number, number]): [
+  number,
+  number,
+] {
+  const range = Math.max(dataMax - dataMin, Math.abs(dataMax) * 0.05, 1)
+  return [dataMin - range * 2.5, dataMax + range * 0.1]
+}
+
+function countDomain(dataMax: number): number {
+  return Math.ceil(dataMax * 1.45)
+}
+
 // Compact form for the right-axis ticks (gridline references only).
 function formatCurrencyAxis(
   value: string | number | boolean | null | undefined
@@ -119,6 +134,8 @@ export const IncomingCaseChart = memo(function IncomingCaseChart({
               />
               <YAxis
                 yAxisId="left"
+                domain={[0, countDomain]}
+                allowDecimals={false}
                 tick={{ fontSize: 11 }}
                 tickLine={false}
                 axisLine={false}
@@ -127,7 +144,7 @@ export const IncomingCaseChart = memo(function IncomingCaseChart({
               <YAxis
                 yAxisId="right"
                 orientation="right"
-                domain={["auto", "auto"]}
+                domain={amountDomain}
                 tickFormatter={formatCurrencyAxis}
                 tick={{ fontSize: 11 }}
                 tickLine={false}
